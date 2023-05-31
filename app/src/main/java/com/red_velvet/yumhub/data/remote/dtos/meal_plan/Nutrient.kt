@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Nutrient(
     @SerializedName("amount")
-    val amount: Int? = null,
+    val amount: Double? = null,
     @SerializedName("name")
     val name: String? = null,
     @SerializedName("percentOfDailyNeeds")
