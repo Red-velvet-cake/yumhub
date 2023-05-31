@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.data.remote.dtos
 
 
 import com.google.gson.annotations.SerializedName
+import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.NutrientDto
 
 data class NutritionDto(

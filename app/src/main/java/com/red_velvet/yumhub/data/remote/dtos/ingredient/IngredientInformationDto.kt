@@ -8,7 +8,7 @@ data class IngredientInformationDto(
     @SerializedName("aisle")
     val aisle: String? = null,
     @SerializedName("amount")
-    val amount: Double? = null,
+    val amount: Double? = 0.0,
     @SerializedName("categoryPath")
     val categoryPath: List<String?>? = null,
     @SerializedName("consistency")
@@ -16,13 +16,13 @@ data class IngredientInformationDto(
     @SerializedName("estimatedCost")
     val estimatedCost: EstimatedCostDto? = null,
     @SerializedName("id")
-    val id: Int? = null,
+    val id: Int? = 0,
     @SerializedName("image")
     val image: String? = null,
     @SerializedName("meta")
     val meta: List<Any?>? = null,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String? = "",
     @SerializedName("nutrition")
     val nutrition: NutritionDto? = null,
     @SerializedName("original")
@@ -34,9 +34,11 @@ data class IngredientInformationDto(
     @SerializedName("shoppingListUnits")
     val shoppingListUnits: List<String?>? = null,
     @SerializedName("unit")
-    val unit: String? = null,
+    val unit: String? = "",
     @SerializedName("unitLong")
     val unitLong: String? = null,
     @SerializedName("unitShort")
-    val unitShort: String? = null
+    val unitShort: String? = null,
+    @SerializedName("nutrients")
+    val nutrients: List<NutrientDto>? = listOf(),
 )
