@@ -24,7 +24,7 @@ import retrofit2.http.Query
 interface FoodService {
 
     @GET("recipes/complexSearch")
-       suspend fun getRecipeSearch(
+    suspend fun searchRecipe(
         @Query("query") query: String = "",
         @Query("cuisine") cuisine: String? = "",
         @Query("intolerances") intolerances: String? = "",
@@ -38,69 +38,69 @@ interface FoodService {
     ): Response<RecipeSearchDto>
 
     @GET("recipes/{id}/information")
-     suspend  fun getRecipeInformation(
+    suspend fun getRecipeInformation(
         @Path("id") id: Int,
-        @Query("includeNutrition") includeNutrition: Boolean?= false,
+        @Query("includeNutrition") includeNutrition: Boolean? = false,
     ): Response<RecipeInformationDto>
 
     @GET("recipes/{id}/similar")
-     suspend  fun getSimilarRecipes(
+    suspend fun getSimilarRecipes(
         @Path("id") id: Int,
         @Query("number") number: Int? = 3,
     ): Response<SimilarRecipesDto>
 
     @GET("recipes/random")
-       suspend fun getRandomRecipes(
+    suspend fun getRandomRecipes(
         @Query("tags") tags: String? = "",
         @Query("number") number: Int? = 10,
     ): Response<RandomRecipesDto>
 
     @GET("recipes/guessNutrition")
-     suspend fun getGuessNutrition(
+    suspend fun guessNutrition(
         @Query("title") title: String = "",
     ): Response<GuessNutritionDto>
 
     @GET("recipes/quickAnswer")
-     suspend fun getQuickAnswer(
-        @Query("q") q: String = "",
+    suspend fun getQuickAnswer(
+        @Query("q") question: String = "",
     ): Response<QuickAnswerDto>
 
     @GET("food/ingredients/search")
-     suspend fun getSearchIngredients(
-        @Query("query") query: String ,
+    suspend fun searchIngredients(
+        @Query("query") query: String,
         @Query("sort") sort: String? = "",
         @Query("intolerances") intolerances: String? = "",
         @Query("number") number: Int? = 10,
     ): Response<IngredientSearchDto>
 
     @GET("food/ingredients/{id}/information")
-     suspend fun getIngredientInformation(
+    suspend fun getIngredientInformation(
         @Path("id") id: Int,
         @Query("amount") amount: Int? = null,
         @Query("unit") unit: String? = null,
     ): Response<IngredientInformationDto>
 
     @GET("food/ingredients/substitutes")
-     suspend fun getSubstitutesIngredient(
+    suspend fun getSubstitutesIngredient(
         @Query("ingredientName") ingredientName: String?,
     ): Response<IngredientSubstituteDto>
 
     @GET("mealplanner/{username}/week/{start-date}")
-     suspend fun getMealPlanWeek(
-        @Path("start-date") date:String,
-        @Path("username") username:String,
-        @Query("hash") hash:String
-    ):Response<WeekMealPlanDto>
+    suspend fun getWeekMealPlan(
+        @Path("start-date") date: String,
+        @Path("username") username: String,
+        @Query("hash") hash: String
+    ): Response<WeekMealPlanDto>
 
     @POST("mealplanner/{username}/items")
-     suspend fun addToMealPlan(
-        @Body addToMeal:AddMealDto,
-        @Path("username") username:String,
-        @Query("hash") hash:String
-    ):Response<ResultAddToMealPlanDto>
+    suspend fun addToMealPlan(
+        @Body addToMeal: AddMealDto,
+        @Path("username") username: String,
+        @Query("hash") hash: String
+    ): Response<ResultAddToMealPlanDto>
 
     @POST("users/connect")
-     suspend fun getUserConnect(
-        @Body userData:UserInformation
-    ):Response<ConnectUserDto>
+    suspend fun connectUser(
+        @Body userData: UserInformation
+    ): Response<ConnectUserDto>
 }
