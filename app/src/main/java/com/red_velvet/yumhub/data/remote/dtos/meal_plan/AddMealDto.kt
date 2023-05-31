@@ -13,5 +13,5 @@ data class AddMealDto(
     @SerializedName("type")
     val type: String? = "",
     @SerializedName("value")
-    val value: AddMealValueDto? = AddMealValueDto()
+    val value: Value? = Value()
 )
