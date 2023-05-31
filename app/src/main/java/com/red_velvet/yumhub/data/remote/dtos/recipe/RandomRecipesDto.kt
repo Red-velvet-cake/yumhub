@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class RandomRecipesDto(
     @SerializedName("recipes")
-    val recipes: List<RecipeDataDto>? = listOf()
+    val recipes: List<RecipeInformationDto>? = listOf()
 )
