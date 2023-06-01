@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class MealPlanEntity(
         @PrimaryKey(autoGenerate = true)
-        val id: Long,
+        val id: Int,
         val position: Int,
         val slot: Int,
         val type: String,
