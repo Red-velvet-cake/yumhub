@@ -13,16 +13,22 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-        @Provides
-        @Singleton
-        fun provideFoodDatabase(@ApplicationContext context: Context) =
-            Room.databaseBuilder(
-                    context,
-                    FoodDatabase::class.java,
-                    "foodDatabase"
-            ).build()
 
-        @Provides
-        @Singleton
-        fun providesMealsDao(foodDatabase: FoodDatabase) = foodDatabase.mealsDao()
+    @Singleton
+    @Provides
+    fun provideFoodDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(
+            context,
+            FoodDatabase::class.java,
+            "foodDatabase"
+        ).build()
+
+
+    @Singleton
+    @Provides
+    fun provideRecipeDao(foodDatabase: FoodDatabase) = foodDatabase.recipeDao()
+
+    @Provides
+    @Singleton
+    fun providesMealsDao(foodDatabase: FoodDatabase) = foodDatabase.mealsDao()
 }
