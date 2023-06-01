@@ -12,8 +12,7 @@ class IngredientSubstitutesMapper  @Inject constructor() :
     override fun map(input: IngredientSubstituteDto): IngredientSubstitutes {
         return IngredientSubstitutes(
             ingredient  = input.ingredient ?: "",
-            substitutes = input.substitutes ?: emptyList(),
-
+            substitutes = input.substitutes?.filterNotNull() ?: emptyList(),
         )
     }
 }

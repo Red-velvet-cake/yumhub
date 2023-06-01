@@ -7,7 +7,7 @@ import retrofit2.http.Query
 import javax.inject.Inject
 
 class SearchIngredientUseCase @Inject constructor(
-    private val ingredientRepository: IngredientRepository
+    private val ingredientRepository: IngredientRepository,
 ) {
     suspend operator fun  invoke(
         query: String,
