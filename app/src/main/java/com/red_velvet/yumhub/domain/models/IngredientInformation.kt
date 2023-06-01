@@ -11,7 +11,7 @@ data class IngredientInformation(
 
 data class Nutrition(
    val nutrients : List<Nutrients>?,
-   val properties: List<Properties>?,
+   val properties: List<Property>?,
    val weightPerServing:WeightPerServing
 )
 
