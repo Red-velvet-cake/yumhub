@@ -22,31 +22,61 @@ class RecipesRepositoryImpl @Inject constructor(
     override suspend fun searchRecipe(
         query: String?,
         sort: String?
-    ): Response<RecipeSearchDto> {
-        return foodService.searchRecipe(query, sort)
+    ): RecipeSearchDto {
+        val response = foodService.searchRecipe(query, sort)
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw Exception(response.message())
+        }
     }
 
     override suspend fun getRecipeInformation(
         id: Int,
         includeNutrition: Boolean?
-    ): Response<RecipeInformationDto> {
-        return foodService.getRecipeInformation(id, includeNutrition)
+    ): RecipeInformationDto {
+        val response = foodService.getRecipeInformation(id, includeNutrition)
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw Exception(response.message())
+        }
     }
 
-    override suspend fun getSimilarRecipes(id: Int, number: Int?): Response<SimilarRecipesDto> {
-        return foodService.getSimilarRecipes(id, number)
+    override suspend fun getSimilarRecipes(id: Int, number: Int?): SimilarRecipesDto {
+        val response = foodService.getSimilarRecipes(id, number)
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw Exception(response.message())
+        }
     }
 
-    override suspend fun getRandomRecipes(tags: String?, number: Int?): Response<RandomRecipesDto> {
-        return foodService.getRandomRecipes(tags, number)
+    override suspend fun getRandomRecipes(tags: String?, number: Int?): RandomRecipesDto {
+        val response = foodService.getRandomRecipes(tags, number)
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw Exception(response.message())
+        }
     }
 
-    override suspend fun guessNutrition(title: String): Response<GuessNutritionDto> {
-        return foodService.guessNutrition(title)
+    override suspend fun guessNutrition(title: String): GuessNutritionDto {
+        val response = foodService.guessNutrition(title)
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw Exception(response.message())
+        }
     }
 
-    override suspend fun getQuickAnswer(question: String): Response<QuickAnswerDto> {
-        return foodService.getQuickAnswer(question)
+    override suspend fun getQuickAnswer(question: String): QuickAnswerDto {
+        val response = foodService.getQuickAnswer(question)
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw Exception(response.message())
+        }
     }
 
     override suspend fun refreshRecipes(recipeType: String) {

@@ -15,30 +15,30 @@ interface RecipesRepository {
     suspend fun searchRecipe(
         query: String? = null,
         sort: String? = null,
-    ): Response<RecipeSearchDto>
+    ): RecipeSearchDto
 
     suspend fun getRecipeInformation(
         id: Int,
         includeNutrition: Boolean? = null,
-    ): Response<RecipeInformationDto>
+    ):RecipeInformationDto
 
     suspend fun getSimilarRecipes(
         id: Int,
         number: Int? = 3,
-    ): Response<SimilarRecipesDto>
+    ): SimilarRecipesDto
 
     suspend fun getRandomRecipes(
         tags: String? = "",
         number: Int? = 10
-    ): Response<RandomRecipesDto>
+    ): RandomRecipesDto
 
     suspend fun guessNutrition(
         title: String = ""
-    ): Response<GuessNutritionDto>
+    ): GuessNutritionDto
 
     suspend fun getQuickAnswer(
         question: String = ""
-    ): Response<QuickAnswerDto>
+    ): QuickAnswerDto
 
     suspend fun refreshRecipes(recipeType: String)
 
