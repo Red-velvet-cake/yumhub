@@ -34,6 +34,7 @@ interface FoodService {
         @Query("excludeIngredients") excludeIngredients: String? = "",
         @Query("type") type: String? = "",
         @Query("sort") sort: String? = "",
+        @Query("sortDirection") sortDirection: String? = "asc",
         @Query("addRecipeInformation") addRecipeInformation: Boolean? = true,
     ): Response<RecipeSearchDto>
 

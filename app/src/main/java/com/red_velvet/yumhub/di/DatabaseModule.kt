@@ -3,7 +3,6 @@ package com.red_velvet.yumhub.di
 import android.content.Context
 import androidx.room.Room
 import com.red_velvet.yumhub.data.local.FoodDatabase
-import com.red_velvet.yumhub.data.local.daos.RecipeDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +26,9 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideRecipeDao(foodDatabase: FoodDatabase) =
-        foodDatabase.recipeDao()
+    fun provideRecipeDao(foodDatabase: FoodDatabase) = foodDatabase.recipeDao()
 
+    @Provides
+    @Singleton
+    fun providesMealsDao(foodDatabase: FoodDatabase) = foodDatabase.mealsDao()
 }
