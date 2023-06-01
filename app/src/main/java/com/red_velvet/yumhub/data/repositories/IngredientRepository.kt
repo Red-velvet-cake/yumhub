@@ -4,6 +4,7 @@ import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDt
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchResultDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
+import retrofit2.Response
 
 interface IngredientRepository {
 
@@ -12,16 +13,16 @@ interface IngredientRepository {
         sort: String?,
         intolerances: String?,
         number :Int?
-    ):IngredientSearchDto
+    ):Response<IngredientSearchDto>
 
     suspend fun getIngredientInformation(
         id: Int,
         amount: Int,
         unit: String?,
 
-    ): IngredientInformationDto
+    ): Response<IngredientInformationDto>
 
     suspend fun getSubstitutesIngredient(
         ingredientName:String
-    ):IngredientSubstituteDto
+    ):Response<IngredientSubstituteDto>
 }

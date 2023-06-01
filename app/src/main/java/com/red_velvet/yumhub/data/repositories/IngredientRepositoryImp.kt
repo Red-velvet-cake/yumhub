@@ -5,6 +5,7 @@ import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDt
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchResultDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
+import retrofit2.Response
 import javax.inject.Inject
 
 class IngredientRepositoryImp @Inject constructor(
@@ -14,26 +15,26 @@ class IngredientRepositoryImp @Inject constructor(
         sort: String?,
         intolerances: String?,
         number: Int?
-    ): IngredientSearchDto{
+    ): Response<IngredientSearchDto>{
       return  foodService.searchIngredients(
           query=query,
           sort=sort,
           intolerances=  intolerances,
-          number=  number).body()!!
+          number=  number)
     }
 
     override suspend fun getIngredientInformation(
         id: Int,
         amount: Int,
         unit: String?
-    ): IngredientInformationDto {
+    ): Response<IngredientInformationDto> {
        return  foodService.getIngredientInformation(
            id=id ,
            amount= amount,
-           unit= unit).body()!!
+           unit= unit)
     }
 
-    override suspend fun getSubstitutesIngredient(ingredientName: String): IngredientSubstituteDto {
-        return  foodService.getSubstitutesIngredient(ingredientName=ingredientName).body()!!
+    override suspend fun getSubstitutesIngredient(ingredientName: String): Response<IngredientSubstituteDto> {
+        return  foodService.getSubstitutesIngredient(ingredientName=ingredientName)
     }
 }
