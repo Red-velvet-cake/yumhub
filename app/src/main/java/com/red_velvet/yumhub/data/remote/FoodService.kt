@@ -25,7 +25,7 @@ interface FoodService {
 
     @GET("recipes/complexSearch")
     suspend fun searchRecipe(
-        @Query("query") query: String = "",
+        @Query("query") query: String? = "",
         @Query("cuisine") cuisine: String? = "",
         @Query("intolerances") intolerances: String? = "",
         @Query("diet") diet: String? = "",
@@ -103,4 +103,5 @@ interface FoodService {
     suspend fun connectUser(
         @Body userData: UserInformation
     ): Response<ConnectUserDto>
+    
 }
