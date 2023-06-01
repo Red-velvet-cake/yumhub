@@ -5,7 +5,6 @@ import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDt
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchResultDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
-import retrofit2.Response
 import javax.inject.Inject
 
 class IngredientRepositoryImp @Inject constructor(
@@ -15,26 +14,44 @@ class IngredientRepositoryImp @Inject constructor(
         sort: String?,
         intolerances: String?,
         number: Int?
-    ): Response<IngredientSearchDto>{
-      return  foodService.searchIngredients(
-          query=query,
-          sort=sort,
-          intolerances=  intolerances,
-          number=  number)
+    ): IngredientSearchDto{
+        val response=foodService.searchIngredients(
+            query=query,
+            sort=sort,
+            intolerances=  intolerances,
+            number=  number)
+        if( response.isSuccessful){
+            return  response.body()!!
+        }else{
+            throw Exception(response.message())
+        }
+
     }
 
     override suspend fun getIngredientInformation(
         id: Int,
         amount: Int,
         unit: String?
-    ): Response<IngredientInformationDto> {
-       return  foodService.getIngredientInformation(
-           id=id ,
-           amount= amount,
-           unit= unit)
+    ): IngredientInformationDto {
+        val response= foodService.getIngredientInformation(
+            id=id ,
+            amount= amount,
+            unit= unit);
+        if(response.isSuccessful){
+            return  response.body()!!
+        }else{
+            throw Exception(response.message())
+        }
+
     }
 
-    override suspend fun getSubstitutesIngredient(ingredientName: String): Response<IngredientSubstituteDto> {
-        return  foodService.getSubstitutesIngredient(ingredientName=ingredientName)
+    override suspend fun getSubstitutesIngredient(ingredientName: String): IngredientSubstituteDto {
+        val response =foodService.getSubstitutesIngredient(ingredientName=ingredientName)
+        if(response.isSuccessful){
+            return response.body()!!
+        }
+        else{
+            throw Exception(response.message())
+        }
     }
 }

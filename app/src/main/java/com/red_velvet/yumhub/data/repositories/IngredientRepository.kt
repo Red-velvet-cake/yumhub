@@ -13,16 +13,16 @@ interface IngredientRepository {
         sort: String?,
         intolerances: String?,
         number :Int?
-    ):Response<IngredientSearchDto>
+    ):IngredientSearchDto
 
     suspend fun getIngredientInformation(
         id: Int,
         amount: Int,
         unit: String?,
 
-    ): Response<IngredientInformationDto>
+    ): IngredientInformationDto
 
     suspend fun getSubstitutesIngredient(
         ingredientName:String
-    ):Response<IngredientSubstituteDto>
+    ):IngredientSubstituteDto
 }
