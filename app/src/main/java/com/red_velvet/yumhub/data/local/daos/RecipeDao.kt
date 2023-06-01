@@ -8,10 +8,10 @@ import com.red_velvet.yumhub.data.local.entities.RecipeEntity
 
 @Dao
 interface RecipeDao {
-    @Query("SELECT * FROM RECIPE_TABLE WHERE type = :type")
+    @Query("SELECT * FROM RecipeEntity WHERE type = :type")
     suspend fun getRecipe(type: String):List<RecipeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRecipe(recipeEntity: RecipeEntity)
+    suspend fun insertRecipe(recipeEntity: List<RecipeEntity>)
 
 }
