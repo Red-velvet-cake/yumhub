@@ -12,11 +12,11 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    fun provideFoodDatabase(@ApplicationContext context: Context) =
+        fun provideFoodDatabase(@ApplicationContext context: Context) =
             Room.databaseBuilder(
-                    context,
-                    FoodDatabase::class.java,
-                    "foodDatabase"
+                context,
+                FoodDatabase::class.java,
+                "foodDatabase"
             ).build()
 
 }
