@@ -22,13 +22,13 @@ data class  Nutrients(
     val unit:String?,
 )
 
-data class  Properties(
+data class  Property(
     val amount:Double?,
     val name :String?,
     val unit:String?,
 )
 
 data class WeightPerServing(
-    val amount:Double?,
+    val amount:Int?,
     val unit:String?,
 )
