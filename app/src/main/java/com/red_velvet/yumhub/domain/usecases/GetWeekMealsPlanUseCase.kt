@@ -10,7 +10,7 @@ import javax.inject.Inject
 class GetWeekMealsPlanUseCase @Inject constructor(
     private val mealRepository: MealRepository,
 )  {
-        fun invoke(
+       operator fun invoke(
         fromTimestamp:Long,
         toTimesTamp:Long
     ):Flow<List<MealPlan>>{
