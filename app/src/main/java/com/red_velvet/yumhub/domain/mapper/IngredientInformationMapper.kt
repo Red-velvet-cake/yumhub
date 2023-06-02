@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.domain.mapper
 
-import com.karrar.movieapp.domain.mappers.Mapper
 import com.red_velvet.yumhub.data.remote.dtos.PropertyDto
 import com.red_velvet.yumhub.data.remote.dtos.WeightPerServingDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
@@ -10,45 +9,41 @@ import com.red_velvet.yumhub.domain.models.ingredientInformation.Nutrients
 import com.red_velvet.yumhub.domain.models.ingredientInformation.Nutrition
 import com.red_velvet.yumhub.domain.models.ingredientInformation.Property
 import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServing
-import javax.inject.Inject
 
-class IngredientInformationMapper  @Inject constructor() :
-    Mapper<IngredientInformationDto, IngredientInformation> {
-    override fun map(input: IngredientInformationDto): IngredientInformation {
+     fun IngredientInformationDto.toIngredientInformationDtoMapper(): IngredientInformation {
         return IngredientInformation(
-            id  = input.id ?: 0,
-            name = input.name?: "",
-            image = input.image?: "",
-            categoryPath = input.categoryPath?.filterNotNull() ?: emptyList(),
+            id  = this.id ?: 0,
+            name = this.name?: "",
+            image = this.image?: "",
+            categoryPath = this.categoryPath?.filterNotNull() ?: emptyList(),
             nutrition = Nutrition(
-                nutrients = input.nutrition?.nutrients?.map { mapNutrientDtoToNutrients(it) } ?: emptyList(),
-                properties = input.nutrition?.properties?.map { mapPropertiesDtoToProperties(it) } ?: emptyList(),
-                weightPerServing = mapWeightPerServingDtoToWeightPerServing(input.nutrition?.weightPerServing)
-            )
+                nutrients = this.nutrition?.nutrients?.map { it.mapToNutrients() } ?: emptyList(),
+                properties = this.nutrition?.properties?.map { it.mapToProperties() } ?: emptyList(),
+                weightPerServing = this.nutrition?.weightPerServing?.mapToWeightPerServing()!!
+            ),
         )
     }
-
-    private fun mapNutrientDtoToNutrients(nutrientDto: NutrientDto): Nutrients {
+    private fun NutrientDto.mapToNutrients(): Nutrients {
         return Nutrients(
-            amount = nutrientDto.amount,
-            percentOfDailyNeeds = nutrientDto.percentOfDailyNeeds,
-            name = nutrientDto.name ?: "",
-            unit = nutrientDto.unit ?: ""
+            amount = amount,
+            percentOfDailyNeeds = percentOfDailyNeeds,
+            name = name ?: "",
+            unit = unit ?: ""
         )
     }
 
-    private fun mapPropertiesDtoToProperties(propertiesDto: PropertyDto): Property {
+    private fun PropertyDto.mapToProperties(): Property {
         return Property(
-            amount = propertiesDto.amount,
-            name = propertiesDto.name ?: "",
-            unit = propertiesDto.unit ?: ""
+            amount = amount,
+            name = name ?: "",
+            unit = unit ?: ""
         )
     }
 
-    private fun mapWeightPerServingDtoToWeightPerServing(weightPerServingDto: WeightPerServingDto?): WeightPerServing {
+    private fun WeightPerServingDto?.mapToWeightPerServing(): WeightPerServing {
         return WeightPerServing(
-            amount = weightPerServingDto?.amount,
-            unit = weightPerServingDto?.unit ?: ""
+            amount = this?.amount,
+            unit = this?.unit ?: ""
         )
     }
-}
+
