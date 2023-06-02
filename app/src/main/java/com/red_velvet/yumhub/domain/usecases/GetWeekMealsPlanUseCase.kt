@@ -19,6 +19,4 @@ class GetWeekMealsPlanUseCase @Inject constructor(
                 mealPlanEntities.map { it.toMealPlan() }
             }
     }
-
-
 }
