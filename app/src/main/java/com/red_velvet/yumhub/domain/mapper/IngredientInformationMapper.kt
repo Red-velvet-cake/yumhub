@@ -4,14 +4,12 @@ import com.karrar.movieapp.domain.mappers.Mapper
 import com.red_velvet.yumhub.data.remote.dtos.PropertyDto
 import com.red_velvet.yumhub.data.remote.dtos.WeightPerServingDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.NutrientDto
-import com.red_velvet.yumhub.domain.models.IngredientInformation
-import com.red_velvet.yumhub.domain.models.IngredientSubstitutes
-import com.red_velvet.yumhub.domain.models.Nutrients
-import com.red_velvet.yumhub.domain.models.Nutrition
-import com.red_velvet.yumhub.domain.models.Property
-import com.red_velvet.yumhub.domain.models.WeightPerServing
+import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformation
+import com.red_velvet.yumhub.domain.models.ingredientInformation.Nutrients
+import com.red_velvet.yumhub.domain.models.ingredientInformation.Nutrition
+import com.red_velvet.yumhub.domain.models.ingredientInformation.Property
+import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServing
 import javax.inject.Inject
 
 class IngredientInformationMapper  @Inject constructor() :
