@@ -6,7 +6,6 @@ import com.red_velvet.yumhub.data.local.daos.MealsDao
 import com.red_velvet.yumhub.data.local.entities.MealPlanEntity
 import com.red_velvet.yumhub.data.remote.FoodService
 import com.red_velvet.yumhub.data.remote.dtos.meal_plan.AddMealDto
-import com.red_velvet.yumhub.data.remote.dtos.meal_plan.ResultAddToMealPlanDto
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,13 +21,12 @@ class MealRepositoryImpl @Inject constructor(
         addToMeal: AddMealDto,
         username: String,
         hash: String
-    ): ResultAddToMealPlanDto {
+    ){
         val response = foodServesImpl.addToMealPlan(addToMeal, username, hash)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
+        if (!response.isSuccessful) {
             throw Exception(response.message())
         }
+
 
     }
 
