@@ -3,31 +3,31 @@ package com.red_velvet.yumhub.data.local
 import android.content.SharedPreferences
 import javax.inject.Inject
 
-class SharedPreferenceManager @Inject constructor(
+class SharedPreferenceImpl @Inject constructor(
     private val shearedPreferences: SharedPreferences,
-) {
+) : SharedPreferenceService {
 
-    fun saveUserName(name: String) {
+    override fun saveUserName(name: String) {
         shearedPreferences.edit {
             putString("name", name)
         }
     }
 
-    fun saveHash(hash: String) {
+    override fun saveHash(hash: String) {
         shearedPreferences.edit {
             putString("hash", hash)
         }
     }
 
-    fun getUserName(): String? {
+    override fun getUserName(): String? {
         return shearedPreferences.getString("name", null)
     }
 
-    fun getHash(): String? {
+    override fun getHash(): String? {
         return shearedPreferences.getString("hash", null)
     }
 
-    fun clear() {
+    override fun clear() {
         shearedPreferences.edit {
             clear()
         }
