@@ -5,17 +5,17 @@ import com.red_velvet.yumhub.data.remote.FoodService
 import com.red_velvet.yumhub.data.remote.dtos.auth.UserInformation
 import javax.inject.Inject
 
-class SharedPreferenceRepositoryImpl @Inject constructor(
+class UserRepositoryImpl @Inject constructor(
     private val foodServiceImpl: FoodService,
     private val sharedPreferenceManager: SharedPreferenceManager
-) : SharedPreferenceRepository {
+) : UserRepository {
 
     override suspend fun saveUserName(userData: UserInformation) {
         val response = foodServiceImpl.connectUser(userData)
         if (response.isSuccessful) {
-            val userData = response.body()
-            sharedPreferenceManager.saveUserName(userData?.username!!)
-            sharedPreferenceManager.saveHash(userData.hash!!)
+            val connectUserDto = response.body()
+            sharedPreferenceManager.saveUserName(connectUserDto?.username!!)
+            sharedPreferenceManager.saveHash(connectUserDto.hash!!)
         } else {
             throw Exception(response.message())
         }
