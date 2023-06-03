@@ -6,7 +6,7 @@ import com.red_velvet.yumhub.domain.models.IngredientSubstitutes
 
     fun IngredientSubstituteDto.toIngredientSubstitute(): IngredientSubstitutes {
         return IngredientSubstitutes(
-            ingredient  = ingredient ?: "",
-            substitutes = substitutes?.filterNotNull() ?: emptyList(),
+            ingredient  = ingredient.orEmpty(),
+            substitutes = substitutes?.filterNotNull()
         )
     }

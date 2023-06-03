@@ -9,42 +9,44 @@ import com.red_velvet.yumhub.domain.models.ingredientInformation.Nutrients
 import com.red_velvet.yumhub.domain.models.ingredientInformation.Nutrition
 import com.red_velvet.yumhub.domain.models.ingredientInformation.Property
 import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServing
+import com.red_velvet.yumhub.domain.utils.orEmptyList
+import com.red_velvet.yumhub.domain.utils.orZero
 
-     fun IngredientInformationDto.toIngredientInformation(): IngredientInformation {
+fun IngredientInformationDto.toIngredientInformation(): IngredientInformation {
         return IngredientInformation(
-            id  = id ?: 0,
-            name = name?: "",
-            image = image?: "",
-            categoryPath = categoryPath?.filterNotNull() ?: emptyList(),
+            id  = id.orZero(),
+            name = name.orEmpty(),
+            image = image.orEmpty(),
+            categoryPath = categoryPath?.filterNotNull(),
             nutrition = Nutrition(
-                nutrients = nutrition?.nutrients?.map { it.toNutrients() } ?: emptyList(),
-                properties = nutrition?.properties?.map { it.toProperties() } ?: emptyList(),
+                nutrients = nutrition?.nutrients?.map { it.toNutrients() }.orEmptyList(),
+                properties = nutrition?.properties?.map { it.toProperties() }.orEmptyList(),
                 weightPerServing =nutrition?.weightPerServing?.toWeightPerServing()?: WeightPerServing(0, "")
             ),
         )
     }
     private fun NutrientDto.toNutrients(): Nutrients {
         return Nutrients(
-            amount = amount,
-            percentOfDailyNeeds = percentOfDailyNeeds,
-            name = name ?: "",
-            unit = unit ?: ""
+            amount = amount.orZero(),
+            percentOfDailyNeeds = percentOfDailyNeeds.orZero(),
+            name = name.orEmpty() ,
+            unit = unit.orEmpty()
         )
     }
 
     private fun PropertyDto.toProperties(): Property {
         return Property(
-            amount = amount,
-            name = name ?: "",
-            unit = unit ?: ""
+            amount = amount.orZero(),
+            name = name.orEmpty() ,
+            unit = unit.orEmpty() ,
         )
     }
 
 private fun WeightPerServingDto?.toWeightPerServing(): WeightPerServing? {
     return this?.let {
         WeightPerServing(
-            amount = it.amount ?: 0,
-            unit = it.unit ?: ""
+            amount = it.amount.orZero(),
+            unit = it.unit.orEmpty() ,
         )
     }
 }
