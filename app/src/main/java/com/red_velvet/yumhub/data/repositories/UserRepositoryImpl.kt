@@ -1,21 +1,21 @@
 package com.red_velvet.yumhub.data.repositories
 
-import com.red_velvet.yumhub.data.local.SharedPreferenceManager
+import com.red_velvet.yumhub.data.local.SharedPreferenceService
 import com.red_velvet.yumhub.data.remote.FoodService
 import com.red_velvet.yumhub.data.remote.dtos.auth.UserInformation
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val foodServiceImpl: FoodService,
-    private val sharedPreferenceManager: SharedPreferenceManager
+    private val sharedPreferenceImpl: SharedPreferenceService
 ) : UserRepository {
 
     override suspend fun saveUserName(userData: UserInformation) {
         val response = foodServiceImpl.connectUser(userData)
         if (response.isSuccessful) {
             val connectUserDto = response.body()
-            sharedPreferenceManager.saveUserName(connectUserDto?.username!!)
-            sharedPreferenceManager.saveHash(connectUserDto.hash!!)
+            sharedPreferenceImpl.saveUserName(connectUserDto?.username!!)
+            sharedPreferenceImpl.saveHash(connectUserDto.hash!!)
         } else {
             throw Exception(response.message())
         }
@@ -23,10 +23,10 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getUserName(): String {
-        return sharedPreferenceManager.getUserName()!!
+        return sharedPreferenceImpl.getUserName()!!
     }
 
     override suspend fun getHash(): String {
-        return sharedPreferenceManager.getHash()!!
+        return sharedPreferenceImpl.getHash()!!
     }
 }
