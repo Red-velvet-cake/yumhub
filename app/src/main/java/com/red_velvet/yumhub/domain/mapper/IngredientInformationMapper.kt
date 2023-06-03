@@ -10,20 +10,20 @@ import com.red_velvet.yumhub.domain.models.ingredientInformation.Nutrition
 import com.red_velvet.yumhub.domain.models.ingredientInformation.Property
 import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServing
 
-     fun IngredientInformationDto.toIngredientInformationDtoMapper(): IngredientInformation {
+     fun IngredientInformationDto.toIngredientInformation(): IngredientInformation {
         return IngredientInformation(
-            id  = this.id ?: 0,
-            name = this.name?: "",
-            image = this.image?: "",
-            categoryPath = this.categoryPath?.filterNotNull() ?: emptyList(),
+            id  = id ?: 0,
+            name = name?: "",
+            image = image?: "",
+            categoryPath = categoryPath?.filterNotNull() ?: emptyList(),
             nutrition = Nutrition(
-                nutrients = this.nutrition?.nutrients?.map { it.mapToNutrients() } ?: emptyList(),
-                properties = this.nutrition?.properties?.map { it.mapToProperties() } ?: emptyList(),
-                weightPerServing = this.nutrition?.weightPerServing?.mapToWeightPerServing()!!
+                nutrients = nutrition?.nutrients?.map { it.toNutrients() } ?: emptyList(),
+                properties = nutrition?.properties?.map { it.toProperties() } ?: emptyList(),
+                weightPerServing =nutrition?.weightPerServing?.toWeightPerServing()?: WeightPerServing(0, "")
             ),
         )
     }
-    private fun NutrientDto.mapToNutrients(): Nutrients {
+    private fun NutrientDto.toNutrients(): Nutrients {
         return Nutrients(
             amount = amount,
             percentOfDailyNeeds = percentOfDailyNeeds,
@@ -32,7 +32,7 @@ import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServin
         )
     }
 
-    private fun PropertyDto.mapToProperties(): Property {
+    private fun PropertyDto.toProperties(): Property {
         return Property(
             amount = amount,
             name = name ?: "",
@@ -40,10 +40,12 @@ import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServin
         )
     }
 
-    private fun WeightPerServingDto?.mapToWeightPerServing(): WeightPerServing {
-        return WeightPerServing(
-            amount = this?.amount,
-            unit = this?.unit ?: ""
+private fun WeightPerServingDto?.toWeightPerServing(): WeightPerServing? {
+    return this?.let {
+        WeightPerServing(
+            amount = it.amount ?: 0,
+            unit = it.unit ?: ""
         )
     }
+}
 

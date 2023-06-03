@@ -1,6 +1,6 @@
 package com.red_velvet.yumhub.domain.usecases
 import com.red_velvet.yumhub.data.repositories.IngredientRepository
-import com.red_velvet.yumhub.domain.mapper.toIngredientSearchResultDtoMapper
+import com.red_velvet.yumhub.domain.mapper.toIngredientSearchResult
 import com.red_velvet.yumhub.domain.models.IngredientSearch
 import java.lang.Exception
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class SearchIngredientUseCase @Inject constructor(
                 sort =sort,
                 intolerances = intolerances,
                 number =number ).results?.map {
-                    it!!.toIngredientSearchResultDtoMapper()
+                    it!!.toIngredientSearchResult()
         }?: throw Exception()
     }
 }

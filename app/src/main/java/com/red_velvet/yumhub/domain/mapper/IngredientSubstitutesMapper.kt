@@ -4,9 +4,9 @@ import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
 import com.red_velvet.yumhub.domain.models.IngredientSubstitutes
 
 
-    fun IngredientSubstituteDto.toIngredientSubstituteDtoMapper(): IngredientSubstitutes {
+    fun IngredientSubstituteDto.toIngredientSubstitute(): IngredientSubstitutes {
         return IngredientSubstitutes(
-            ingredient  = this.ingredient ?: "",
-            substitutes = this.substitutes?.filterNotNull() ?: emptyList(),
+            ingredient  = ingredient ?: "",
+            substitutes = substitutes?.filterNotNull() ?: emptyList(),
         )
     }

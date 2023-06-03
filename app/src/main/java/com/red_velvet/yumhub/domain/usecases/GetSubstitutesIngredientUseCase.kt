@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases
 
 import com.red_velvet.yumhub.data.repositories.IngredientRepository
-import com.red_velvet.yumhub.domain.mapper.toIngredientSubstituteDtoMapper
+import com.red_velvet.yumhub.domain.mapper.toIngredientSubstitute
 import com.red_velvet.yumhub.domain.models.IngredientSubstitutes
 import javax.inject.Inject
 
@@ -12,6 +12,6 @@ class GetSubstitutesIngredientUseCase @Inject constructor(
         return ingredientRepository
             .getSubstitutesIngredient(
                 ingredientName =ingredientName,
-            ).toIngredientSubstituteDtoMapper()
+            ).toIngredientSubstitute()
     }
 }
