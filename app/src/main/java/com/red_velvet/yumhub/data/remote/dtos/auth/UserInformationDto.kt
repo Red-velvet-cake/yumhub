@@ -3,7 +3,7 @@ package com.red_velvet.yumhub.data.remote.dtos.auth
 
 import com.google.gson.annotations.SerializedName
 
-data class UserInformation(
+data class UserInformationDto(
     @SerializedName("email")
     val email: String? = null,
     @SerializedName("firstName")
