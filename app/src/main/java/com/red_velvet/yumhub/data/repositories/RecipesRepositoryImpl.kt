@@ -8,10 +8,9 @@ import com.red_velvet.yumhub.data.remote.dtos.recipe.QuickAnswerDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RandomRecipesDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDto
+import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDtoItem
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(
@@ -43,7 +42,7 @@ class RecipesRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSimilarRecipes(id: Int, number: Int?): SimilarRecipesDto {
+    override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipesDtoItem> {
         val response = foodService.getSimilarRecipes(id, number)
         if (response.isSuccessful) {
             return response.body()!!

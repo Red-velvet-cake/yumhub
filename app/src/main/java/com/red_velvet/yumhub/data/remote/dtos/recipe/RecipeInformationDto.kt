@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.data.remote.dtos.recipe
 
 
 import com.google.gson.annotations.SerializedName
+import com.red_velvet.yumhub.data.remote.dtos.AnalyzedInstructionDto
 import com.red_velvet.yumhub.data.remote.dtos.ExtendedIngredientDto
 import com.red_velvet.yumhub.data.remote.dtos.WinePairingDto
 
@@ -9,7 +10,7 @@ data class RecipeInformationDto(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int? = null,
     @SerializedName("analyzedInstructions")
-    val analyzedInstructions: List<Any?>? = null,
+    val analyzedInstructions: List<AnalyzedInstructionDto?>? = null,
     @SerializedName("cheap")
     val cheap: Boolean? = null,
     @SerializedName("cookingMinutes")
@@ -17,11 +18,11 @@ data class RecipeInformationDto(
     @SerializedName("creditsText")
     val creditsText: String? = null,
     @SerializedName("cuisines")
-    val cuisines: List<Any?>? = null,
+    val cuisines: List<String?>? = null,
     @SerializedName("dairyFree")
     val dairyFree: Boolean? = null,
     @SerializedName("diets")
-    val diets: List<Any?>? = null,
+    val diets: List<String?>? = null,
     @SerializedName("dishTypes")
     val dishTypes: List<String?>? = null,
     @SerializedName("extendedIngredients")
