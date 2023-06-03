@@ -10,6 +10,8 @@ fun RecipeSearchResultDto.toEntity(
         id = id ?: 0,
         title = title ?: "",
         image = image ?: "",
-        type = type ?: ""
+        type = type ?: "",
+        imageType =imageType?:"",
+        servings = servings ?: 0
     )
 }
