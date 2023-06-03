@@ -2,17 +2,22 @@ package com.red_velvet.yumhub.domain.usecases.recipes
 
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchDto
 import com.red_velvet.yumhub.data.repositories.RecipesRepositoryImpl
+import com.red_velvet.yumhub.domain.mapper.toIngredientSearchResult
 import com.red_velvet.yumhub.domain.mapper.toIngredientSubstitute
+import com.red_velvet.yumhub.domain.mapper.toRecipeSearch
 import com.red_velvet.yumhub.domain.models.IngredientSubstitutes
+import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
 
 class SearchRecipeUseCase (
    private  val recipesRepositoryImpl : RecipesRepositoryImpl
         ) {
-    suspend operator fun invoke(query: String,sort:String): RecipeSearchDto {
+    suspend operator fun invoke(query: String,sort:String): List<SearchRecipe> {
         return recipesRepositoryImpl
             .searchRecipe(
                 query = query,
                 sort=sort
-            ).toIngredientSubstitute()
+            ).results?.map {
+                it!!.toRecipeSearch()
+            } ?: throw Exception()
     }
 }
