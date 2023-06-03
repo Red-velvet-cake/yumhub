@@ -18,5 +18,4 @@ class GetRecipesUseCase @Inject constructor(
             }
         }
     }
-
 }
