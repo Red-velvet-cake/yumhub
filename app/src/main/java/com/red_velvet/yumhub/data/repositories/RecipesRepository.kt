@@ -6,10 +6,8 @@ import com.red_velvet.yumhub.data.remote.dtos.recipe.QuickAnswerDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RandomRecipesDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDtoItem
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 
 interface RecipesRepository {
 
@@ -26,7 +24,7 @@ interface RecipesRepository {
     suspend fun getSimilarRecipes(
         id: Int,
         number: Int? = 3,
-    ): ArrayList<SimilarRecipesDtoItem>
+    ): List<SimilarRecipesDtoItem>
 
     suspend fun getRandomRecipes(
         tags: String? = "",
