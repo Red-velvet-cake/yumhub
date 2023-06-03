@@ -5,7 +5,6 @@ import com.red_velvet.yumhub.data.remote.dtos.meal_plan.AddMealDto
 import kotlinx.coroutines.flow.Flow
 
 
-
 interface MealRepository {
 
     suspend fun addToMealPlan(
@@ -13,7 +12,6 @@ interface MealRepository {
         username: String,
         hash: String
     )
-
 
     fun getWeekMealsPlan(
         fromTimestamp: Long,

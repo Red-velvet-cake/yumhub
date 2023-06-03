@@ -91,7 +91,7 @@ class RecipesRepositoryImpl @Inject constructor(
     }
 
     override fun getRecipes(recipeType: String): Flow<List<RecipeEntity>> {
-        return recipeDao.getRecipe(recipeType)
+        return recipeDao.getRecipes(recipeType)
     }
 
 }

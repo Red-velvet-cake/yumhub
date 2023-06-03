@@ -12,7 +12,7 @@ class AddToMealPlanUseCase @Inject constructor(
         addToMealPlan: MealPlanEntity,
         username: String,
         hash: String,
-        ){
+    ) {
         return mealRepository
             .addToMealPlan(addToMealPlan.toMealPlanDto(), username, hash)
     }

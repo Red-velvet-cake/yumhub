@@ -10,9 +10,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RecipeDao {
     @Query("SELECT * FROM RecipeEntity WHERE type = :type")
-    fun getRecipe(type: String):Flow<List<RecipeEntity>>
+    fun getRecipes(type: String): Flow<List<RecipeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipe(recipeEntity: List<RecipeEntity>)
-
 }

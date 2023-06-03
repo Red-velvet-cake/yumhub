@@ -21,13 +21,11 @@ class MealRepositoryImpl @Inject constructor(
         addToMeal: AddMealDto,
         username: String,
         hash: String
-    ){
+    ) {
         val response = foodServesImpl.addToMealPlan(addToMeal, username, hash)
         if (!response.isSuccessful) {
             throw Exception(response.message())
         }
-
-
     }
 
     override fun getWeekMealsPlan(
@@ -52,6 +50,5 @@ class MealRepositoryImpl @Inject constructor(
             }?.let { mealsDao.insertWeekPlanMeal(it) }
         }
     }
-
 
 }

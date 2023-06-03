@@ -2,9 +2,7 @@ package com.red_velvet.yumhub.data.repositories
 
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchResultDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
-import retrofit2.Response
 
 interface IngredientRepository {
 

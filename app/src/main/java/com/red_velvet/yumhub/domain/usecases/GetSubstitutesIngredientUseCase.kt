@@ -8,10 +8,10 @@ import javax.inject.Inject
 class GetSubstitutesIngredientUseCase @Inject constructor(
     private val ingredientRepository: IngredientRepository,
 ) {
-    suspend operator fun  invoke(ingredientName: String): IngredientSubstitutes {
+    suspend operator fun invoke(ingredientName: String): IngredientSubstitutes {
         return ingredientRepository
             .getSubstitutesIngredient(
-                ingredientName =ingredientName,
+                ingredientName = ingredientName,
             ).toIngredientSubstitute()
     }
 }

@@ -3,7 +3,6 @@ package com.red_velvet.yumhub.data.repositories
 import com.red_velvet.yumhub.data.remote.FoodService
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchResultDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
 import javax.inject.Inject
 

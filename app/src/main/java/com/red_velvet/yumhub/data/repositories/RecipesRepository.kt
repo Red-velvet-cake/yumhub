@@ -19,7 +19,7 @@ interface RecipesRepository {
     suspend fun getRecipeInformation(
         id: Int,
         includeNutrition: Boolean? = null,
-    ):RecipeInformationDto
+    ): RecipeInformationDto
 
     suspend fun getSimilarRecipes(
         id: Int,
@@ -42,6 +42,4 @@ interface RecipesRepository {
     suspend fun refreshRecipes(recipeType: String)
 
     fun getRecipes(recipeType: String): Flow<List<RecipeEntity>>
-
-
 }

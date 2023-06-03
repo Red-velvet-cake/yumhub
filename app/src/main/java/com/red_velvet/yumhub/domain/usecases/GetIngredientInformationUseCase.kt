@@ -8,15 +8,15 @@ import javax.inject.Inject
 class GetIngredientInformationUseCase @Inject constructor(
     private val ingredientRepository: IngredientRepository,
 ) {
-    suspend operator fun  invoke(
+    suspend operator fun invoke(
         id: Int,
-        amount :Int?,
+        amount: Int?,
         unit: String?
     ): IngredientInformation {
         return ingredientRepository.getIngredientInformation(
-                id =id,
-                amount =amount,
-                unit = unit,
-            ).toIngredientInformation()
+            id = id,
+            amount = amount,
+            unit = unit,
+        ).toIngredientInformation()
     }
 }

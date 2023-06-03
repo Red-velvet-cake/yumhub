@@ -104,5 +104,5 @@ interface FoodService {
     suspend fun connectUser(
         @Body userData: UserInformation
     ): Response<ConnectUserDto>
-    
+
 }

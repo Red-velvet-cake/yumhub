@@ -18,7 +18,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideFoodService(retrofit: Retrofit):FoodService{
+    fun provideFoodService(retrofit: Retrofit): FoodService {
         return retrofit.create(FoodService::class.java)
     }
 
@@ -37,7 +37,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(authInterceptor: AuthorizationInterceptor):OkHttpClient{
+    fun provideOkHttpClient(authInterceptor: AuthorizationInterceptor): OkHttpClient {
         return OkHttpClient().newBuilder()
             .addInterceptor(authInterceptor)
             .build()

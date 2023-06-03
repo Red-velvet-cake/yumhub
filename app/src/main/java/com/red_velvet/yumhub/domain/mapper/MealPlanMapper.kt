@@ -5,7 +5,7 @@ import com.red_velvet.yumhub.domain.models.MealPlan
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
 
-fun MealPlanEntity.toMealPlan():MealPlan{
+fun MealPlanEntity.toMealPlan(): MealPlan {
     return MealPlan(
         id = id.orZero(),
         position = position.orZero(),
