@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.search.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.search.SearchFragment"
+      >
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginHorizontal="16dp"
-            android:radius="24dp"
+            android:onTextChanged="@{viewModel.onInputSearchChange}"
+            android:background="@drawable/rounded_corner_background"
+            app:shapeAppearanceOverlay="@style/RoundedCorner"
+            android:textColorHint="@color/black_light"
             android:hint="Search food, drink, etc"
+            android:textSize="16sp"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#F6F6F6"
                 android:padding="16dp"
+                android:text="@{viewModel.uiState.searchInput}"
+
                 android:layout_margin="8dp"
                 android:radius="24dp"
-                android:backgroundTint="#F6F6F6" />
+                android:backgroundTint="#F6F6F6"
+              />
 
+/>
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
