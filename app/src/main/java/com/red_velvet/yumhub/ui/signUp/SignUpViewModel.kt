@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.ui.signUp
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.UserInformation
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
@@ -22,37 +21,63 @@ class SignUpViewModel @Inject constructor(
     val uiState: StateFlow<SignUpUIState> = _uiState
 
     fun onUsernameChange(username: String) {
-        _uiState.update { it.copy(username = username) }
+        _uiState.update { it.copy(username = username, usernameError = null) }
     }
 
     fun onFirstNameChange(firstName: String) {
-        _uiState.update { it.copy(firstName = firstName) }
+        _uiState.update { it.copy(firstName = firstName, firstNameError = null) }
     }
 
     fun onLastNameChange(lastName: String) {
-        _uiState.update { it.copy(lastName = lastName) }
+        _uiState.update { it.copy(lastName = lastName, lastNameError = null) }
     }
 
     fun onEmailChange(email: String) {
-        _uiState.update { it.copy(email = email) }
+        _uiState.update { it.copy(email = email, emailError = null) }
     }
 
     fun onPasswordChange(password: String) {
-        _uiState.update { it.copy(password = password) }
+        _uiState.update { it.copy(password = password, passwordError = null) }
     }
 
     fun onSignUpButtonClicked() {
-        _uiState.update { it.copy(isLoading = true) }
-        viewModelScope.launch {
-            try {
-                saveUserInformation(_uiState.value.toUserInformation())
-                _uiState.update { it.copy(isSignUpButtonClicked = true) }
-            } catch (e: Exception) {
-                _uiState.update { it.copy(errors = e.message.toString()) }
+        val currentState = _uiState.value
+        if (isFormValid(currentState)) {
+            _uiState.update { it.copy(isLoading = true) }
+            viewModelScope.launch {
+                try {
+                    saveUserInformation(currentState.toUserInformation())
+                    _uiState.update { it.copy(isSignUpButtonClicked = true) }
+                } catch (e: Exception) {
+                    _uiState.update { it.copy(errors = e.message.toString()) }
+                } finally {
+                    _uiState.update { it.copy(isLoading = false) }
+                }
             }
+        } else {
+            updateValidationErrors(currentState)
         }
-        Log.i("tag", _uiState.value.username)
-        _uiState.update { it.copy(isLoading = false) }
+    }
+
+
+    private fun isFormValid(state: SignUpUIState): Boolean {
+        return state.username.isNotBlank() &&
+                state.firstName.isNotBlank() &&
+                state.lastName.isNotBlank() &&
+                state.email.isNotBlank() &&
+                state.password.isNotBlank()
+    }
+
+    private fun updateValidationErrors(state: SignUpUIState) {
+        _uiState.update {
+            it.copy(
+                usernameError = if (state.username.isBlank()) "Username is required" else null,
+                firstNameError = if (state.firstName.isBlank()) "First name is required" else null,
+                lastNameError = if (state.lastName.isBlank()) "Last name is required" else null,
+                emailError = if (state.email.isBlank()) "Email is required" else null,
+                passwordError = if (state.password.isBlank()) "Password is required" else null
+            )
+        }
     }
 
     private fun SignUpUIState.toUserInformation(): UserInformation {

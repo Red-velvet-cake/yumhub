@@ -43,4 +43,15 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chief">Chief</string>
+    <string name="get_started_sign_up">Get Started!</string>
+    <string name="sign_up_intro">Look like you are new to us! Create an account for a complete experience.</string>
+    <string name="first_name_sign_up">First Name</string>
+    <string name="last_name_sign_up">Last Name</string>
+    <string name="username_sign_up">Username</string>
+    <string name="email_sign_up">Email</string>
+    <string name="password_sign_up">Password</string>
+    <string name="sign_up_button">Sign Up</string>
 </resources>
