@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.data.remote
 
 import com.red_velvet.yumhub.data.remote.dtos.auth.ConnectUserDto
-import com.red_velvet.yumhub.data.remote.dtos.auth.UserInformation
+import com.red_velvet.yumhub.data.remote.dtos.auth.UserInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
@@ -102,7 +102,7 @@ interface FoodService {
 
     @POST("users/connect")
     suspend fun connectUser(
-        @Body userData: UserInformation
+        @Body userData: UserInformationDto
     ): Response<ConnectUserDto>
 
 }
