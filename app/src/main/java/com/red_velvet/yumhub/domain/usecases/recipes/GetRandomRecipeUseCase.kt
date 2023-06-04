@@ -9,7 +9,7 @@ class GetRandomRecipeUseCase @Inject constructor(
     private val recipesRepositoryImpl: RecipesRepository
 ) {
 
-    suspend fun getRandomRecipes(tags: String?, number: Int?): List<RecipeInformation> {
+    suspend operator fun invoke(tags: String?, number: Int?): List<RecipeInformation> {
         return recipesRepositoryImpl.getRandomRecipes(tags, number).recipes!!.map {
             it.toModel()
         }

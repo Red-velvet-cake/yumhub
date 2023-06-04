@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.data.repositories
 
-import com.red_velvet.yumhub.data.local.entities.MealPlanEntity
 import com.red_velvet.yumhub.data.remote.dtos.meal_plan.AddMealDto
+import com.red_velvet.yumhub.domain.models.MealPlan
 import kotlinx.coroutines.flow.Flow
 
 
@@ -16,7 +16,7 @@ interface MealRepository {
     fun getWeekMealsPlan(
         fromTimestamp: Long,
         toTimestamp: Long
-    ): Flow<List<MealPlanEntity>>
+    ): Flow<List<MealPlan>>
 
     suspend fun refreshWeekMealsPlan(
         date: String,

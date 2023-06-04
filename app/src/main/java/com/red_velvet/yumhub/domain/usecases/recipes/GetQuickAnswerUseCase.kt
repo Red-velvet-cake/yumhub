@@ -9,7 +9,7 @@ class GetQuickAnswerUseCase @Inject constructor(
     private val recipesRepositoryImpl: RecipesRepository
 ) {
 
-    suspend fun getQuickAnswer(title: String): QuickAnswer {
+    suspend operator fun invoke(title: String): QuickAnswer {
         return recipesRepositoryImpl.getQuickAnswer(title).toModel()
     }
 }

@@ -1,9 +1,12 @@
 package com.red_velvet.yumhub.data.repositories
 
 import com.red_velvet.yumhub.data.remote.FoodService
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
+import com.red_velvet.yumhub.domain.mapper.toIngredientInformation
+import com.red_velvet.yumhub.domain.mapper.toIngredientSearchResult
+import com.red_velvet.yumhub.domain.mapper.toIngredientSubstitute
+import com.red_velvet.yumhub.domain.models.IngredientSearch
+import com.red_velvet.yumhub.domain.models.IngredientSubstitutes
+import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformation
 import javax.inject.Inject
 
 class IngredientRepositoryImp @Inject constructor(
@@ -14,13 +17,13 @@ class IngredientRepositoryImp @Inject constructor(
         sort: String?,
         intolerances: String?,
         number: Int?
-    ): IngredientSearchDto {
+    ): List<IngredientSearch> {
         val response = foodService.searchIngredients(
             query = query,
             sort = sort,
         )
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()?.results?.map { it.toIngredientSearchResult() }!!
         } else {
             throw Exception(response.message())
         }
@@ -30,20 +33,20 @@ class IngredientRepositoryImp @Inject constructor(
         id: Int,
         amount: Int?,
         unit: String?
-    ): IngredientInformationDto {
+    ): IngredientInformation {
         val response = foodService.getIngredientInformation(id)
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()?.toIngredientInformation()!!
         } else {
             throw Exception(response.message())
         }
 
     }
 
-    override suspend fun getSubstitutesIngredient(ingredientName: String): IngredientSubstituteDto {
+    override suspend fun getSubstitutesIngredient(ingredientName: String): IngredientSubstitutes {
         val response = foodService.getSubstitutesIngredient(ingredientName = ingredientName)
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()?.toIngredientSubstitute()!!
         } else {
             throw Exception(response.message())
         }

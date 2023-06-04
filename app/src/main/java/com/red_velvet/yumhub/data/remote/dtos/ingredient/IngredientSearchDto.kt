@@ -9,7 +9,7 @@ data class IngredientSearchDto(
     @SerializedName("offset")
     val offset: Int? = null,
     @SerializedName("results")
-    val results: List<IngredientSearchResultDto?>? = null,
+    val results: List<IngredientSearchResultDto>? = null,
     @SerializedName("totalResults")
     val totalResults: Int? = null
 )
