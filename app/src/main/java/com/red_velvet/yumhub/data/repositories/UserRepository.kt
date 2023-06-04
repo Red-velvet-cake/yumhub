@@ -1,6 +1,6 @@
 package com.red_velvet.yumhub.data.repositories
 
-import com.red_velvet.yumhub.data.remote.dtos.auth.UserInformation
+import com.red_velvet.yumhub.domain.models.UserInformation
 
 interface UserRepository {
 
