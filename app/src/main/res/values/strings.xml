@@ -54,4 +54,5 @@
     <string name="email_sign_up">Email</string>
     <string name="password_sign_up">Password</string>
     <string name="sign_up_button">Sign Up</string>
+    <string name="search_food_drink_etc">Search food, drink, etc</string>
 </resources>
