@@ -5,16 +5,12 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/SearchFragment">
 
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.red_velvet.yumhub.ui.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-    </fragment>
+
     <fragment
         android:id="@+id/SearchFragment"
         android:name="com.red_velvet.yumhub.ui.search.SearchFragment"
         android:label=""
         tools:layout="@layout/fragment_search">
     </fragment>
+
 </navigation>

@@ -7,15 +7,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetRecipesUseCase @Inject constructor(
+class GetPopularRecipesUseCase @Inject constructor(
     private val recipesRepositoryImpl: RecipesRepository
 ) {
 
-    fun getRecipes(recipeType: String): Flow<List<Recipe>> {
-        return recipesRepositoryImpl.getRecipes(recipeType).map { recipeEntities ->
+    operator fun invoke(): Flow<List<Recipe>> {
+        return recipesRepositoryImpl.getRecipes("popularity").map { recipeEntities ->
             recipeEntities.map {
                 it.toModel()
             }
         }
     }
+
 }

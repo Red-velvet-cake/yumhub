@@ -3,12 +3,13 @@ package com.red_velvet.yumhub.data.repositories
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.red_velvet.yumhub.data.local.daos.MealsDao
-import com.red_velvet.yumhub.data.local.entities.MealPlanEntity
 import com.red_velvet.yumhub.data.remote.FoodService
 import com.red_velvet.yumhub.data.remote.dtos.meal_plan.AddMealDto
 import com.red_velvet.yumhub.domain.mapper.toEntity
+import com.red_velvet.yumhub.domain.mapper.toMealPlan
+import com.red_velvet.yumhub.domain.models.MealPlan
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import java.time.Instant
 import javax.inject.Inject
 
@@ -31,9 +32,9 @@ class MealRepositoryImpl @Inject constructor(
     override fun getWeekMealsPlan(
         fromTimestamp: Long,
         toTimestamp: Long
-    ): Flow<List<MealPlanEntity>> {
-        return flow {
-            emit(mealsDao.getWeekMealsPlan(fromTimestamp, toTimestamp))
+    ): Flow<List<MealPlan>> {
+        return mealsDao.getWeekMealsPlan(fromTimestamp, toTimestamp).map { mealPlanEntities ->
+            mealPlanEntities.map { it.toMealPlan() }
         }
     }
 

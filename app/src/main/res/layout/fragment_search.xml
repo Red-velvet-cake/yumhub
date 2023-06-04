@@ -18,24 +18,24 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/spacing_xxxlarge"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/rounded_corner_background"
             app:shapeAppearanceOverlay="@style/RoundedCorner"
             android:textColorHint="@color/black_light"
-            android:hint="Search food, drink, etc"
-            android:textSize="16sp"
+            android:hint="@string/search_food_drink_etc"
+            android:textSize="@dimen/text_size_16"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#F6F6F6"
-                android:padding="16dp"
+                android:layout_height="@dimen/spacing_xxxxlarge"
+                android:background="@dimen/spacing_xxlarge"
+                android:padding="@dimen/edit_text_height"
                 android:onTextChanged="@{(text,_, ___, __) -> viewModel.onInputSearchChange(text)}"
-                android:layout_margin="8dp"
-                android:radius="24dp"
-                android:backgroundTint="#F6F6F6"
+                android:layout_margin="@dimen/small_space"
+                android:radius="@dimen/spacing_xlarge"
+                android:backgroundTint="@color/secondary"
               />
 
 />
