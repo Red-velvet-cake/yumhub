@@ -7,5 +7,5 @@ data class AnalyzedInstructionDto(
     @SerializedName("name")
     val name: String? = null,
     @SerializedName("steps")
-    val steps: List<StepDto?>? = null
+    val steps: List<StepDto> = emptyList()
 )

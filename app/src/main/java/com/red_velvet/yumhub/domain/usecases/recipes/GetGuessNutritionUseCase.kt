@@ -9,7 +9,7 @@ class GetGuessNutritionUseCase @Inject constructor(
     private val recipesRepositoryImpl: RecipesRepository
 ) {
 
-    suspend fun guessNutrition(title: String): GuessNutrition {
+    suspend operator fun invoke(title: String): GuessNutrition {
         return recipesRepositoryImpl.guessNutrition(title).toModel()
     }
 

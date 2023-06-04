@@ -3,19 +3,16 @@ package com.red_velvet.yumhub.data.remote.dtos.recipe
 
 import com.google.gson.annotations.SerializedName
 import com.red_velvet.yumhub.data.remote.dtos.CaloriesDto
-import com.red_velvet.yumhub.data.remote.dtos.CarbsDto
-import com.red_velvet.yumhub.data.remote.dtos.FatDto
-import com.red_velvet.yumhub.data.remote.dtos.ProteinDto
 
 data class GuessNutritionDto(
     @SerializedName("calories")
-    val calories: CaloriesDto? = CaloriesDto(),
+    val caloriesDto: CaloriesDto? = CaloriesDto(),
     @SerializedName("carbs")
-    val carbs: CarbsDto? = CarbsDto(),
+    val carbs: CaloriesDto? = CaloriesDto(),
     @SerializedName("fat")
-    val fat: FatDto? = FatDto(),
+    val fat: CaloriesDto? = CaloriesDto(),
     @SerializedName("protein")
-    val protein: ProteinDto? = ProteinDto(),
+    val protein: CaloriesDto? = CaloriesDto(),
     @SerializedName("recipesUsed")
     val recipesUsed: Int? = 0
 )

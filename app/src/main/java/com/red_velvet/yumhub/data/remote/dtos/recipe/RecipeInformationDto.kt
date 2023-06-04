@@ -10,7 +10,7 @@ data class RecipeInformationDto(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int? = null,
     @SerializedName("analyzedInstructions")
-    val analyzedInstructions: List<AnalyzedInstructionDto?>? = null,
+    val analyzedInstructions: List<AnalyzedInstructionDto> = emptyList(),
     @SerializedName("cheap")
     val cheap: Boolean? = null,
     @SerializedName("cookingMinutes")
@@ -18,15 +18,15 @@ data class RecipeInformationDto(
     @SerializedName("creditsText")
     val creditsText: String? = null,
     @SerializedName("cuisines")
-    val cuisines: List<String?>? = null,
+    val cuisines: List<String> = emptyList(),
     @SerializedName("dairyFree")
     val dairyFree: Boolean? = null,
     @SerializedName("diets")
-    val diets: List<String?>? = null,
+    val diets: List<String> = emptyList(),
     @SerializedName("dishTypes")
-    val dishTypes: List<String?>? = null,
+    val dishTypes: List<String> = emptyList(),
     @SerializedName("extendedIngredients")
-    val extendedIngredients: List<ExtendedIngredientDto?>? = null,
+    val extendedIngredients: List<ExtendedIngredientDto> = emptyList(),
     @SerializedName("gaps")
     val gaps: String? = null,
     @SerializedName("glutenFree")
