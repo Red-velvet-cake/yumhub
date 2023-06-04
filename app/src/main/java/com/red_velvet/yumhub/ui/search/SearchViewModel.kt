@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.ui.search
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -18,8 +19,9 @@ class SearchViewModel @Inject constructor(
     private  val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
 
-     fun onInputSearchChange(newSearchInput:String){
-        _uiState.update { it.copy(searchInput = newSearchInput) }
+     fun onInputSearchChange(newSearchInput:CharSequence){
+         Log.i("AYA",newSearchInput.toString())
+        _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
     }
     suspend fun onSearch(query:String){
         _uiState.update { it.copy(isLoading = true) }
