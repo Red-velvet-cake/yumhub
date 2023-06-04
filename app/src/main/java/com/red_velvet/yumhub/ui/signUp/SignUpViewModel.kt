@@ -31,7 +31,7 @@ class SignUpViewModel @Inject constructor(
     val uiState: StateFlow<SignUpUIState> = _uiState
 
     fun onUsernameChange(username: String) {
-        _uiState.update { it.copy(username = username, usernameError = validateUsernameUseCase(username)) }
+        _uiState.update { it.copy(username = username, usernameError = null) }
     }
 
     fun onFirstNameChange(firstName: String) {

@@ -7,7 +7,6 @@ import javax.inject.Inject
 class SaveUserNameAndHashUseCase @Inject constructor(
     private val repository: UserRepository
 ) {
-
     suspend operator fun invoke(userData: UserInformation) {
         repository.saveUserName(userData)
     }
