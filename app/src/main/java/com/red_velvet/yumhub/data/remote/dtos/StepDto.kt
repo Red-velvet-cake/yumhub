@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class StepDto(
     @SerializedName("equipment")
-    val equipment: List<EquipmentDto?>? = null,
+    val equipment: List<EquipmentDto> = emptyList(),
     @SerializedName("ingredients")
     val ingredients: List<IngredientDto?>? = null,
     @SerializedName("length")
-    val length: LengthDto? = null,
+    val length: LengthDto = LengthDto(),
     @SerializedName("number")
     val number: Int? = null,
     @SerializedName("step")

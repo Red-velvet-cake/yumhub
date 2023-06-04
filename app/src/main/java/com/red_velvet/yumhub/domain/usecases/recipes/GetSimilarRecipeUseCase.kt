@@ -9,7 +9,7 @@ class GetSimilarRecipeUseCase @Inject constructor(
     private val recipesRepositoryImpl: RecipesRepository
 ) {
 
-    suspend fun getSimilarRecipes(
+    suspend operator fun invoke(
         id: Int, number: Int?
     ): List<SimilarRecipe> {
         return recipesRepositoryImpl.getSimilarRecipes(id, number).map {

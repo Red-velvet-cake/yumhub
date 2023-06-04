@@ -23,7 +23,6 @@ object DatabaseModule {
             "foodDatabase"
         ).build()
 
-
     @Singleton
     @Provides
     fun provideRecipeDao(foodDatabase: FoodDatabase) = foodDatabase.recipeDao()
