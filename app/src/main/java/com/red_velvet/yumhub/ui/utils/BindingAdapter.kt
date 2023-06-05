@@ -18,9 +18,16 @@ fun <T> showWhenListNotEmpty(view: View, list: List<T>) {
 fun <T> showWhenListEmpty(view: View, list: List<T>) {
     view.isVisible = list.isEmpty() == true
 }
+
 @BindingAdapter("app:hideWhenListIsEmpty")
 fun <T> hideWhenListIsEmpty(view: View, list: List<T>?) {
     if (list?.isEmpty() == true) {
+        view.visibility = View.INVISIBLE
+    }
+}
+@BindingAdapter("app:hideWhenListIsNotEmpty")
+fun <T> hideWhenListIsNotEmpty(view: View, list: List<T>?) {
+    if (list?.isNotEmpty() == true) {
         view.visibility = View.INVISIBLE
     }
 }
