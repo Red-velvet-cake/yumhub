@@ -73,7 +73,7 @@
             />
         </com.google.android.material.textfield.TextInputLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_media"
+            android:id="@+id/recycler_search_result"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"
@@ -88,6 +88,7 @@
             app:layout_constraintTop_toBottomOf="@id/search_input"
             app:loadingSearch="@{viewModel.uiState.loading}"
             app:searchInput="@{viewModel.uiState.searchInput}"
+            app:setItems="@{viewModel.uiState.searchResult}"
             tools:listitem="@layout/item_search_card" />
         <ImageView
             android:id="@+id/svgImageView"

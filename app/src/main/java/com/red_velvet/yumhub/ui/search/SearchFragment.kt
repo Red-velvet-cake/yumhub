@@ -15,4 +15,9 @@ class SearchFragment :BaseFragment<FragmentSearchBinding,SearchViewModel>(){
     override val layoutIdFragment: Int= R.layout.fragment_search
     override val viewModel: SearchViewModel by viewModels()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val searchAdapter = SearchAdapter(mutableListOf())
+        binding.recyclerSearchResult.adapter = searchAdapter
+        super.onViewCreated(view, savedInstanceState)
+    }
 }
