@@ -1,12 +1,12 @@
 package com.red_velvet.yumhub.data.repositories
 
-import com.red_velvet.yumhub.data.local.entities.RecipeEntity
-import com.red_velvet.yumhub.data.remote.dtos.recipe.GuessNutritionDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.QuickAnswerDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RandomRecipesDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDtoItem
+import com.red_velvet.yumhub.domain.models.recipes.GuessNutrition
+import com.red_velvet.yumhub.domain.models.recipes.QuickAnswer
+import com.red_velvet.yumhub.domain.models.recipes.Recipe
+import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
+import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipe
 import kotlinx.coroutines.flow.Flow
 
 interface RecipesRepository {
@@ -24,22 +24,22 @@ interface RecipesRepository {
     suspend fun getSimilarRecipes(
         id: Int,
         number: Int? = 3,
-    ): List<SimilarRecipesDtoItem>
+    ): List<SimilarRecipe>
 
     suspend fun getRandomRecipes(
         tags: String? = "",
         number: Int? = 10
-    ): RandomRecipesDto
+    ): List<RecipeInformation>
 
     suspend fun guessNutrition(
         title: String = ""
-    ): GuessNutritionDto
+    ): GuessNutrition
 
     suspend fun getQuickAnswer(
         question: String = ""
-    ): QuickAnswerDto
+    ): QuickAnswer
 
     suspend fun refreshRecipes(recipeType: String)
 
-    fun getRecipes(recipeType: String): Flow<List<RecipeEntity>>
+    fun getRecipes(recipeType: String): Flow<List<Recipe>>
 }

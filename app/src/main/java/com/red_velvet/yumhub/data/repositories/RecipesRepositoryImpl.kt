@@ -1,16 +1,18 @@
 package com.red_velvet.yumhub.data.repositories
 
 import com.red_velvet.yumhub.data.local.daos.RecipeDao
-import com.red_velvet.yumhub.data.local.entities.RecipeEntity
 import com.red_velvet.yumhub.data.remote.FoodService
-import com.red_velvet.yumhub.data.remote.dtos.recipe.GuessNutritionDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.QuickAnswerDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RandomRecipesDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDtoItem
 import com.red_velvet.yumhub.domain.mapper.toEntity
+import com.red_velvet.yumhub.domain.mapper.toModel
+import com.red_velvet.yumhub.domain.models.recipes.GuessNutrition
+import com.red_velvet.yumhub.domain.models.recipes.QuickAnswer
+import com.red_velvet.yumhub.domain.models.recipes.Recipe
+import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
+import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipe
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(
@@ -42,37 +44,37 @@ class RecipesRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipesDtoItem> {
+    override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipe> {
         val response = foodService.getSimilarRecipes(id, number)
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()?.map { it.toModel() }!!
         } else {
             throw Exception(response.message())
         }
     }
 
-    override suspend fun getRandomRecipes(tags: String?, number: Int?): RandomRecipesDto {
+    override suspend fun getRandomRecipes(tags: String?, number: Int?): List<RecipeInformation> {
         val response = foodService.getRandomRecipes(tags, number)
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()?.recipes?.map { it.toModel() }!!
         } else {
             throw Exception(response.message())
         }
     }
 
-    override suspend fun guessNutrition(title: String): GuessNutritionDto {
+    override suspend fun guessNutrition(title: String): GuessNutrition {
         val response = foodService.guessNutrition(title)
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()?.toModel()!!
         } else {
             throw Exception(response.message())
         }
     }
 
-    override suspend fun getQuickAnswer(question: String): QuickAnswerDto {
+    override suspend fun getQuickAnswer(question: String): QuickAnswer {
         val response = foodService.getQuickAnswer(question)
         if (response.isSuccessful) {
-            return response.body()!!
+            return response.body()?.toModel()!!
         } else {
             throw Exception(response.message())
         }
@@ -90,8 +92,12 @@ class RecipesRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getRecipes(recipeType: String): Flow<List<RecipeEntity>> {
-        return recipeDao.getRecipes(recipeType)
+    override fun getRecipes(recipeType: String): Flow<List<Recipe>> {
+        return recipeDao.getRecipes(recipeType).map { recipeEntities ->
+            recipeEntities.map {
+                it.toModel()
+            }
+        }
     }
 
 }
