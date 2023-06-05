@@ -23,11 +23,12 @@ class SearchViewModel @Inject constructor(
          Log.i("AYA",newSearchInput.toString())
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
     }
-    suspend fun onSearch(query:String){
+     fun onSearch(){
         _uiState.update { it.copy(isLoading = true) }
         try {
             viewModelScope.launch {
-                val result=   searchRecipeUseCase.invoke(query=query , sort = "")
+                val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput , sort = "")
+                Log.d("AYA",result.toString())
                 _uiState.update { it.copy(searchResult = result, isLoading = false) }
             }
         }catch (e:Exception){

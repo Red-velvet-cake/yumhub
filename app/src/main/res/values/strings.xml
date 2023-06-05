@@ -61,4 +61,5 @@
     <string name="enter_the_name_of_the_meal_or_the_type_of_food_you_wish_to_search_for">Enter the name of the meal or the type of food you wish to search for</string>
     <string name="sorry_the_keyword_you_entered_connot_be_found_please_check_again_or_search_with_another_keyword">Sorry, the keyword you entered connot be found please check again or search with another keyword</string>
     <string name="please_make_sure_you_are_connected_to_the_internet_and_try_again">Please make sure you are connected to the internet and try again</string>
+    <string name="image_description">image description</string>
 </resources>

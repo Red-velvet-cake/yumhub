@@ -8,4 +8,14 @@ data class SearchRecipeUIState(
     val searchResult: List<SearchRecipe> = emptyList(),
     val isLoading :Boolean=false,
     val error :List<String> = emptyList(),
-)
+){
+    data class SearchRecipeFilterUIState(
+        val type:String,
+        val isSelected:Boolean
+    )
+    data class RecipeSearchResultUIState(
+        val id:Int?,
+        val title:String?,
+        val image:String?
+    )
+}

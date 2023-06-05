@@ -15,6 +15,7 @@
         tools:context=".ui.search.SearchFragment"
       >
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_input"
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_xxxxlarge"
             android:layout_marginTop="@dimen/spacing_xxxlarge"
@@ -32,6 +33,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onSearch()}"
                     android:layout_marginLeft="@dimen/spacing_small_12"
                     android:layout_marginVertical="@dimen/fab_margin"
                     app:srcCompat="@drawable/searchfavorite1"
@@ -70,6 +72,23 @@
             </LinearLayout>
             />
         </com.google.android.material.textfield.TextInputLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_media"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_small"
+            android:paddingVertical="@dimen/spacing_small"
+            app:errorSearch="@{viewModel.uiState.error}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_input"
+            app:loadingSearch="@{viewModel.uiState.loading}"
+            app:searchInput="@{viewModel.uiState.searchInput}"
+            tools:listitem="@layout/item_search_card" />
         <ImageView
             android:id="@+id/svgImageView"
             android:layout_width="wrap_content"

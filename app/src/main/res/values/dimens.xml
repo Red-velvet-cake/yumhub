@@ -49,4 +49,7 @@
     <dimen name="tiny_space">4dp</dimen>
     <dimen name="_200dp">200dp</dimen>
     <dimen name="_75dp">75dp</dimen>
+    <dimen name="raduis_16dp">16dp</dimen>
+    <dimen name="image_card_width_100dp">100dp</dimen>
+    <dimen name="image_card_heghit_84dp">84dp</dimen>
 </resources>
