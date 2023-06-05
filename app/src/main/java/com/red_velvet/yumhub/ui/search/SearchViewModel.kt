@@ -20,8 +20,18 @@ class SearchViewModel @Inject constructor(
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
 
      fun onInputSearchChange(newSearchInput:CharSequence){
-         Log.i("AYA",newSearchInput.toString())
-        _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
+        _uiState.update { it.copy(searchInput = newSearchInput.toString(),isLoading = true) }
+         try {
+             viewModelScope.launch {
+                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput , sort = "")
+                 Log.d("AYA",result.toString())
+                 _uiState.update { it.copy(searchResult = result,
+                     isLoading = false,
+                     isResultIsEmpty =result.isEmpty() ) }
+             }
+         }catch (e:Exception){
+             onError(e.message.toString())
+         }
     }
      fun onSearch(){
         _uiState.update { it.copy(isLoading = true) }
@@ -29,7 +39,9 @@ class SearchViewModel @Inject constructor(
             viewModelScope.launch {
                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput , sort = "")
                 Log.d("AYA",result.toString())
-                _uiState.update { it.copy(searchResult = result, isLoading = false) }
+                _uiState.update { it.copy(searchResult = result,
+                    isLoading = false,
+                    isResultIsEmpty =result.isEmpty() ) }
             }
         }catch (e:Exception){
             onError(e.message.toString())
@@ -40,12 +52,5 @@ class SearchViewModel @Inject constructor(
         val errors = _uiState.value.error.toMutableList()
         errors.add(message)
         _uiState.update { it.copy(error = errors, isLoading = false) }
-    }
-    suspend fun  onSelectFilterType(query:String){
-
-    }
-
-    suspend fun onClickRecipe(id:Int){
-
     }
 }

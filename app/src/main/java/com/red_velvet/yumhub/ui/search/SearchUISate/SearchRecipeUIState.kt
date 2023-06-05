@@ -7,6 +7,7 @@ data class SearchRecipeUIState(
     val recipeFilter : List<SearchRecipeFilterUIState> = emptyList(),
     val searchResult: List<SearchRecipe> = emptyList(),
     val isLoading :Boolean=false,
+    val isResultIsEmpty :Boolean=false,
     val error :List<String> = emptyList(),
 ){
     data class SearchRecipeFilterUIState(

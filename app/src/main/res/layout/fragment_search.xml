@@ -72,6 +72,19 @@
             </LinearLayout>
             />
         </com.google.android.material.textfield.TextInputLayout>
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.uiState.loading}"
+
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_search_result"
             android:layout_width="0dp"
@@ -95,6 +108,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/search"
+            app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:hidIfLoading="@{viewModel.uiState.loading}"
             app:hideWhenListIsNotEmpty="@{viewModel.uiState.searchResult}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -109,6 +124,8 @@
             android:layout_marginBottom="@dimen/tiny_space"
             android:textColor="@color/fontColor_accent"
             android:textSize="@dimen/text_size_20"
+
+            app:hidIfLoading="@{viewModel.uiState.loading}"
             app:hideWhenListIsNotEmpty="@{viewModel.uiState.searchResult}"
             android:fontFamily="@font/roboto_medium"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +137,8 @@
             android:layout_width="@dimen/_200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+
+            app:hidIfLoading="@{viewModel.uiState.loading}"
             app:hideWhenListIsNotEmpty="@{viewModel.uiState.searchResult}"
             android:layout_marginTop="@dimen/spacing_small"
             android:textColor="@color/black_light"
@@ -129,6 +148,46 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title"
             android:text="@string/enter_the_name_of_the_meal_or_the_type_of_food_you_wish_to_search_for"
+            />
+        <ImageView
+            android:id="@+id/svgImageView_404"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/search404"
+            app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/textview_title_404"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/tiny_space"
+            android:textColor="@color/fontColor_accent"
+            android:textSize="@dimen/text_size_20"
+            app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_404"
+            android:text="@string/not_found"
+            />
+        <TextView
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:textColor="@color/black_light"
+            android:textSize="@dimen/font_size_label"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_title_404"
+            android:text="@string/sorry_the_keyword_you_entered_connot_be_found_please_check_again_or_search_with_another_keyword"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
