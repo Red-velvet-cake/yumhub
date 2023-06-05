@@ -12,5 +12,4 @@ class GetHealthyRecipesUseCase @Inject constructor(
     operator fun invoke(): Flow<List<Recipe>> {
         return recipesRepositoryImpl.getRecipes("healthiness")
     }
-
 }

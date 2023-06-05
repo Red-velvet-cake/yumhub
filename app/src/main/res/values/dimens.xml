@@ -45,4 +45,5 @@
     <dimen name="spacing_small_12">12dp</dimen>
     <dimen name="button_height">56dp</dimen>
     <dimen name="text_size_24">24sp</dimen>
+    <dimen name="small_space">8dp</dimen>
 </resources>
