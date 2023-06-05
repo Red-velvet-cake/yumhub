@@ -51,17 +51,26 @@
                     android:radius="@dimen/spacing_xlarge"
                     android:backgroundTint="@color/white"
                     />
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    android:onClick="@{() -> viewModel.onClear()}"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_marginLeft="@dimen/spacing_small_12"
+                    android:layout_marginVertical="@dimen/fab_margin"
+                    app:srcCompat="@drawable/cancel"
+                    />
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/spacing_xxxxlarge"
                     android:layout_height="match_parent"
+                    app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
                     android:background="@color/green_green100"
                     android:backgroundTint="@color/green_green100"
                     android:elevation="@dimen/no_width"
                     app:cardElevation="@dimen/no_width"
                     app:cardCornerRadius="@dimen/_75dp"
                    >
-
                     <ImageView
                         android:layout_margin="@dimen/fab_margin"
                         android:layout_width="match_parent"
@@ -108,9 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/search"
-            app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:hidIfLoading="@{viewModel.uiState.loading}"
-            app:hideWhenListIsNotEmpty="@{viewModel.uiState.searchResult}"
+            app:hideISearchInputEmpty="@{viewModel.uiState.searchInput}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,9 +131,7 @@
             android:layout_marginBottom="@dimen/tiny_space"
             android:textColor="@color/fontColor_accent"
             android:textSize="@dimen/text_size_20"
-
-            app:hidIfLoading="@{viewModel.uiState.loading}"
-            app:hideWhenListIsNotEmpty="@{viewModel.uiState.searchResult}"
+            app:hideISearchInputEmpty="@{viewModel.uiState.searchInput}"
             android:fontFamily="@font/roboto_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,9 +142,7 @@
             android:layout_width="@dimen/_200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-
-            app:hidIfLoading="@{viewModel.uiState.loading}"
-            app:hideWhenListIsNotEmpty="@{viewModel.uiState.searchResult}"
+            app:hideISearchInputEmpty="@{viewModel.uiState.searchInput}"
             android:layout_marginTop="@dimen/spacing_small"
             android:textColor="@color/black_light"
             android:textSize="@dimen/font_size_label"

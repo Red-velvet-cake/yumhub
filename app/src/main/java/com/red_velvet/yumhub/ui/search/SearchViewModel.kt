@@ -48,6 +48,10 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+    fun onClear(){
+        _uiState.update { it.copy(isResultIsEmpty = false, searchInput = "") }
+    }
+
     private fun onError(message: String) {
         val errors = _uiState.value.error.toMutableList()
         errors.add(message)

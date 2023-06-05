@@ -42,6 +42,15 @@ fun <T> hideWhenSuccessSearch(view: View, text: String, error: List<T>?, loading
         View.INVISIBLE
     }
 }
+@BindingAdapter(value = ["app:hideISearchInputEmpty"])
+fun <T> hideISearchInputEmpty(view: View, text: String,) {
+    view.visibility = if (text.isEmpty()) {
+        View.VISIBLE
+    } else {
+        View.INVISIBLE
+    }
+}
+
 @BindingAdapter(value = ["app:setItems"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     if (items != null) {
