@@ -8,6 +8,7 @@ import com.red_velvet.yumhub.data.remote.dtos.meal_plan.AddMealDto
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toMealPlan
 import com.red_velvet.yumhub.domain.models.MealPlan
+import com.red_velvet.yumhub.domain.utils.ExceptionHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.Instant
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 class MealRepositoryImpl @Inject constructor(
     private val foodServesImpl: FoodService,
-    private val mealsDao: MealsDao
+    private val mealsDao: MealsDao,
+    private val exception: ExceptionHandler
 ) : MealRepository {
 
     override suspend fun addToMealPlan(
@@ -25,7 +27,7 @@ class MealRepositoryImpl @Inject constructor(
     ) {
         val response = foodServesImpl.addToMealPlan(addToMeal, username, hash)
         if (!response.isSuccessful) {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 

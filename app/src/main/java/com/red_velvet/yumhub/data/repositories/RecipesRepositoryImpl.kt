@@ -11,13 +11,15 @@ import com.red_velvet.yumhub.domain.models.recipes.QuickAnswer
 import com.red_velvet.yumhub.domain.models.recipes.Recipe
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipe
+import com.red_velvet.yumhub.domain.utils.ExceptionHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(
     private val foodService: FoodService,
-    private val recipeDao: RecipeDao
+    private val recipeDao: RecipeDao,
+    private val exception: ExceptionHandler
 ) : RecipesRepository {
 
     override suspend fun searchRecipe(
@@ -28,7 +30,7 @@ class RecipesRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             return response.body()!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 
@@ -40,7 +42,7 @@ class RecipesRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             return response.body()!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 
@@ -49,7 +51,7 @@ class RecipesRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             return response.body()?.map { it.toModel() }!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 
@@ -58,7 +60,7 @@ class RecipesRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             return response.body()?.recipes?.map { it.toModel() }!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 
@@ -67,7 +69,7 @@ class RecipesRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             return response.body()?.toModel()!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 
@@ -76,7 +78,7 @@ class RecipesRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             return response.body()?.toModel()!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 

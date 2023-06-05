@@ -7,10 +7,12 @@ import com.red_velvet.yumhub.domain.mapper.toIngredientSubstitute
 import com.red_velvet.yumhub.domain.models.IngredientSearch
 import com.red_velvet.yumhub.domain.models.IngredientSubstitutes
 import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformation
+import com.red_velvet.yumhub.domain.utils.ExceptionHandler
 import javax.inject.Inject
 
 class IngredientRepositoryImp @Inject constructor(
     private val foodService: FoodService,
+    private val exception: ExceptionHandler
 ) : IngredientRepository {
     override suspend fun searchIngredient(
         query: String,
@@ -25,7 +27,7 @@ class IngredientRepositoryImp @Inject constructor(
         if (response.isSuccessful) {
             return response.body()?.results?.map { it.toIngredientSearchResult() }!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 
@@ -38,7 +40,7 @@ class IngredientRepositoryImp @Inject constructor(
         if (response.isSuccessful) {
             return response.body()?.toIngredientInformation()!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
 
     }
@@ -48,7 +50,7 @@ class IngredientRepositoryImp @Inject constructor(
         if (response.isSuccessful) {
             return response.body()?.toIngredientSubstitute()!!
         } else {
-            throw Exception(response.message())
+            throw exception.getException(response.code(), response.errorBody())
         }
     }
 }
