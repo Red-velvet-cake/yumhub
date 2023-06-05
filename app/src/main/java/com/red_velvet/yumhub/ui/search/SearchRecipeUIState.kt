@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.ui.search.SearchUISate
+package com.red_velvet.yumhub.ui.search
 
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
 
@@ -13,10 +13,5 @@ data class SearchRecipeUIState(
     data class SearchRecipeFilterUIState(
         val type:String,
         val isSelected:Boolean
-    )
-    data class RecipeSearchResultUIState(
-        val id:Int?,
-        val title:String?,
-        val image:String?
     )
 }

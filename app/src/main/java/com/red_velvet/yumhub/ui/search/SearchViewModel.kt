@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
-import com.red_velvet.yumhub.ui.search.SearchUISate.SearchRecipeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,7 +23,6 @@ class SearchViewModel @Inject constructor(
          try {
              viewModelScope.launch {
                  val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput , sort = "")
-                 Log.d("AYA",result.toString())
                  _uiState.update { it.copy(searchResult = result,
                      isLoading = false,
                      isResultIsEmpty =result.isEmpty() ) }
@@ -38,7 +36,6 @@ class SearchViewModel @Inject constructor(
         try {
             viewModelScope.launch {
                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput , sort = "")
-                Log.d("AYA",result.toString())
                 _uiState.update { it.copy(searchResult = result,
                     isLoading = false,
                     isResultIsEmpty =result.isEmpty() ) }
