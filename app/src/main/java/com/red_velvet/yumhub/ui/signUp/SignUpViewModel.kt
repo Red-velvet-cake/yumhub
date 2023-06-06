@@ -3,11 +3,7 @@ package com.red_velvet.yumhub.ui.signUp
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.UserInformation
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
-import com.red_velvet.yumhub.domain.usecases.ValidateEmailUseCase
-import com.red_velvet.yumhub.domain.usecases.ValidateFirstName
-import com.red_velvet.yumhub.domain.usecases.ValidateLastNameUseCase
-import com.red_velvet.yumhub.domain.usecases.ValidatePasswordUseCase
-import com.red_velvet.yumhub.domain.usecases.ValidateUsernameUseCase
+import com.red_velvet.yumhub.domain.usecases.SignUpValidation
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,11 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val saveUserInformation: SaveUserNameAndHashUseCase,
-    private val validatePasswordUseCase: ValidatePasswordUseCase,
-    private val validateEmailUseCase: ValidateEmailUseCase,
-    private val validateUsernameUseCase: ValidateUsernameUseCase,
-    private val validateFirstName: ValidateFirstName,
-    private val validateLastNameUseCase: ValidateLastNameUseCase
+    private val signUpValidation: SignUpValidation
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(SignUpUIState())
@@ -51,8 +43,8 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun onSignUpButtonClicked() {
-        val currentState = _uiState.value
-           if (isFormValid(currentState)) {
+         val currentState = _uiState.value
+           if (signUpValidation.isFormValid(currentState.toUserInformation())) {
                _uiState.update { it.copy(isLoading = true) }
                viewModelScope.launch {
                    try {
@@ -64,24 +56,18 @@ class SignUpViewModel @Inject constructor(
                        _uiState.update { it.copy(isLoading = false) }
                    }
                }
+           }else{
+               updateValidationErrors(currentState)
            }
-    }
-    private fun isFormValid(state: SignUpUIState): Boolean {
-        updateValidationErrors(state)
-        return state.username.isNotBlank() &&
-                state.firstName.isNotBlank() &&
-                state.lastName.isNotBlank() &&
-                state.email.isNotBlank() &&
-                state.password.isNotBlank()
     }
     private fun updateValidationErrors(state: SignUpUIState) {
         _uiState.update {
             it.copy(
-                usernameError = validateUsernameUseCase(state.username),
-                firstNameError = validateFirstName(state.firstName),
-                lastNameError = validateLastNameUseCase(state.lastName),
-                emailError = validateEmailUseCase(state.email),
-                passwordError = validatePasswordUseCase(state.password)
+                usernameError = signUpValidation.validateUsername(state.username),
+                firstNameError = signUpValidation.validateFirstName(state.firstName),
+                lastNameError = signUpValidation.validateLastName(state.lastName),
+                emailError = signUpValidation.validateEmail(state.email),
+                passwordError = signUpValidation.validatePassword(state.password)
             )
         }
     }
@@ -93,4 +79,6 @@ class SignUpViewModel @Inject constructor(
             email = email,
         )
     }
+
+
 }
