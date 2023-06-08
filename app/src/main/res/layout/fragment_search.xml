@@ -94,20 +94,122 @@
             app:showIfLoading="@{viewModel.uiState.loading}"
 
             />
+        <HorizontalScrollView
+            android:id="@+id/chip_group_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:scrollbars="none"
+            android:paddingEnd="@dimen/fab_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_input"
+            >
+        <com.google.android.material.chip.ChipGroup
+            style="@style/Widget.Material3.ChipGroup"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:chipSpacingHorizontal="@dimen/small_space"
+            app:checkedChip="@id/chip_Healthy"
+            app:singleLine="true"
+            app:selectionRequired="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_Popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/bg_white"
+                android:backgroundTintMode="@color/bg_white"
+                android:text="@string/popularity"
+                android:paddingHorizontal="@dimen/_12dp"
+                android:paddingVertical="@dimen/_6dp"
+                android:background="@color/bg_white"
+                android:textColor="@color/black_title_60"
+                app:chipStrokeColor="@color/primary"
+                app:chipStrokeWidth="@dimen/_1dp"
+                app:checkedIconEnabled="false"
+                app:chipCornerRadius="@dimen/fab_margin" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_Healthy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/healthy"
+                android:paddingHorizontal="@dimen/_12dp"
+                android:paddingVertical="@dimen/_6dp"
+                android:background="@color/bg_white"
+                android:textColor="@color/black_title_60"
+                android:backgroundTint="@color/bg_white"
+                android:backgroundTintMode="@color/bg_white"
+                app:chipStrokeColor="@color/primary"
+                app:chipStrokeWidth="@dimen/_1dp"
+                app:checkedIconEnabled="false"
+                app:chipCornerRadius="@dimen/fab_margin" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time"
+                android:paddingHorizontal="@dimen/_12dp"
+                android:paddingVertical="@dimen/_6dp"
+                android:background="@color/bg_white"
+                android:textColor="@color/black_title_60"
+                app:chipStrokeColor="@color/primary"
+                android:backgroundTint="@color/bg_white"
+                android:backgroundTintMode="@color/bg_white"
+                app:chipStrokeWidth="@dimen/_1dp"
+                app:checkedIconEnabled="false"
+                app:chipCornerRadius="@dimen/fab_margin" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_Carbs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/carbs"
+                android:backgroundTint="@color/bg_white"
+                android:backgroundTintMode="@color/bg_white"
+                android:paddingHorizontal="@dimen/_12dp"
+                android:paddingVertical="@dimen/_6dp"
+                android:background="@color/bg_white"
+                android:textColor="@color/black_title_60"
+                app:chipStrokeColor="@color/primary"
+                app:chipStrokeWidth="@dimen/_1dp"
+                app:checkedIconEnabled="false"
+                app:chipCornerRadius="@dimen/fab_margin" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calories"
+
+                android:backgroundTint="@color/bg_white"
+                android:backgroundTintMode="@color/bg_white"
+                android:paddingHorizontal="@dimen/_12dp"
+                android:paddingVertical="@dimen/_6dp"
+                android:background="@color/bg_white"
+                android:textColor="@color/black_title_60"
+                app:chipStrokeColor="@color/primary"
+                app:chipStrokeWidth="@dimen/_1dp"
+                app:checkedIconEnabled="false"
+                app:chipCornerRadius="@dimen/fab_margin" />
+        </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_search_result"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/spacing_small"
-            android:paddingVertical="@dimen/spacing_small"
+
             app:errorSearch="@{viewModel.uiState.error}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_input"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_filter"
             app:loadingSearch="@{viewModel.uiState.loading}"
             app:searchInput="@{viewModel.uiState.searchInput}"
             app:setItems="@{viewModel.uiState.searchResult}"

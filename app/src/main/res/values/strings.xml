@@ -62,4 +62,12 @@
     <string name="sorry_the_keyword_you_entered_connot_be_found_please_check_again_or_search_with_another_keyword">Sorry, the keyword you entered connot be found please check again or search with another keyword</string>
     <string name="please_make_sure_you_are_connected_to_the_internet_and_try_again">Please make sure you are connected to the internet and try again</string>
     <string name="image_description">image description</string>
+    <string name="salad">salad</string>
+    <string name="_7_ingrerdients">7 Ingrerdients</string>
+    <string name="_18_min">18 Min</string>
+    <string name="popularity">Popularity</string>
+    <string name="healthy">Healthy</string>
+    <string name="time">Time</string>
+    <string name="carbs">Carbs</string>
+    <string name="calories">Calories</string>
 </resources>

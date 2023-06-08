@@ -2,12 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <variable
             name="item"
             type="com.red_velvet.yumhub.domain.models.recipes.SearchRecipe" />
-
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,10 +13,9 @@
         app:cardElevation="@dimen/no_width"
         android:background="@color/white"
         android:padding="@dimen/spacing_small"
-        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginHorizontal="@dimen/fab_margin"
         app:cardCornerRadius="@dimen/raduis_16dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,25 +23,62 @@
             android:background="@color/white"
             android:padding="@dimen/fab_margin">
             <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="@dimen/image_card_width_100dp"
-                android:layout_height="@dimen/image_card_heghit_84dp"
+                android:layout_width="@dimen/image_card_width_80dp"
+                android:layout_height="@dimen/image_card_height_64dp"
                 style="@style/CardImageStyle"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{item.image}"
-                android:layout_marginRight="@dimen/fab_margin"
+                android:layout_marginRight="@dimen/_12dp"
                 app:layout_constraintDimensionRatio="16:9"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:text="@{item.title}"
-                android:fontFamily="@font/roboto_medium"
-                android:textSize="@dimen/text_size_16"
-                android:textColor="@color/black_title"
-                android:text="Your text goes here" />
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="@{item.title}"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="@dimen/text_size_16"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/black_title"
+                    android:text="@string/salad" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_12dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
 
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/text_size_16"
+                            android:singleLine="true"
+                            android:layout_marginEnd="@dimen/_12dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:drawableStart="@drawable/ingredient"
+                            android:textColor="@color/black_title"
+                            android:text="@string/_7_ingrerdients" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/text_size_16"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:drawableStart="@drawable/timer1"
+                            android:textColor="@color/black_title"
+                            android:text="@string/_18_min" />
+                    </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
 </layout>
