@@ -20,9 +20,10 @@ class RecipesRepositoryImpl @Inject constructor(
 
     override suspend fun searchRecipe(
         query: String?,
-        sort: String?
+        sort: String?,
+        sortDirection:String?
     ): RecipeSearchDto {
-        val response = foodService.searchRecipe(query, sort)
+        val response = foodService.searchRecipe(query, sort,sortDirection)
         if (response.isSuccessful) {
             return response.body()!!
         } else {

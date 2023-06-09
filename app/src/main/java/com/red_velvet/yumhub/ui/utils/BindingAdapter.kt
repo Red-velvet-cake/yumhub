@@ -15,7 +15,18 @@ import com.red_velvet.yumhub.ui.base.BaseAdapter
 @BindingAdapter("app:showIfListEmpty")
 fun showIfListEmpty(view: View, value: Boolean) {
     view.isVisible = value
-
+}
+@BindingAdapter("app:showIfAsc")
+fun showIfAsc(view: View, value: String) {
+    view.isVisible = value == "asc"
+}
+@BindingAdapter("app:showIfDsc")
+fun showIfDsc(view: View, value: String) {
+    view.isVisible = value == "dsc"
+}
+@BindingAdapter("app:hideIfSortDirction")
+fun hideIfSortDirction(view: View, value: String) {
+    view.isVisible = !(value == "asc" ||value == "dsc")
 }
 @BindingAdapter("app:hideIfListEmpty")
 fun hideIfListEmpty(view: View, value: Boolean) {
@@ -24,10 +35,6 @@ fun hideIfListEmpty(view: View, value: Boolean) {
 @BindingAdapter("app:showIfLoading")
 fun showIfLoading(view: View, value: Boolean) {
     view.isVisible = value
-}
-@BindingAdapter("app:hidIfLoading")
-fun hidIfLoading(view: View, value: Boolean) {
-    view.isVisible = !value
 }
 @BindingAdapter(value = ["app:searchInput", "app:errorSearch", "app:loadingSearch"])
 fun <T> hideWhenSuccessSearch(view: View, text: String, error: List<T>?, loading: Boolean) {

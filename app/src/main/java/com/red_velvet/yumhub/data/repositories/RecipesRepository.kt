@@ -14,6 +14,7 @@ interface RecipesRepository {
     suspend fun searchRecipe(
         query: String? = null,
         sort: String? = null,
+        sortDirection: String? = null,
     ): RecipeSearchDto
 
     suspend fun getRecipeInformation(

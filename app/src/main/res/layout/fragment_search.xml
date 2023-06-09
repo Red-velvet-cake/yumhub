@@ -65,6 +65,8 @@
                     android:layout_width="@dimen/spacing_xxxxlarge"
                     android:layout_height="match_parent"
                     app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    app:hideIfSortDirction="@{viewModel.uiState.sortDirection}"
+                    android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'
                     android:background="@color/green_green100"
                     android:backgroundTint="@color/green_green100"
                     android:elevation="@dimen/no_width"
@@ -76,6 +78,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/asc_dsc" />
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/spacing_xxxxlarge"
+                    android:layout_height="match_parent"
+                    android:onClick='@{() -> viewModel.onSelectSortDirection("dsc")}'
+                    app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    app:showIfAsc="@{viewModel.uiState.sortDirection}"
+                    android:background="@color/green_green100"
+                    android:backgroundTint="@color/green_green100"
+                    android:elevation="@dimen/no_width"
+                    app:cardElevation="@dimen/no_width"
+                    app:cardCornerRadius="@dimen/_75dp"
+                    >
+                    <ImageView
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/arrowup" />
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/spacing_xxxxlarge"
+                    android:layout_height="match_parent"
+                    app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'
+                    app:showIfDsc="@{viewModel.uiState.sortDirection}"
+                    android:background="@color/green_green100"
+                    android:backgroundTint="@color/green_green100"
+                    android:elevation="@dimen/no_width"
+                    app:cardElevation="@dimen/no_width"
+                    app:cardCornerRadius="@dimen/_75dp"
+                    >
+                    <ImageView
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/arrowdown" />
 
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -125,6 +165,7 @@
                 android:backgroundTintMode="@color/bg_white"
                 android:text="@string/popularity"
                 android:checkable="true"
+                android:onClick='@{() -> viewModel.onSelectFilterType("popularity")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 android:background="@color/bg_white"
@@ -139,6 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/healthy"
+                android:onClick='@{() -> viewModel.onSelectFilterType("healthy")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 android:background="@color/bg_white"
@@ -155,6 +197,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
+                android:onClick='@{() -> viewModel.onSelectFilterType("time")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 android:background="@color/bg_white"
@@ -170,6 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/carbs"
+                android:onClick='@{() -> viewModel.onSelectFilterType("carbs")}'
                 android:backgroundTint="@color/bg_white"
                 android:backgroundTintMode="@color/bg_white"
                 android:paddingHorizontal="@dimen/_12dp"
@@ -185,7 +229,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/calories"
-
+                android:onClick='@{() -> viewModel.onSelectFilterType("calories")}'
                 android:backgroundTint="@color/bg_white"
                 android:backgroundTintMode="@color/bg_white"
                 android:paddingHorizontal="@dimen/_12dp"

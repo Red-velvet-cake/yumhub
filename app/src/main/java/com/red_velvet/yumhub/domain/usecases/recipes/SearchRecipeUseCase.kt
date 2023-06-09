@@ -8,11 +8,12 @@ import javax.inject.Inject
 class SearchRecipeUseCase  @Inject constructor(
    private  val recipesRepositoryImpl : RecipesRepositoryImpl
         ) {
-    suspend operator fun invoke(query: String,sort:String): List<RecipeInformation> {
+    suspend operator fun invoke(query: String,sort:String,sortDirection:String): List<RecipeInformation> {
         return recipesRepositoryImpl
             .searchRecipe(
                 query = query,
-                sort=sort
+                sort=sort,
+                sortDirection=sortDirection
             ).results?.map {
                 it!!.toModel()
             } ?: throw Exception()

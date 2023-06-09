@@ -24,7 +24,8 @@ class SearchViewModel @Inject constructor(
         _uiState.update { it.copy(searchInput = newSearchInput.toString(),isLoading = true) }
          try {
              viewModelScope.launch {
-                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput , sort = "")
+                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput ,
+                     sort = "", sortDirection = "")
                  onSuccess(result)
              }
          }catch (e:Exception){
@@ -35,7 +36,42 @@ class SearchViewModel @Inject constructor(
         _uiState.update { it.copy(isLoading = true) }
         try {
             viewModelScope.launch {
-                val result= searchRecipeUseCase.invoke(query=_uiState.value.searchInput , sort = "")
+                val result= searchRecipeUseCase.invoke(query=_uiState.value.searchInput ,
+                    sort = "",sortDirection = "")
+                Log.e("AYA",result.toString())
+                onSuccess(result)
+            }
+        }catch (e:Exception){
+            Log.e("AYA",e.message.toString())
+            onError(e.message.toString())
+        }
+    }
+    fun onSelectFilterType(type:String){
+        Log.i("AYA",type)
+        _uiState.update { it.copy(isLoading = true, recipeFilter = type) }
+        try {
+            viewModelScope.launch {
+                val result= searchRecipeUseCase.invoke(
+                    query=_uiState.value.searchInput ,
+                    sortDirection="",
+                    sort = _uiState.value.recipeFilter)
+                Log.e("AYA",result.toString())
+                onSuccess(result)
+            }
+        }catch (e:Exception){
+            Log.e("AYA",e.message.toString())
+            onError(e.message.toString())
+        }
+    }
+    fun onSelectSortDirection(sortDirection:String){
+        Log.i("AYA",sortDirection)
+        _uiState.update { it.copy(isLoading = true, sortDirection = sortDirection) }
+        try {
+            viewModelScope.launch {
+                val result= searchRecipeUseCase.invoke(
+                    query=_uiState.value.searchInput ,
+                    sortDirection=_uiState.value.sortDirection,
+                    sort = _uiState.value.recipeFilter)
                 Log.e("AYA",result.toString())
                 onSuccess(result)
             }
@@ -48,9 +84,10 @@ class SearchViewModel @Inject constructor(
     fun onClear(){
         _uiState.update { it.copy(isResultIsEmpty = false, searchInput = "") }
     }
+
     private fun onSuccess(recipes: List<RecipeInformation>){
       val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
-        Log.e("AYA",searchResult.toString())
+        Log.i("AYA",searchResult.toString())
         _uiState.update { it.copy(searchResult = searchResult,
             isLoading = false,
             isResultIsEmpty =recipes.isEmpty() ) }
