@@ -4,14 +4,10 @@ import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
 
 data class SearchRecipeUIState(
     val searchInput :String ="",
-    val recipeFilter : List<SearchRecipeFilterUIState> = emptyList(),
-    val searchResult: List<SearchRecipe> = emptyList(),
+    val recipeFilter : String="",
+    val ascOrDsc : String="",
+    val searchResult: List<SearchResultUIState> = emptyList(),
     val isLoading :Boolean=false,
     val isResultIsEmpty :Boolean=false,
     val error :List<String> = emptyList(),
-){
-    data class SearchRecipeFilterUIState(
-        val type:String,
-        val isSelected:Boolean
-    )
-}
+)

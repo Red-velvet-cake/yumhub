@@ -10,12 +10,7 @@ import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.ui.base.BaseAdapter
 
 
-@BindingAdapter("app:hideWhenListIsNotEmpty")
-fun <T> hideWhenListIsNotEmpty(view: View, list: List<T>?) {
-    if (list?.isNotEmpty() == true) {
-        view.visibility = View.INVISIBLE
-    }
-}
+
 
 @BindingAdapter("app:showIfListEmpty")
 fun showIfListEmpty(view: View, value: Boolean) {

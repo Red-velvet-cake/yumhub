@@ -124,6 +124,7 @@
                 android:backgroundTint="@color/bg_white"
                 android:backgroundTintMode="@color/bg_white"
                 android:text="@string/popularity"
+                android:checkable="true"
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 android:background="@color/bg_white"

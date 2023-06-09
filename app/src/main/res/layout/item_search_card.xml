@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.red_velvet.yumhub.domain.models.recipes.SearchRecipe" />
+            type="com.red_velvet.yumhub.ui.search.SearchResultUIState" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
+                           app:text='@{String.format("%d ingredient",item.ingredientNumber)}'
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="@dimen/text_size_16"
                             android:singleLine="true"
@@ -68,7 +68,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
+                            app:text='@{String.format("%d Min", item.readyInMinutes)}'
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="@dimen/text_size_16"
                             android:singleLine="true"

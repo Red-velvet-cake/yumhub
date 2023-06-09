@@ -81,4 +81,6 @@ data class RecipeInformationDto(
     val weightWatcherSmartPoints: Int? = null,
     @SerializedName("winePairing")
     val winePairing: WinePairingDto? = null
-)
+) {
+
+}

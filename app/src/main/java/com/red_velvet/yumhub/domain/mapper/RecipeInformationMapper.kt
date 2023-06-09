@@ -3,16 +3,19 @@ package com.red_velvet.yumhub.domain.mapper
 import com.red_velvet.yumhub.data.remote.dtos.AnalyzedInstructionDto
 import com.red_velvet.yumhub.data.remote.dtos.EquipmentDto
 import com.red_velvet.yumhub.data.remote.dtos.ExtendedIngredientDto
+import com.red_velvet.yumhub.data.remote.dtos.IngredientDto
 import com.red_velvet.yumhub.data.remote.dtos.LengthDto
 import com.red_velvet.yumhub.data.remote.dtos.StepDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructions
 import com.red_velvet.yumhub.domain.models.recipes.Equipment
 import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredient
+import com.red_velvet.yumhub.domain.models.recipes.Ingredients
 import com.red_velvet.yumhub.domain.models.recipes.Length
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
 import com.red_velvet.yumhub.domain.models.recipes.Step
 import com.red_velvet.yumhub.domain.utils.orEmpty
+import com.red_velvet.yumhub.domain.utils.orEmptyList
 import com.red_velvet.yumhub.domain.utils.orFalse
 import com.red_velvet.yumhub.domain.utils.orZero
 
@@ -56,10 +59,18 @@ fun StepDto.toModel(): Step {
         },
         length = length.toModel(),
         number = number.orZero(),
-        step = step.orEmpty()
+        step = step.orEmpty(),
+        ingredients = ingredients?.map { it!!.toModel() }.orEmptyList()
     )
 }
-
+fun IngredientDto.toModel(): Ingredients {
+    return Ingredients(
+        id = id.orZero(),
+        image = image.orEmpty(),
+        localizedName = localizedName.orEmpty(),
+        name = name.orEmpty()
+    )
+}
 fun EquipmentDto.toModel(): Equipment {
     return Equipment(
         id = id.orZero(),

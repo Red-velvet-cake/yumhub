@@ -6,5 +6,6 @@ data class Step(
     val equipment: List<Equipment>,
     val length: Length,
     val number: Int,
-    val step: String
+    val step: String,
+    val ingredients :List<Ingredients>
 )

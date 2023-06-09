@@ -9,7 +9,7 @@ data class RecipeSearchDto(
     @SerializedName("offset")
     val offset: Int? = 0,
     @SerializedName("results")
-    val results: List<RecipeSearchResultDto>? = listOf(),
+    val results: List<RecipeInformationDto>? = listOf(),
     @SerializedName("totalResults")
     val totalResults: Int? = 0
 )
