@@ -11,6 +11,8 @@ fun RecipeInformation.toRecipeSearchResultMapper(): SearchResultUIState {
         image = image.orEmpty(),
         readyInMinutes = readyInMinutes.orZero(),
         title = title.orEmpty(),
-        ingredientNumber = analyzedInstructions.sumOf { it.steps.sumOf { step -> step.ingredients.size } }
+        ingredientNumber = analyzedInstructions
+            .flatMap { instruction -> instruction.steps }
+            .sumBy { step -> step.ingredients.size }
     )
 }

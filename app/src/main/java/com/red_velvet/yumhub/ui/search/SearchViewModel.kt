@@ -22,7 +22,6 @@ class SearchViewModel @Inject constructor(
 )  :BaseViewModel()  {
     private  val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
-    val selectedChipBackgroundTint: MutableLiveData<Int> = MutableLiveData()
 
      fun onInputSearchChange(newSearchInput:CharSequence){
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
@@ -53,9 +52,12 @@ class SearchViewModel @Inject constructor(
         }
     }
     fun onSelectFilterType(type:String){
+
         Log.i("AYA",type)
-        _uiState.update { it.copy(isLoading = true, recipeFilter = type) }
-        selectedChipBackgroundTint.value = R.color.green_green100
+        _uiState.update { it.copy(
+            isLoading = true,
+            recipeFilter = type,
+            searchResult = emptyList()) }
         try {
             viewModelScope.launch {
                 val result= searchRecipeUseCase.invoke(
@@ -110,6 +112,5 @@ class SearchViewModel @Inject constructor(
         errors.add(message)
         _uiState.update { it.copy(error = errors, isLoading = false) }
     }
-
 
 }

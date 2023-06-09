@@ -164,8 +164,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Chip.Regular.Small"
-                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
-
                 android:text="@string/popularity"
                 android:checkable="true"
                 android:onClick='@{() -> viewModel.onSelectFilterType("popularity")}'
@@ -180,14 +178,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/healthy"
-
                 android:onClick='@{() -> viewModel.onSelectFilterType("healthy")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 app:selectionRequired="true"
                 android:textColor="@color/black_title_60"
                 style="@style/Chip.Regular.Small"
-                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
 
@@ -196,14 +192,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
-
-
                 android:onClick='@{() -> viewModel.onSelectFilterType("time")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 android:textColor="@color/black_title_60"
                 style="@style/Chip.Regular.Small"
-                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
             <com.google.android.material.chip.Chip
@@ -211,30 +204,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/carbs"
-
-
                 android:onClick='@{() -> viewModel.onSelectFilterType("carbs")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 android:textColor="@color/black_title_60"
                 style="@style/Chip.Regular.Small"
-                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_calories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/Chip.Regular.Small"
                 android:text="@string/calories"
                 android:onClick='@{() -> viewModel.onSelectFilterType("calories")}'
-                android:backgroundTint="@color/bg_white"
-                android:backgroundTintMode="@color/bg_white"
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:background="@color/bg_white"
                 android:textColor="@color/black_title_60"
-                app:chipStrokeColor="@color/primary"
-                app:chipStrokeWidth="@dimen/_1dp"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
         </com.google.android.material.chip.ChipGroup>

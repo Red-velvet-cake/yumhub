@@ -62,17 +62,6 @@ fun <T> hideISearchInputEmpty(view: View, text: String,) {
         View.INVISIBLE
     }
 }
-
-
-@BindingAdapter(value = ["chipBackgroundTint",])
-fun setChipBackgroundTint(chip: Chip, colorLiveData: MutableLiveData<Int>) {
-
-        colorLiveData.value?.let { color ->
-            chip.chipBackgroundColor = ColorStateList.valueOf(color)
-        }
-
-}
-
 @BindingAdapter(value = ["app:hideIfSearchInputEmpty"])
 fun <T> hideIfSearchInputEmpty(view: View, text: String,) {
      if (text.isEmpty()) {

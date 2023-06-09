@@ -14,16 +14,24 @@
         <item name="android:scaleType">centerCrop</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
     </style>
-    <style name="SelectedChipStyle" parent="Widget.Material3.Chip.Filter">
-        <item name="android:background">@color/primary</item>
-        <item name="android:textColor">@color/white</item>
-        <!-- Add any other desired customizations for the selected chip -->
-    </style>
+
     <style name="Chip.Regular.Small" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="chipStrokeColor">@color/primary</item>
         <item name="chipBackgroundColor">@color/bg_white</item>
         <item name="chipStrokeWidth">1dp</item>
     </style>
 
+    <style name="ChipStyleNotClicked" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipStrokeColor">@color/primary</item>
+        <item name="chipBackgroundColor">@color/bg_white</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
+    <style name="ChipStyleClicked" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipStrokeColor">@color/primary</item>
+        <item name="chipBackgroundColor">@color/primary</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <!-- Add any additional attributes for the clicked state -->
+    </style>
 
 </resources>
