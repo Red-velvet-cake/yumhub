@@ -1,7 +1,10 @@
 package com.red_velvet.yumhub.ui.search
 
+import android.graphics.Color
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -19,26 +22,29 @@ class SearchViewModel @Inject constructor(
 )  :BaseViewModel()  {
     private  val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
+    val selectedChipBackgroundTint: MutableLiveData<Int> = MutableLiveData()
 
      fun onInputSearchChange(newSearchInput:CharSequence){
-        _uiState.update { it.copy(searchInput = newSearchInput.toString(),isLoading = true) }
-         try {
-             viewModelScope.launch {
-                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput ,
-                     sort = "", sortDirection = "")
-                 onSuccess(result)
-             }
-         }catch (e:Exception){
-             onError(e.message.toString())
-         }
+        _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
+//         try {
+//             viewModelScope.launch {
+//                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput ,
+//                     sort = "", sortDirection = "")
+//                 onSuccess(result)
+//             }
+//         }catch (e:Exception){
+//             onError(e.message.toString())
+//         }
     }
      fun onSearch(){
         _uiState.update { it.copy(isLoading = true) }
         try {
             viewModelScope.launch {
-                val result= searchRecipeUseCase.invoke(query=_uiState.value.searchInput ,
-                    sort = "",sortDirection = "")
-                Log.e("AYA",result.toString())
+                val result= searchRecipeUseCase.invoke(
+                    query=_uiState.value.searchInput ,
+                    sort = _uiState.value.recipeFilter,
+                    sortDirection = _uiState.value.sortDirection)
+                Log.i("AYA",result.toString())
                 onSuccess(result)
             }
         }catch (e:Exception){
@@ -49,11 +55,12 @@ class SearchViewModel @Inject constructor(
     fun onSelectFilterType(type:String){
         Log.i("AYA",type)
         _uiState.update { it.copy(isLoading = true, recipeFilter = type) }
+        selectedChipBackgroundTint.value = R.color.green_green100
         try {
             viewModelScope.launch {
                 val result= searchRecipeUseCase.invoke(
                     query=_uiState.value.searchInput ,
-                    sortDirection="",
+                    sortDirection= _uiState.value.sortDirection,
                     sort = _uiState.value.recipeFilter)
                 Log.e("AYA",result.toString())
                 onSuccess(result)
@@ -65,6 +72,7 @@ class SearchViewModel @Inject constructor(
     }
     fun onSelectSortDirection(sortDirection:String){
         Log.i("AYA",sortDirection)
+
         _uiState.update { it.copy(isLoading = true, sortDirection = sortDirection) }
         try {
             viewModelScope.launch {
@@ -82,7 +90,12 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onClear(){
-        _uiState.update { it.copy(isResultIsEmpty = false, searchInput = "") }
+        _uiState.update { it.copy(
+            isResultIsEmpty = false,
+            searchInput = "",
+            recipeFilter = "",
+            sortDirection = ""
+        ) }
     }
 
     private fun onSuccess(recipes: List<RecipeInformation>){

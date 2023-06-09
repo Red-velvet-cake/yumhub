@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.data.repositories
 
+import android.util.Log
 import com.red_velvet.yumhub.data.local.daos.RecipeDao
 import com.red_velvet.yumhub.data.local.entities.RecipeEntity
 import com.red_velvet.yumhub.data.remote.FoodService
@@ -27,6 +28,7 @@ class RecipesRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             return response.body()!!
         } else {
+            Log.e("AYA",response.toString())
             throw Exception(response.message())
         }
     }

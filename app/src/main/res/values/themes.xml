@@ -19,5 +19,11 @@
         <item name="android:textColor">@color/white</item>
         <!-- Add any other desired customizations for the selected chip -->
     </style>
+    <style name="Chip.Regular.Small" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipStrokeColor">@color/primary</item>
+        <item name="chipBackgroundColor">@color/bg_white</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
 
 </resources>

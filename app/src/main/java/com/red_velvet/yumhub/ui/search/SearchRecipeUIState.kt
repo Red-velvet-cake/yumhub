@@ -8,6 +8,8 @@ data class SearchRecipeUIState(
     val sortDirection : String="",
     val searchResult: List<SearchResultUIState> = emptyList(),
     val isLoading :Boolean=false,
+    val isSearchStart :Boolean=false,
+    val isClearField :Boolean=false,
     val isResultIsEmpty :Boolean=false,
     val error :List<String> = emptyList(),
 )

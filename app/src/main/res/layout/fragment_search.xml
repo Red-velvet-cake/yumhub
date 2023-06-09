@@ -55,6 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    app:hideIfSearchInputEmpty="@{viewModel.uiState.searchInput}"
                     android:onClick="@{() -> viewModel.onClear()}"
                     android:layout_margin="@dimen/fab_margin"
                     android:layout_marginLeft="@dimen/spacing_small_12"
@@ -64,8 +65,9 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/spacing_xxxxlarge"
                     android:layout_height="match_parent"
-                    app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
-                    app:hideIfSortDirction="@{viewModel.uiState.sortDirection}"
+                    app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    app:InputText="@{viewModel.uiState.searchInput}"
+                    app:sortDir="@{viewModel.uiState.sortDirection}"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'
                     android:background="@color/green_green100"
                     android:backgroundTint="@color/green_green100"
@@ -152,7 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
             app:chipSpacingHorizontal="@dimen/small_space"
-            app:checkedChip="@id/chip_Healthy"
+
             app:singleLine="true"
             app:selectionRequired="false"
             app:singleSelection="true">
@@ -161,17 +163,15 @@
                 android:id="@+id/chip_Popularity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/bg_white"
-                android:backgroundTintMode="@color/bg_white"
+                style="@style/Chip.Regular.Small"
+                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
+
                 android:text="@string/popularity"
                 android:checkable="true"
                 android:onClick='@{() -> viewModel.onSelectFilterType("popularity")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:background="@color/bg_white"
                 android:textColor="@color/black_title_60"
-                app:chipStrokeColor="@color/primary"
-                app:chipStrokeWidth="@dimen/_1dp"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
 
@@ -180,15 +180,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/healthy"
+
                 android:onClick='@{() -> viewModel.onSelectFilterType("healthy")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:background="@color/bg_white"
+                app:selectionRequired="true"
                 android:textColor="@color/black_title_60"
-                android:backgroundTint="@color/bg_white"
-                android:backgroundTintMode="@color/bg_white"
-                app:chipStrokeColor="@color/primary"
-                app:chipStrokeWidth="@dimen/_1dp"
+                style="@style/Chip.Regular.Small"
+                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
 
@@ -197,15 +196,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
+
+
                 android:onClick='@{() -> viewModel.onSelectFilterType("time")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:background="@color/bg_white"
                 android:textColor="@color/black_title_60"
-                app:chipStrokeColor="@color/primary"
-                android:backgroundTint="@color/bg_white"
-                android:backgroundTintMode="@color/bg_white"
-                app:chipStrokeWidth="@dimen/_1dp"
+                style="@style/Chip.Regular.Small"
+                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
             <com.google.android.material.chip.Chip
@@ -213,15 +211,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/carbs"
+
+
                 android:onClick='@{() -> viewModel.onSelectFilterType("carbs")}'
-                android:backgroundTint="@color/bg_white"
-                android:backgroundTintMode="@color/bg_white"
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:background="@color/bg_white"
                 android:textColor="@color/black_title_60"
-                app:chipStrokeColor="@color/primary"
-                app:chipStrokeWidth="@dimen/_1dp"
+                style="@style/Chip.Regular.Small"
+                app:chipBackgroundTint="@{viewModel.selectedChipBackgroundTint}"
                 app:checkedIconEnabled="false"
                 app:chipCornerRadius="@dimen/fab_margin" />
             <com.google.android.material.chip.Chip
@@ -248,7 +245,6 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:orientation="vertical"
-
             app:errorSearch="@{viewModel.uiState.error}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -264,7 +260,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/search"
-            app:hideISearchInputEmpty="@{viewModel.uiState.searchInput}"
+            app:searchText="@{viewModel.uiState.searchInput}"
+            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:loading="@{viewModel.uiState.loading}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -278,7 +276,9 @@
             android:layout_marginBottom="@dimen/tiny_space"
             android:textColor="@color/fontColor_accent"
             android:textSize="@dimen/text_size_20"
-            app:hideISearchInputEmpty="@{viewModel.uiState.searchInput}"
+            app:searchText="@{viewModel.uiState.searchInput}"
+            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:loading="@{viewModel.uiState.loading}"
             android:fontFamily="@font/roboto_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -289,7 +289,9 @@
             android:layout_width="@dimen/_200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            app:hideISearchInputEmpty="@{viewModel.uiState.searchInput}"
+            app:searchText="@{viewModel.uiState.searchInput}"
+            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:loading="@{viewModel.uiState.loading}"
             android:layout_marginTop="@dimen/spacing_small"
             android:textColor="@color/black_light"
             android:textSize="@dimen/font_size_label"
