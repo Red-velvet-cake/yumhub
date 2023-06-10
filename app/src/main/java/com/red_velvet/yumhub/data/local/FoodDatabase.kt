@@ -4,13 +4,19 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.red_velvet.yumhub.data.local.daos.MealsDao
 import com.red_velvet.yumhub.data.local.daos.RecipeDao
+import com.red_velvet.yumhub.data.local.entities.CategoryDatabaseDto
+import com.red_velvet.yumhub.data.local.entities.HealthyRecipeDatabaseDto
 import com.red_velvet.yumhub.data.local.entities.MealPlanEntity
-import com.red_velvet.yumhub.data.local.entities.RecipeEntity
+import com.red_velvet.yumhub.data.local.entities.PopularRecipeDatabaseDto
+import com.red_velvet.yumhub.data.local.entities.QuickRecipeDatabaseDto
 
 @Database(
     entities = [
         MealPlanEntity::class,
-        RecipeEntity::class],
+        HealthyRecipeDatabaseDto::class,
+        PopularRecipeDatabaseDto::class,
+        QuickRecipeDatabaseDto::class,
+        CategoryDatabaseDto::class],
     version = 1,
     exportSchema = false
 )
