@@ -15,15 +15,16 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRecipeUseCase: SearchRecipeUseCase
-)  :BaseViewModel()  {
-    private  val _uiState = MutableStateFlow(SearchRecipeUIState())
-    val uiState : StateFlow<SearchRecipeUIState> = _uiState
+) : BaseViewModel<SearchRecipeUIState>(SearchRecipeUIState()) {
+    private val _uiState = MutableStateFlow(SearchRecipeUIState())
+    val uiState: StateFlow<SearchRecipeUIState> = _uiState
 
-     fun onInputSearchChange(newSearchInput:CharSequence){
-         Log.i("AYA",newSearchInput.toString())
+    fun onInputSearchChange(newSearchInput: CharSequence) {
+        Log.i("AYA", newSearchInput.toString())
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
     }
-    suspend fun onSearch(query:String){
+
+    suspend fun onSearch(query: String) {
         _uiState.update { it.copy(isLoading = true) }
         try {
             viewModelScope.launch {

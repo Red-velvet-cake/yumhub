@@ -10,7 +10,7 @@ import com.red_velvet.yumhub.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewModel>() {
 
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_home
