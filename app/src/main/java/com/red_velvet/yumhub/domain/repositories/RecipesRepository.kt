@@ -1,0 +1,62 @@
+package com.red_velvet.yumhub.domain.repositories
+
+import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
+import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
+import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.QuickAnswerEntity
+import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
+import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
+import kotlinx.coroutines.flow.Flow
+
+interface RecipesRepository {
+
+    suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity>
+
+    suspend fun getHealthyRecipesFromRemote(sort: String): List<HealthyRecipeEntity>
+
+    suspend fun getQuickRecipes(sort: String): List<QuickRecipeEntity>
+
+    suspend fun searchRecipe(
+        query: String? = null,
+        sort: String? = null,
+    ): com.red_velvet.yumhub.remote.dtos.recipe.RecipeSearchPagination
+
+    suspend fun getRecipeInformation(
+        id: Int,
+        includeNutrition: Boolean? = null,
+    ): com.red_velvet.yumhub.remote.dtos.recipe.RecipeInformationDto
+
+    suspend fun getSimilarRecipes(
+        id: Int,
+        number: Int? = 3,
+    ): List<SimilarRecipeEntity>
+
+    suspend fun getRandomRecipes(
+        tags: String? = "",
+        number: Int? = 10
+    ): List<RecipeInformationEntity>
+
+    suspend fun guessNutrition(
+        title: String = ""
+    ): GuessNutritionEntity
+
+    suspend fun getQuickAnswer(
+        question: String = ""
+    ): QuickAnswerEntity
+
+    suspend fun refreshPopularRecipes(recipesList: List<PopularRecipeEntity>)
+
+    suspend fun getPopularRecipesFromLocal(): Flow<List<PopularRecipeEntity>>
+
+    suspend fun refreshQuickRecipes(recipesList: List<QuickRecipeEntity>)
+
+    suspend fun getQuickRecipesFromLocal(): Flow<List<QuickRecipeEntity>>
+
+    suspend fun refreshHealthyRecipes(recipesList: List<HealthyRecipeEntity>)
+
+    suspend fun getHealthyRecipesFromLocal(): Flow<List<HealthyRecipeEntity>>
+
+    suspend fun getCategoriesFromRemote(): List<CategoryEntity>
+}

@@ -1,12 +1,12 @@
 package com.red_velvet.yumhub.domain.mapper
 
-import com.red_velvet.yumhub.data.local.entities.MealPlanEntity
-import com.red_velvet.yumhub.domain.models.MealPlan
+import com.red_velvet.yumhub.domain.models.MealPlanEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
+import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 
-fun MealPlanEntity.toMealPlan(): MealPlan {
-    return MealPlan(
+fun MealPlanLocalDto.toMealPlan(): MealPlanEntity {
+    return MealPlanEntity(
         id = id.orZero(),
         position = position.orZero(),
         slot = slot.orZero(),

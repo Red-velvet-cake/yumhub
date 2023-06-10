@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases.recipes
 
-import com.red_velvet.yumhub.domain.RecipesRepository
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
+import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import javax.inject.Inject
 
 class GetQuickRecipesUseCase @Inject constructor(

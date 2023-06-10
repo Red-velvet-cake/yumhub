@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases.recipes
 
-import com.red_velvet.yumhub.domain.RecipesRepository
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
+import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import javax.inject.Inject
 
 class GetHealthyRecipesUseCase @Inject constructor(
@@ -9,12 +9,12 @@ class GetHealthyRecipesUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<HealthyRecipeEntity> {
-        return recipesRepositoryImpl.getHealthyRecipes("healthiness")
+        return recipesRepositoryImpl.getHealthyRecipesFromRemote("healthiness")
             .also { saveHealthyRecipesLocal() }
     }
 
     private suspend fun getHealthyRecipes(): List<HealthyRecipeEntity> {
-        return recipesRepositoryImpl.getHealthyRecipes("healthiness")
+        return recipesRepositoryImpl.getHealthyRecipesFromRemote("healthiness")
     }
 
     private suspend fun saveHealthyRecipesLocal() {

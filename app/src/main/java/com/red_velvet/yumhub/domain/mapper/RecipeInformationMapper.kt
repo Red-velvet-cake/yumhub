@@ -1,23 +1,17 @@
 package com.red_velvet.yumhub.domain.mapper
 
-import com.red_velvet.yumhub.data.remote.dtos.AnalyzedInstructionDto
-import com.red_velvet.yumhub.data.remote.dtos.EquipmentDto
-import com.red_velvet.yumhub.data.remote.dtos.ExtendedIngredientDto
-import com.red_velvet.yumhub.data.remote.dtos.LengthDto
-import com.red_velvet.yumhub.data.remote.dtos.StepDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructions
-import com.red_velvet.yumhub.domain.models.recipes.Equipment
-import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredient
-import com.red_velvet.yumhub.domain.models.recipes.Length
-import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
-import com.red_velvet.yumhub.domain.models.recipes.Step
+import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
+import com.red_velvet.yumhub.domain.models.recipes.EquipmentEntity
+import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
+import com.red_velvet.yumhub.domain.models.recipes.LengthEntity
+import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
+import com.red_velvet.yumhub.domain.models.recipes.StepEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orFalse
 import com.red_velvet.yumhub.domain.utils.orZero
 
-fun RecipeInformationDto.toModel(): RecipeInformation {
-    return RecipeInformation(
+fun com.red_velvet.yumhub.remote.dtos.recipe.RecipeInformationDto.toModel(): RecipeInformationEntity {
+    return RecipeInformationEntity(
         id = this.id.orZero(),
         image = this.image.orEmpty(),
         imageType = this.imageType.orEmpty(),
@@ -28,40 +22,40 @@ fun RecipeInformationDto.toModel(): RecipeInformation {
         servings = this.servings.orZero(),
         summary = this.summary.orEmpty(),
         title = this.title.orEmpty(),
-        analyzedInstructions = analyzedInstructions.map { it.toModel() },
+        analyzedInstructionEntities = analyzedInstructions.map { it.toModel() },
         cheap = this.cheap.orFalse(),
         cookingMinutes = this.cookingMinutes.orZero(),
         cuisines = this.cuisines,
         diets = this.diets,
         dishTypes = this.dishTypes,
-        extendedIngredients = extendedIngredients.map { it.toModel() },
+        extendedIngredientEntities = extendedIngredients.map { it.toModel() },
         glutenFree = this.glutenFree.orFalse(),
         healthScore = this.healthScore.orZero()
     )
 }
 
-fun AnalyzedInstructionDto.toModel(): AnalyzedInstructions {
-    return AnalyzedInstructions(
+fun com.red_velvet.yumhub.remote.dtos.AnalyzedInstructionDto.toModel(): AnalyzedInstructionsEntity {
+    return AnalyzedInstructionsEntity(
         name = name.orEmpty(),
-        steps = steps.map {
+        stepEntities = steps.map {
             it.toModel()
         }
     )
 }
 
-fun StepDto.toModel(): Step {
-    return Step(
-        equipment = equipment.map {
+fun com.red_velvet.yumhub.remote.dtos.StepDto.toModel(): StepEntity {
+    return StepEntity(
+        equipmentEntities = equipment.map {
             it.toModel()
         },
-        length = length.toModel(),
+        lengthEntity = length.toModel(),
         number = number.orZero(),
         step = step.orEmpty()
     )
 }
 
-fun EquipmentDto.toModel(): Equipment {
-    return Equipment(
+fun com.red_velvet.yumhub.remote.dtos.EquipmentDto.toModel(): EquipmentEntity {
+    return EquipmentEntity(
         id = id.orZero(),
         image = image.orEmpty(),
         localizedName = localizedName.orEmpty(),
@@ -69,15 +63,15 @@ fun EquipmentDto.toModel(): Equipment {
     )
 }
 
-fun LengthDto.toModel(): Length {
-    return Length(
+fun com.red_velvet.yumhub.remote.dtos.LengthDto.toModel(): LengthEntity {
+    return LengthEntity(
         number = number.orZero(),
         unit = unit.orEmpty()
     )
 }
 
-fun ExtendedIngredientDto.toModel(): ExtendedIngredient {
-    return ExtendedIngredient(
+fun com.red_velvet.yumhub.remote.dtos.ExtendedIngredientDto.toModel(): ExtendedIngredientEntity {
+    return ExtendedIngredientEntity(
         aisle = aisle.orEmpty(),
         amount = amount.orZero(),
         id = id.orZero(),

@@ -1,34 +1,31 @@
 package com.red_velvet.yumhub.domain.mapper
 
-import com.red_velvet.yumhub.data.remote.dtos.CaloriesDto
-import com.red_velvet.yumhub.data.remote.dtos.ConfidenceRange95PercentDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.GuessNutritionDto
-import com.red_velvet.yumhub.domain.models.recipes.Calories
-import com.red_velvet.yumhub.domain.models.recipes.ConfidenceRange95Percent
-import com.red_velvet.yumhub.domain.models.recipes.GuessNutrition
+import com.red_velvet.yumhub.domain.models.recipes.CaloriesEntity
+import com.red_velvet.yumhub.domain.models.recipes.ConfidenceRange95PercentEntity
+import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
 
-fun GuessNutritionDto.toModel(): GuessNutrition {
-    return GuessNutrition(
-        calories = caloriesDto?.toModel() ?: Calories(),
-        carbs = carbs?.toModel() ?: Calories(),
-        fat = fat?.toModel() ?: Calories(),
-        protein = protein?.toModel() ?: Calories(),
+fun com.red_velvet.yumhub.remote.dtos.recipe.GuessNutritionDto.toModel(): GuessNutritionEntity {
+    return GuessNutritionEntity(
+        caloriesEntity = caloriesDto?.toModel() ?: CaloriesEntity(),
+        carbs = carbs?.toModel() ?: CaloriesEntity(),
+        fat = fat?.toModel() ?: CaloriesEntity(),
+        protein = protein?.toModel() ?: CaloriesEntity(),
         recipesUsed = recipesUsed.orZero()
     )
 }
 
-fun CaloriesDto.toModel(): Calories {
-    return Calories(
-        confidenceRange95Percent = confidenceRange95Percent?.toModel(),
+fun com.red_velvet.yumhub.remote.dtos.CaloriesDto.toModel(): CaloriesEntity {
+    return CaloriesEntity(
+        confidenceRange95PercentEntity = confidenceRange95Percent?.toModel(),
         value = value.orZero(),
         unit = unit.orEmpty()
     )
 }
 
-fun ConfidenceRange95PercentDto.toModel(): ConfidenceRange95Percent {
-    return ConfidenceRange95Percent(
+fun com.red_velvet.yumhub.remote.dtos.ConfidenceRange95PercentDto.toModel(): ConfidenceRange95PercentEntity {
+    return ConfidenceRange95PercentEntity(
         max = this.max.orZero(),
         min = this.min.orZero()
     )
