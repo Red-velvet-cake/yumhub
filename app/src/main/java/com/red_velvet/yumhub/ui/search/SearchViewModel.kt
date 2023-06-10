@@ -73,7 +73,8 @@ class SearchViewModel @Inject constructor(
     private fun onSuccess(recipes: List<SearchRecipe>){
       val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
         Log.d("AYA",searchResult.toString())
-        _uiState.update { it.copy(searchResult = searchResult,
+        _uiState.update { it.copy(
+            searchResult = searchResult,
             isLoading = false,
             isResultIsEmpty =searchResult.isEmpty() ) }
     }
