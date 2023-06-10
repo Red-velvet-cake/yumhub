@@ -26,6 +26,8 @@ interface FoodService {
     @GET("recipes/complexSearch")
     suspend fun searchRecipe(
         @Query("query") query: String? = "",
+        @Query("sort") sort: String? = "",
+        @Query("sortDirection") sortDirection: String? = "",
         @Query("cuisine") cuisine: String? = "",
         @Query("intolerances") intolerances: String? = "",
         @Query("diet") diet: String? = "",
@@ -33,8 +35,6 @@ interface FoodService {
         @Query("includeIngredients") includeIngredients: String? = "",
         @Query("excludeIngredients") excludeIngredients: String? = "",
         @Query("type") type: String? = "",
-        @Query("sort") sort: String? = "",
-        @Query("sortDirection") sortDirection: String? = "",
         @Query("addRecipeInformation") addRecipeInformation: Boolean? = true,
     ): Response<RecipeSearchDto>
 

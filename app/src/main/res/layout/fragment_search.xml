@@ -235,6 +235,7 @@
             app:loadingSearch="@{viewModel.uiState.loading}"
             app:searchInput="@{viewModel.uiState.searchInput}"
             app:setItems="@{viewModel.uiState.searchResult}"
+            isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             tools:listitem="@layout/item_search_card" />
         <ImageView
             android:id="@+id/svgImageView"
@@ -244,6 +245,7 @@
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
+            app:resultList="@{viewModel.uiState.searchResult}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -257,6 +259,8 @@
             android:layout_marginBottom="@dimen/tiny_space"
             android:textColor="@color/fontColor_accent"
             android:textSize="@dimen/text_size_20"
+            app:resultList="@{viewModel.uiState.searchResult}"
+
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
@@ -270,6 +274,8 @@
             android:layout_width="@dimen/_200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            app:resultList="@{viewModel.uiState.searchResult}"
+
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"

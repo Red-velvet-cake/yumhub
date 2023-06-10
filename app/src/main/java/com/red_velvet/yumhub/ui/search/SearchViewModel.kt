@@ -55,7 +55,7 @@ class SearchViewModel @Inject constructor(
         _uiState.update { it.copy(
             isLoading = true,
             recipeFilter = type,
-            searchResult = emptyList()) }
+        ) }
         try {
             viewModelScope.launch {
                 val result= searchRecipeUseCase.invoke(
@@ -104,7 +104,7 @@ class SearchViewModel @Inject constructor(
         Log.i("AYA",searchResult.toString())
         _uiState.update { it.copy(searchResult = searchResult,
             isLoading = false,
-            isResultIsEmpty =recipes.isEmpty() ) }
+            isResultIsEmpty =searchResult.isEmpty() ) }
     }
     private fun onError(message: String) {
         val errors = _uiState.value.error.toMutableList()

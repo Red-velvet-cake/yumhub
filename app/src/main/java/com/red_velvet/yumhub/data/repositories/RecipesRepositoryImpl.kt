@@ -24,7 +24,7 @@ class RecipesRepositoryImpl @Inject constructor(
         sort: String?,
         sortDirection:String?
     ): RecipeSearchDto {
-        val response = foodService.searchRecipe(query, sort,sortDirection)
+        val response = foodService.searchRecipe(query = query,sort= sort,sortDirection=sortDirection)
         if (response.isSuccessful) {
             return response.body()!!
         } else {
