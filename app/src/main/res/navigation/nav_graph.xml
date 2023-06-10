@@ -3,14 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/SearchFragment">
+    app:startDestination="@id/homeFragment">
 
 
     <fragment
         android:id="@+id/SearchFragment"
         android:name="com.red_velvet.yumhub.ui.search.SearchFragment"
         android:label=""
-        tools:layout="@layout/fragment_search">
-    </fragment>
+        tools:layout="@layout/fragment_search"></fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.red_velvet.yumhub.ui.home.HomeFragment"
+        android:label="HomeFragment" />
 
 </navigation>

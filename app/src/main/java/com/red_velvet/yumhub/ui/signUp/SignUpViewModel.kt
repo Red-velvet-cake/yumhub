@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,7 +24,7 @@ class SignUpViewModel @Inject constructor(
     private val validateUsernameUseCase: ValidateUsernameUseCase,
     private val validateFirstName: ValidateFirstName,
     private val validateLastNameUseCase: ValidateLastNameUseCase
-) : BaseViewModel() {
+) : BaseViewModel<SignUpUIState>(SignUpUIState()) {
 
     private val _uiState = MutableStateFlow(SignUpUIState())
     val uiState: StateFlow<SignUpUIState> = _uiState
@@ -52,20 +51,21 @@ class SignUpViewModel @Inject constructor(
 
     fun onSignUpButtonClicked() {
         val currentState = _uiState.value
-           if (isFormValid(currentState)) {
-               _uiState.update { it.copy(isLoading = true) }
-               viewModelScope.launch {
-                   try {
-                       saveUserInformation(currentState.toUserInformation())
-                       _uiState.update { it.copy(isSignUpButtonClicked = true) }
-                   } catch (e: Exception) {
-                       _uiState.update { it.copy(errors = e.message.toString()) }
-                   } finally {
-                       _uiState.update { it.copy(isLoading = false) }
-                   }
-               }
-           }
+        if (isFormValid(currentState)) {
+            _uiState.update { it.copy(isLoading = true) }
+            viewModelScope.launch {
+                try {
+                    saveUserInformation(currentState.toUserInformation())
+                    _uiState.update { it.copy(isSignUpButtonClicked = true) }
+                } catch (e: Exception) {
+                    _uiState.update { it.copy(errors = e.message.toString()) }
+                } finally {
+                    _uiState.update { it.copy(isLoading = false) }
+                }
+            }
+        }
     }
+
     private fun isFormValid(state: SignUpUIState): Boolean {
         updateValidationErrors(state)
         return state.username.isNotBlank() &&
@@ -74,6 +74,7 @@ class SignUpViewModel @Inject constructor(
                 state.email.isNotBlank() &&
                 state.password.isNotBlank()
     }
+
     private fun updateValidationErrors(state: SignUpUIState) {
         _uiState.update {
             it.copy(
@@ -85,6 +86,7 @@ class SignUpViewModel @Inject constructor(
             )
         }
     }
+
     private fun SignUpUIState.toUserInformation(): UserInformation {
         return UserInformation(
             username = username,

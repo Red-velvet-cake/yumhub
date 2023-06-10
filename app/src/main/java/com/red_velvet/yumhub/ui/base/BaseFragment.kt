@@ -9,7 +9,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.red_velvet.yumhub.BR
 
-abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment<VDB : ViewDataBinding, T : BaseUiState, VM : BaseViewModel<T>> :
+    Fragment() {
     abstract val layoutIdFragment: Int
     abstract val viewModel: VM
 

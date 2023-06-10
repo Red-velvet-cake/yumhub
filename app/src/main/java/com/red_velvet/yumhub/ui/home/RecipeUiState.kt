@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.ui.home.uistate
+package com.red_velvet.yumhub.ui.home
 
 data class RecipeUiState(
     val recipeImage: String,

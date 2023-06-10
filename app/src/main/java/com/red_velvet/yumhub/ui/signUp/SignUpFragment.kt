@@ -9,8 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class SignUpFragment: BaseFragment<FragmentSignUpBinding,SignUpViewModel>(){
+class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpUIState, SignUpViewModel>() {
     override val layoutIdFragment = R.layout.fragment_sign_up
     override val viewModel: SignUpViewModel by viewModels()
-
 }

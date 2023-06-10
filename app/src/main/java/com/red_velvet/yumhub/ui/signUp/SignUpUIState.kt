@@ -1,5 +1,7 @@
 package com.red_velvet.yumhub.ui.signUp
 
+import com.red_velvet.yumhub.ui.base.BaseUiState
+
 data class SignUpUIState(
     val firstName: String = "",
     val lastName: String = "",
@@ -13,5 +15,5 @@ data class SignUpUIState(
     val passwordError: String? = null,
     val isLoading: Boolean = false,
     val errors: String = "",
-    val isSignUpButtonClicked: Boolean = false,
-)
+    val isSignUpButtonClicked: Boolean = false
+) : BaseUiState()
