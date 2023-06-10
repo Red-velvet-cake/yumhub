@@ -1,18 +1,15 @@
 package com.red_velvet.yumhub.ui.home
 
 import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.domain.models.recipes.Recipe
+import com.red_velvet.yumhub.domain.usecases.recipes.GetCategoriesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetHealthyRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetPopularRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetQuickRecipesUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
-import com.red_velvet.yumhub.ui.home.uistate.HomeUiState
-import com.red_velvet.yumhub.ui.home.uistate.toUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,45 +18,62 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getQuickRecipesUseCase: GetQuickRecipesUseCase,
     private val getPopularRecipesUseCase: GetPopularRecipesUseCase,
-    private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase
-) : BaseViewModel() {
+    private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase,
+    private val getCategoriesUseCase: GetCategoriesUseCase
+) : BaseViewModel(), HomeInteractionListener {
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
-    fun getQuickRecipes() {
+    init {
+        getCategories()
+        getPopularRecipes()
+        getHealthyRecipes()
+        getQuickRecipes()
+    }
+
+    private fun getQuickRecipes() {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             try {
-                getQuickRecipesUseCase().map(List<Recipe>::toUiState).collect { items ->
-                    _uiState.update { it.copy(quickRecipesUiState = items, isLoading = false) }
-                }
+                val response = getQuickRecipesUseCase().toQuickRecipeUiState()
+                _uiState.update { it.copy(quickRecipesUiState = response, isLoading = false) }
             } catch (e: Exception) {
                 onError(e.message.toString())
             }
         }
     }
 
-    fun getPopularRecipes() {
+    private fun getPopularRecipes() {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             try {
-                getPopularRecipesUseCase().map(List<Recipe>::toUiState).collect { items ->
-                    _uiState.update { it.copy(popularRecipesUiState = items, isLoading = false) }
-                }
+                val response = getPopularRecipesUseCase().toPopularUiState()
+                _uiState.update { it.copy(popularRecipesUiState = response, isLoading = false) }
             } catch (e: Exception) {
                 onError(e.message.toString())
             }
         }
     }
 
-    fun getHealthyRecipes() {
+    private fun getHealthyRecipes() {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             try {
-                getHealthyRecipesUseCase().map(List<Recipe>::toUiState).collect { items ->
-                    _uiState.update { it.copy(healthyRecipesUiState = items, isLoading = false) }
-                }
+                val response = getHealthyRecipesUseCase().toHealthyUiState()
+                _uiState.update { it.copy(healthyRecipesUiState = response, isLoading = false) }
+            } catch (e: Exception) {
+                onError(e.message.toString())
+            }
+        }
+    }
+
+    private fun getCategories() {
+        _uiState.update { it.copy(isLoading = true) }
+        viewModelScope.launch {
+            try {
+                val response = getCategoriesUseCase().toCategoryUiState()
+                _uiState.update { it.copy(categoryRecipesUiState = response, isLoading = false) }
             } catch (e: Exception) {
                 onError(e.message.toString())
             }
@@ -70,6 +84,12 @@ class HomeViewModel @Inject constructor(
         val errors = _uiState.value.errors.toMutableList()
         errors.add(message)
         _uiState.update { it.copy(errors = errors, isLoading = false) }
+    }
+
+    override fun doOnCategoryClicked(categoryTitle: String) {
+    }
+
+    override fun doOnPopularRecipeClicked(recipeId: Int) {
     }
 
 }
