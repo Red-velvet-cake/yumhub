@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import com.red_velvet.yumhub.data.remote.dtos.AnalyzedInstructionDto
 import com.red_velvet.yumhub.data.remote.dtos.NutritionDto
 
-data class RecipeSearchResultDto(
+data class RecipeSearchResultResource(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int? = 0,
     @SerializedName("analyzedInstructions")
