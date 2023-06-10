@@ -24,8 +24,8 @@ class SignUpViewModel @Inject constructor(
     private val validateEmailUseCase: ValidateEmailUseCase,
     private val validateUsernameUseCase: ValidateUsernameUseCase,
     private val validateFirstName: ValidateFirstName,
-    private val validateLastNameUseCase: ValidateLastNameUseCase
-) : BaseViewModel() {
+    private val validateLastNameUseCase: ValidateLastNameUseCase,
+) : BaseViewModel<SignUpUIState>(SignUpUIState()) {
 
     private val _uiState = MutableStateFlow(SignUpUIState())
     val uiState: StateFlow<SignUpUIState> = _uiState

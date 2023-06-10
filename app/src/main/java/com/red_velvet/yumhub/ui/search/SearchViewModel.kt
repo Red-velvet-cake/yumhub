@@ -1,14 +1,12 @@
 package com.red_velvet.yumhub.ui.search
 
-import android.graphics.Color
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
+import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,8 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchRecipeUseCase: SearchRecipeUseCase
-)  :BaseViewModel()  {
+    private val searchRecipeUseCase: SearchRecipeUseCase,
+)  :BaseViewModel<SearchRecipeUIState>(SearchRecipeUIState())  {
     private  val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
 
@@ -29,22 +27,18 @@ class SearchViewModel @Inject constructor(
     }
      fun onSearch(){
         _uiState.update { it.copy(isLoading = true) }
-        try {
-            viewModelScope.launch {
-                val result= searchRecipeUseCase.invoke(
-                    query=_uiState.value.searchInput ,
-                    sort = _uiState.value.recipeFilter,
-                    sortDirection = _uiState.value.sortDirection)
-                Log.i("AYA",result.toString())
-                onSuccess(result)
-            }
-        }catch (e:Exception){
-            Log.e("AYA",e.message.toString())
-            onError(e.message.toString())
-        }
+         onGetData()
     }
     fun onSelectFilterType(type:String){
-      if(type == _uiState.value.recipeFilter){
+        ifSameFilterTypeSelected(type)
+        _uiState.update { it.copy(
+            isLoading = true,
+            recipeFilter = type,
+        ) }
+        onGetData()
+    }
+    private fun ifSameFilterTypeSelected(type :String){
+        if(type == _uiState.value.recipeFilter){
           _uiState.update { it.copy(
               isLoading = false,
               recipeFilter = "",
@@ -52,42 +46,22 @@ class SearchViewModel @Inject constructor(
               searchResult = emptyList()) }
           return
       }
-        Log.i("AYA",type)
-        _uiState.update { it.copy(
-            isLoading = true,
-            recipeFilter = type,
-        ) }
-        try {
-            viewModelScope.launch {
-                val result= searchRecipeUseCase.invoke(
-                    query=_uiState.value.searchInput ,
-                    sortDirection= _uiState.value.sortDirection,
-                    sort = _uiState.value.recipeFilter)
-                Log.e("AYA",result.toString())
-                onSuccess(result)
-            }
-        }catch (e:Exception){
-            Log.e("AYA",e.message.toString())
-            onError(e.message.toString())
-        }
     }
     fun onSelectSortDirection(sortDirection:String){
-        Log.i("AYA",sortDirection)
-
         _uiState.update { it.copy(isLoading = true, sortDirection = sortDirection) }
-        try {
-            viewModelScope.launch {
-                val result= searchRecipeUseCase.invoke(
+        onGetData()
+    }
+    private fun onGetData(){
+        tryToExecute(
+            callee = {
+                searchRecipeUseCase.invoke(
                     query=_uiState.value.searchInput ,
-                    sortDirection=_uiState.value.sortDirection,
-                    sort = _uiState.value.recipeFilter)
-                Log.e("AYA",result.toString())
-                onSuccess(result)
-            }
-        }catch (e:Exception){
-            Log.e("AYA",e.message.toString())
-            onError(e.message.toString())
-        }
+                    sort = _uiState.value.recipeFilter,
+                    sortDirection = _uiState.value.sortDirection)
+            },
+            onSuccess = ::onSuccess,
+            onError = ::onError
+        )
     }
 
     fun onClear(){
@@ -102,15 +76,12 @@ class SearchViewModel @Inject constructor(
 
     private fun onSuccess(recipes: List<SearchRecipe>){
       val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
-        Log.i("AYA",searchResult.toString())
         _uiState.update { it.copy(searchResult = searchResult,
             isLoading = false,
             isResultIsEmpty =searchResult.isEmpty() ) }
     }
-    private fun onError(message: String) {
-        val errors = _uiState.value.error.toMutableList()
-        errors.add(message)
-        _uiState.update { it.copy(error = errors, isLoading = false) }
+    private fun onError(errorUiState: ErrorUIState) {
+        _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
 }

@@ -37,9 +37,9 @@ fun hideIfListEmpty(view: View, value: Boolean) {
 fun showIfLoading(view: View, value: Boolean) {
     view.isVisible = value
 }
-@BindingAdapter(value = ["app:searchInput", "app:errorSearch", "app:loadingSearch","app:isResultEmpty" ])
-fun <T> hideWhenSuccessSearch(view: View, text: String, error: List<T>?, loading: Boolean,isResultEmpty:Boolean) {
-    view.visibility = if (text.isNotBlank() && error.isNullOrEmpty() && !loading) {
+@BindingAdapter(value = ["app:searchInput",  "app:loadingSearch","app:isResultEmpty" ])
+fun <T> hideWhenSuccessSearch(view: View, text: String, loading: Boolean,isResultEmpty:Boolean) {
+    view.visibility = if (text.isNotBlank()  && !loading) {
         View.VISIBLE
     } else if(text.isEmpty() && !isResultEmpty ){
         View.VISIBLE
