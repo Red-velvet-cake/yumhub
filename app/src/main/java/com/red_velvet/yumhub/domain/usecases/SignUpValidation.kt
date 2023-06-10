@@ -6,10 +6,10 @@ import javax.inject.Inject
 class SignUpValidation @Inject constructor() {
 
      fun isFormValid(state: UserInformation): Boolean {
-        return state.username?.isNotBlank() ?: true &&
-                state.firstName?.isNotBlank() ?: true &&
-                state.lastName?.isNotBlank() ?: true &&
-                state.email?.isNotBlank() ?: true
+        return state.username?.isNotBlank() ?: false &&
+                state.firstName?.isNotBlank() ?: false &&
+                state.lastName?.isNotBlank() ?: false &&
+                state.email?.isNotBlank() ?: false
     }
      fun validateLastName(lastName: String): String? {
         return if (lastName.isBlank()) "Last name is required" else null

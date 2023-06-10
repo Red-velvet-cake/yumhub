@@ -17,7 +17,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val saveUserInformation: SaveUserNameAndHashUseCase,
     private val signUpValidation: SignUpValidation
-) : BaseViewModel() {
+) :BaseViewModel<SignUpUIState>(SignUpUIState()) {
 
     private val _uiState = MutableStateFlow(SignUpUIState())
     val uiState: StateFlow<SignUpUIState> = _uiState
@@ -60,6 +60,9 @@ class SignUpViewModel @Inject constructor(
                updateValidationErrors(currentState)
            }
     }
+
+
+
     private fun updateValidationErrors(state: SignUpUIState) {
         _uiState.update {
             it.copy(
