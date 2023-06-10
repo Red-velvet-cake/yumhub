@@ -1,16 +1,23 @@
 package com.red_velvet.yumhub.domain.usecases.recipes
 
-import com.red_velvet.yumhub.data.repositories.RecipesRepository
-import com.red_velvet.yumhub.domain.models.recipes.Recipe
-import kotlinx.coroutines.flow.Flow
+import com.red_velvet.yumhub.domain.RecipesRepository
+import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
 import javax.inject.Inject
 
 class GetQuickRecipesUseCase @Inject constructor(
     private val recipesRepositoryImpl: RecipesRepository
 ) {
 
-    operator fun invoke(): Flow<List<Recipe>> {
-        return recipesRepositoryImpl.getRecipes("time")
+    suspend operator fun invoke(): List<QuickRecipeEntity> {
+        return recipesRepositoryImpl.getQuickRecipesFromLocal().also { saveQuickRecipesLocal() }
+    }
+
+    private suspend fun getQuickRecipes(): List<QuickRecipeEntity> {
+        return recipesRepositoryImpl.getQuickRecipes("time")
+    }
+
+    private suspend fun saveQuickRecipesLocal() {
+        recipesRepositoryImpl.refreshQuickRecipes(getQuickRecipes())
     }
 
 }

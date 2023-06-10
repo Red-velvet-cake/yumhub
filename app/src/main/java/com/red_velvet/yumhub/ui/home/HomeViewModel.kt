@@ -1,75 +1,101 @@
 package com.red_velvet.yumhub.ui.home
 
-import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.domain.models.recipes.Recipe
+import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
+import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
+import com.red_velvet.yumhub.domain.usecases.recipes.GetCategoriesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetHealthyRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetPopularRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetQuickRecipesUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
-import com.red_velvet.yumhub.ui.home.uistate.HomeUiState
-import com.red_velvet.yumhub.ui.home.uistate.toUiState
+import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getQuickRecipesUseCase: GetQuickRecipesUseCase,
     private val getPopularRecipesUseCase: GetPopularRecipesUseCase,
-    private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase
-) : BaseViewModel() {
+    private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase,
+    private val getCategoriesUseCase: GetCategoriesUseCase
+) : BaseViewModel<HomeUiState>(HomeUiState()), HomeInteractionListener {
 
-    private val _uiState = MutableStateFlow(HomeUiState())
-    val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
-
-    fun getQuickRecipes() {
-        _uiState.update { it.copy(isLoading = true) }
-        viewModelScope.launch {
-            try {
-                getQuickRecipesUseCase().map(List<Recipe>::toUiState).collect { items ->
-                    _uiState.update { it.copy(quickRecipesUiState = items, isLoading = false) }
-                }
-            } catch (e: Exception) {
-                onError(e.message.toString())
-            }
-        }
+    init {
+        getCategories()
+        getPopularRecipes()
+        getHealthyRecipes()
+        getQuickRecipes()
     }
 
-    fun getPopularRecipes() {
-        _uiState.update { it.copy(isLoading = true) }
-        viewModelScope.launch {
-            try {
-                getPopularRecipesUseCase().map(List<Recipe>::toUiState).collect { items ->
-                    _uiState.update { it.copy(popularRecipesUiState = items, isLoading = false) }
-                }
-            } catch (e: Exception) {
-                onError(e.message.toString())
-            }
-        }
+
+    private fun getQuickRecipes() {
+        _state.update { it.copy(isLoading = true) }
+        tryToExecute(
+            getQuickRecipesUseCase::invoke,
+            onSuccess = ::onGetQuickRecipesSuccess,
+            onError = ::onError
+        )
     }
 
-    fun getHealthyRecipes() {
-        _uiState.update { it.copy(isLoading = true) }
-        viewModelScope.launch {
-            try {
-                getHealthyRecipesUseCase().map(List<Recipe>::toUiState).collect { items ->
-                    _uiState.update { it.copy(healthyRecipesUiState = items, isLoading = false) }
-                }
-            } catch (e: Exception) {
-                onError(e.message.toString())
-            }
-        }
+    private fun onGetQuickRecipesSuccess(quickRecipes: List<QuickRecipeEntity>) {
+        val response = quickRecipes.toQuickRecipeUiState()
+        _state.update { it.copy(quickRecipesUiState = response, isLoading = false) }
     }
 
-    private fun onError(message: String) {
-        val errors = _uiState.value.errors.toMutableList()
-        errors.add(message)
-        _uiState.update { it.copy(errors = errors, isLoading = false) }
+    private fun getPopularRecipes() {
+        _state.update { it.copy(isLoading = true) }
+        tryToExecute(
+            getPopularRecipesUseCase::invoke,
+            onSuccess = ::onGetPopularRecipeSuccess,
+            onError = ::onError
+        )
+    }
+
+
+    private fun onGetPopularRecipeSuccess(popularRecipes: List<PopularRecipeEntity>) {
+        val response = popularRecipes.toPopularUiState()
+        _state.update { it.copy(popularRecipesUiState = response, isLoading = false) }
+    }
+
+    private fun onGetHealthyRecipeSuccess(healthyRecipes: List<HealthyRecipeEntity>) {
+        val response = healthyRecipes.toHealthyUiState()
+        _state.update { it.copy(healthyRecipesUiState = response, isLoading = false) }
+    }
+
+    private fun getHealthyRecipes() {
+        _state.update { it.copy(isLoading = true) }
+        tryToExecute(
+            getHealthyRecipesUseCase::invoke,
+            onSuccess = ::onGetHealthyRecipeSuccess,
+            onError = ::onError
+        )
+    }
+
+    private fun getCategories() {
+        _state.update { it.copy(isLoading = true) }
+        tryToExecute(
+            getCategoriesUseCase::invoke,
+            onSuccess = ::onGetCategoriesSuccess,
+            onError = ::onError
+        )
+    }
+
+
+    private fun onGetCategoriesSuccess(recipesCategories: List<CategoryEntity>) {
+        val response = recipesCategories.toCategoryUiState()
+        _state.update { it.copy(categoryRecipesUiState = response, isLoading = false) }
+    }
+
+    private fun onError(errorUiState: ErrorUIState) {
+        _state.update { it.copy(error = errorUiState, isLoading = false) }
+    }
+
+    override fun doOnCategoryClicked(categoryTitle: String) {
+    }
+
+    override fun doOnPopularRecipeClicked(recipeId: Int) {
     }
 
 }
