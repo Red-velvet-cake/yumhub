@@ -6,7 +6,7 @@ import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResultDto
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
 
-fun RecipeInformationDto.toEntity(
+fun RecipeSearchResultDto.toEntity(
     type: String
 ): RecipeEntity {
     return RecipeEntity(

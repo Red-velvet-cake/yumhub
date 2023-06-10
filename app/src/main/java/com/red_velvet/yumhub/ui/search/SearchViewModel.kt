@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
+import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -99,7 +100,7 @@ class SearchViewModel @Inject constructor(
         ) }
     }
 
-    private fun onSuccess(recipes: List<RecipeInformation>){
+    private fun onSuccess(recipes: List<SearchRecipe>){
       val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
         Log.i("AYA",searchResult.toString())
         _uiState.update { it.copy(searchResult = searchResult,

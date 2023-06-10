@@ -63,14 +63,7 @@ fun StepDto.toModel(): Step {
         ingredients = ingredients?.map { it!!.toModel() }.orEmptyList()
     )
 }
-fun IngredientDto.toModel(): Ingredients {
-    return Ingredients(
-        id = id.orZero(),
-        image = image.orEmpty(),
-        localizedName = localizedName.orEmpty(),
-        name = name.orEmpty()
-    )
-}
+
 fun EquipmentDto.toModel(): Equipment {
     return Equipment(
         id = id.orZero(),

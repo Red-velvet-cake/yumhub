@@ -5,5 +5,5 @@ data  class SearchResultUIState (
     val title :String,
     val image :String,
     val ingredientNumber : Int,
-    val readyInMinutes : Int,
+    val readyInMinutes : String,
 )
