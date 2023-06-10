@@ -18,12 +18,12 @@ class SearchViewModel @Inject constructor(
     private  val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
 
-     fun onInputSearchChange(newSearchInput:CharSequence){
+    fun onInputSearchChange(newSearchInput:CharSequence){
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
     }
-     fun onSearch(){
+    fun onSearch(){
         _uiState.update { it.copy(isLoading = true) }
-         onGetData()
+        onGetData()
     }
     fun onSelectFilterType(type:String){
         ifSameFilterTypeSelected(type)
@@ -36,13 +36,13 @@ class SearchViewModel @Inject constructor(
     }
     private fun ifSameFilterTypeSelected(type :String){
         if(type == _uiState.value.recipeFilter){
-          _uiState.update { it.copy(
-              isLoading = false,
-              recipeFilter = "",
-              isResultIsEmpty = false,
-              searchResult = emptyList()) }
-          return
-      }
+            _uiState.update { it.copy(
+                isLoading = false,
+                recipeFilter = "",
+                isResultIsEmpty = false,
+                searchResult = emptyList()) }
+            return
+        }
     }
     fun onSelectSortDirection(sortDirection:String){
         _uiState.update { it.copy(isLoading = true, sortDirection = sortDirection) }
@@ -71,7 +71,7 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun onSuccess(recipes: List<SearchRecipe>){
-      val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
+        val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
         Log.d("AYA",searchResult.toString())
         _uiState.update { it.copy(
             searchResult = searchResult,
@@ -79,6 +79,8 @@ class SearchViewModel @Inject constructor(
             isResultIsEmpty =searchResult.isEmpty() ) }
     }
     private fun onError(errorUiState: ErrorUIState) {
+        Log.e("AYA",errorUiState.toString())
+
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 

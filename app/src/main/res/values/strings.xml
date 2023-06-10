@@ -70,4 +70,9 @@
     <string name="time">Time</string>
     <string name="carbs">Carbs</string>
     <string name="calories">Calories</string>
+    <string name="categories">Categories</string>
+    <string name="popular_recipes">Popular Recipes</string>
+    <string name="quick_recipes">Quick Recipes</string>
+    <string name="see_all">See all</string>
+    <string name="healthy_recipes">Healthy Recipes</string>
 </resources>

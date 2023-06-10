@@ -1,11 +1,12 @@
 package com.red_velvet.yumhub.data.repositories
 
-import com.red_velvet.yumhub.data.local.entities.RecipeEntity
+
+import com.red_velvet.yumhub.data.local.daos.RecipeDao
 import com.red_velvet.yumhub.data.remote.dtos.recipe.GuessNutritionDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.QuickAnswerDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RandomRecipesDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchDto
+import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResource
 import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDtoItem
 import kotlinx.coroutines.flow.Flow
 
@@ -15,7 +16,7 @@ interface RecipesRepository {
         query: String? = null,
         sort: String? = null,
         sortDirection: String? = null,
-    ): RecipeSearchDto
+    ): RecipeSearchResource
 
     suspend fun getRecipeInformation(
         id: Int,
@@ -42,5 +43,5 @@ interface RecipesRepository {
 
     suspend fun refreshRecipes(recipeType: String)
 
-    fun getRecipes(recipeType: String): Flow<List<RecipeEntity>>
+
 }

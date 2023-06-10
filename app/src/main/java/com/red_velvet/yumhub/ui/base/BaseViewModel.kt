@@ -37,5 +37,4 @@ abstract class BaseViewModel<T>(state: T) : ViewModel() {
         }
     }
 
-
 }

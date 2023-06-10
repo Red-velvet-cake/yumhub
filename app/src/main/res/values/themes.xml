@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.YumHub" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -6,6 +6,7 @@
     </style>
 
     <style name="Theme.YumHub" parent="Base.Theme.YumHub" />
+
     <style name="RoundedCorner">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
@@ -23,4 +24,8 @@
         <item name="chipCornerRadius">@dimen/fab_margin</item>
     </style>
 
+    <style name="ShapeableImageViewStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>

@@ -13,7 +13,7 @@ import com.red_velvet.yumhub.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment :BaseFragment<FragmentSearchBinding>(){
+class SearchFragment :BaseFragment<FragmentSearchBinding,SearchRecipeUIState,SearchViewModel>(){
     @LayoutRes
     override val layoutIdFragment: Int= R.layout.fragment_search
     override val viewModel: SearchViewModel by viewModels()

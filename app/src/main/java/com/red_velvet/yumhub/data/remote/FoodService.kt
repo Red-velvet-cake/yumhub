@@ -12,7 +12,7 @@ import com.red_velvet.yumhub.data.remote.dtos.recipe.GuessNutritionDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.QuickAnswerDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RandomRecipesDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchDto
+import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResource
 import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDto
 import retrofit2.Response
 import retrofit2.http.Body
@@ -36,7 +36,13 @@ interface FoodService {
         @Query("excludeIngredients") excludeIngredients: String? = "",
         @Query("type") type: String? = "",
         @Query("addRecipeInformation") addRecipeInformation: Boolean? = true,
-    ): Response<RecipeSearchDto>
+    ): Response<RecipeSearchResource>
+
+    @GET("recipes/complexSearch")
+    suspend fun getRecipesByMealType(
+        @Query("type") type: String? = "",
+        @Query("addRecipeInformation") addRecipeInformation: Boolean? = true
+    ): Response<RecipeSearchResource>
 
     @GET("recipes/{id}/information")
     suspend fun getRecipeInformation(

@@ -6,7 +6,7 @@ import javax.inject.Inject
 class GetHashUseCase @Inject constructor(
     private val repository: UserRepository
 ) {
-    suspend operator fun invoke() {
-        repository.getHash()
+    suspend operator fun invoke(): String {
+        return repository.getHash()
     }
 }

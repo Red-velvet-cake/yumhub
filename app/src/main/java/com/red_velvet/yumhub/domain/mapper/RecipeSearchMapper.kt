@@ -2,7 +2,7 @@ package com.red_velvet.yumhub.domain.mapper
 
 import com.red_velvet.yumhub.data.remote.dtos.IngredientDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResultDto
+import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResultResource
 import com.red_velvet.yumhub.domain.models.recipes.Ingredients
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
@@ -11,7 +11,7 @@ import com.red_velvet.yumhub.domain.utils.orEmptyList
 import com.red_velvet.yumhub.domain.utils.orFalse
 import com.red_velvet.yumhub.domain.utils.orZero
 
-fun RecipeSearchResultDto.toRecipeSearchResult(): SearchRecipe {
+fun RecipeSearchResultResource.toRecipeSearchResult(): SearchRecipe {
     return SearchRecipe(
         id = id.orZero(),
         image = image.orEmpty(),

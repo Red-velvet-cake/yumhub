@@ -18,9 +18,4 @@ object UserRepositoryModule {
     fun provideUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository {
         return userRepositoryImpl
     }
-    @Provides
-    fun provideRecipeRepository(recipesRepositoryImpl: RecipesRepositoryImpl): RecipesRepository {
-        return recipesRepositoryImpl
-    }
-
 }

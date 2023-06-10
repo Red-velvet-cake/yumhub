@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.ui.search
 
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
+import com.red_velvet.yumhub.ui.base.BaseUiState
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 
 data class SearchRecipeUIState(
@@ -11,4 +12,4 @@ data class SearchRecipeUIState(
     val isLoading :Boolean=false,
     val isResultIsEmpty :Boolean=false,
     val error :ErrorUIState? = null,
-)
+):BaseUiState()
