@@ -55,4 +55,9 @@
     <string name="password_sign_up">Password</string>
     <string name="sign_up_button">Sign Up</string>
     <string name="search_food_drink_etc">Search food, drink, etc</string>
+    <string name="categories">Categories</string>
+    <string name="popular_recipes">Popular Recipes</string>
+    <string name="quick_recipes">Quick Recipes</string>
+    <string name="see_all">See all</string>
+    <string name="healthy_recipes">Healthy Recipes</string>
 </resources>

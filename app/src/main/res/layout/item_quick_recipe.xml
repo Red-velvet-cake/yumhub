@@ -57,7 +57,7 @@
             android:textSize="@dimen/font_size_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_image_view"
-            tools:text="World’s Greatest Lasagna Roll Ups" />
+             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

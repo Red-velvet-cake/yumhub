@@ -33,8 +33,7 @@
             android:fontFamily="@font/roboto_regular"
             android:maxLines="1"
             android:text="@{item.recipeTitle}"
-            android:textSize="@dimen/font_size_label"
-            tools:text="World’s Greatest Lasagna Roll Ups" />
+            android:textSize="@dimen/font_size_label" />
 
     </LinearLayout>
 </layout>
