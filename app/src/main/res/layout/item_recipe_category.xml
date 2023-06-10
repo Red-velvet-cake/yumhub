@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.home.RecipeUiState" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_x_small"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/category_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:setDrawableResource="@{item.recipeImage}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@{item.recipeTitle}"
+            android:textColor="@color/fontColor_primary"
+            android:textSize="@dimen/font_size_label" />
+
+    </LinearLayout>
+</layout>
