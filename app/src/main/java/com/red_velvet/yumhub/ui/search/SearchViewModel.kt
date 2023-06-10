@@ -25,15 +25,6 @@ class SearchViewModel @Inject constructor(
 
      fun onInputSearchChange(newSearchInput:CharSequence){
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
-//         try {
-//             viewModelScope.launch {
-//                 val result=   searchRecipeUseCase.invoke(query=_uiState.value.searchInput ,
-//                     sort = "", sortDirection = "")
-//                 onSuccess(result)
-//             }
-//         }catch (e:Exception){
-//             onError(e.message.toString())
-//         }
     }
      fun onSearch(){
         _uiState.update { it.copy(isLoading = true) }
@@ -52,7 +43,14 @@ class SearchViewModel @Inject constructor(
         }
     }
     fun onSelectFilterType(type:String){
-
+      if(type == _uiState.value.recipeFilter){
+          _uiState.update { it.copy(
+              isLoading = false,
+              recipeFilter = "",
+              isResultIsEmpty = false,
+              searchResult = emptyList()) }
+          return
+      }
         Log.i("AYA",type)
         _uiState.update { it.copy(
             isLoading = true,
@@ -92,7 +90,8 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onClear(){
-        _uiState.update { it.copy(
+        _uiState.update {
+        SearchRecipeUIState(
             isResultIsEmpty = false,
             searchInput = "",
             recipeFilter = "",

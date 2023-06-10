@@ -154,7 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
             app:chipSpacingHorizontal="@dimen/small_space"
-
             app:singleLine="true"
             app:selectionRequired="false"
             app:singleSelection="true">
@@ -169,9 +168,8 @@
                 android:onClick='@{() -> viewModel.onSelectFilterType("popularity")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:textColor="@color/black_title_60"
                 app:checkedIconEnabled="false"
-                app:chipCornerRadius="@dimen/fab_margin" />
+      />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Healthy"
@@ -182,10 +180,9 @@
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
                 app:selectionRequired="true"
-                android:textColor="@color/black_title_60"
                 style="@style/Chip.Regular.Small"
                 app:checkedIconEnabled="false"
-                app:chipCornerRadius="@dimen/fab_margin" />
+           />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Time"
@@ -195,10 +192,9 @@
                 android:onClick='@{() -> viewModel.onSelectFilterType("time")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:textColor="@color/black_title_60"
                 style="@style/Chip.Regular.Small"
                 app:checkedIconEnabled="false"
-                app:chipCornerRadius="@dimen/fab_margin" />
+           />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Carbs"
                 android:layout_width="wrap_content"
@@ -207,10 +203,9 @@
                 android:onClick='@{() -> viewModel.onSelectFilterType("carbs")}'
                 android:paddingHorizontal="@dimen/_12dp"
                 android:paddingVertical="@dimen/_6dp"
-                android:textColor="@color/black_title_60"
                 style="@style/Chip.Regular.Small"
                 app:checkedIconEnabled="false"
-                app:chipCornerRadius="@dimen/fab_margin" />
+  />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_calories"
                 android:layout_width="wrap_content"
@@ -222,7 +217,7 @@
                 android:paddingVertical="@dimen/_6dp"
                 android:textColor="@color/black_title_60"
                 app:checkedIconEnabled="false"
-                app:chipCornerRadius="@dimen/fab_margin" />
+ />
         </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
         <androidx.recyclerview.widget.RecyclerView

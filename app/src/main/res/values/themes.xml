@@ -17,21 +17,10 @@
 
     <style name="Chip.Regular.Small" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="chipStrokeColor">@color/primary</item>
-        <item name="chipBackgroundColor">@color/bg_white</item>
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="chipStrokeWidth">1dp</item>
-    </style>
-
-    <style name="ChipStyleNotClicked" parent="Widget.MaterialComponents.Chip.Filter">
-        <item name="chipStrokeColor">@color/primary</item>
-        <item name="chipBackgroundColor">@color/bg_white</item>
-        <item name="chipStrokeWidth">1dp</item>
-    </style>
-
-    <style name="ChipStyleClicked" parent="Widget.MaterialComponents.Chip.Filter">
-        <item name="chipStrokeColor">@color/primary</item>
-        <item name="chipBackgroundColor">@color/primary</item>
-        <item name="chipStrokeWidth">1dp</item>
-        <!-- Add any additional attributes for the clicked state -->
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipCornerRadius">@dimen/fab_margin</item>
     </style>
 
 </resources>
