@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class AddMealDto(
     @SerializedName("date")
-    val date: Int? = 0,
+    val date: Long? = 0,
     @SerializedName("position")
     val position: Int? = 0,
     @SerializedName("slot")

@@ -4,10 +4,10 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.red_velvet.yumhub.data.local.daos.MealsDao
 import com.red_velvet.yumhub.data.remote.FoodService
-import com.red_velvet.yumhub.data.remote.dtos.meal_plan.AddMealDto
+import com.red_velvet.yumhub.data.repositories.mappers.toAddMealPlan
+import com.red_velvet.yumhub.data.repositories.mappers.toMealPlanEntity
 import com.red_velvet.yumhub.domain.mapper.toEntity
-import com.red_velvet.yumhub.domain.mapper.toMealPlan
-import com.red_velvet.yumhub.domain.models.MealPlan
+import com.red_velvet.yumhub.domain.models.MealPlanEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.Instant
@@ -19,11 +19,11 @@ class MealRepositoryImpl @Inject constructor(
 ) : MealRepository {
 
     override suspend fun addToMealPlan(
-        addToMeal: AddMealDto,
+        addToMeal: MealPlanEntity,
         username: String,
         hash: String
     ) {
-        val response = foodServesImpl.addToMealPlan(addToMeal, username, hash)
+        val response = foodServesImpl.addToMealPlan(addToMeal.toAddMealPlan(), username, hash)
         if (!response.isSuccessful) {
             throw Exception(response.message())
         }
@@ -32,9 +32,9 @@ class MealRepositoryImpl @Inject constructor(
     override fun getWeekMealsPlan(
         fromTimestamp: Long,
         toTimestamp: Long
-    ): Flow<List<MealPlan>> {
+    ): Flow<List<MealPlanEntity>> {
         return mealsDao.getWeekMealsPlan(fromTimestamp, toTimestamp).map { mealPlanEntities ->
-            mealPlanEntities.map { it.toMealPlan() }
+            mealPlanEntities.map { it.toMealPlanEntity() }
         }
     }
 

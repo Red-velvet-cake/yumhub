@@ -1,11 +1,11 @@
 package com.red_velvet.yumhub.domain.usecases
 
-import com.red_velvet.yumhub.domain.models.UserInformation
+import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import javax.inject.Inject
 
 class SignUpValidation @Inject constructor() {
 
-     fun isFormValid(state: UserInformation): Boolean {
+     fun isFormValid(state: UserInformationEntity): Boolean {
         return state.username?.isNotBlank() ?: false &&
                 state.firstName?.isNotBlank() ?: false &&
                 state.lastName?.isNotBlank() ?: false &&

@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class MealPlanEntity(
+data class MealPlanDatabaseDto(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val position: Int,

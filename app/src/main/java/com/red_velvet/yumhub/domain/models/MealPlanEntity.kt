@@ -1,6 +1,6 @@
 package com.red_velvet.yumhub.domain.models
 
-data class MealPlan(
+data class MealPlanEntity(
     val id: Int,
     val position: Int,
     val slot: Int,

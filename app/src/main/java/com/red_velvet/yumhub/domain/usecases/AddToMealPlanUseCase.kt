@@ -1,8 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases
 
-import com.red_velvet.yumhub.data.local.entities.MealPlanEntity
 import com.red_velvet.yumhub.data.repositories.MealRepository
-import com.red_velvet.yumhub.domain.mapper.toMealPlanDto
+import com.red_velvet.yumhub.domain.models.MealPlanEntity
 import javax.inject.Inject
 
 class AddToMealPlanUseCase @Inject constructor(
@@ -14,6 +13,6 @@ class AddToMealPlanUseCase @Inject constructor(
         hash: String,
     ) {
         return mealRepository
-            .addToMealPlan(addToMealPlan.toMealPlanDto(), username, hash)
+            .addToMealPlan( addToMealPlan,username, hash)
     }
 }

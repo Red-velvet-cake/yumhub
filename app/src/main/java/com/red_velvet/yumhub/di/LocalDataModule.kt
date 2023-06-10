@@ -3,6 +3,8 @@ package com.red_velvet.yumhub.di
 import com.red_velvet.yumhub.data.local.LocalDataSourceImpl
 import com.red_velvet.yumhub.data.repositories.LocalDataSource
 import com.red_velvet.yumhub.data.repositories.RecipesRepositoryImpl
+import com.red_velvet.yumhub.data.repositories.UserRepository
+import com.red_velvet.yumhub.data.repositories.UserRepositoryImpl
 import com.red_velvet.yumhub.domain.RecipesRepository
 import dagger.Binds
 import dagger.Module
@@ -21,4 +23,8 @@ abstract class LocalDataModule {
     @Binds
     @Singleton
     abstract fun bindRecipeRepository(recipesRepositoryImpl: RecipesRepositoryImpl): RecipesRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindRecipesRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository
 }
