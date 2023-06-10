@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.ui.search
 
+import android.util.Log
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -28,6 +29,7 @@ class SearchViewModel @Inject constructor(
         ifSameFilterTypeSelected(type)
         _uiState.update { it.copy(
             isLoading = true,
+            isResultIsEmpty = false,
             recipeFilter = type,
         ) }
         onGetData()
@@ -60,17 +62,17 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onClear(){
-        _uiState.update {
-        SearchRecipeUIState(
-            isResultIsEmpty = false,
+        _uiState.update { it.copy(
+            recipeFilter = " ",
             searchInput = "",
-            recipeFilter = "",
-            sortDirection = ""
-        ) }
+            isLoading = false,
+            isResultIsEmpty =false ) }
+
     }
 
     private fun onSuccess(recipes: List<SearchRecipe>){
       val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
+        Log.d("AYA",searchResult.toString())
         _uiState.update { it.copy(searchResult = searchResult,
             isLoading = false,
             isResultIsEmpty =searchResult.isEmpty() ) }

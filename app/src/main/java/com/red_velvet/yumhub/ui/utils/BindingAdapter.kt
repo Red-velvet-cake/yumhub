@@ -11,13 +11,20 @@ import com.red_velvet.yumhub.ui.base.BaseAdapter
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 
 
-@BindingAdapter("app:showIfListEmpty")
-fun showIfListEmpty(view: View, value: Boolean) {
+@BindingAdapter(value=["app:showIfListEmpty","loading"])
+fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
     view.isVisible = value
+    if(loading){
+        view.isVisible =false;
+    }
 }
 @BindingAdapter("app:showIfAsc")
 fun showIfAsc(view: View, value: String) {
-    view.isVisible = value == "asc"
+    if(value == "asc"){
+        view.visibility =View.VISIBLE
+    }else{
+        view.visibility =View.GONE
+    }
 }
 @BindingAdapter("app:hideIfZero")
 fun hideIfZero(view: View, value: Int) {
@@ -27,7 +34,12 @@ fun hideIfZero(view: View, value: Int) {
 }
 @BindingAdapter("app:showIfDsc")
 fun showIfDsc(view: View, value: String) {
-    view.isVisible = value == "dsc"
+    if(value == "dsc"){
+        view.visibility =View.VISIBLE
+    }else{
+        view.visibility =View.GONE
+    }
+
 }
 @BindingAdapter("app:hideIfListEmpty")
 fun hideIfListEmpty(view: View, value: Boolean) {
@@ -54,9 +66,9 @@ fun <T> showToClearIfNoResult(view: View, text: String,isResultEmpty:Boolean) {
     if(isResultEmpty){
      view.visibility=   View.VISIBLE
     }else if(text.isEmpty()){
-        view.visibility=   View.INVISIBLE
+        view.visibility=   View.GONE
     }else {
-        View.INVISIBLE
+        view.visibility=   View.GONE
     }
 }
 @BindingAdapter(value = ["app:searchText","app:isResultEmpty","app:loading","app:resultList"])
