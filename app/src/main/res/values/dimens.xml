@@ -59,4 +59,6 @@
     <dimen name="_12dp">12dp</dimen>
     <dimen name="_6dp">6dp</dimen>
     <dimen name="_1dp">1dp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="size_20dp">20dp</dimen>
 </resources>

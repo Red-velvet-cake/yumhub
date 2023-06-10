@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         app:cardElevation="@dimen/no_width"
         android:background="@color/white"
-        android:padding="@dimen/spacing_small"
-        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/small_space"
         android:layout_marginHorizontal="@dimen/fab_margin"
         app:cardCornerRadius="@dimen/raduis_16dp">
         <LinearLayout
@@ -21,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@color/white"
-            android:padding="@dimen/fab_margin">
+            android:padding="@dimen/small_space">
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="@dimen/image_card_width_80dp"
                 android:layout_height="@dimen/image_card_height_64dp"
@@ -32,6 +31,7 @@
                 app:layout_constraintDimensionRatio="16:9"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
             <LinearLayout
+                android:paddingVertical="@dimen/small_space"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     app:text="@{item.title}"
                     android:fontFamily="@font/roboto_medium"
-                    android:textSize="@dimen/text_size_16"
+                    android:textSize="@dimen/text_size_12sp"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:maxLines="1"
@@ -55,27 +55,22 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:hideIfZero="@{item.ingredientNumber}"
                            app:text='@{String.format("%d ingredient",item.ingredientNumber)}'
                             android:fontFamily="@font/roboto_medium"
-                            android:textSize="@dimen/text_size_16"
-                            android:singleLine="true"
-                            android:layout_marginEnd="@dimen/_12dp"
-                            android:ellipsize="end"
-                            android:maxLines="1"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:layout_marginEnd="@dimen/small_space"
                             android:drawableStart="@drawable/ingredient"
-                            android:textColor="@color/black_title"
+                            android:textColor="@color/black_title_60"
                             android:text="@string/_7_ingrerdients" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:text='@{item.readyInMinutes}'
                             android:fontFamily="@font/roboto_medium"
-                            android:textSize="@dimen/text_size_16"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:maxLines="1"
+                            android:textSize="@dimen/text_size_12sp"
                             android:drawableStart="@drawable/timer1"
-                            android:textColor="@color/black_title"
+                            android:textColor="@color/black_title_60"
                             android:text="@string/_18_min" />
                     </LinearLayout>
             </LinearLayout>

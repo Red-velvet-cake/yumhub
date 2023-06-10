@@ -31,19 +31,22 @@
                 android:orientation="horizontal"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/size_20dp"
+                    android:layout_height="@dimen/size_20dp"
                     android:onClick="@{() -> viewModel.onSearch()}"
-                    android:layout_marginLeft="@dimen/spacing_small_12"
-                    android:layout_marginVertical="@dimen/fab_margin"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_marginVertical="@dimen/spacing_small_12"
                     app:srcCompat="@drawable/searchfavorite1"
                     />
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/black_title_60"
                     android:paddingVertical="@dimen/spacing_small"
                     android:hint="@string/search_food_drink_etc"
                     android:textSize="@dimen/text_size_16"
+                    android:gravity="center_vertical"
+                    android:textColorHint="@color/black_title_36"
                     android:layout_height="@dimen/spacing_xxxxlarge"
                     android:background="@color/white"
                     android:fontFamily="@font/roboto_regular"
@@ -54,8 +57,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
-                    app:hideIfSearchInputEmpty="@{viewModel.uiState.searchInput}"
+                    app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    app:searchInput="@{viewModel.uiState.searchInput}"
                     android:onClick="@{() -> viewModel.onClear()}"
                     android:layout_margin="@dimen/fab_margin"
                     android:layout_marginLeft="@dimen/spacing_small_12"
@@ -152,7 +155,8 @@
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/fab_margin"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/small_space"
             app:chipSpacingHorizontal="@dimen/small_space"
             app:singleLine="true"
             app:selectionRequired="false"
@@ -226,16 +230,15 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:orientation="vertical"
-
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chip_group_filter"
             app:loadingSearch="@{viewModel.uiState.loading}"
+            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:searchInput="@{viewModel.uiState.searchInput}"
             app:setItems="@{viewModel.uiState.searchResult}"
-            isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             tools:listitem="@layout/item_search_card" />
         <ImageView
             android:id="@+id/svgImageView"
@@ -260,7 +263,6 @@
             android:textColor="@color/fontColor_accent"
             android:textSize="@dimen/text_size_20"
             app:resultList="@{viewModel.uiState.searchResult}"
-
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
@@ -275,7 +277,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             app:resultList="@{viewModel.uiState.searchResult}"
-
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
@@ -327,6 +328,46 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title_404"
             android:text="@string/sorry_the_keyword_you_entered_connot_be_found_please_check_again_or_search_with_another_keyword"
+            />
+        <ImageView
+            android:id="@+id/svgImageView_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/search_no_internet"
+            android:showNoInternet="@{viewModel.uiState.error}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/textview_title_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/tiny_space"
+            android:textColor="@color/fontColor_accent"
+            android:textSize="@dimen/text_size_20"
+            android:showNoInternet="@{viewModel.uiState.error}"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet"
+            android:text="@string/internet_is_not_available"
+            />
+        <TextView
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:showNoInternet="@{viewModel.uiState.error}"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:textColor="@color/black_light"
+            android:textSize="@dimen/font_size_label"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_title_no_internet"
+            android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

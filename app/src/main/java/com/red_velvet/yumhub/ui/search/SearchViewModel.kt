@@ -1,8 +1,5 @@
 package com.red_velvet.yumhub.ui.search
 
-import android.util.Log
-import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -11,8 +8,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import java.util.logging.Logger
 import javax.inject.Inject
 
 @HiltViewModel

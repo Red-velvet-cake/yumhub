@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.ui.base.BaseAdapter
-
-
+import com.red_velvet.yumhub.ui.base.ErrorUIState
 
 
 @BindingAdapter("app:showIfListEmpty")
@@ -20,13 +19,15 @@ fun showIfListEmpty(view: View, value: Boolean) {
 fun showIfAsc(view: View, value: String) {
     view.isVisible = value == "asc"
 }
+@BindingAdapter("app:hideIfZero")
+fun hideIfZero(view: View, value: Int) {
+    if(value == 0){
+        view.isVisible = false
+    }
+}
 @BindingAdapter("app:showIfDsc")
 fun showIfDsc(view: View, value: String) {
     view.isVisible = value == "dsc"
-}
-@BindingAdapter("app:hideIfSortDirction")
-fun hideIfSortDirction(view: View, value: String) {
-    view.isVisible = !(value == "asc" ||value == "dsc")
 }
 @BindingAdapter("app:hideIfListEmpty")
 fun hideIfListEmpty(view: View, value: Boolean) {
@@ -48,23 +49,23 @@ fun <T> hideWhenSuccessSearch(view: View, text: String, loading: Boolean,isResul
         View.INVISIBLE
     }
 }
-@BindingAdapter(value = ["app:hideISearchInputEmpty"])
-fun <T> hideISearchInputEmpty(view: View, text: String,) {
-    view.visibility = if (text.isEmpty()) {
-        View.VISIBLE
-    } else {
+@BindingAdapter(value = ["app:searchInput","app:isResultEmpty"])
+fun <T> showToClearIfNoResult(view: View, text: String,isResultEmpty:Boolean) {
+    if(isResultEmpty){
+     view.visibility=   View.VISIBLE
+    }else if(text.isEmpty()){
+        view.visibility=   View.INVISIBLE
+    }else {
         View.INVISIBLE
     }
 }
-@BindingAdapter(value = ["app:hideIfSearchInputEmpty"])
-fun <T> hideIfSearchInputEmpty(view: View, text: String,) {
-     if (text.isEmpty()) {
-
-         view.visibility =  View.INVISIBLE
-    }
-}
 @BindingAdapter(value = ["app:searchText","app:isResultEmpty","app:loading","app:resultList"])
-fun <T> hideIfInputEmptyOrNoResult(view: View, searchText: String,isResultEmpty:Boolean,loading:Boolean,resultList:List<T>) {
+fun <T> hideIfInputEmptyOrNoResult(
+    view: View,
+    searchText: String,
+    isResultEmpty:Boolean,
+    loading:Boolean,
+    resultList:List<T>) {
     if (searchText.isNotEmpty()) {
         view.visibility =  View.INVISIBLE
     }else if(searchText.isEmpty() && isResultEmpty ){
@@ -101,4 +102,24 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 @BindingAdapter(value = ["app:imageUrl"])
 fun loadImage(view: ImageView, image: String?) {
     Glide.with(view).load(image).placeholder(R.drawable.baseline_image_24).into(view)
+}
+@BindingAdapter("android:showNoInternet")
+fun showNoInternet(view: View, errorState: ErrorUIState?) {
+    view.visibility = if (errorState is ErrorUIState.NoInternet) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("android:showUnauthorized")
+fun showUnauthorized(view: View, errorState: ErrorUIState?) {
+    view.visibility = if (errorState is ErrorUIState.UnAuthorized) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("android:showTimeout")
+fun showTimeout(view: View, errorState: ErrorUIState?) {
+    view.visibility = if (errorState is ErrorUIState.ConnectionTimeout) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("android:showInternalServerError")
+fun showInternalServerError(view: View, errorState: ErrorUIState?) {
+    view.visibility =
+        if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
