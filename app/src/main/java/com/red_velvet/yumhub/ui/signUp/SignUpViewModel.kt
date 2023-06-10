@@ -6,8 +6,6 @@ import com.red_velvet.yumhub.domain.usecases.SignUpValidation
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
@@ -17,31 +15,28 @@ class SignUpViewModel @Inject constructor(
     private val signUpValidation: SignUpValidation,
 ) : BaseViewModel<SignUpUIState>(SignUpUIState()) {
 
-    private val _uiState = MutableStateFlow(SignUpUIState())
-    val uiState: StateFlow<SignUpUIState> = _uiState
-
     fun onUsernameChange(username: String) {
-        _uiState.update { it.copy(username = username, usernameError = null) }
+        _state.update { it.copy(username = username, usernameError = null) }
     }
 
     fun onFirstNameChange(firstName: String) {
-        _uiState.update { it.copy(firstName = firstName, firstNameError = null) }
+        _state.update { it.copy(firstName = firstName, firstNameError = null) }
     }
 
     fun onLastNameChange(lastName: String) {
-        _uiState.update { it.copy(lastName = lastName, lastNameError = null) }
+        _state.update { it.copy(lastName = lastName, lastNameError = null) }
     }
 
     fun onEmailChange(email: String) {
-        _uiState.update { it.copy(email = email, emailError = null) }
+        _state.update { it.copy(email = email, emailError = null) }
     }
 
     fun onPasswordChange(password: String) {
-        _uiState.update { it.copy(password = password, passwordError = null) }
+        _state.update { it.copy(password = password, passwordError = null) }
     }
 
     fun onSignUpButtonClicked() {
-        val currentState = _uiState.value
+        val currentState = _state.value
         _state.update { it.copy(isLoading = true, isSignUpButtonClicked = true) }
         if (signUpValidation.isFormValid(currentState.toUserInformation())) {
             tryToExecute(
@@ -55,7 +50,7 @@ class SignUpViewModel @Inject constructor(
     }
 
     private fun onSignUpSuccess(unit:Unit) {
-        _uiState.update { it.copy(isLoading = false) }
+        _state.update { it.copy(isLoading = false) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
@@ -63,7 +58,7 @@ class SignUpViewModel @Inject constructor(
     }
 
     private fun updateValidationErrors(state: SignUpUIState) {
-        _uiState.update {
+        _state.update {
             it.copy(
                 usernameError = signUpValidation.validateUsername(state.username),
                 firstNameError = signUpValidation.validateFirstName(state.firstName),
