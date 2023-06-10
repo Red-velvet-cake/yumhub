@@ -63,7 +63,7 @@ class SearchViewModel @Inject constructor(
 
     fun onClear(){
         _uiState.update { it.copy(
-            recipeFilter = " ",
+            recipeFilter = "",
             searchInput = "",
             isLoading = false,
             isResultIsEmpty =false ) }
