@@ -46,6 +46,7 @@ class SignUpViewModel @Inject constructor(
             )
         } else {
             updateValidationErrors(currentState)
+            _state.update { it.copy(isLoading = false, isSignUpButtonClicked = false) }
         }
     }
 
