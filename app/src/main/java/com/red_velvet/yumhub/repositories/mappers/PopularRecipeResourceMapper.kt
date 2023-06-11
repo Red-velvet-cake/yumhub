@@ -3,9 +3,9 @@ package com.red_velvet.yumhub.repositories.mappers
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
-import com.red_velvet.yumhub.remote.dtos.recipe.RecipeSearchResultResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
 
-fun RecipeSearchResultResource.toPopularEntity(): PopularRecipeEntity {
+fun RecipeInformationDto.toPopularEntity(): PopularRecipeEntity {
     return PopularRecipeEntity(
             id = id.orZero(),
             title = title.orEmpty(),

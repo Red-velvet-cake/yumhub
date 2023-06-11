@@ -4,7 +4,7 @@ import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 
-fun com.red_velvet.yumhub.remote.dtos.meal_plan.Item.toEntity(timesStamp: Long): MealPlanLocalDto {
+fun com.red_velvet.yumhub.remote.resources.meal_plan.Item.toEntity(timesStamp: Long): MealPlanLocalDto {
     return MealPlanLocalDto(
         id = this.id.orZero(),
         position = this.position.orZero(),

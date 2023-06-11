@@ -3,9 +3,9 @@ package com.red_velvet.yumhub.repositories.mappers
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
-import com.red_velvet.yumhub.remote.dtos.recipe.RecipeSearchResultResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
 
-fun RecipeSearchResultResource.toEntity(): HealthyRecipeEntity {
+fun RecipeInformationDto.toHealthyRecipeEntity(): HealthyRecipeEntity {
     return HealthyRecipeEntity(
         id = id.orZero(),
         title = title.orEmpty(),

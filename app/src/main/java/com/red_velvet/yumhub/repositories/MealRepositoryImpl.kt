@@ -17,7 +17,7 @@ class MealRepositoryImpl @Inject constructor(
 ) : MealRepository {
 
     override suspend fun addToMealPlan(
-        addToMeal: com.red_velvet.yumhub.remote.dtos.meal_plan.AddMealDto,
+        addToMeal: com.red_velvet.yumhub.remote.resources.meal_plan.AddMealDto,
         username: String,
         hash: String
     ) {

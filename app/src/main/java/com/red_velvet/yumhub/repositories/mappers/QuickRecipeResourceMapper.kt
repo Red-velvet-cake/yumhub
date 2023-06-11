@@ -3,8 +3,9 @@ package com.red_velvet.yumhub.repositories.mappers
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
 
-fun com.red_velvet.yumhub.remote.dtos.recipe.RecipeSearchResultResource.toQuickRecipeEntity(): QuickRecipeEntity {
+fun RecipeInformationDto.toQuickRecipeEntity(): QuickRecipeEntity {
     return QuickRecipeEntity(
         id = id.orZero(),
         title = title.orEmpty(),

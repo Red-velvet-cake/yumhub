@@ -9,8 +9,12 @@ import com.red_velvet.yumhub.domain.models.recipes.StepEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orFalse
 import com.red_velvet.yumhub.domain.utils.orZero
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionDto
+import com.red_velvet.yumhub.remote.resources.EquipmentDto
+import com.red_velvet.yumhub.remote.resources.StepDto
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
 
-fun com.red_velvet.yumhub.remote.dtos.recipe.RecipeInformationDto.toModel(): RecipeInformationEntity {
+fun RecipeInformationDto.toEntity(): RecipeInformationEntity {
     return RecipeInformationEntity(
         id = this.id.orZero(),
         image = this.image.orEmpty(),
@@ -22,19 +26,19 @@ fun com.red_velvet.yumhub.remote.dtos.recipe.RecipeInformationDto.toModel(): Rec
         servings = this.servings.orZero(),
         summary = this.summary.orEmpty(),
         title = this.title.orEmpty(),
-        analyzedInstructionEntities = analyzedInstructions.map { it.toModel() },
+        analyzedInstructionEntities = analyzedInstructions?.map { it.toModel() } ?: emptyList(),
         cheap = this.cheap.orFalse(),
         cookingMinutes = this.cookingMinutes.orZero(),
-        cuisines = this.cuisines,
-        diets = this.diets,
-        dishTypes = this.dishTypes,
+        cuisines = this.cuisines ?: emptyList(),
+        diets = this.diets ?: emptyList(),
+        dishTypes = this.dishTypes ?: emptyList(),
         extendedIngredientEntities = extendedIngredients.map { it.toModel() },
         glutenFree = this.glutenFree.orFalse(),
         healthScore = this.healthScore.orZero()
     )
 }
 
-fun com.red_velvet.yumhub.remote.dtos.AnalyzedInstructionDto.toModel(): AnalyzedInstructionsEntity {
+fun AnalyzedInstructionDto.toModel(): AnalyzedInstructionsEntity {
     return AnalyzedInstructionsEntity(
         name = name.orEmpty(),
         stepEntities = steps.map {
@@ -43,7 +47,7 @@ fun com.red_velvet.yumhub.remote.dtos.AnalyzedInstructionDto.toModel(): Analyzed
     )
 }
 
-fun com.red_velvet.yumhub.remote.dtos.StepDto.toModel(): StepEntity {
+fun StepDto.toModel(): StepEntity {
     return StepEntity(
         equipmentEntities = equipment.map {
             it.toModel()
@@ -54,7 +58,7 @@ fun com.red_velvet.yumhub.remote.dtos.StepDto.toModel(): StepEntity {
     )
 }
 
-fun com.red_velvet.yumhub.remote.dtos.EquipmentDto.toModel(): EquipmentEntity {
+fun EquipmentDto.toModel(): EquipmentEntity {
     return EquipmentEntity(
         id = id.orZero(),
         image = image.orEmpty(),
@@ -63,14 +67,14 @@ fun com.red_velvet.yumhub.remote.dtos.EquipmentDto.toModel(): EquipmentEntity {
     )
 }
 
-fun com.red_velvet.yumhub.remote.dtos.LengthDto.toModel(): LengthEntity {
+fun com.red_velvet.yumhub.remote.resources.LengthDto.toModel(): LengthEntity {
     return LengthEntity(
         number = number.orZero(),
         unit = unit.orEmpty()
     )
 }
 
-fun com.red_velvet.yumhub.remote.dtos.ExtendedIngredientDto.toModel(): ExtendedIngredientEntity {
+fun com.red_velvet.yumhub.remote.resources.ExtendedIngredientDto.toModel(): ExtendedIngredientEntity {
     return ExtendedIngredientEntity(
         aisle = aisle.orEmpty(),
         amount = amount.orZero(),

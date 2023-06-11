@@ -3,7 +3,7 @@ package com.red_velvet.yumhub.repositories
 import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.repositories.UserRepository
 import com.red_velvet.yumhub.local.SharedPreferenceService
-import com.red_velvet.yumhub.remote.dtos.auth.UserInformationDto
+import com.red_velvet.yumhub.remote.resources.auth.UserInformationDto
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(

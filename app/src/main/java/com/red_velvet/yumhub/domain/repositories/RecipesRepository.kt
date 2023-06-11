@@ -7,6 +7,7 @@ import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickAnswerEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
+import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -21,12 +22,12 @@ interface RecipesRepository {
     suspend fun searchRecipe(
         query: String? = null,
         sort: String? = null,
-    ): com.red_velvet.yumhub.remote.dtos.recipe.RecipeSearchPagination
+    ): List<SearchRecipeEntity>
 
     suspend fun getRecipeInformation(
         id: Int,
         includeNutrition: Boolean? = null,
-    ): com.red_velvet.yumhub.remote.dtos.recipe.RecipeInformationDto
+    ): RecipeInformationEntity
 
     suspend fun getSimilarRecipes(
         id: Int,

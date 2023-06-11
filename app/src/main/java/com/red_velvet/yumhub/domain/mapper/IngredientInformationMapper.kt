@@ -8,7 +8,7 @@ import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServin
 import com.red_velvet.yumhub.domain.utils.orEmptyList
 import com.red_velvet.yumhub.domain.utils.orZero
 
-fun com.red_velvet.yumhub.remote.dtos.ingredient.IngredientInformationDto.toIngredientInformation(): IngredientInformationEntity {
+fun com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationDto.toIngredientInformation(): IngredientInformationEntity {
     return IngredientInformationEntity(
         id = id.orZero(),
         name = name.orEmpty(),
@@ -23,7 +23,7 @@ fun com.red_velvet.yumhub.remote.dtos.ingredient.IngredientInformationDto.toIngr
     )
 }
 
-private fun com.red_velvet.yumhub.remote.dtos.ingredient.NutrientDto.toNutrients(): NutrientsEntity {
+private fun com.red_velvet.yumhub.remote.resources.ingredient.NutrientDto.toNutrients(): NutrientsEntity {
     return NutrientsEntity(
         amount = amount.orZero(),
         percentOfDailyNeeds = percentOfDailyNeeds.orZero(),
@@ -32,7 +32,7 @@ private fun com.red_velvet.yumhub.remote.dtos.ingredient.NutrientDto.toNutrients
     )
 }
 
-private fun com.red_velvet.yumhub.remote.dtos.PropertyDto.toProperties(): PropertyEntity {
+private fun com.red_velvet.yumhub.remote.resources.PropertyDto.toProperties(): PropertyEntity {
     return PropertyEntity(
         amount = amount.orZero(),
         name = name.orEmpty(),
@@ -40,7 +40,7 @@ private fun com.red_velvet.yumhub.remote.dtos.PropertyDto.toProperties(): Proper
     )
 }
 
-private fun com.red_velvet.yumhub.remote.dtos.WeightPerServingDto?.toWeightPerServing(): WeightPerServingEntity? {
+private fun com.red_velvet.yumhub.remote.resources.WeightPerServingDto?.toWeightPerServing(): WeightPerServingEntity? {
     return this?.let {
         WeightPerServingEntity(
             amount = it.amount.orZero(),
