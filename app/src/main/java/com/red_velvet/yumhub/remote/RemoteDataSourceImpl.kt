@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.remote
 
+import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserDto
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationDto
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationDto
@@ -15,6 +16,8 @@ import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPagination
 import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesDto
 import com.red_velvet.yumhub.repositories.RemoteDataSource
+import retrofit2.Response
+import java.io.IOException
 import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(
@@ -33,22 +36,19 @@ class RemoteDataSourceImpl @Inject constructor(
         sortDirection: String?,
         addRecipeInformation: Boolean?
     ): RecipeSearchPagination {
-        val response = foodService.searchRecipe(
-            query,
-            cuisine,
-            intolerances,
-            diet,
-            excludeCuisine,
-            includeIngredients,
-            excludeIngredients,
-            sort,
-            sortDirection,
-            addRecipeInformation
-        )
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
+        return tryToExecute {
+            foodService.searchRecipe(
+                query,
+                cuisine,
+                intolerances,
+                diet,
+                excludeCuisine,
+                includeIngredients,
+                excludeIngredients,
+                sort,
+                sortDirection,
+                addRecipeInformation
+            )
         }
     }
 
@@ -56,60 +56,30 @@ class RemoteDataSourceImpl @Inject constructor(
         type: String?,
         addRecipeInformation: Boolean?
     ): RecipeSearchPagination {
-        val response = foodService.getRecipesByMealType(type, addRecipeInformation)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getRecipesByMealType(type, addRecipeInformation) }
     }
 
     override suspend fun getRecipeInformation(
         id: Int,
         includeNutrition: Boolean?
     ): RecipeInformationDto {
-        val response = foodService.getRecipeInformation(id, includeNutrition)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getRecipeInformation(id, includeNutrition) }
     }
 
     override suspend fun getSimilarRecipes(id: Int, number: Int?): SimilarRecipesDto {
-        val response = foodService.getSimilarRecipes(id, number)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getSimilarRecipes(id, number) }
     }
 
     override suspend fun getRandomRecipes(tags: String?, number: Int?): RandomRecipesDto {
-        val response = foodService.getRandomRecipes(tags, number)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getRandomRecipes(tags, number) }
     }
 
     override suspend fun guessNutrition(title: String): GuessNutritionDto {
-        val response = foodService.guessNutrition(title)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.guessNutrition(title) }
     }
 
     override suspend fun getQuickAnswer(question: String): QuickAnswerDto {
-        val response = foodService.getQuickAnswer(question)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getQuickAnswer(question) }
     }
 
     override suspend fun searchIngredients(
@@ -118,12 +88,7 @@ class RemoteDataSourceImpl @Inject constructor(
         intolerances: String?,
         number: Int?
     ): IngredientSearchDto {
-        val response = foodService.searchIngredients(query, sort, intolerances, number)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.searchIngredients(query, sort, intolerances, number) }
     }
 
     override suspend fun getIngredientInformation(
@@ -131,21 +96,11 @@ class RemoteDataSourceImpl @Inject constructor(
         amount: Int?,
         unit: String?
     ): IngredientInformationDto {
-        val response = foodService.getIngredientInformation(id, amount, unit)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getIngredientInformation(id, amount, unit) }
     }
 
     override suspend fun getSubstitutesIngredient(ingredientName: String?): IngredientSubstituteDto {
-        val response = foodService.getSubstitutesIngredient(ingredientName)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getSubstitutesIngredient(ingredientName) }
     }
 
     override suspend fun getWeekMealPlan(
@@ -153,12 +108,7 @@ class RemoteDataSourceImpl @Inject constructor(
         username: String,
         hash: String
     ): WeekMealPlanDto {
-        val response = foodService.getWeekMealPlan(date, username, hash)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.getWeekMealPlan(date, username, hash) }
     }
 
     override suspend fun addToMealPlan(
@@ -166,20 +116,23 @@ class RemoteDataSourceImpl @Inject constructor(
         username: String,
         hash: String
     ): ResultAddToMealPlanDto {
-        val response = foodService.addToMealPlan(addToMeal, username, hash)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return tryToExecute { foodService.addToMealPlan(addToMeal, username, hash) }
     }
 
     override suspend fun connectUser(userData: UserInformationDto): ConnectUserDto {
-        val response = foodService.connectUser(userData)
-        if(response.isSuccessful){
-            return response.body()!!
-        } else {
-            throw Exception(response.message())
+        return tryToExecute { foodService.connectUser(userData) }
+    }
+
+    private suspend fun <T> tryToExecute(func: suspend () -> Response<T>): T {
+        val response = func()
+        if (response.isSuccessful) {
+            return response.body() ?: throw NetworkException.NotFoundException
+        }
+        throw when (response.code()) {
+            404 -> NetworkException.NotFoundException
+            402 -> NetworkException.ApiKeyExpiredException
+            401 -> NetworkException.UnAuthorizedException
+            else -> IOException()
         }
     }
 }

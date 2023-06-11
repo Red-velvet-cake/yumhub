@@ -2,7 +2,7 @@ package com.red_velvet.yumhub.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.domain.models.exceptions.NetworkExceptionEntity
+import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,11 +25,11 @@ abstract class BaseViewModel<T>(state: T) : ViewModel() {
             try {
                 val result = callee()
                 onSuccess(result)
-            } catch (e: NetworkExceptionEntity.UnAuthorizedExceptionEntity) {
+            } catch (e: NetworkException.UnAuthorizedException) {
                 onError(ErrorUIState.UnAuthorized)
-            } catch (e: NetworkExceptionEntity.NoInternetExceptionEntity) {
+            } catch (e: NetworkException.NoInternetException) {
                 onError(ErrorUIState.NoInternet)
-            } catch (e: NetworkExceptionEntity.TimeoutExceptionEntity) {
+            } catch (e: NetworkException.TimeoutException) {
                 onError(ErrorUIState.ConnectionTimeout)
             } catch (e: Exception) {
                 onError(ErrorUIState.InternalServerError)
