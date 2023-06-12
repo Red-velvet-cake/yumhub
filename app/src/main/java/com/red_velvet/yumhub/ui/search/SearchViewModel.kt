@@ -26,23 +26,25 @@ class SearchViewModel @Inject constructor(
         onGetData()
     }
     fun onSelectFilterType(type:String){
-        ifSameFilterTypeSelected(type)
-        _uiState.update { it.copy(
-            isLoading = true,
-            isResultIsEmpty = false,
-            recipeFilter = type,
-        ) }
-        onGetData()
+       if(!ifSameFilterTypeSelected(type)){
+           _uiState.update { it.copy(
+               isLoading = true,
+               isResultIsEmpty = false,
+               recipeFilter = type,
+           ) }
+           onGetData()
+       }
     }
-    private fun ifSameFilterTypeSelected(type :String){
+    private fun ifSameFilterTypeSelected(type :String):Boolean{
         if(type == _uiState.value.recipeFilter){
             _uiState.update { it.copy(
                 isLoading = false,
                 recipeFilter = "",
                 isResultIsEmpty = false,
                 searchResult = emptyList()) }
-            return
+            return true
         }
+        return  false
     }
     fun onSelectSortDirection(sortDirection:String){
         _uiState.update { it.copy(isLoading = true, sortDirection = sortDirection) }
