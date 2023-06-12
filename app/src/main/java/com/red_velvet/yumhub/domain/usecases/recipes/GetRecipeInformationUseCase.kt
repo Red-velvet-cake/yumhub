@@ -1,8 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases.recipes
 
-import com.red_velvet.yumhub.domain.RecipesRepository
-import com.red_velvet.yumhub.domain.mapper.toModel
-import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
+import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
+import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import javax.inject.Inject
 
 class GetRecipeInformationUseCase @Inject constructor(
@@ -12,7 +11,7 @@ class GetRecipeInformationUseCase @Inject constructor(
     suspend operator fun invoke(
         id: Int,
         includeNutrition: Boolean?
-    ): RecipeInformation {
-        return recipesRepositoryImpl.getRecipeInformation(id, includeNutrition).toModel()
+    ): RecipeInformationEntity {
+        return recipesRepositoryImpl.getRecipeInformation(id, includeNutrition)
     }
 }

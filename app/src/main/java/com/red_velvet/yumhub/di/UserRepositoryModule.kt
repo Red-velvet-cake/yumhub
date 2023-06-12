@@ -1,8 +1,8 @@
 package com.red_velvet.yumhub.di
 
 
-import com.red_velvet.yumhub.data.repositories.UserRepository
-import com.red_velvet.yumhub.data.repositories.UserRepositoryImpl
+import com.red_velvet.yumhub.domain.repositories.UserRepository
+import com.red_velvet.yumhub.repositories.UserRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

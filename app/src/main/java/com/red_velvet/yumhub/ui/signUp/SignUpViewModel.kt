@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.ui.signUp
 
 import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.domain.models.UserInformation
+import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
 import com.red_velvet.yumhub.domain.usecases.ValidateEmailUseCase
 import com.red_velvet.yumhub.domain.usecases.ValidateFirstName
@@ -87,8 +87,8 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    private fun SignUpUIState.toUserInformation(): UserInformation {
-        return UserInformation(
+    private fun SignUpUIState.toUserInformation(): UserInformationEntity {
+        return UserInformationEntity(
             username = username,
             firstName = firstName,
             lastName = lastName,
