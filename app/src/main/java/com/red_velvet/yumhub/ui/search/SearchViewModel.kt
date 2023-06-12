@@ -30,16 +30,16 @@ class SearchViewModel @Inject constructor(
            _uiState.update { it.copy(
                isLoading = true,
                isResultIsEmpty = false,
-               recipeFilter = type,
+               sort = type,
            ) }
            onGetData()
        }
     }
     private fun ifSameFilterTypeSelected(type :String):Boolean{
-        if(type == _uiState.value.recipeFilter){
+        if(type == _uiState.value.sort){
             _uiState.update { it.copy(
                 isLoading = false,
-                recipeFilter = "",
+                sort = "",
                 isResultIsEmpty = false,
                 searchResult = emptyList()) }
             return true
@@ -55,7 +55,7 @@ class SearchViewModel @Inject constructor(
             callee = {
                 searchRecipeUseCase.invoke(
                     query=_uiState.value.searchInput ,
-                    sort = _uiState.value.recipeFilter,
+                    sort = _uiState.value.sort,
                     sortDirection = _uiState.value.sortDirection)
             },
             onSuccess = ::onSuccess,
@@ -65,24 +65,20 @@ class SearchViewModel @Inject constructor(
 
     fun onClear(){
         _uiState.update { it.copy(
-            recipeFilter = "",
+            sort = "",
             searchInput = "",
             isLoading = false,
             isResultIsEmpty =false ) }
-
     }
 
     private fun onSuccess(recipes: List<SearchRecipe>){
         val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
-        Log.d("AYA",searchResult.toString())
         _uiState.update { it.copy(
             searchResult = searchResult,
             isLoading = false,
             isResultIsEmpty =searchResult.isEmpty() ) }
     }
     private fun onError(errorUiState: ErrorUIState) {
-        Log.e("AYA",errorUiState.toString())
-
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
