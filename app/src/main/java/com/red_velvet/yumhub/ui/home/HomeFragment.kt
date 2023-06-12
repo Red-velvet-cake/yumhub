@@ -19,14 +19,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val comicsAdapter = RecipeCategoriesAdapter(emptyList(), viewModel)
+        val categoriesRecipeAdapter = RecipeCategoriesAdapter(emptyList(), viewModel)
         val popularRecipeAdapter = PopularRecipeAdapter(emptyList(), viewModel)
+        val healthyRecipeAdapter = HealthyRecipeAdapter(emptyList(), viewModel)
         val quickRecipeAdapter = QuickRecipeAdapter(emptyList(), viewModel)
 
         binding.apply {
-            categoryRecyclerView.adapter = comicsAdapter
+            categoryRecyclerView.adapter = categoriesRecipeAdapter
             popularRecyclerView.adapter = popularRecipeAdapter
-            healthyRecyclerView.adapter = popularRecipeAdapter
+            healthyRecyclerView.adapter = healthyRecipeAdapter
             quickRecyclerView.adapter = quickRecipeAdapter
         }
     }

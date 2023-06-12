@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.red_velvet.yumhub.local.entities.CategoryDatabaseDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
@@ -30,8 +29,5 @@ interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertQuickRecipes(quickRecipes: List<QuickRecipeLocalDto>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCategories(categoriesDatabase: List<CategoryDatabaseDto>)
 
 }

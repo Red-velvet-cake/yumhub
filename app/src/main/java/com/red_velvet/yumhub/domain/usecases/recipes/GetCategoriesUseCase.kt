@@ -9,14 +9,7 @@ class GetCategoriesUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<CategoryEntity> {
-        return recipesRepository.getCategoriesFromLocal().also { saveCategoriesLocal() }
-    }
-
-    private suspend fun getCategories(): List<CategoryEntity> {
         return recipesRepository.getCategoriesFromRemote()
     }
 
-    private suspend fun saveCategoriesLocal() {
-        recipesRepository.refreshCategories(getCategories())
-    }
 }

@@ -1,19 +1,19 @@
 package com.red_velvet.yumhub.repositories
 
-import com.red_velvet.yumhub.remote.resources.auth.ConnectUserDto
-import com.red_velvet.yumhub.remote.resources.auth.UserInformationDto
-import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationDto
-import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchDto
-import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSubstituteDto
-import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealDto
-import com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanDto
-import com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanDto
-import com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionDto
-import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerDto
-import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesDto
-import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPagination
-import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesDto
+import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
+import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSubstituteResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanResource
+import com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionResource
+import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
+import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
+import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
 
 interface RemoteDataSource {
 
@@ -28,52 +28,52 @@ interface RemoteDataSource {
         sort: String? = "",
         sortDirection: String? = "asc",
         addRecipeInformation: Boolean? = true
-    ): RecipeSearchPagination
+    ): RecipeSearchPaginationResource
 
     suspend fun getRecipesByMealType(
         type: String? = "",
         addRecipeInformation: Boolean? = true
-    ): RecipeSearchPagination
+    ): RecipeSearchPaginationResource
 
     suspend fun getRecipeInformation(
         id: Int,
         includeNutrition: Boolean? = false
-    ): RecipeInformationDto
+    ): RecipeInformationResource
 
-    suspend fun getSimilarRecipes(id: Int, number: Int? = 3): SimilarRecipesDto
+    suspend fun getSimilarRecipes(id: Int, number: Int? = 3): SimilarRecipesResource
 
-    suspend fun getRandomRecipes(tags: String? = "", number: Int? = 10): RandomRecipesDto
+    suspend fun getRandomRecipes(tags: String? = "", number: Int? = 10): RandomRecipesResource
 
-    suspend fun guessNutrition(title: String = ""): GuessNutritionDto
+    suspend fun guessNutrition(title: String = ""): GuessNutritionResource
 
-    suspend fun getQuickAnswer(question: String = ""): QuickAnswerDto
+    suspend fun getQuickAnswer(question: String = ""): QuickAnswerResource
 
     suspend fun searchIngredients(
         query: String, sort: String? = "",
         intolerances: String? = "",
         number: Int? = 10,
-    ): IngredientSearchDto
+    ): IngredientSearchResource
 
     suspend fun getIngredientInformation(
         id: Int,
         amount: Int? = null,
         unit: String? = null
-    ): IngredientInformationDto
+    ): IngredientInformationResource
 
-    suspend fun getSubstitutesIngredient(ingredientName: String?): IngredientSubstituteDto
+    suspend fun getSubstitutesIngredient(ingredientName: String?): IngredientSubstituteResource
 
     suspend fun getWeekMealPlan(
         date: String,
         username: String,
         hash: String
-    ): WeekMealPlanDto
+    ): WeekMealPlanResource
 
     suspend fun addToMealPlan(
-        addToMeal: AddMealDto,
+        addToMeal: AddMealResource,
         username: String,
         hash: String
-    ): ResultAddToMealPlanDto
+    ): ResultAddToMealPlanResource
 
-    suspend fun connectUser(userData: UserInformationDto): ConnectUserDto
+    suspend fun connectUser(userData: UserInformationResource): ConnectUserResource
 
 }

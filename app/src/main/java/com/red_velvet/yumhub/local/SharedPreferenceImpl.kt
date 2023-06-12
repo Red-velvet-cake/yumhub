@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.local
 
 import android.content.SharedPreferences
+import com.red_velvet.yumhub.repositories.SharedPreferenceService
 import javax.inject.Inject
 
 class SharedPreferenceImpl @Inject constructor(

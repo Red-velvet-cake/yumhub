@@ -7,6 +7,7 @@ import com.red_velvet.yumhub.domain.models.IngredientSearchEntity
 import com.red_velvet.yumhub.domain.models.IngredientSubstitutesEntity
 import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformationEntity
 import com.red_velvet.yumhub.domain.repositories.IngredientRepository
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchResultResource
 import javax.inject.Inject
 
 class IngredientRepositoryImp @Inject constructor(
@@ -18,15 +19,9 @@ class IngredientRepositoryImp @Inject constructor(
         intolerances: String?,
         number: Int?
     ): List<IngredientSearchEntity> {
-        val response = remoteDataSource.searchIngredients(
-            query = query,
-            sort = sort,
-        )
-        if (response.isSuccessful) {
-            return response.body()?.results?.map { it.toIngredientSearchResult() }!!
-        } else {
-            throw Exception(response.message())
-        }
+        return remoteDataSource.searchIngredients(query, sort, intolerances, number).results?.map(
+            IngredientSearchResultResource::toIngredientSearchResult
+        ) ?: emptyList()
     }
 
     override suspend fun getIngredientInformation(
@@ -34,21 +29,10 @@ class IngredientRepositoryImp @Inject constructor(
         amount: Int?,
         unit: String?
     ): IngredientInformationEntity {
-        val response = remoteDataSource.getIngredientInformation(id)
-        if (response.isSuccessful) {
-            return response.body()?.toIngredientInformation()!!
-        } else {
-            throw Exception(response.message())
-        }
-
+        return remoteDataSource.getIngredientInformation(id, amount, unit).toIngredientInformation()
     }
 
     override suspend fun getSubstitutesIngredient(ingredientName: String): IngredientSubstitutesEntity {
-        val response = remoteDataSource.getSubstitutesIngredient(ingredientName = ingredientName)
-        if (response.isSuccessful) {
-            return response.body()?.toIngredientSubstitute()!!
-        } else {
-            throw Exception(response.message())
-        }
+        return remoteDataSource.getSubstitutesIngredient(ingredientName).toIngredientSubstitute()
     }
 }

@@ -1,20 +1,20 @@
 package com.red_velvet.yumhub.remote
 
 import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
-import com.red_velvet.yumhub.remote.resources.auth.ConnectUserDto
-import com.red_velvet.yumhub.remote.resources.auth.UserInformationDto
-import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationDto
-import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchDto
-import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSubstituteDto
-import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealDto
-import com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanDto
-import com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanDto
-import com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionDto
-import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerDto
-import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesDto
-import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPagination
-import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesDto
+import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
+import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSubstituteResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanResource
+import com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionResource
+import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
+import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
+import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
 import com.red_velvet.yumhub.repositories.RemoteDataSource
 import retrofit2.Response
 import java.io.IOException
@@ -35,7 +35,7 @@ class RemoteDataSourceImpl @Inject constructor(
         sort: String?,
         sortDirection: String?,
         addRecipeInformation: Boolean?
-    ): RecipeSearchPagination {
+    ): RecipeSearchPaginationResource {
         return tryToExecute {
             foodService.searchRecipe(
                 query,
@@ -55,30 +55,30 @@ class RemoteDataSourceImpl @Inject constructor(
     override suspend fun getRecipesByMealType(
         type: String?,
         addRecipeInformation: Boolean?
-    ): RecipeSearchPagination {
+    ): RecipeSearchPaginationResource {
         return tryToExecute { foodService.getRecipesByMealType(type, addRecipeInformation) }
     }
 
     override suspend fun getRecipeInformation(
         id: Int,
         includeNutrition: Boolean?
-    ): RecipeInformationDto {
+    ): RecipeInformationResource {
         return tryToExecute { foodService.getRecipeInformation(id, includeNutrition) }
     }
 
-    override suspend fun getSimilarRecipes(id: Int, number: Int?): SimilarRecipesDto {
+    override suspend fun getSimilarRecipes(id: Int, number: Int?): SimilarRecipesResource {
         return tryToExecute { foodService.getSimilarRecipes(id, number) }
     }
 
-    override suspend fun getRandomRecipes(tags: String?, number: Int?): RandomRecipesDto {
+    override suspend fun getRandomRecipes(tags: String?, number: Int?): RandomRecipesResource {
         return tryToExecute { foodService.getRandomRecipes(tags, number) }
     }
 
-    override suspend fun guessNutrition(title: String): GuessNutritionDto {
+    override suspend fun guessNutrition(title: String): GuessNutritionResource {
         return tryToExecute { foodService.guessNutrition(title) }
     }
 
-    override suspend fun getQuickAnswer(question: String): QuickAnswerDto {
+    override suspend fun getQuickAnswer(question: String): QuickAnswerResource {
         return tryToExecute { foodService.getQuickAnswer(question) }
     }
 
@@ -87,7 +87,7 @@ class RemoteDataSourceImpl @Inject constructor(
         sort: String?,
         intolerances: String?,
         number: Int?
-    ): IngredientSearchDto {
+    ): IngredientSearchResource {
         return tryToExecute { foodService.searchIngredients(query, sort, intolerances, number) }
     }
 
@@ -95,11 +95,11 @@ class RemoteDataSourceImpl @Inject constructor(
         id: Int,
         amount: Int?,
         unit: String?
-    ): IngredientInformationDto {
+    ): IngredientInformationResource {
         return tryToExecute { foodService.getIngredientInformation(id, amount, unit) }
     }
 
-    override suspend fun getSubstitutesIngredient(ingredientName: String?): IngredientSubstituteDto {
+    override suspend fun getSubstitutesIngredient(ingredientName: String?): IngredientSubstituteResource {
         return tryToExecute { foodService.getSubstitutesIngredient(ingredientName) }
     }
 
@@ -107,19 +107,19 @@ class RemoteDataSourceImpl @Inject constructor(
         date: String,
         username: String,
         hash: String
-    ): WeekMealPlanDto {
+    ): WeekMealPlanResource {
         return tryToExecute { foodService.getWeekMealPlan(date, username, hash) }
     }
 
     override suspend fun addToMealPlan(
-        addToMeal: AddMealDto,
+        addToMeal: AddMealResource,
         username: String,
         hash: String
-    ): ResultAddToMealPlanDto {
+    ): ResultAddToMealPlanResource {
         return tryToExecute { foodService.addToMealPlan(addToMeal, username, hash) }
     }
 
-    override suspend fun connectUser(userData: UserInformationDto): ConnectUserDto {
+    override suspend fun connectUser(userData: UserInformationResource): ConnectUserResource {
         return tryToExecute { foodService.connectUser(userData) }
     }
 

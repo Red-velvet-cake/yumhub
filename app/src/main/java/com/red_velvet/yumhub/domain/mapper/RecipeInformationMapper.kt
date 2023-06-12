@@ -9,12 +9,12 @@ import com.red_velvet.yumhub.domain.models.recipes.StepEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orFalse
 import com.red_velvet.yumhub.domain.utils.orZero
-import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionDto
-import com.red_velvet.yumhub.remote.resources.EquipmentDto
-import com.red_velvet.yumhub.remote.resources.StepDto
-import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
+import com.red_velvet.yumhub.remote.resources.EquipmentResource
+import com.red_velvet.yumhub.remote.resources.StepResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 
-fun RecipeInformationDto.toEntity(): RecipeInformationEntity {
+fun RecipeInformationResource.toEntity(): RecipeInformationEntity {
     return RecipeInformationEntity(
         id = this.id.orZero(),
         image = this.image.orEmpty(),
@@ -38,7 +38,7 @@ fun RecipeInformationDto.toEntity(): RecipeInformationEntity {
     )
 }
 
-fun AnalyzedInstructionDto.toModel(): AnalyzedInstructionsEntity {
+fun AnalyzedInstructionResource.toModel(): AnalyzedInstructionsEntity {
     return AnalyzedInstructionsEntity(
         name = name.orEmpty(),
         stepEntities = steps.map {
@@ -47,7 +47,7 @@ fun AnalyzedInstructionDto.toModel(): AnalyzedInstructionsEntity {
     )
 }
 
-fun StepDto.toModel(): StepEntity {
+fun StepResource.toModel(): StepEntity {
     return StepEntity(
         equipmentEntities = equipment.map {
             it.toModel()
@@ -58,7 +58,7 @@ fun StepDto.toModel(): StepEntity {
     )
 }
 
-fun EquipmentDto.toModel(): EquipmentEntity {
+fun EquipmentResource.toModel(): EquipmentEntity {
     return EquipmentEntity(
         id = id.orZero(),
         image = image.orEmpty(),
@@ -67,14 +67,14 @@ fun EquipmentDto.toModel(): EquipmentEntity {
     )
 }
 
-fun com.red_velvet.yumhub.remote.resources.LengthDto.toModel(): LengthEntity {
+fun com.red_velvet.yumhub.remote.resources.LengthResource.toModel(): LengthEntity {
     return LengthEntity(
         number = number.orZero(),
         unit = unit.orEmpty()
     )
 }
 
-fun com.red_velvet.yumhub.remote.resources.ExtendedIngredientDto.toModel(): ExtendedIngredientEntity {
+fun com.red_velvet.yumhub.remote.resources.ExtendedIngredientResource.toModel(): ExtendedIngredientEntity {
     return ExtendedIngredientEntity(
         aisle = aisle.orEmpty(),
         amount = amount.orZero(),

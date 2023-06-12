@@ -5,7 +5,7 @@ import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 
-fun MealPlanLocalDto.toMealPlan(): MealPlanEntity {
+fun MealPlanLocalDto.toEntity(): MealPlanEntity {
     return MealPlanEntity(
         id = id.orZero(),
         position = position.orZero(),

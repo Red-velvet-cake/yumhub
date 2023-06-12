@@ -2,8 +2,7 @@ package com.red_velvet.yumhub.repositories
 
 import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.repositories.UserRepository
-import com.red_velvet.yumhub.local.SharedPreferenceService
-import com.red_velvet.yumhub.remote.resources.auth.UserInformationDto
+import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -12,16 +11,10 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     override suspend fun saveUserName(userData: UserInformationEntity) {
-       val userInformation = userData.toUserInformation()
+        val userInformation = userData.toUserInformation()
         val response = remoteDataSource.connectUser(userInformation)
-        if (response.isSuccessful) {
-            val connectUserDto = response.body()
-            sharedPreferenceImpl.saveUserName(connectUserDto?.username!!)
-            sharedPreferenceImpl.saveHash(connectUserDto.hash!!)
-        } else {
-            throw Exception(response.message())
-        }
-
+        sharedPreferenceImpl.saveUserName(response.username!!)
+        sharedPreferenceImpl.saveHash(response.hash!!)
     }
 
     override suspend fun getUserName(): String {
@@ -33,12 +26,12 @@ class UserRepositoryImpl @Inject constructor(
     }
 
 
-    private fun UserInformationEntity.toUserInformation():UserInformationDto {
-        return UserInformationDto(
+    private fun UserInformationEntity.toUserInformation(): UserInformationResource {
+        return UserInformationResource(
             username = username,
             firstName = firstName,
             lastName = lastName,
-            email = email,
+            email = email
         )
     }
 }

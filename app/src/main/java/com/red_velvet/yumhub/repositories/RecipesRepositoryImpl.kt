@@ -18,7 +18,7 @@ import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
-import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.repositories.mappers.toEntity
 import com.red_velvet.yumhub.repositories.mappers.toHealthyRecipeEntity
 import com.red_velvet.yumhub.repositories.mappers.toLocalDto
@@ -34,17 +34,17 @@ class RecipesRepositoryImpl @Inject constructor(
 ) : RecipesRepository {
 
     override suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity> {
-        return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationDto::toPopularEntity)
+        return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationResource::toPopularEntity)
             ?: emptyList()
     }
 
     override suspend fun getHealthyRecipesFromRemote(sort: String): List<HealthyRecipeEntity> {
-        return remoteDataSource.searchRecipe(sort).results?.map(RecipeInformationDto::toHealthyRecipeEntity)
+        return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationResource::toHealthyRecipeEntity)
             ?: emptyList()
     }
 
     override suspend fun getQuickRecipes(sort: String): List<QuickRecipeEntity> {
-        return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationDto::toQuickRecipeEntity)
+        return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationResource::toQuickRecipeEntity)
             ?: emptyList()
     }
 
@@ -55,7 +55,7 @@ class RecipesRepositoryImpl @Inject constructor(
         return remoteDataSource.searchRecipe(
             query,
             sort
-        ).results?.map(RecipeInformationDto::toRecipeSearchEntity)
+        ).results?.map(RecipeInformationResource::toRecipeSearchEntity)
             ?: emptyList()
     }
 
@@ -68,7 +68,7 @@ class RecipesRepositoryImpl @Inject constructor(
 
     override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipeEntity> {
         return remoteDataSource.getSimilarRecipes(id, number)
-            .map(RecipeInformationDto::toSimilarRecipeEntity)
+            .map(RecipeInformationResource::toSimilarRecipeEntity)
     }
 
     override suspend fun getRandomRecipes(
@@ -78,7 +78,7 @@ class RecipesRepositoryImpl @Inject constructor(
         return remoteDataSource.getRandomRecipes(
             tags,
             number
-        ).recipes?.map(RecipeInformationDto::toEntity) ?: emptyList()
+        ).recipes?.map(RecipeInformationResource::toEntity) ?: emptyList()
     }
 
     override suspend fun guessNutrition(title: String): GuessNutritionEntity {

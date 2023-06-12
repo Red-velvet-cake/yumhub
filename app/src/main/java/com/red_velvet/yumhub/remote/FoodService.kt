@@ -1,5 +1,19 @@
 package com.red_velvet.yumhub.remote
 
+import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
+import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchResource
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSubstituteResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanResource
+import com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionResource
+import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
+import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
+import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,80 +34,80 @@ interface FoodService {
         @Query("excludeIngredients") excludeIngredients: String? = "",
         @Query("sort") sort: String? = "",
         @Query("sortDirection") sortDirection: String? = "asc",
-        @Query("addRecipeInformation") addRecipeInformation: Boolean? = true,
-    ): Response<com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPagination>
+        @Query("addRecipeInformation") addRecipeInformation: Boolean? = true
+    ): Response<RecipeSearchPaginationResource>
 
     @GET("recipes/complexSearch")
     suspend fun getRecipesByMealType(
         @Query("type") type: String? = "",
         @Query("addRecipeInformation") addRecipeInformation: Boolean? = true
-    ): Response<com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPagination>
+    ): Response<RecipeSearchPaginationResource>
 
     @GET("recipes/{id}/information")
     suspend fun getRecipeInformation(
         @Path("id") id: Int,
-        @Query("includeNutrition") includeNutrition: Boolean? = false,
-    ): Response<com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationDto>
+        @Query("includeNutrition") includeNutrition: Boolean? = false
+    ): Response<RecipeInformationResource>
 
     @GET("recipes/{id}/similar")
     suspend fun getSimilarRecipes(
         @Path("id") id: Int,
-        @Query("number") number: Int? = 3,
-    ): Response<com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesDto>
+        @Query("number") number: Int? = 3
+    ): Response<SimilarRecipesResource>
 
     @GET("recipes/random")
     suspend fun getRandomRecipes(
         @Query("tags") tags: String? = "",
-        @Query("number") number: Int? = 10,
-    ): Response<com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesDto>
+        @Query("number") number: Int? = 10
+    ): Response<RandomRecipesResource>
 
     @GET("recipes/guessNutrition")
     suspend fun guessNutrition(
-        @Query("title") title: String = "",
-    ): Response<com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionDto>
+        @Query("title") title: String = ""
+    ): Response<GuessNutritionResource>
 
     @GET("recipes/quickAnswer")
     suspend fun getQuickAnswer(
-        @Query("q") question: String = "",
-    ): Response<com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerDto>
+        @Query("q") question: String = ""
+    ): Response<QuickAnswerResource>
 
     @GET("food/ingredients/search")
     suspend fun searchIngredients(
         @Query("query") query: String,
         @Query("sort") sort: String? = "",
         @Query("intolerances") intolerances: String? = "",
-        @Query("number") number: Int? = 10,
-    ): Response<com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchDto>
+        @Query("number") number: Int? = 10
+    ): Response<IngredientSearchResource>
 
     @GET("food/ingredients/{id}/information")
     suspend fun getIngredientInformation(
         @Path("id") id: Int,
         @Query("amount") amount: Int? = null,
-        @Query("unit") unit: String? = null,
-    ): Response<com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationDto>
+        @Query("unit") unit: String? = null
+    ): Response<IngredientInformationResource>
 
     @GET("food/ingredients/substitutes")
     suspend fun getSubstitutesIngredient(
-        @Query("ingredientName") ingredientName: String?,
-    ): Response<com.red_velvet.yumhub.remote.resources.ingredient.IngredientSubstituteDto>
+        @Query("ingredientName") ingredientName: String?
+    ): Response<IngredientSubstituteResource>
 
     @GET("mealplanner/{username}/week/{start-date}")
     suspend fun getWeekMealPlan(
         @Path("start-date") date: String,
         @Path("username") username: String,
         @Query("hash") hash: String
-    ): Response<com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanDto>
+    ): Response<WeekMealPlanResource>
 
     @POST("mealplanner/{username}/items")
     suspend fun addToMealPlan(
-        @Body addToMeal: com.red_velvet.yumhub.remote.resources.meal_plan.AddMealDto,
+        @Body addToMeal: AddMealResource,
         @Path("username") username: String,
         @Query("hash") hash: String
-    ): Response<com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanDto>
+    ): Response<ResultAddToMealPlanResource>
 
     @POST("users/connect")
     suspend fun connectUser(
-        @Body userData: com.red_velvet.yumhub.remote.resources.auth.UserInformationDto
-    ): Response<com.red_velvet.yumhub.remote.resources.auth.ConnectUserDto>
+        @Body userData: UserInformationResource
+    ): Response<ConnectUserResource>
 
 }
