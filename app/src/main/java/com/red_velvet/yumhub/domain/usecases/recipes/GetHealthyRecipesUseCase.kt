@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.domain.usecases.recipes
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onEmpty
 import javax.inject.Inject
 
 class GetHealthyRecipesUseCase @Inject constructor(
@@ -10,8 +11,9 @@ class GetHealthyRecipesUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): Flow<List<HealthyRecipeEntity>> {
-        saveHealthyRecipesLocal()
-        return recipesRepositoryImpl.getHealthyRecipesFromLocal()
+        return recipesRepositoryImpl.getHealthyRecipesFromLocal().onEmpty {
+            saveHealthyRecipesLocal()
+        }
     }
 
     private suspend fun getHealthyRecipes(): List<HealthyRecipeEntity> {

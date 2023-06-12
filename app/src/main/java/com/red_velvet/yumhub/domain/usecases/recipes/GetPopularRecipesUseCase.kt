@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.domain.usecases.recipes
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onEmpty
 import javax.inject.Inject
 
 class GetPopularRecipesUseCase @Inject constructor(
@@ -10,16 +11,9 @@ class GetPopularRecipesUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): Flow<List<PopularRecipeEntity>> {
-
-        val list = recipesRepositoryImpl.getPopularRecipes("popularity")
-
-        recipesRepositoryImpl.refreshPopularRecipes(list)
-
-        return recipesRepositoryImpl.getPopularRecipesFromLocal()
-
-
-//        savePopularRecipesLocal()
-//        return recipesRepositoryImpl.getPopularRecipesFromLocal()
+        return recipesRepositoryImpl.getPopularRecipesFromLocal().onEmpty {
+            savePopularRecipesLocal()
+        }
     }
 
     private suspend fun getPopularRecipes(): List<PopularRecipeEntity> {
