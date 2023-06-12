@@ -2,7 +2,7 @@ package com.red_velvet.yumhub.di
 
 import android.content.Context
 import androidx.room.Room
-import com.red_velvet.yumhub.data.local.FoodDatabase
+import com.red_velvet.yumhub.local.FoodDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

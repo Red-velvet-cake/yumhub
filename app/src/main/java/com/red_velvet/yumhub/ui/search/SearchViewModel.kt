@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.ui.search
 
 import android.util.Log
-import com.red_velvet.yumhub.domain.models.recipes.SearchRecipe
+import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -71,14 +71,17 @@ class SearchViewModel @Inject constructor(
             isResultIsEmpty =false ) }
     }
 
-    private fun onSuccess(recipes: List<SearchRecipe>){
+    private fun onSuccess(recipes: List<SearchRecipeEntity>){
         val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
+        Log.i("AYA",searchResult.toString())
+
         _uiState.update { it.copy(
             searchResult = searchResult,
             isLoading = false,
             isResultIsEmpty =searchResult.isEmpty() ) }
     }
     private fun onError(errorUiState: ErrorUIState) {
+        Log.i("AYA",errorUiState.toString())
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
