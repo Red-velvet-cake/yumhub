@@ -8,7 +8,7 @@ import com.red_velvet.yumhub.remote.resources.meal_plan.ValueResource
 
 fun MealPlanLocalDto.toMealPlanDto(): AddMealResource {
     return AddMealResource(
-        date = timestamp.toInt().orZero(),
+        date = timestamp.orZero(),
         position = position.orZero(),
         slot = slot.orZero(),
         type = type.orEmpty(),

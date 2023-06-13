@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class AddMealResource(
     @SerializedName("date")
-    val date: Int? = 0,
+    val date: Long? = 0,
     @SerializedName("position")
     val position: Int? = 0,
     @SerializedName("slot")
@@ -13,5 +13,5 @@ data class AddMealResource(
     @SerializedName("type")
     val type: String? = "",
     @SerializedName("value")
-    val valueResource: com.red_velvet.yumhub.remote.resources.meal_plan.ValueResource? = com.red_velvet.yumhub.remote.resources.meal_plan.ValueResource()
+    val valueResource: ValueResource? = ValueResource()
 )

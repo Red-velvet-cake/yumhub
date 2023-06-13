@@ -49,7 +49,6 @@ abstract class BaseAdapter<T>(
         )
         items = newItems
         diffResult.dispatchUpdatesTo(this)
-        notifyDataSetChanged()
     }
 
     open fun areItemsTheSame(oldItem: T, newItem: T): Boolean {

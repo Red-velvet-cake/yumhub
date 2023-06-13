@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class AddMealValueResource(
     @SerializedName("ingredients")
-    val ingredients: List<com.red_velvet.yumhub.remote.resources.meal_plan.AddMealIngredientResource>? = listOf()
+    val ingredients: List<AddMealIngredientResource>? = listOf()
 )

@@ -13,7 +13,7 @@ data class IngredientInformationResource(
     @SerializedName("consistency")
     val consistency: String? = null,
     @SerializedName("estimatedCost")
-    val estimatedCost: com.red_velvet.yumhub.remote.resources.ingredient.EstimatedCostResource? = null,
+    val estimatedCost: EstimatedCostResource? = null,
     @SerializedName("id")
     val id: Int? = 0,
     @SerializedName("image")
@@ -39,5 +39,5 @@ data class IngredientInformationResource(
     @SerializedName("unitShort")
     val unitShort: String? = null,
     @SerializedName("nutrients")
-    val nutrients: List<com.red_velvet.yumhub.remote.resources.ingredient.NutrientResource>? = listOf(),
+    val nutrients: List<NutrientResource>? = listOf(),
 )

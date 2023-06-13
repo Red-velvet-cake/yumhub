@@ -14,7 +14,7 @@ data class RecipeInformationEntity(
     val title: String,
     val analyzedInstructionEntities: List<AnalyzedInstructionsEntity>,
     val cheap: Boolean,
-    val cookingMinutes : Int,
+    val cookingMinutes: Int,
     val cuisines: List<String>,
     val diets: List<String>,
     val dishTypes: List<String>,

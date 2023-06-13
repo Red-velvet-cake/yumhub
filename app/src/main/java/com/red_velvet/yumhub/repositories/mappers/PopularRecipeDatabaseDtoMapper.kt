@@ -5,7 +5,7 @@ import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 
 
 fun List<PopularRecipeLocalDto>.toEntity(): List<PopularRecipeEntity> {
-    return this.map{
+    return this.map {
         PopularRecipeEntity(
             id = it.id,
             title = it.title,
