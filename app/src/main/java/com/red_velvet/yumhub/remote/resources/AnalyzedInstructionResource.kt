@@ -7,5 +7,5 @@ data class AnalyzedInstructionResource(
     @SerializedName("name")
     val name: String? = null,
     @SerializedName("steps")
-    val steps: List<com.red_velvet.yumhub.remote.resources.StepResource> = emptyList()
+    val steps: List<StepResource> = emptyList()
 )

@@ -15,7 +15,7 @@ data class ExtendedIngredientResource(
     @SerializedName("image")
     val image: String? = null,
     @SerializedName("measures")
-    val measures: com.red_velvet.yumhub.remote.resources.MeasuresResource? = null,
+    val measures: MeasuresResource? = null,
     @SerializedName("meta")
     val meta: List<String?>? = null,
     @SerializedName("name")

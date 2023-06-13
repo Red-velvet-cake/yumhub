@@ -9,7 +9,7 @@ data class IngredientSearchResource(
     @SerializedName("offset")
     val offset: Int? = null,
     @SerializedName("results")
-    val results: List<com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchResultResource>? = null,
+    val results: List<IngredientSearchResultResource>? = null,
     @SerializedName("totalResults")
     val totalResults: Int? = null
 )

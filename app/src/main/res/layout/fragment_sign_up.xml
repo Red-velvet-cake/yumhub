@@ -95,9 +95,9 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginStart="@dimen/spacing_x_small"
-                  android:text="@{viewModel.uiState.firstNameError}"
+                  android:text="@{viewModel.state.firstNameError}"
                   android:textColor="#CCF80000"
-                  android:visibility="@{viewModel.uiState.firstNameError != null ? View.VISIBLE : View.GONE}" />
+                  android:visibility="@{viewModel.state.firstNameError != null ? View.VISIBLE : View.GONE}" />
 
           </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,9 +126,9 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginStart="@dimen/spacing_x_small"
-                  android:text="@{viewModel.uiState.lastNameError}"
+                  android:text="@{viewModel.state.lastNameError}"
                   android:textColor="#CCF80000"
-                  android:visibility="@{viewModel.uiState.lastNameError != null ? View.VISIBLE : View.GONE}" />
+                  android:visibility="@{viewModel.state.lastNameError != null ? View.VISIBLE : View.GONE}" />
 
           </com.google.android.material.textfield.TextInputLayout>
       </LinearLayout>
@@ -159,9 +159,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_x_small"
-                android:text="@{viewModel.uiState.usernameError}"
+                android:text="@{viewModel.state.usernameError}"
                 android:textColor="#CCF80000"
-                android:visibility="@{viewModel.uiState.usernameError != null ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewModel.state.usernameError != null ? View.VISIBLE : View.GONE}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -191,9 +191,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_x_small"
-                android:text="@{viewModel.uiState.emailError}"
+                android:text="@{viewModel.state.emailError}"
                 android:textColor="#CCF80000"
-                android:visibility="@{viewModel.uiState.emailError != null ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewModel.state.emailError != null ? View.VISIBLE : View.GONE}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -224,9 +224,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_x_small"
-                android:text="@{viewModel.uiState.passwordError}"
+                android:text="@{viewModel.state.passwordError}"
                 android:textColor="#CCF80000"
-                android:visibility="@{viewModel.uiState.passwordError != null ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewModel.state.passwordError != null ? View.VISIBLE : View.GONE}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -241,6 +241,17 @@
             android:fontFamily="@font/roboto_medium"
             android:backgroundTint="@color/primary"
             app:layout_constraintTop_toBottomOf="@id/text_input_layout_password"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="@{viewModel.state.loading ? View.VISIBLE : View.GONE}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

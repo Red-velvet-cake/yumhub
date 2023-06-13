@@ -13,5 +13,5 @@ data class ItemResource(
     @SerializedName("type")
     val type: String? = null,
     @SerializedName("value")
-    val valueResource: com.red_velvet.yumhub.remote.resources.meal_plan.ValueResource? = null
+    val valueResource: ValueResource? = null
 )
