@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases.recipes
 
-import com.red_velvet.yumhub.domain.RecipesRepository
-import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipe
+import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
+import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import javax.inject.Inject
 
 class GetSimilarRecipeUseCase @Inject constructor(
@@ -10,7 +10,7 @@ class GetSimilarRecipeUseCase @Inject constructor(
 
     suspend operator fun invoke(
         id: Int, number: Int?
-    ): List<SimilarRecipe> {
+    ): List<SimilarRecipeEntity> {
         return recipesRepositoryImpl.getSimilarRecipes(id, number)
     }
 

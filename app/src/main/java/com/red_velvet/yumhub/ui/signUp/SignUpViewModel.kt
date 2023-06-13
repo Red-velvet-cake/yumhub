@@ -78,6 +78,4 @@ class SignUpViewModel @Inject constructor(
             email = email,
         )
     }
-
-
 }

@@ -1,18 +1,18 @@
 package com.red_velvet.yumhub.domain.usecases
 
-import com.red_velvet.yumhub.data.repositories.MealRepository
-import com.red_velvet.yumhub.domain.models.MealPlanEntity
+import com.red_velvet.yumhub.domain.mapper.toMealPlanDto
+import com.red_velvet.yumhub.domain.repositories.MealRepository
+import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import javax.inject.Inject
 
 class AddToMealPlanUseCase @Inject constructor(
     private val mealRepository: MealRepository,
 ) {
     suspend operator fun invoke(
-        addToMealPlan: MealPlanEntity,
+        addToMealPlan: MealPlanLocalDto,
         username: String,
         hash: String,
     ) {
-        return mealRepository
-            .addToMealPlan( addToMealPlan,username, hash)
+        mealRepository.addToMealPlan(addToMealPlan.toMealPlanDto(), username, hash)
     }
 }

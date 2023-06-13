@@ -10,4 +10,6 @@ sealed class NetworkException : Exception() {
 
     object NotFoundException : NetworkException()
 
+    object ApiKeyExpiredException : NetworkException()
+
 }

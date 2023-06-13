@@ -2,8 +2,8 @@ package com.red_velvet.yumhub.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.red_velvet.yumhub.data.local.SharedPreferenceImpl
-import com.red_velvet.yumhub.data.local.SharedPreferenceService
+import com.red_velvet.yumhub.local.SharedPreferenceImpl
+import com.red_velvet.yumhub.repositories.SharedPreferenceService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

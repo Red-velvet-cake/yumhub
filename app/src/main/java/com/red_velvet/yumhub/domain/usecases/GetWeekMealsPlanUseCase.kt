@@ -1,8 +1,8 @@
 package com.red_velvet.yumhub.domain.usecases
 
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
+import com.red_velvet.yumhub.domain.repositories.MealRepository
 import kotlinx.coroutines.flow.Flow
-import com.red_velvet.yumhub.data.repositories.MealRepository
 import javax.inject.Inject
 
 class GetWeekMealsPlanUseCase @Inject constructor(
@@ -12,6 +12,7 @@ class GetWeekMealsPlanUseCase @Inject constructor(
         fromTimestamp: Long,
         toTimesTamp: Long
     ): Flow<List<MealPlanEntity>> {
-        return  mealRepository.getWeekMealsPlan(fromTimestamp, toTimesTamp)
+        return mealRepository
+            .getWeekMealsPlan(fromTimestamp, toTimesTamp)
     }
 }
