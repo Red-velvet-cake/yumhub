@@ -48,13 +48,16 @@ class RecipesRepositoryImpl @Inject constructor(
             ?: emptyList()
     }
 
+
     override suspend fun searchRecipe(
         query: String?,
-        sort: String?
+        sort: String?,
+        sortDirection: String?
     ): List<SearchRecipeEntity> {
         return remoteDataSource.searchRecipe(
-            query,
-            sort
+            query=  query,
+            sort= sort,
+            sortDirection=sortDirection
         ).results?.map(RecipeInformationResource::toRecipeSearchEntity)
             ?: emptyList()
     }

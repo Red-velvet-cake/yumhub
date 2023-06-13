@@ -33,8 +33,8 @@ interface FoodService {
         @Query("includeIngredients") includeIngredients: String? = "",
         @Query("excludeIngredients") excludeIngredients: String? = "",
         @Query("sort") sort: String? = "",
-        @Query("sortDirection") sortDirection: String? = "asc",
-        @Query("addRecipeInformation") addRecipeInformation: Boolean? = true
+        @Query("sortDirection") sortDirection: String? = "",
+        @Query("addRecipeInformation") addRecipeInformation: Boolean? = true,
     ): Response<RecipeSearchPaginationResource>
 
     @GET("recipes/complexSearch")

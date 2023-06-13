@@ -46,4 +46,19 @@
     <dimen name="button_height">56dp</dimen>
     <dimen name="text_size_24">24sp</dimen>
     <dimen name="small_space">8dp</dimen>
+    <dimen name="tiny_space">4dp</dimen>
+    <dimen name="_200dp">200dp</dimen>
+    <dimen name="_75dp">75dp</dimen>
+    <dimen name="raduis_16dp">16dp</dimen>
+    <dimen name="image_card_width_100dp">100dp</dimen>
+    <dimen name="image_card_heghit_84dp">84dp</dimen>
+    <dimen name="image_card_width_80dp">80dp</dimen>
+    <dimen name="image_card_height_64dp">64dp</dimen>
+    <dimen name="_13dp">13dp</dimen>
+    <dimen name="_18dp">18dp</dimen>
+    <dimen name="_12dp">12dp</dimen>
+    <dimen name="_6dp">6dp</dimen>
+    <dimen name="_1dp">1dp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="size_20dp">20dp</dimen>
 </resources>

@@ -22,7 +22,9 @@ interface RecipesRepository {
     suspend fun searchRecipe(
         query: String? = null,
         sort: String? = null,
+        sortDirection:String? = null,
     ): List<SearchRecipeEntity>
+
 
     suspend fun getRecipeInformation(
         id: Int,

@@ -5,5 +5,6 @@ data class StepEntity(
     val equipmentEntities: List<EquipmentEntity>,
     val lengthEntity: LengthEntity,
     val number: Int,
-    val step: String
+    val step: String,
+    val ingredientsEntity: List<IngredientsEntity>
 )

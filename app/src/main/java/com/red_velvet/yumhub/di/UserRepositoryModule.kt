@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.di
 
-
 import com.red_velvet.yumhub.domain.repositories.UserRepository
 import com.red_velvet.yumhub.repositories.UserRepositoryImpl
 import dagger.Module
@@ -16,5 +15,4 @@ object UserRepositoryModule {
     fun provideUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository {
         return userRepositoryImpl
     }
-
 }

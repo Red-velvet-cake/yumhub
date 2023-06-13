@@ -11,6 +11,18 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
     </style>
+    <style name="CardImageStyle" parent="">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
+    </style>
+
+    <style name="Chip.Regular.Small" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipStrokeColor">@color/primary</item>
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipCornerRadius">@dimen/fab_margin</item>
+    </style>
 
     <style name="ShapeableImageViewStyle">
         <item name="cornerFamily">rounded</item>

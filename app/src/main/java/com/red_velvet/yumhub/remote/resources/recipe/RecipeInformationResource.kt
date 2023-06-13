@@ -2,13 +2,16 @@ package com.red_velvet.yumhub.remote.resources.recipe
 
 
 import com.google.gson.annotations.SerializedName
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
+import com.red_velvet.yumhub.remote.resources.ExtendedIngredientResource
 import com.red_velvet.yumhub.remote.resources.NutritionResource
+import com.red_velvet.yumhub.remote.resources.WinePairingResource
 
 data class RecipeInformationResource(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int? = 0,
     @SerializedName("analyzedInstructions")
-    val analyzedInstructions: List<com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource>? = listOf(),
+    val analyzedInstructions: List<AnalyzedInstructionResource>? = listOf(),
     @SerializedName("cheap")
     val cheap: Boolean? = false,
     @SerializedName("cookingMinutes")
@@ -74,11 +77,11 @@ data class RecipeInformationResource(
     @SerializedName("weightWatcherSmartPoints")
     val weightWatcherSmartPoints: Int? = 0,
     @SerializedName("extendedIngredients")
-    val extendedIngredients: List<com.red_velvet.yumhub.remote.resources.ExtendedIngredientResource> = emptyList(),
+    val extendedIngredients: List<ExtendedIngredientResource> = emptyList(),
     @SerializedName("instructions")
     val instructions: String? = null,
     @SerializedName("originalId")
     val originalId: Any? = null,
     @SerializedName("winePairing")
-    val winePairing: com.red_velvet.yumhub.remote.resources.WinePairingResource? = null
+    val winePairing: WinePairingResource? = null
 )
