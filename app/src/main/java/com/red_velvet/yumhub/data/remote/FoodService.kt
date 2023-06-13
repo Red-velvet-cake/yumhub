@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.data.remote
 
+import com.red_velvet.yumhub.data.remote.dtos.AnalyzedInstructionDto
 import com.red_velvet.yumhub.data.remote.dtos.auth.ConnectUserDto
 import com.red_velvet.yumhub.data.remote.dtos.auth.UserInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
@@ -110,4 +111,9 @@ interface FoodService {
         @Body userData: UserInformationDto
     ): Response<ConnectUserDto>
 
+    @GET("recipes/{id}/analyzedInstructions")
+    suspend fun getAnalyzedInstructions(
+        @Path("id") id: Int,
+        @Query("stepBreakdown") stepBreakdown: Boolean? = false,
+    ): Response<List<AnalyzedInstructionDto>>
 }

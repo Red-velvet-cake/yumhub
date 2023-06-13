@@ -4,6 +4,7 @@ import com.red_velvet.yumhub.data.local.daos.RecipeDao
 import com.red_velvet.yumhub.data.remote.FoodService
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResource
+import com.red_velvet.yumhub.data.repositories.mappers.toAnalyzedInstructionEntity
 import com.red_velvet.yumhub.data.repositories.mappers.toCategoryRecipeDto
 import com.red_velvet.yumhub.data.repositories.mappers.toCategoryRecipeEntity
 import com.red_velvet.yumhub.data.repositories.mappers.toEntity
@@ -15,6 +16,7 @@ import com.red_velvet.yumhub.data.repositories.mappers.toQuickRecipeDto
 import com.red_velvet.yumhub.data.repositories.mappers.toQuickRecipeEntity
 import com.red_velvet.yumhub.domain.RecipesRepository
 import com.red_velvet.yumhub.domain.mapper.toModel
+import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutrition
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
@@ -28,7 +30,7 @@ import javax.inject.Inject
 class RecipesRepositoryImpl @Inject constructor(
     private val foodService: FoodService,
     private val recipeDao: RecipeDao,
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSource,
 ) : RecipesRepository {
 
     override suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity> {
@@ -60,7 +62,7 @@ class RecipesRepositoryImpl @Inject constructor(
 
     override suspend fun searchRecipe(
         query: String?,
-        sort: String?
+        sort: String?,
     ): RecipeSearchResource {
         val response = foodService.searchRecipe(query, sort)
         if (response.isSuccessful) {
@@ -72,11 +74,20 @@ class RecipesRepositoryImpl @Inject constructor(
 
     override suspend fun getRecipeInformation(
         id: Int,
-        includeNutrition: Boolean?
+        includeNutrition: Boolean?,
     ): RecipeInformationDto {
         val response = foodService.getRecipeInformation(id, includeNutrition)
         if (response.isSuccessful) {
             return response.body()!!
+        } else {
+            throw Exception(response.message())
+        }
+    }
+
+    override suspend fun getAnalyzedRecipeInstructions(id: Int,stepBreakdown: Boolean?,):List<AnalyzedInstructionsEntity> {
+        val response = foodService.getAnalyzedInstructions(id,stepBreakdown)
+        if (response.isSuccessful) {
+            return response.body()!!.toAnalyzedInstructionEntity()
         } else {
             throw Exception(response.message())
         }

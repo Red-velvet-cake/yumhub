@@ -6,7 +6,7 @@ import com.red_velvet.yumhub.data.remote.dtos.ExtendedIngredientDto
 import com.red_velvet.yumhub.data.remote.dtos.LengthDto
 import com.red_velvet.yumhub.data.remote.dtos.StepDto
 import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructions
+import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.Equipment
 import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredient
 import com.red_velvet.yumhub.domain.models.recipes.Length
@@ -40,8 +40,8 @@ fun RecipeInformationDto.toModel(): RecipeInformation {
     )
 }
 
-fun AnalyzedInstructionDto.toModel(): AnalyzedInstructions {
-    return AnalyzedInstructions(
+fun AnalyzedInstructionDto.toModel(): AnalyzedInstructionsEntity {
+    return AnalyzedInstructionsEntity(
         name = name.orEmpty(),
         steps = steps.map {
             it.toModel()

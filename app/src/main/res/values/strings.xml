@@ -60,4 +60,6 @@
     <string name="quick_recipes">Quick Recipes</string>
     <string name="see_all">See all</string>
     <string name="healthy_recipes">Healthy Recipes</string>
+    <string name="step">Step</string>
+    <string name="steps">Steps</string>
 </resources>
