@@ -76,4 +76,9 @@
     <string name="see_all">See all</string>
     <string name="healthy_recipes">Healthy Recipes</string>
     <string name="yumhub">YumHub</string>
+    <string name="home">home</string>
+    <string name="search">search</string>
+    <string name="diet">diet</string>
+    <string name="kitchen">kitchen</string>
+    <string name="profile">profile</string>
 </resources>

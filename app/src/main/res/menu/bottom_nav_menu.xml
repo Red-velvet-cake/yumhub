@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/home_bottom"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/SearchFragment"
+        android:icon="@drawable/search_bottom"
+        android:title="@string/search" />
+
+    <item
+        android:id="@+id/signupFragment"
+        android:icon="@drawable/pomotodo_svgrepo_com"
+        android:title="@string/diet" />
+
+    <item
+        android:id="@+id/seriesFragment"
+        android:icon="@drawable/archivebook"
+        android:title="@string/kitchen" />
+
+    <item
+        android:id="@+id/storiesFragment"
+        android:icon="@drawable/chef"
+        android:title="@string/profile" />
+
+</menu>
