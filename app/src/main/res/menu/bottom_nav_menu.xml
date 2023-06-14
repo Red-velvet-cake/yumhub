@@ -3,11 +3,13 @@
 
     <item
         android:id="@+id/homeFragment"
+        android:enabled="true"
         android:icon="@drawable/home_bottom"
         android:title="@string/home" />
 
     <item
         android:id="@+id/SearchFragment"
+        android:enabled="true"
         android:icon="@drawable/search_bottom"
         android:title="@string/search" />
 
