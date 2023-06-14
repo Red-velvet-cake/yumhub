@@ -1,5 +1,7 @@
 package com.red_velvet.yumhub.ui.home
 
+import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
@@ -11,7 +13,9 @@ import com.red_velvet.yumhub.domain.usecases.recipes.GetQuickRecipesUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,7 +33,6 @@ class HomeViewModel @Inject constructor(
         getQuickRecipes()
     }
 
-
     private fun getQuickRecipes() {
         _state.update { it.copy(isLoading = true) }
         tryToExecute(
@@ -39,9 +42,15 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    private fun onGetQuickRecipesSuccess(quickRecipes: List<QuickRecipeEntity>) {
-        val response = quickRecipes.toQuickRecipeUiState()
-        _state.update { it.copy(quickRecipesUiState = response, isLoading = false) }
+    private fun onGetQuickRecipesSuccess(quickRecipes: Flow<List<QuickRecipeEntity>>) {
+        viewModelScope.launch {
+            quickRecipes.collect { items ->
+                val quickRecipesState = items.toQuickRecipeUiState()
+                _state.update {
+                    it.copy(quickRecipesUiState = quickRecipesState, isLoading = false)
+                }
+            }
+        }
     }
 
     private fun getPopularRecipes() {
@@ -53,15 +62,18 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-
-    private fun onGetPopularRecipeSuccess(popularRecipes: List<PopularRecipeEntity>) {
-        val response = popularRecipes.toPopularUiState()
-        _state.update { it.copy(popularRecipesUiState = response, isLoading = false) }
-    }
-
-    private fun onGetHealthyRecipeSuccess(healthyRecipes: List<HealthyRecipeEntity>) {
-        val response = healthyRecipes.toHealthyUiState()
-        _state.update { it.copy(healthyRecipesUiState = response, isLoading = false) }
+    private fun onGetPopularRecipeSuccess(popularRecipes: Flow<List<PopularRecipeEntity>>) {
+        viewModelScope.launch {
+            popularRecipes.collect { items ->
+                val popularRecipesState = items.toPopularUiState()
+                _state.update {
+                    it.copy(
+                        popularRecipesUiState = popularRecipesState,
+                        isLoading = false
+                    )
+                }
+            }
+        }
     }
 
     private fun getHealthyRecipes() {
@@ -73,6 +85,20 @@ class HomeViewModel @Inject constructor(
         )
     }
 
+    private fun onGetHealthyRecipeSuccess(healthyRecipes: Flow<List<HealthyRecipeEntity>>) {
+        viewModelScope.launch {
+            healthyRecipes.collect { items ->
+                val healthyRecipesState = items.toHealthyUiState()
+                _state.update {
+                    it.copy(
+                        healthyRecipesUiState = healthyRecipesState,
+                        isLoading = false
+                    )
+                }
+            }
+        }
+    }
+
     private fun getCategories() {
         _state.update { it.copy(isLoading = true) }
         tryToExecute(
@@ -82,7 +108,6 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-
     private fun onGetCategoriesSuccess(recipesCategories: List<CategoryEntity>) {
         val response = recipesCategories.toCategoryUiState()
         _state.update { it.copy(categoryRecipesUiState = response, isLoading = false) }
@@ -90,6 +115,7 @@ class HomeViewModel @Inject constructor(
 
     private fun onError(errorUiState: ErrorUIState) {
         _state.update { it.copy(error = errorUiState, isLoading = false) }
+        Log.d("tsss", "onError: ")
     }
 
     override fun doOnCategoryClicked(categoryTitle: String) {

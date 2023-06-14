@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases
 
-import com.red_velvet.yumhub.data.repositories.IngredientRepository
-import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformation
+import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformationEntity
+import com.red_velvet.yumhub.domain.repositories.IngredientRepository
 import javax.inject.Inject
 
 class GetIngredientInformationUseCase @Inject constructor(
@@ -11,7 +11,7 @@ class GetIngredientInformationUseCase @Inject constructor(
         id: Int,
         amount: Int?,
         unit: String?
-    ): IngredientInformation {
+    ): IngredientInformationEntity {
         return ingredientRepository.getIngredientInformation(
             id = id,
             amount = amount,
