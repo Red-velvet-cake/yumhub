@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signupFragment">
+    app:startDestination="@id/SplashFragment">
 
 
     <fragment
@@ -11,6 +11,11 @@
         android:name="com.red_velvet.yumhub.ui.search.SearchFragment"
         android:label=""
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/SplashFragment"
+        android:name="com.red_velvet.yumhub.ui.splash.SplashFragment"
+        android:label=""
+        tools:layout="@layout/fragment_splash" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.red_velvet.yumhub.ui.home.HomeFragment"
