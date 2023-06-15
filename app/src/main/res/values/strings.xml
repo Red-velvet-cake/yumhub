@@ -81,4 +81,18 @@
     <string name="diet">diet</string>
     <string name="kitchen">kitchen</string>
     <string name="profile">profile</string>
+    <string name="choose_your">Choose Your</string>
+    <string name="favorite_food">Favorite Food</string>
+    <string name="vegetarian_meat_dishes_pasta">Vegetarian Meat / Dishes Pasta</string>
+    <string name="dishes_salads">Dishes / Salads /</string>
+    <string name="vegetarian_meat_dishes">Vegetarian Meat / Dishes</string>
+    <string name="pasta_dishes_salads">Pasta Dishes / Salads /</string>
+    <string name="desserts_soups_seafood">Desserts / Soups / Seafood</string>
+    <string name="delicious">Delicious</string>
+    <string name="food_menu">Food Menu</string>
+    <string name="there_are_many">There are Many</string>
+    <string name="food_recipes">Food Recipes</string>
+    <string name="in_the_app">In The App</string>
+    <string name="we_have_1500_user_reviews">We Have 1500+ User Reviews,</string>
+    <string name="you_can_check_in_the_application_store">You Can Check In The Application Store</string>
 </resources>

@@ -1,4 +1,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/primary" android:state_checked="true" /> <!-- Active icon color (green) -->
-    <item android:color="#36000000" /> <!-- Inactive icon color (black) -->
+    <item android:color="@color/primary" android:state_checked="true" />
+    <item android:color="#36000000" />
 </selector>

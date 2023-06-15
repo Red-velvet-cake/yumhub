@@ -63,4 +63,6 @@
     <dimen name="size_20dp">20dp</dimen>
     <dimen name="font_size_32sp">32sp</dimen>
     <dimen name="size_70dp">70dp</dimen>
+    <dimen name="space_64dp">64dp</dimen>
+    <dimen name="space_48dp">48dp</dimen>
 </resources>
