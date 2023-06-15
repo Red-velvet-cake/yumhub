@@ -4,6 +4,7 @@ package com.red_velvet.yumhub.repositories
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
 import com.red_velvet.yumhub.domain.mapper.toSimilarRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
@@ -19,6 +20,7 @@ import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
+import com.red_velvet.yumhub.repositories.mappers.toAnalyzedInstructionEntity
 import com.red_velvet.yumhub.repositories.mappers.toEntity
 import com.red_velvet.yumhub.repositories.mappers.toHealthyRecipeEntity
 import com.red_velvet.yumhub.repositories.mappers.toLocalDto
@@ -67,6 +69,13 @@ class RecipesRepositoryImpl @Inject constructor(
         includeNutrition: Boolean?
     ): RecipeInformationEntity {
         return remoteDataSource.getRecipeInformation(id, includeNutrition).toEntity()
+    }
+
+    override suspend fun getAnalyzedRecipeInstructions(
+        id: Int,
+        stepBreakdown: Boolean?,
+    ): List<AnalyzedInstructionsEntity> {
+        return remoteDataSource.getAnalyzedInstructions(id,stepBreakdown).toAnalyzedInstructionEntity()
     }
 
     override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipeEntity> {

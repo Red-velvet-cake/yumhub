@@ -1,11 +1,12 @@
-package com.red_velvet.yumhub.data.repositories.mappers
+package com.red_velvet.yumhub.repositories.mappers
 
-import com.red_velvet.yumhub.data.remote.dtos.AnalyzedInstructionDto
-import com.red_velvet.yumhub.data.remote.dtos.StepDto
+
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
-import com.red_velvet.yumhub.domain.models.recipes.Step
+import com.red_velvet.yumhub.domain.models.recipes.StepEntity
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
+import com.red_velvet.yumhub.remote.resources.StepResource
 
-fun List<AnalyzedInstructionDto>.toAnalyzedInstructionEntity(): List<AnalyzedInstructionsEntity> {
+fun List<AnalyzedInstructionResource>.toAnalyzedInstructionEntity(): List<AnalyzedInstructionsEntity> {
     return this.map {
         AnalyzedInstructionsEntity(
             name = it.name,
@@ -14,9 +15,9 @@ fun List<AnalyzedInstructionDto>.toAnalyzedInstructionEntity(): List<AnalyzedIns
     }
 }
 
-private fun List<StepDto>.toListStep(): List<Step> {
+private fun List<StepResource>.toListStep(): List<StepEntity> {
     return this.map {
-        Step(
+        StepEntity(
             number = it.number,
             step = it.step
         )

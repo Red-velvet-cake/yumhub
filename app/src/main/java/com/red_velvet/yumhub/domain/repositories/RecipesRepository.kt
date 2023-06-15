@@ -1,7 +1,6 @@
 package com.red_velvet.yumhub.domain.repositories
 
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResource
+
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity

@@ -30,7 +30,7 @@ fun RecipeInformationResource.toEntity(): RecipeInformationEntity {
         servings = this.servings.orZero(),
         summary = this.summary.orEmpty(),
         title = this.title.orEmpty(),
-        analyzedInstructionEntities = analyzedInstructions?.map { it.toModel() } ?: emptyList(),
+        analyzedInstructions = analyzedInstructions?.map { it.toModel() } ?: emptyList(),
         cheap = this.cheap.orFalse(),
         cookingMinutes = this.cookingMinutes.orZero(),
         cuisines = this.cuisines ?: emptyList(),
@@ -42,12 +42,11 @@ fun RecipeInformationResource.toEntity(): RecipeInformationEntity {
     )
 }
 
-fun AnalyzedInstructionDto.toModel(): AnalyzedInstructionsEntity {
+fun AnalyzedInstructionResource.toModel(): AnalyzedInstructionsEntity {
     return AnalyzedInstructionsEntity(
         name = name.orEmpty(),
-        stepEntities = steps.map {
-            it.toModel()
-        }
+        steps = steps.map {
+            it.toModel()}
     )
 }
 

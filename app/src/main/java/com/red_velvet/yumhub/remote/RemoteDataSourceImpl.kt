@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.remote
 
 import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
@@ -121,6 +122,13 @@ class RemoteDataSourceImpl @Inject constructor(
 
     override suspend fun connectUser(userData: UserInformationResource): ConnectUserResource {
         return tryToExecute { foodService.connectUser(userData) }
+    }
+
+    override suspend fun getAnalyzedInstructions(
+        id: Int,
+        stepBreakdown: Boolean?,
+    ): List<AnalyzedInstructionResource> {
+        return tryToExecute {foodService.getAnalyzedInstructions(id,stepBreakdown)}
     }
 
     private suspend fun <T> tryToExecute(func: suspend () -> Response<T>): T {

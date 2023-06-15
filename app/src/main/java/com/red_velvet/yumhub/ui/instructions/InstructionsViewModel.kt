@@ -14,7 +14,7 @@ class InstructionsViewModel @Inject constructor(
 ) : BaseViewModel<InstructionsUIState>(InstructionsUIState()), StepsInteractionListener {
 
     init {
-        getAnalyzedRecipeInstructions(324694)
+        getAnalyzedRecipeInstructions(660228)
     }
 
     private fun getAnalyzedRecipeInstructions(id: Int) {
@@ -34,8 +34,8 @@ class InstructionsViewModel @Inject constructor(
     private fun getAnalyzedRecipeInstructionsSuccess(
         analyzedRecipeInstructions: List<AnalyzedInstructionsEntity>,
     ) {
-        val response = analyzedRecipeInstructions.toAnalyzedInstructionUiState().flatMap { it.steps }
-        _state.update { it.copy(steps = response, isLoading = false) }
+        val steps = analyzedRecipeInstructions.toAnalyzedInstructionUiState().flatMap { it.steps }
+        _state.update { it.copy( steps = steps, isLoading = false) }
     }
 
 }

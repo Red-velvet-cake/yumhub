@@ -62,4 +62,5 @@
     <dimen name="_1dp">1dp</dimen>
     <dimen name="text_size_12sp">12sp</dimen>
     <dimen name="size_20dp">20dp</dimen>
+    <dimen name="zero">0dp</dimen>
 </resources>

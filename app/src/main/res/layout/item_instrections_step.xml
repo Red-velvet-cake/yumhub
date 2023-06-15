@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.instructions.StepsUiState" />
@@ -14,40 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/step_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:fontFamily="@font/roboto_bold"
-            android:text="@string/step"
-            android:textColor="@color/primary"
-            android:textSize="@dimen/text_size_20"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/step_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_x_x_small"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:fontFamily="@font/roboto_bold"
-            android:text="@{item.stepNumber.toString()}"
-            android:textColor="@color/primary"
-            android:textSize="@dimen/text_size_20"
-            app:layout_constraintBottom_toBottomOf="@id/step_text_view"
-            app:layout_constraintStart_toEndOf="@id/step_text_view"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/step_name_card_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_x_x_small"
             android:layout_marginTop="@dimen/spacing_x_small"
-            app:layout_constraintTop_toBottomOf="@id/step_text_view">
+            android:visibility="@{item.name != null &amp;&amp; item.name.length() > 0 &amp;&amp; item.stepNumber == 1 ? View.VISIBLE : View.GONE}"
+            app:cardCornerRadius="@dimen/zero"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/white">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -55,31 +34,55 @@
 
                 <com.google.android.material.slider.Slider
                     android:id="@+id/custom_drawable_instruction_view"
-                    android:layout_width="4dp"
-                    android:layout_height="0dp"
+                    android:layout_width="@dimen/spacing_x_x_small"
+                    android:layout_height="@dimen/zero"
                     android:background="@drawable/custom_instruction_drawable"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/step_name"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/step_information_text_view"
+                    android:id="@+id/step_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/spacing_small"
                     android:layout_marginStart="@dimen/spacing_x_small"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@{item.stepDetails}"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@{item.name}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_16"
+                    android:textSize="@dimen/text_size_20"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/custom_drawable_instruction_view"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Preheat oven to 400 degrees
-                    F. Prepare two 9×13 pans by lining with aluminum foil and spraying with non-stick spray. Chop the sausage into small, bite-size pieces, spread out in one pan. In the other add the cauliflower, drizzle with two tablespoons olive oil, sprinkle with salt and pepper.
-                     Use your hands to mix and massage the oil into the cauliflower." />
-
+                    tools:text="Cook pasta as directed on package" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/step_number_text_view"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:fontFamily="@font/roboto_bold"
+            android:text='@{ "Step" + item.stepNumber + ":-"}'
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step_name_card_view"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/step_details_text_view"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_x_x_small"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:text="@{item.stepDetails}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/step_number_text_view"
+            app:layout_constraintTop_toBottomOf="@id/step_name_card_view"
+            tools:text="Meanwhile, heat a tablespoon of olive oil over low heat in a large skillet, sautéing garlic until fragrant." />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

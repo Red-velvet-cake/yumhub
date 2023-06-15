@@ -1,20 +1,6 @@
 package com.red_velvet.yumhub.remote
 
-import com.red_velvet.yumhub.data.remote.dtos.AnalyzedInstructionDto
-import com.red_velvet.yumhub.data.remote.dtos.auth.ConnectUserDto
-import com.red_velvet.yumhub.data.remote.dtos.auth.UserInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSearchDto
-import com.red_velvet.yumhub.data.remote.dtos.ingredient.IngredientSubstituteDto
-import com.red_velvet.yumhub.data.remote.dtos.meal_plan.AddMealDto
-import com.red_velvet.yumhub.data.remote.dtos.meal_plan.ResultAddToMealPlanDto
-import com.red_velvet.yumhub.data.remote.dtos.meal_plan.WeekMealPlanDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.GuessNutritionDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.QuickAnswerDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RandomRecipesDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeInformationDto
-import com.red_velvet.yumhub.data.remote.dtos.recipe.RecipeSearchResource
-import com.red_velvet.yumhub.data.remote.dtos.recipe.SimilarRecipesDto
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
@@ -129,5 +115,5 @@ interface FoodService {
     suspend fun getAnalyzedInstructions(
         @Path("id") id: Int,
         @Query("stepBreakdown") stepBreakdown: Boolean? = false,
-    ): Response<List<AnalyzedInstructionDto>>
+        ): Response<List<AnalyzedInstructionResource>>
 }
