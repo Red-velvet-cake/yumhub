@@ -8,4 +8,8 @@ interface UserRepository {
     suspend fun getUserName(): String
     suspend fun getHash(): String
 
+    suspend fun saveCachingTimeStamp(key: String, cachingTime: Long)
+
+    suspend fun getLastCachingTimeStamp(key: String): Long
+
 }

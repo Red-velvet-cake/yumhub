@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.repositories
+package com.red_velvet.yumhub.repositories.datasources
 
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
