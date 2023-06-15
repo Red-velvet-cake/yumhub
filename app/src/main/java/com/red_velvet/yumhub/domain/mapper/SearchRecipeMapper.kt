@@ -12,20 +12,8 @@ fun RecipeInformationResource.toRecipeSearchEntity(): SearchRecipeEntity {
         title = title.orEmpty(),
         image = image.orEmpty(),
         imageType = imageType.orEmpty(),
-        preparationMinutes = preparationMinutes.orZero(),
-        pricePerServing = pricePerServing.orZero(),
+        ingredientNumber=0,
         readyInMinutes = readyInMinutes.toString().orEmpty(),
-        servings = servings.orZero(),
-        summary = summary.orEmpty(),
         analyzedInstructions = analyzedInstructions?.map { it.toModel() }.orEmptyList(),
-        cheap = cheap.orFalse(),
-        cookingMinutes =cookingMinutes.orZero(),
-        cuisines =cuisines.orEmptyList(),
-        diets = diets.orEmptyList(),
-        dishTypes = dishTypes.orEmptyList(),
-        glutenFree = glutenFree.orFalse(),
-        healthScore = healthScore.orZero()
-
     )
-
 }

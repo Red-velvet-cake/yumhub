@@ -9,8 +9,6 @@ fun SearchRecipeEntity.toRecipeSearchResultMapper(): SearchResultUIState {
         image = image.orEmpty(),
         readyInMinutes =readyInMinutes.orEmpty(),
         title = title.orEmpty(),
-        ingredientNumber = analyzedInstructions
-            .flatMap { instruction -> instruction.stepEntities }
-            .sumOf { step -> step.ingredientsEntity.size }
+        ingredientNumber = ingredientNumber.orZero()
     )
 }

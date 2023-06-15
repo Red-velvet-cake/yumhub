@@ -5,7 +5,8 @@ import javax.inject.Inject
 
 class SearchRecipeUseCase  @Inject constructor(
    private  val recipesRepositoryImpl : RecipesRepositoryImpl,
-   private  val getMinutAsHourAndMinuts:GetMinutAsHourAndMinuts
+   private  val getMinutAsHourAndMinuts:GetMinutAsHourAndMinuts,
+   private val getIngredientCountUseCase:GetIngredientCountUseCase
         ) {
     suspend operator fun invoke(
         query: String,
@@ -18,7 +19,10 @@ class SearchRecipeUseCase  @Inject constructor(
                 sort = sort,
                 sortDirection = sortDirection
             ).map {
-                it.copy(readyInMinutes =getMinutAsHourAndMinuts.invoke(it.readyInMinutes))
+                it.copy(
+                    readyInMinutes =getMinutAsHourAndMinuts.invoke(it.readyInMinutes),
+                    ingredientNumber = getIngredientCountUseCase.invoke(it.analyzedInstructions)
+                )
             }
     }
 }

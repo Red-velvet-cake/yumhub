@@ -6,16 +6,6 @@ data class SearchRecipeEntity(
     val image:String?,
     val imageType: String,
     val readyInMinutes:String,
-    val preparationMinutes: Int,
-    val pricePerServing: Double,
-    val servings: Int,
-    val summary: String,
-    val cheap: Boolean,
-    val cookingMinutes: Int,
-    val cuisines: List<String>,
-    val diets: List<String>,
-    val dishTypes: List<String>,
-    val glutenFree: Boolean,
-    val healthScore: Int,
+    val ingredientNumber:Int,
     val analyzedInstructions:List<AnalyzedInstructionsEntity>
 )
