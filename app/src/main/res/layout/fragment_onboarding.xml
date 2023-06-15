@@ -15,6 +15,8 @@
       android:layout_height="match_parent"
       android:background="@color/bg_white"
       android:orientation="vertical">
+
+
       <ImageView
           android:layout_gravity="center"
           android:layout_marginTop="@dimen/space_64dp"
@@ -150,8 +152,22 @@
       <TextView
           android:layout_marginTop="@dimen/space_36dp"
           style="@style/CustomSubTitleTextViewStyle"
+          app:showIfTrue="@{!viewModel.uiState.lastTab}"
           android:onClick="@{() -> viewModel.onNext()}"
           android:text="@string/next" />
     </LinearLayout>
+      <Button
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/button_height"
+          android:layout_marginTop="@dimen/space_32dp"
+          android:layout_marginHorizontal="@dimen/spacing_normal"
+          android:text="@string/let_s_go"
+          app:showIfTrue="@{viewModel.uiState.lastTab}"
+          app:cornerRadius="@dimen/radius_16dp"
+
+          android:textColor="@color/fontColor_white"
+          android:fontFamily="@font/roboto_medium"
+          android:backgroundTint="@color/primary"
+          />
   </LinearLayout>
 </layout>

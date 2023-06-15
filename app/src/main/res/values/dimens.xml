@@ -69,4 +69,6 @@
     <dimen name="space_36dp">36dp</dimen>
     <dimen name="space_40dp">40dp</dimen>
     <dimen name="size_6dp">6dp</dimen>
+    <dimen name="radius_16dp">16dp</dimen>
+    <dimen name="space_32dp">32dp</dimen>
 </resources>
