@@ -150,6 +150,7 @@
       <TextView
           android:layout_marginTop="@dimen/space_36dp"
           style="@style/CustomSubTitleTextViewStyle"
+          android:onClick="@{() -> viewModel.onNext()}"
           android:text="@string/next" />
     </LinearLayout>
   </LinearLayout>
