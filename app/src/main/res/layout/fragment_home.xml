@@ -60,7 +60,6 @@
                     style="@style/Style_Home_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{ () -> viewModel.getData()}"
                     android:text="@string/categories"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/featured_home_image_view" />
@@ -89,7 +88,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/category_title_text_view"
                     app:setItems="@{viewModel.State.categoryRecipesUiState}"
-                    tools:listitem="@layout/item_recipe_category" />
+                    tools:listitem="@layout/item_home_recipe_categories" />
 
                 <TextView
                     android:id="@id/quick_recipe_title_text_view"
