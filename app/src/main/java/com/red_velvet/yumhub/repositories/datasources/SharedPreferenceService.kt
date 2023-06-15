@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.repositories
+package com.red_velvet.yumhub.repositories.datasources
 
 interface SharedPreferenceService {
     fun saveUserName(name: String)
@@ -6,4 +6,8 @@ interface SharedPreferenceService {
     fun getUserName(): String?
     fun getHash(): String?
     fun clear()
+
+    fun saveLastCachingTimeStamp(key: String, time: Long)
+
+    fun getLastCachingTime(key: String): Long
 }

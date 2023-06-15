@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.ui.home
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
@@ -85,6 +84,7 @@ class HomeViewModel @Inject constructor(
         )
     }
 
+
     private fun onGetHealthyRecipeSuccess(healthyRecipes: Flow<List<HealthyRecipeEntity>>) {
         viewModelScope.launch {
             healthyRecipes.collect { items ->
@@ -115,7 +115,6 @@ class HomeViewModel @Inject constructor(
 
     private fun onError(errorUiState: ErrorUIState) {
         _state.update { it.copy(error = errorUiState, isLoading = false) }
-        Log.d("tsss", "onError: ")
     }
 
     override fun doOnCategoryClicked(categoryTitle: String) {
