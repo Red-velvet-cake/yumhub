@@ -20,6 +20,7 @@
             android:windowSoftInputMode="adjustPan"
             android:name=".ui.MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/Theme.YumHub">
             <intent-filter>
