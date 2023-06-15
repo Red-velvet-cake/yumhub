@@ -145,17 +145,25 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
 
 
 
-@BindingAdapter(value = ["app:setItems"])
+
+
+@BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
-    if (items != null) {
-        (view.adapter as BaseAdapter<T>).setItems(items)
-    } else {
-        (view.adapter as BaseAdapter<T>).setItems(emptyList())
-    }
-}
-@BindingAdapter(value = ["app:imageUrl"])
-fun loadImage(view: ImageView, image: String?) {
-    Glide.with(view).load(image).placeholder(R.drawable.baseline_image_24).into(view)
+    (view.adapter as BaseAdapter<T>?)?.setItems(items ?: emptyList())
+
 }
 
+@BindingAdapter(value = ["app:setDrawableResource"])
+fun setDrawableResourceToImageView(view: ImageView, image: String) {
+    val resID = view.context.resources.getIdentifier(image, null, view.context.packageName)
+    view.setImageResource(resID)
+}
+
+@BindingAdapter(value = ["app:imageUrl"])
+fun loadImage(view: ImageView, imageUrl: String) {
+    Glide.with(view).load(imageUrl)
+        .fitCenter()
+        .centerCrop()
+        .into(view)
+}
 
