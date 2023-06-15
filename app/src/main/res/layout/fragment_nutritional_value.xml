@@ -42,12 +42,14 @@
 
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="m"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/edit_text_corner"
         android:hint="Enter a recipe name"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
         app:layout_constraintEnd_toStartOf="@+id/materialButton2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,13 +61,377 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/primary"
+        android:text="Apply"
         app:layout_constraintBottom_toBottomOf="@+id/editText3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/editText3"
         app:layout_constraintTop_toTopOf="@+id/editText3"
         app:layout_constraintVertical_bias="0.562" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCalories"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/cvProtine"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/editText3">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCalories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_calories"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Calories"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/progressCaloriesTrack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_track"
+                app:layout_constraintStart_toStartOf="@+id/tvCalories"
+                app:layout_constraintTop_toBottomOf="@+id/tvCalories" />
+
+            <View
+                android:id="@+id/progressCaloriesIndicator"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_progress_indicator"
+                app:layout_constraintBottom_toBottomOf="@+id/progressCaloriesTrack"
+                app:layout_constraintEnd_toEndOf="@+id/progressCaloriesTrack"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintStart_toStartOf="@+id/tvCalories"
+                app:layout_constraintTop_toTopOf="@+id/progressCaloriesTrack"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCaloriesValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toEndOf="@+id/progressCaloriesTrack"
+                app:layout_constraintTop_toTopOf="@+id/progressCaloriesTrack" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCaloriesUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="kcal"
+                android:textColor="@color/fontColor_secondary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toStartOf="@+id/tvCaloriesValue"
+                app:layout_constraintTop_toBottomOf="@+id/tvCaloriesValue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvFat"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cvCarbs"
+        app:layout_constraintTop_toBottomOf="@+id/editText3">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/cvCarbs"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout2">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_fat"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Fat"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/progressFatTrack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_track"
+                android:tint="#EABB64"
+                app:layout_constraintStart_toStartOf="@+id/tvFat"
+                app:layout_constraintTop_toBottomOf="@+id/tvFat" />
+
+            <View
+                android:id="@+id/progressFatIndicator"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_progress_indicator"
+                android:backgroundTint="#EABB64"
+                app:layout_constraintBottom_toBottomOf="@+id/progressFatTrack"
+                app:layout_constraintEnd_toEndOf="@+id/progressFatTrack"
+                app:layout_constraintHeight_percent="0.2"
+                app:layout_constraintStart_toStartOf="@+id/tvFat"
+                app:layout_constraintTop_toTopOf="@+id/progressFatTrack"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvFatValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toEndOf="@+id/progressFatTrack"
+                app:layout_constraintTop_toTopOf="@+id/progressFatTrack" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvFatUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="grams"
+                android:textColor="@color/fontColor_secondary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toStartOf="@+id/tvFatValue"
+                app:layout_constraintTop_toBottomOf="@+id/tvFatValue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCarbs"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/cvProtine"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/cvCalories">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout21"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCarbs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_carbs"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Carbs"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/progressCarbsTrack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:tint="#8256FF"
+
+                android:src="@drawable/ic_track"
+                app:layout_constraintStart_toStartOf="@+id/tvCarbs"
+                app:layout_constraintTop_toBottomOf="@+id/tvCarbs" />
+
+            <View
+                android:id="@+id/progressCarbsIndicator"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_progress_indicator"
+                android:backgroundTint="#8256FF"
+
+                app:layout_constraintBottom_toBottomOf="@+id/progressCarbsTrack"
+                app:layout_constraintEnd_toEndOf="@+id/progressCarbsTrack"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintStart_toStartOf="@+id/tvCarbs"
+                app:layout_constraintTop_toTopOf="@+id/progressCarbsTrack"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCarbsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toEndOf="@+id/progressCarbsTrack"
+                app:layout_constraintTop_toTopOf="@+id/progressCarbsTrack" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCarbsUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="grams"
+                android:textColor="@color/fontColor_secondary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toStartOf="@+id/tvCarbsValue"
+                app:layout_constraintTop_toBottomOf="@+id/tvCarbsValue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvProtine"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cvCarbs"
+        app:layout_constraintTop_toBottomOf="@+id/cvFat">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout66"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/cvCarbs"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout2">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvProtine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_protine"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Protine"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/progressProtineTrack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_track"
+                android:tint="#21B6E4"
+                app:layout_constraintStart_toStartOf="@+id/tvProtine"
+                app:layout_constraintTop_toBottomOf="@+id/tvProtine" />
+
+            <View
+                android:id="@+id/progressProtineIndicator"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_progress_indicator"
+                android:backgroundTint="#21B6E4"
+                app:layout_constraintBottom_toBottomOf="@+id/progressProtineTrack"
+                app:layout_constraintEnd_toEndOf="@+id/progressProtineTrack"
+                app:layout_constraintHeight_percent="0.9"
+                app:layout_constraintStart_toStartOf="@+id/tvProtine"
+                app:layout_constraintTop_toTopOf="@+id/progressProtineTrack"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvProtineValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toEndOf="@+id/progressProtineTrack"
+                app:layout_constraintTop_toTopOf="@+id/progressProtineTrack" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvProtineUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="grams"
+                android:textColor="@color/fontColor_secondary"
+                android:textSize="@dimen/font_size_title"
+                app:layout_constraintStart_toStartOf="@+id/tvProtineValue"
+                app:layout_constraintTop_toBottomOf="@+id/tvProtineValue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
