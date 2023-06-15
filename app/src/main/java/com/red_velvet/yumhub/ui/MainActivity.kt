@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
        binding.bottomNav.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        setBottomNavigationVisibility(navController)
+        setNavigationController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,22 +56,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
-    override fun onResume() {
-        super.onResume()
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.homeFragment,
-                R.id.SearchFragment,
-                R.id.SplashFragment,
-            )
-        )
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        binding.bottomNav.setupWithNavController(navController)
-        setupActionBarWithNavController(navController, appBarConfiguration)
 
-        setBottomNavigationVisibility(navController)
-        setNavigationController(navController)
-    }
 
     private fun setBottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
