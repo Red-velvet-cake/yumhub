@@ -38,7 +38,6 @@
             android:background="@drawable/bottom_nav_bg"
             android:layout_width="match_parent"
             app:labelVisibilityMode="unlabeled"
-
             android:layout_height="@dimen/size_70dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_nav_menu" />
