@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.domain.mapper
 import com.red_velvet.yumhub.domain.utils.orEmptyList
 import com.red_velvet.yumhub.domain.utils.orFalse
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
+import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 
@@ -13,7 +14,7 @@ fun RecipeInformationResource.toRecipeSearchEntity(): SearchRecipeEntity {
         imageType = imageType.orEmpty(),
         preparationMinutes = preparationMinutes.orZero(),
         pricePerServing = pricePerServing.orZero(),
-        readyInMinutes = readyInMinutes.orZero(),
+        readyInMinutes = readyInMinutes.toString().orEmpty(),
         servings = servings.orZero(),
         summary = summary.orEmpty(),
         analyzedInstructions = analyzedInstructions?.map { it.toModel() }.orEmptyList(),
