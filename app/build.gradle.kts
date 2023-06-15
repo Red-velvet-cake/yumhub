@@ -1,6 +1,7 @@
 import java.io.FileInputStream
 import java.util.Properties
 
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("com.android.application")
