@@ -37,6 +37,28 @@ fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
         view.isVisible =false;
     }
 }
+@BindingAdapter("app:showIfTrue")
+fun showIfTrue(view: View, value: Boolean) {
+    if(value){
+        view.visibility =View.VISIBLE
+    }else{
+        view.visibility =View.GONE
+    }
+}
+@BindingAdapter("app:changeStyleIfTrue")
+fun changeStyleIfTrue(view: View, value: Boolean) {
+    if(value){
+        view.setBackgroundResource(R.drawable.rounded_border_full_indectior)
+        val layoutParams = view.layoutParams
+        layoutParams.width =  view.context.resources.getDimensionPixelSize(R.dimen.space_40dp)
+        view.layoutParams = layoutParams
+    }else{
+        view.setBackgroundResource(R.drawable.rounded_border_indecator)
+        val layoutParams = view.layoutParams
+        layoutParams.width = view.context.resources.getDimensionPixelSize(R.dimen.size_6dp)
+        view.layoutParams = layoutParams
+    }
+}
 @BindingAdapter("app:showIfAsc")
 fun showIfAsc(view: View, value: String) {
     if(value == "asc"){
@@ -122,6 +144,7 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
 }
 
 
+
 @BindingAdapter(value = ["app:setItems"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     if (items != null) {
@@ -134,3 +157,5 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 fun loadImage(view: ImageView, image: String?) {
     Glide.with(view).load(image).placeholder(R.drawable.baseline_image_24).into(view)
 }
+
+

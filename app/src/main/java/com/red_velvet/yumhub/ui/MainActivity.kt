@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.homeFragment,
                 R.id.SearchFragment,
                 R.id.SplashFragment,
-                R.id.signupFragment,
             )
         )
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -73,6 +72,8 @@ class MainActivity : AppCompatActivity() {
     private fun setBottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNav.isVisible = destination.id != R.id.SplashFragment
+            binding.bottomNav.isVisible = destination.id != R.id.onBoardingFragment
+
         }
     }
 
@@ -95,6 +96,10 @@ class MainActivity : AppCompatActivity() {
               -> {
                     this.supportActionBar?.hide()
                     binding.bottomNav.isVisible=false
+                }
+                R.id.onBoardingFragment, -> {
+                    binding.bottomNav.isVisible=false
+                    this.supportActionBar?.hide()
                 }
                 else -> {
                     binding.bottomNav.isVisible=true

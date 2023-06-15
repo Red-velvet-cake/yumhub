@@ -65,4 +65,8 @@
     <dimen name="size_70dp">70dp</dimen>
     <dimen name="space_64dp">64dp</dimen>
     <dimen name="space_48dp">48dp</dimen>
+    <dimen name="space_43dp">43dp</dimen>
+    <dimen name="space_36dp">36dp</dimen>
+    <dimen name="space_40dp">40dp</dimen>
+    <dimen name="size_6dp">6dp</dimen>
 </resources>

@@ -29,7 +29,7 @@
 
     <item
         android:id="@+id/storiesFragment"
-        android:icon="@drawable/chef_bottom_nav"
+        android:icon="@drawable/chef_nav_bottom"
         android:title="@string/profile" />
 
 </menu>
