@@ -30,13 +30,36 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
     view.visibility =
         if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
-@BindingAdapter(value=["app:showIfListEmpty","loading"])
-fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
+
+//@BindingAdapter(value = ["app:items"])
+//fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+//    (view.adapter as BaseAdapter<T>?)?.setItems(items ?: emptyList())
+//
+//}
+
+@BindingAdapter(value = ["app:setDrawableResource"])
+fun setDrawableResourceToImageView(view: ImageView, image: String) {
+    val resID = view.context.resources.getIdentifier(image, null, view.context.packageName)
+    view.setImageResource(resID)
+}
+
+//@BindingAdapter(value = ["app:imageUrl"])
+//fun loadImage(view: ImageView, imageUrl: String?) {
+//    Glide.with(view).load(imageUrl)
+//        .fitCenter()
+//        .centerCrop()
+//        .placeholder(R.drawable.baseline_image_24)
+//        .into(view)
+//}
+
+@BindingAdapter(value = ["app:showIfListEmpty", "loading"])
+fun showIfNotFound(view: View, value: Boolean, loading: Boolean) {
     view.isVisible = value
-    if(loading){
-        view.isVisible =false;
+    if (loading) {
+        view.isVisible = false;
     }
 }
+
 @BindingAdapter("app:showIfAsc")
 fun showIfAsc(view: View, value: String) {
     if(value == "asc"){
@@ -123,13 +146,14 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
 
 
 @BindingAdapter(value = ["app:setItems"])
-fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+fun <T> setRecyclerItems(view: RecyclerView, items: List<T>) {
     if (items != null) {
         (view.adapter as BaseAdapter<T>).setItems(items)
     } else {
         (view.adapter as BaseAdapter<T>).setItems(emptyList())
     }
 }
+
 @BindingAdapter(value = ["app:imageUrl"])
 fun loadImage(view: ImageView, image: String?) {
     Glide.with(view).load(image).placeholder(R.drawable.baseline_image_24).into(view)
