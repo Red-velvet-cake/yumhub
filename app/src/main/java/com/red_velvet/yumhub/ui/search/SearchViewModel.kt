@@ -80,6 +80,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onClear(){
+        _searchInputFlow.value =""
         _uiState.update { it.copy(
             sort = "",
             searchInput = "",
