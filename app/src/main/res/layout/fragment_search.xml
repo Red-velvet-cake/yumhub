@@ -239,7 +239,7 @@
             app:loadingSearch="@{viewModel.uiState.loading}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:searchInput="@{viewModel.uiState.searchInput}"
-            app:setItems="@{viewModel.uiState.searchResult}"
+            app:items="@{viewModel.uiState.searchResult}"
             tools:listitem="@layout/item_search_card" />
         <ImageView
             android:id="@+id/svgImageView"
