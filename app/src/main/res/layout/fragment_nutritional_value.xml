@@ -14,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Nutritional Value"
+        app:navigationIcon="@drawable/arrowleft"
         app:titleTextColor="@color/fontColor_primary" />
 
     <com.google.android.material.textview.MaterialTextView
