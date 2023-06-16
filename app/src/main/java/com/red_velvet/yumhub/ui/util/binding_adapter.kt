@@ -33,8 +33,8 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
 @BindingAdapter(value=["app:showIfListEmpty","loading"])
 fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
     view.isVisible = value
-    if(loading){
-        view.isVisible =false;
+    if (loading) {
+        view.isVisible = false;
     }
 }
 @BindingAdapter("app:showIfTrue")
@@ -144,11 +144,8 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
 }
 
 
-
-
-
 @BindingAdapter(value = ["app:items"])
-fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+fun <T> setRecyclerItems(view: RecyclerView, items: List<T>) {
     (view.adapter as BaseAdapter<T>?)?.setItems(items ?: emptyList())
 
 }
@@ -166,4 +163,3 @@ fun loadImage(view: ImageView, imageUrl: String) {
         .centerCrop()
         .into(view)
 }
-

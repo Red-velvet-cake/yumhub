@@ -1,8 +1,8 @@
 package com.red_velvet.yumhub.domain.usecases
 
-import com.red_velvet.yumhub.domain.mapper.toMealPlanDto
 import com.red_velvet.yumhub.domain.repositories.MealRepository
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
+import com.red_velvet.yumhub.repositories.mappers.toMealPlanDto
 import javax.inject.Inject
 
 class AddToMealPlanUseCase @Inject constructor(

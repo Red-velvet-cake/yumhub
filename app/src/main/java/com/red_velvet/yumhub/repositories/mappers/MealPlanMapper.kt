@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.domain.mapper
+package com.red_velvet.yumhub.repositories.mappers
 
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
 import com.red_velvet.yumhub.domain.utils.orEmpty

@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.domain.mapper
+package com.red_velvet.yumhub.repositories.mappers
 
 import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformationEntity
 import com.red_velvet.yumhub.domain.models.ingredientInformation.NutrientsEntity
@@ -7,8 +7,10 @@ import com.red_velvet.yumhub.domain.models.ingredientInformation.PropertyEntity
 import com.red_velvet.yumhub.domain.models.ingredientInformation.WeightPerServingEntity
 import com.red_velvet.yumhub.domain.utils.orEmptyList
 import com.red_velvet.yumhub.domain.utils.orZero
+import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
+import com.red_velvet.yumhub.remote.resources.ingredient.NutrientResource
 
-fun com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource.toIngredientInformation(): IngredientInformationEntity {
+fun IngredientInformationResource.toIngredientInformation(): IngredientInformationEntity {
     return IngredientInformationEntity(
         id = id.orZero(),
         name = name.orEmpty(),
@@ -23,7 +25,7 @@ fun com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResou
     )
 }
 
-private fun com.red_velvet.yumhub.remote.resources.ingredient.NutrientResource.toNutrients(): NutrientsEntity {
+private fun NutrientResource.toNutrients(): NutrientsEntity {
     return NutrientsEntity(
         amount = amount.orZero(),
         percentOfDailyNeeds = percentOfDailyNeeds.orZero(),

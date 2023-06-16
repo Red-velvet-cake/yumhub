@@ -6,6 +6,7 @@ import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickAnswerEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
@@ -22,7 +23,7 @@ interface RecipesRepository {
     suspend fun searchRecipe(
         query: String? = null,
         sort: String? = null,
-        sortDirection:String? = null,
+        sortDirection: String? = null,
     ): List<SearchRecipeEntity>
 
 
@@ -62,4 +63,6 @@ interface RecipesRepository {
     suspend fun getHealthyRecipesFromLocal(): Flow<List<HealthyRecipeEntity>>
 
     suspend fun getCategoriesFromRemote(): List<CategoryEntity>
+
+    suspend fun getSingleRecipeCategory(categoryType: String): List<RecipeEntity>
 }
