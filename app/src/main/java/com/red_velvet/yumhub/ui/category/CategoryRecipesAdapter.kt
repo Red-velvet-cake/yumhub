@@ -5,7 +5,7 @@ import com.red_velvet.yumhub.ui.base.BaseAdapter
 import com.red_velvet.yumhub.ui.base.BaseInteractionListener
 import com.red_velvet.yumhub.ui.home.RecipeUiState
 
-class RecipeCategoryAdapter(
+class CategoryRecipesAdapter(
     items: List<RecipeUiState>,
     listener: RecipeInteractionListener
 ) : BaseAdapter<RecipeUiState>(items, listener) {
