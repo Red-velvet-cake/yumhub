@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RecipeCategoryViewModel @Inject constructor(
+class CategoryRecipesViewModel @Inject constructor(
     private val getSingleCategoryUseCase: GetSingleCategoryUseCase
-) : BaseViewModel<RecipeCategoryUiState>(RecipeCategoryUiState()), RecipeInteractionListener {
+) : BaseViewModel<CategoryRecipesUiState>(CategoryRecipesUiState()), RecipeInteractionListener {
 
     init {
         getRecipesByCategoryTitle()

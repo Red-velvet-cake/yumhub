@@ -60,7 +60,6 @@
                     style="@style/Style_Home_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{ () -> viewModel.getData()}"
                     android:text="@string/categories"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/featured_home_image_view" />

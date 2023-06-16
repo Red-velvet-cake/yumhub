@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.red_velvet.yumhub.ui.category.RecipeCategoryViewModel" />
+            type="com.red_velvet.yumhub.ui.category.CategoryRecipesViewModel" />
 
     </data>
 

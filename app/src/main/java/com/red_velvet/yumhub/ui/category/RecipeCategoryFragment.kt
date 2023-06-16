@@ -11,15 +11,15 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeCategoryFragment :
-    BaseFragment<FragmentCategoryBinding, RecipeCategoryUiState, RecipeCategoryViewModel>() {
+    BaseFragment<FragmentCategoryBinding, CategoryRecipesUiState, CategoryRecipesViewModel>() {
 
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_category
-    override val viewModel: RecipeCategoryViewModel by viewModels()
+    override val viewModel: CategoryRecipesViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recipeCategoryAdapter = RecipeCategoryAdapter(emptyList(), viewModel)
-        binding.recipeCategoryRecyclerView.adapter = recipeCategoryAdapter
+        val categoryRecipesAdapter = CategoryRecipesAdapter(emptyList(), viewModel)
+        binding.recipeCategoryRecyclerView.adapter = categoryRecipesAdapter
     }
 }
