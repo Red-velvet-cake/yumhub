@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setBottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.bottomNav.isVisible = destination.id != R.id.SplashFragment
             binding.bottomNav.isVisible = destination.id != R.id.onBoardingFragment
 
         }
