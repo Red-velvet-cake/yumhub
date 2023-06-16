@@ -70,24 +70,23 @@
         app:layout_constraintStart_toEndOf="@+id/editText3"
         app:layout_constraintTop_toTopOf="@+id/editText3"
         app:layout_constraintVertical_bias="0.562" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cvCalories"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/cvProtine"
+        app:layout_constraintEnd_toStartOf="@+id/cvFat"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
@@ -99,13 +98,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_calories"
-                android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
                 android:text="Calories"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -161,22 +157,21 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvFat"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/materialButton2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cvCarbs"
+        app:layout_constraintStart_toEndOf="@+id/cvCalories"
         app:layout_constraintTop_toBottomOf="@+id/editText3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="@+id/cvCarbs"
@@ -190,7 +185,7 @@
                 android:drawableEnd="@drawable/ic_fat"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="Fat"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
@@ -249,24 +244,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvFatValue" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cvCarbs"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toStartOf="@+id/cvProtine"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvCalories">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout21"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
@@ -280,7 +274,7 @@
                 android:drawableEnd="@drawable/ic_carbs"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="Carbs"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
@@ -293,9 +287,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-                android:tint="#8256FF"
-
                 android:src="@drawable/ic_track"
+                android:tint="#8256FF"
                 app:layout_constraintStart_toStartOf="@+id/tvCarbs"
                 app:layout_constraintTop_toBottomOf="@+id/tvCarbs" />
 
@@ -305,7 +298,6 @@
                 android:layout_height="0dp"
                 android:background="@drawable/ic_progress_indicator"
                 android:backgroundTint="#8256FF"
-
                 app:layout_constraintBottom_toBottomOf="@+id/progressCarbsTrack"
                 app:layout_constraintEnd_toEndOf="@+id/progressCarbsTrack"
                 app:layout_constraintHeight_percent="0.3"
@@ -348,7 +340,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/materialButton2"
@@ -357,9 +349,8 @@
         app:layout_constraintTop_toBottomOf="@+id/cvFat">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout66"
+            android:id="@+id/constraintLayoutProtine"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="@+id/cvCarbs"
@@ -373,7 +364,7 @@
                 android:drawableEnd="@drawable/ic_protine"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="Protine"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
@@ -399,7 +390,7 @@
                 android:backgroundTint="#21B6E4"
                 app:layout_constraintBottom_toBottomOf="@+id/progressProtineTrack"
                 app:layout_constraintEnd_toEndOf="@+id/progressProtineTrack"
-                app:layout_constraintHeight_percent="0.9"
+                app:layout_constraintHeight_percent="0.3"
                 app:layout_constraintStart_toStartOf="@+id/tvProtine"
                 app:layout_constraintTop_toTopOf="@+id/progressProtineTrack"
                 app:layout_constraintVertical_bias="1.0" />
@@ -424,7 +415,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="grams"
                 android:textColor="@color/fontColor_secondary"
                 android:textSize="@dimen/font_size_title"
