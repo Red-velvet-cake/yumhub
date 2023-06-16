@@ -8,7 +8,7 @@ import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
-import com.red_velvet.yumhub.repositories.LocalDataSource
+import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

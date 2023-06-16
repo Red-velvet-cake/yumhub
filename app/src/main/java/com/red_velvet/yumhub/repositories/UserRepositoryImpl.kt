@@ -3,6 +3,8 @@ package com.red_velvet.yumhub.repositories
 import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.repositories.UserRepository
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
+import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
+import com.red_velvet.yumhub.repositories.datasources.SharedPreferenceService
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -23,6 +25,14 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getHash(): String {
         return sharedPreferenceImpl.getHash()!!
+    }
+
+    override suspend fun saveCachingTimeStamp(key: String, cachingTime: Long) {
+        sharedPreferenceImpl.saveLastCachingTimeStamp(key, cachingTime)
+    }
+
+    override suspend fun getLastCachingTimeStamp(key: String): Long {
+        return sharedPreferenceImpl.getLastCachingTime(key)
     }
 
 

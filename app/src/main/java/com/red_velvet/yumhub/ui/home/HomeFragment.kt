@@ -19,7 +19,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoriesRecipeAdapter = RecipeCategoriesAdapter(emptyList(), viewModel)
+        val categoriesRecipeAdapter = RecipesCategoriesAdapter(emptyList(), viewModel)
         val popularRecipeAdapter = PopularRecipeAdapter(emptyList(), viewModel)
         val healthyRecipeAdapter = HealthyRecipeAdapter(emptyList(), viewModel)
         val quickRecipeAdapter = QuickRecipeAdapter(emptyList(), viewModel)

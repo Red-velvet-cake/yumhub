@@ -16,7 +16,7 @@ import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
 import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
-import com.red_velvet.yumhub.repositories.RemoteDataSource
+import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject

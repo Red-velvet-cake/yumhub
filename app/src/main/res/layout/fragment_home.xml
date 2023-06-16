@@ -8,205 +8,200 @@
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.home.HomeViewModel" />
-
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".ui.home.HomeFragment">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
-            <ImageView
-                android:id="@+id/featured_home_image_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/home"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/category_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/categories"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/featured_home_image_view" />
-
-
-            <TextView
-                android:id="@+id/category_see_all_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:drawableEnd="@drawable/arrowright"
-                android:drawablePadding="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="See all"
-                android:textColor="#5C000000"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/category_title_text_view" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/categoryRecyclerView"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/my_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/spacing_normal"
-                android:paddingEnd="@dimen/spacing_x_small"
-                app:items="@{viewModel.State.categoryRecipesUiState}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_height="48dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/category_title_text_view"
-                tools:listitem="@layout/item_recipe_category" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/icon_toolbar"
+                app:subtitle="@string/choose_the_best_dish_for_you"
+                app:subtitleTextAppearance="@style/MyToolbarSubtitleTextAppearance"
+                app:title="@string/hello_yoyo"
+                app:titleTextAppearance="@style/MyToolbarTitleTextAppearance" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:id="@id/quick_recipe_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/quick_recipes"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-
-            <TextView
-                android:id="@+id/quick_recipe_see_all_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:drawableEnd="@drawable/arrowright"
-                android:drawablePadding="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/see_all"
-                android:textColor="#5C000000"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/quickRecyclerView"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/spacing_normal"
-                android:paddingEnd="@dimen/spacing_x_small"
-                app:items="@{viewModel.state.quickRecipesUiState}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/quick_recipe_title_text_view"
-                tools:listitem="@layout/item_quick_recipe" />
-
-            <TextView
-                android:id="@+id/popular_recipe_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Popular Recipes"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/quickRecyclerView" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".ui.home.HomeFragment">
 
 
-            <TextView
-                android:id="@+id/popular_recipe_see_all_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:drawableEnd="@drawable/arrowright"
-                android:drawablePadding="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/see_all"
-                android:textColor="#5C000000"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/quickRecyclerView" />
+                <ImageView
+                    android:id="@+id/featured_home_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:src="@drawable/home"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/popularRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/spacing_normal"
-                android:paddingEnd="@dimen/spacing_x_small"
-                app:items="@{viewModel.state.popularRecipesUiState}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/popular_recipe_title_text_view"
-                tools:listitem="@layout/item_main_recipe" />
+                <TextView
+                    android:id="@+id/category_title_text_view"
+                    style="@style/Style_Home_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/categories"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/featured_home_image_view" />
 
-            <TextView
-                android:id="@+id/healthy_recipe_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/healthy_recipes"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/popularRecyclerView" />
 
-            <TextView
-                android:id="@+id/healthy_recipe_see_all_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:drawableEnd="@drawable/arrowright"
-                android:drawablePadding="8dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/see_all"
-                android:textColor="#5C000000"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/healthy_recipe_title_text_view" />
+                <TextView
+                    android:id="@+id/category_see_all_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawableEnd="@drawable/arrowright"
+                    android:drawablePadding="@dimen/small_space"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/see_all"
+                    android:textColor="#5C000000"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/category_title_text_view" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/healthyRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/spacing_normal"
-                android:paddingEnd="@dimen/spacing_x_small"
-                app:items="@{viewModel.state.healthyRecipesUiState}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/healthy_recipe_title_text_view"
-                tools:listitem="@layout/item_main_recipe" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/categoryRecyclerView"
+                    style="@style/Style_Home_Recycler_View"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category_title_text_view"
+                    app:items="@{viewModel.State.categoryRecipesUiState}"
+                    tools:listitem="@layout/item_recipe_category" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@id/quick_recipe_title_text_view"
+                    style="@style/Style_Home_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quick_recipes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
 
-    </ScrollView>
+
+                <TextView
+                    android:id="@+id/quick_recipe_see_all_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large_24"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawableEnd="@drawable/arrowright"
+                    android:drawablePadding="@dimen/small_space"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/see_all"
+                    android:textColor="#5C000000"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/quickRecyclerView"
+                    style="@style/Style_Home_Recycler_View"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quick_recipe_title_text_view"
+                    app:items="@{viewModel.state.quickRecipesUiState}"
+                    tools:listitem="@layout/item_quick_recipe" />
+
+                <TextView
+                    android:id="@+id/popular_recipe_title_text_view"
+                    style="@style/Style_Home_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/popular_recipes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quickRecyclerView" />
+
+
+                <TextView
+                    android:id="@+id/popular_recipe_see_all_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large_24"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawableEnd="@drawable/arrowright"
+                    android:drawablePadding="@dimen/small_space"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/see_all"
+                    android:textColor="#5C000000"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quickRecyclerView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularRecyclerView"
+                    style="@style/Style_Home_Recycler_View"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_space"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popular_recipe_title_text_view"
+                    app:items="@{viewModel.state.popularRecipesUiState}"
+                    tools:listitem="@layout/item_main_recipe" />
+
+                <TextView
+                    android:id="@+id/healthy_recipe_title_text_view"
+                    style="@style/Style_Home_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/healthy_recipes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularRecyclerView" />
+
+                <TextView
+                    android:id="@+id/healthy_recipe_see_all_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawableEnd="@drawable/arrowright"
+                    android:drawablePadding="@dimen/small_space"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/see_all"
+                    android:textColor="#5C000000"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/healthy_recipe_title_text_view" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/healthyRecyclerView"
+                    style="@style/Style_Home_Recycler_View"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/healthy_recipe_title_text_view"
+                    app:items="@{viewModel.state.healthyRecipesUiState}"
+                    tools:listitem="@layout/item_main_recipe" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
 
 </layout>

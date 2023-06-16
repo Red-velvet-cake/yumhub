@@ -33,8 +33,30 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
 @BindingAdapter(value=["app:showIfListEmpty","loading"])
 fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
     view.isVisible = value
-    if(loading){
-        view.isVisible =false;
+    if (loading) {
+        view.isVisible = false;
+    }
+}
+@BindingAdapter("app:showIfTrue")
+fun showIfTrue(view: View, value: Boolean) {
+    if(value){
+        view.visibility =View.VISIBLE
+    }else{
+        view.visibility =View.GONE
+    }
+}
+@BindingAdapter("app:changeStyleIfTrue")
+fun changeStyleIfTrue(view: View, value: Boolean) {
+    if(value){
+        view.setBackgroundResource(R.drawable.rounded_border_full_indectior)
+        val layoutParams = view.layoutParams
+        layoutParams.width =  view.context.resources.getDimensionPixelSize(R.dimen.space_40dp)
+        view.layoutParams = layoutParams
+    }else{
+        view.setBackgroundResource(R.drawable.rounded_border_indecator)
+        val layoutParams = view.layoutParams
+        layoutParams.width = view.context.resources.getDimensionPixelSize(R.dimen.size_6dp)
+        view.layoutParams = layoutParams
     }
 }
 @BindingAdapter("app:showIfAsc")
@@ -122,15 +144,22 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
 }
 
 
-@BindingAdapter(value = ["app:setItems"])
-fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
-    if (items != null) {
-        (view.adapter as BaseAdapter<T>).setItems(items)
-    } else {
-        (view.adapter as BaseAdapter<T>).setItems(emptyList())
-    }
+@BindingAdapter(value = ["app:items"])
+fun <T> setRecyclerItems(view: RecyclerView, items: List<T>) {
+    (view.adapter as BaseAdapter<T>?)?.setItems(items)
+
 }
+
+@BindingAdapter(value = ["app:setDrawableResource"])
+fun setDrawableResourceToImageView(view: ImageView, image: String) {
+    val resID = view.context.resources.getIdentifier(image, null, view.context.packageName)
+    view.setImageResource(resID)
+}
+
 @BindingAdapter(value = ["app:imageUrl"])
-fun loadImage(view: ImageView, image: String?) {
-    Glide.with(view).load(image).placeholder(R.drawable.baseline_image_24).into(view)
+fun loadImage(view: ImageView, imageUrl: String) {
+    Glide.with(view).load(imageUrl)
+        .fitCenter()
+        .centerCrop()
+        .into(view)
 }

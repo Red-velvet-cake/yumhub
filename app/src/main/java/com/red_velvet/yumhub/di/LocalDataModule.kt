@@ -4,10 +4,11 @@ import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import com.red_velvet.yumhub.domain.repositories.UserRepository
 import com.red_velvet.yumhub.local.LocalDataSourceImpl
 import com.red_velvet.yumhub.remote.RemoteDataSourceImpl
-import com.red_velvet.yumhub.repositories.LocalDataSource
 import com.red_velvet.yumhub.repositories.RecipesRepositoryImpl
 import com.red_velvet.yumhub.repositories.RemoteDataSource
 import com.red_velvet.yumhub.repositories.UserRepositoryImpl
+import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
+import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
