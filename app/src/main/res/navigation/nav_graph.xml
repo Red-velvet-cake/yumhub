@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/recipeCategoryFragment">
+    app:startDestination="@id/dietFragment">
 
-
+    <fragment
+        android:id="@+id/dietFragment"
+        android:name="com.red_velvet.yumhub.ui.deit.DietFragment"
+        android:label=""
+        tools:layout="@layout/fragment_deit" />
     <fragment
         android:id="@+id/SearchFragment"
         android:name="com.red_velvet.yumhub.ui.search.SearchFragment"

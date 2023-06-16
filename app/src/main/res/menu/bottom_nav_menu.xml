@@ -18,7 +18,7 @@
         android:title="@string/search" />
 
     <item
-        android:id="@+id/signupFragment"
+        android:id="@+id/dietFragment"
         android:icon="@drawable/deit_bottom_selecter"
         android:title="@string/diet" />
 
