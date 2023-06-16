@@ -24,10 +24,6 @@
         <item name="chipCornerRadius">@dimen/fab_margin</item>
     </style>
 
-    <style name="ShapeableImageViewStyle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
     <style name="CustomTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/black_title</item>
         <item name="android:fontFamily">@font/roboto_medium</item>

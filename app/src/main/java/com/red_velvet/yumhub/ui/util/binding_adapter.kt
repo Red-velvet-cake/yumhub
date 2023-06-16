@@ -146,7 +146,7 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
 
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>) {
-    (view.adapter as BaseAdapter<T>?)?.setItems(items ?: emptyList())
+    (view.adapter as BaseAdapter<T>?)?.setItems(items)
 
 }
 
