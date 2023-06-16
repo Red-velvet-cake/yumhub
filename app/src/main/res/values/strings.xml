@@ -98,4 +98,6 @@
     <string name="let_s_go">Let’s go</string>
     <string name="hello_yoyo">Hello, yoyo</string>
     <string name="choose_the_best_dish_for_you">Choose the best dish for you</string>
+    <string name="step">Step</string>
+    <string name="steps">Steps</string>
 </resources>

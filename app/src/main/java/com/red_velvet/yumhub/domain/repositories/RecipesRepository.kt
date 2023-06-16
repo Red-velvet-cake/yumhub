@@ -1,5 +1,7 @@
 package com.red_velvet.yumhub.domain.repositories
 
+
+import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
@@ -32,6 +34,10 @@ interface RecipesRepository {
         includeNutrition: Boolean? = null,
     ): RecipeInformationEntity
 
+    suspend fun getAnalyzedRecipeInstructions(
+        id: Int,
+        stepBreakdown: Boolean? = false,
+    ):List<AnalyzedInstructionsEntity>
     suspend fun getSimilarRecipes(
         id: Int,
         number: Int? = 3,

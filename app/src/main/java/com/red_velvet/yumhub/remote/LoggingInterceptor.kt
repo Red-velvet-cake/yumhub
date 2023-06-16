@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.data.remote
+package com.red_velvet.yumhub.remote
 
 import okhttp3.Interceptor
 import okhttp3.Response

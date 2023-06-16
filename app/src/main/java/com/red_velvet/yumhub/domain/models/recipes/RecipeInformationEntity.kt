@@ -12,7 +12,7 @@ data class RecipeInformationEntity(
     val servings: Int,
     val summary: String,
     val title: String,
-    val analyzedInstructionEntities: List<AnalyzedInstructionsEntity>,
+    val analyzedInstructions: List<AnalyzedInstructionsEntity>,
     val cheap: Boolean,
     val cookingMinutes: Int,
     val cuisines: List<String>,

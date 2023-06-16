@@ -22,7 +22,7 @@ fun SearchRecipeEntity.toRecipeSearchResultMapper(): SearchResultUIState {
         readyInMinutes =formatMinutesAsDuration(readyInMinutes.orZero()).orEmpty(),
         title = title.orEmpty(),
         ingredientNumber = analyzedInstructions
-            .flatMap { instruction -> instruction.stepEntities }
-            .sumOf { step -> step.ingredientsEntity.size }
+            .flatMap { instruction -> instruction.steps }
+            .sumOf { step -> step.ingredientsEntity!!.size }
     )
 }

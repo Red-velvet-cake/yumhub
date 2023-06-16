@@ -19,7 +19,7 @@ abstract class BaseViewModel<T>(state: T) : ViewModel() {
         callee: suspend () -> V,
         onSuccess: (V) -> Unit,
         onError: (ErrorUIState) -> Unit,
-        dispatcher: CoroutineDispatcher = Dispatchers.IO
+        dispatcher: CoroutineDispatcher = Dispatchers.IO,
     ) {
         viewModelScope.launch(dispatcher) {
             try {

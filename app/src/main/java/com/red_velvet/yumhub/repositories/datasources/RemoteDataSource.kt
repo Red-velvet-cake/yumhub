@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.repositories.datasources
 
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
@@ -27,17 +28,17 @@ interface RemoteDataSource {
         excludeIngredients: String? = "",
         sort: String? = "",
         sortDirection: String? = "asc",
-        addRecipeInformation: Boolean? = true
+        addRecipeInformation: Boolean? = true,
     ): RecipeSearchPaginationResource
 
     suspend fun getRecipesByMealType(
         type: String? = "",
-        addRecipeInformation: Boolean? = true
+        addRecipeInformation: Boolean? = true,
     ): RecipeSearchPaginationResource
 
     suspend fun getRecipeInformation(
         id: Int,
-        includeNutrition: Boolean? = false
+        includeNutrition: Boolean? = false,
     ): RecipeInformationResource
 
     suspend fun getSimilarRecipes(id: Int, number: Int? = 3): SimilarRecipesResource
@@ -57,7 +58,7 @@ interface RemoteDataSource {
     suspend fun getIngredientInformation(
         id: Int,
         amount: Int? = null,
-        unit: String? = null
+        unit: String? = null,
     ): IngredientInformationResource
 
     suspend fun getSubstitutesIngredient(ingredientName: String?): IngredientSubstituteResource
@@ -65,15 +66,20 @@ interface RemoteDataSource {
     suspend fun getWeekMealPlan(
         date: String,
         username: String,
-        hash: String
+        hash: String,
     ): WeekMealPlanResource
 
     suspend fun addToMealPlan(
         addToMeal: AddMealResource,
         username: String,
-        hash: String
+        hash: String,
     ): ResultAddToMealPlanResource
 
     suspend fun connectUser(userData: UserInformationResource): ConnectUserResource
+
+    suspend fun getAnalyzedInstructions(
+        id: Int,
+        stepBreakdown: Boolean?,
+    ): List<AnalyzedInstructionResource>
 
 }

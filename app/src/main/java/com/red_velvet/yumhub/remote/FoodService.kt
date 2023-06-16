@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.remote
 
+import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
@@ -110,4 +111,9 @@ interface FoodService {
         @Body userData: UserInformationResource
     ): Response<ConnectUserResource>
 
+    @GET("recipes/{id}/analyzedInstructions")
+    suspend fun getAnalyzedInstructions(
+        @Path("id") id: Int,
+        @Query("stepBreakdown") stepBreakdown: Boolean? = false,
+        ): Response<List<AnalyzedInstructionResource>>
 }
