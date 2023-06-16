@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.domain.mapper
+import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.utils.orEmptyList
 import com.red_velvet.yumhub.domain.utils.orFalse
-import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.utils.orZero
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 

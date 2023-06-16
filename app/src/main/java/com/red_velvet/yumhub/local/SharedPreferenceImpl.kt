@@ -1,11 +1,11 @@
 package com.red_velvet.yumhub.local
 
 import android.content.SharedPreferences
-import com.red_velvet.yumhub.repositories.SharedPreferenceService
+import com.red_velvet.yumhub.repositories.datasources.SharedPreferenceService
 import javax.inject.Inject
 
 class SharedPreferenceImpl @Inject constructor(
-    private val shearedPreferences: SharedPreferences,
+    private val shearedPreferences: SharedPreferences
 ) : SharedPreferenceService {
 
     override fun saveUserName(name: String) {
@@ -34,6 +34,16 @@ class SharedPreferenceImpl @Inject constructor(
         }
     }
 
+    override fun saveLastCachingTimeStamp(key: String, time: Long) {
+        shearedPreferences.edit {
+            putLong(key, time)
+        }
+    }
+
+    override fun getLastCachingTime(key: String): Long {
+        return shearedPreferences.getLong(key, 0)
+    }
+
     private fun SharedPreferences.edit(
         commit: Boolean = false,
         action: SharedPreferences.Editor.() -> Unit
@@ -46,4 +56,6 @@ class SharedPreferenceImpl @Inject constructor(
             editor.apply()
         }
     }
+
+
 }

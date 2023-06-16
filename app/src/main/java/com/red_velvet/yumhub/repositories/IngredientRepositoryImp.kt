@@ -1,13 +1,14 @@
 package com.red_velvet.yumhub.repositories
 
-import com.red_velvet.yumhub.domain.mapper.toIngredientInformation
-import com.red_velvet.yumhub.domain.mapper.toIngredientSearchResult
-import com.red_velvet.yumhub.domain.mapper.toIngredientSubstitute
 import com.red_velvet.yumhub.domain.models.IngredientSearchEntity
 import com.red_velvet.yumhub.domain.models.IngredientSubstitutesEntity
 import com.red_velvet.yumhub.domain.models.ingredientInformation.IngredientInformationEntity
 import com.red_velvet.yumhub.domain.repositories.IngredientRepository
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientSearchResultResource
+import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
+import com.red_velvet.yumhub.repositories.mappers.toIngredientInformation
+import com.red_velvet.yumhub.repositories.mappers.toIngredientSearchResult
+import com.red_velvet.yumhub.repositories.mappers.toIngredientSubstitute
 import javax.inject.Inject
 
 class IngredientRepositoryImp @Inject constructor(

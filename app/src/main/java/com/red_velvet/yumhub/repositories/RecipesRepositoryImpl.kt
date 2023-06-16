@@ -3,13 +3,13 @@ package com.red_velvet.yumhub.repositories
 
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
-import com.red_velvet.yumhub.domain.mapper.toSimilarRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickAnswerEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
@@ -19,11 +19,15 @@ import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
+import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
+import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
 import com.red_velvet.yumhub.repositories.mappers.toEntity
 import com.red_velvet.yumhub.repositories.mappers.toHealthyRecipeEntity
 import com.red_velvet.yumhub.repositories.mappers.toLocalDto
 import com.red_velvet.yumhub.repositories.mappers.toPopularEntity
 import com.red_velvet.yumhub.repositories.mappers.toQuickRecipeEntity
+import com.red_velvet.yumhub.repositories.mappers.toRecipeEntity
+import com.red_velvet.yumhub.repositories.mappers.toSimilarRecipeEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -55,9 +59,9 @@ class RecipesRepositoryImpl @Inject constructor(
         sortDirection: String?
     ): List<SearchRecipeEntity> {
         return remoteDataSource.searchRecipe(
-            query=  query,
-            sort= sort,
-            sortDirection=sortDirection
+            query = query,
+            sort = sort,
+            sortDirection = sortDirection
         ).results?.map(RecipeInformationResource::toRecipeSearchEntity)
             ?: emptyList()
     }
@@ -118,6 +122,12 @@ class RecipesRepositoryImpl @Inject constructor(
 
     override suspend fun getCategoriesFromRemote(): List<CategoryEntity> {
         return localDataSource.getCategories().map(CategoryLocalDto::toEntity)
+    }
+
+    override suspend fun getSingleRecipeCategory(categoryType: String): List<RecipeEntity> {
+        return remoteDataSource.getRecipesByMealType(type = categoryType).results?.map(
+            RecipeInformationResource::toRecipeEntity
+        ) ?: emptyList()
     }
 
 }

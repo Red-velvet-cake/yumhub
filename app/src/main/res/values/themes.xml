@@ -24,8 +24,4 @@
         <item name="chipCornerRadius">@dimen/fab_margin</item>
     </style>
 
-    <style name="ShapeableImageViewStyle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
 </resources>
