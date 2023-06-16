@@ -3,7 +3,6 @@ package com.red_velvet.yumhub.repositories
 
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
-import com.red_velvet.yumhub.domain.mapper.toSimilarRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
