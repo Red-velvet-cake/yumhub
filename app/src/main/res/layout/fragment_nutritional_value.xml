@@ -32,8 +32,8 @@
         app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
-        android:layout_width="match_parent"
+        android:id="@+id/imIcon"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_xxxlarge"
         android:src="@drawable/icon_value"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/etSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -52,10 +52,9 @@
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
         app:layout_constraintEnd_toStartOf="@+id/materialButton2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imIcon" />
 
     <com.google.android.material.button.MaterialButton
 
@@ -66,12 +65,11 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/primary"
         android:text="Apply"
-        app:layout_constraintBottom_toBottomOf="@+id/editText3"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toTopOf="@+id/editText3"
-        app:layout_constraintVertical_bias="0.562" />
+        app:layout_constraintStart_toEndOf="@+id/etSearch"
+        app:layout_constraintTop_toTopOf="@+id/etSearch" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvCalories"
@@ -82,9 +80,8 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toStartOf="@+id/cvFat"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3">
+        app:layout_constraintTop_toBottomOf="@+id/etSearch">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
@@ -92,7 +89,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
@@ -101,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_calories"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Calories"
+                android:text="@string/calories"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
                 app:layout_constraintStart_toStartOf="parent"
@@ -169,7 +165,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cvCalories"
-        app:layout_constraintTop_toBottomOf="@+id/editText3">
+        app:layout_constraintTop_toBottomOf="@+id/etSearch">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -188,7 +184,7 @@
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="start"
-                android:text="Fat"
+                android:text="@string/fat"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -266,7 +262,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
@@ -277,7 +272,7 @@
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="start"
-                android:text="Carbs"
+                android:text="@string/carbs"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -338,7 +333,6 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvProtine"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -346,7 +340,6 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/materialButton2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cvCarbs"
         app:layout_constraintTop_toBottomOf="@+id/cvFat">
 
@@ -356,7 +349,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="@+id/cvCarbs"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/constraintLayout2">
 
             <com.google.android.material.textview.MaterialTextView
@@ -367,7 +359,7 @@
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="start"
-                android:text="Protine"
+                android:text="@string/protein"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -398,7 +390,7 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProtineValue"
+                android:id="@+id/tvProteinValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -421,8 +413,8 @@
                 android:text="grams"
                 android:textColor="@color/fontColor_secondary"
                 android:textSize="@dimen/font_size_title"
-                app:layout_constraintStart_toStartOf="@+id/tvProtineValue"
-                app:layout_constraintTop_toBottomOf="@+id/tvProtineValue" />
+                app:layout_constraintStart_toStartOf="@+id/tvProteinValue"
+                app:layout_constraintTop_toBottomOf="@+id/tvProteinValue" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

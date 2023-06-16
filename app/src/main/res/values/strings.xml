@@ -60,4 +60,8 @@
     <string name="quick_recipes">Quick Recipes</string>
     <string name="see_all">See all</string>
     <string name="healthy_recipes">Healthy Recipes</string>
+    <string name="protein">Protein</string>
+    <string name="carbs">Carbs</string>
+    <string name="fat">Fat</string>
+    <string name="calories">Calories</string>
 </resources>
