@@ -1,8 +1,10 @@
-package com.red_velvet.yumhub.ui
+package com.red_velvet.yumhub.ui.main
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -10,12 +12,15 @@ import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.ActivityMainBinding
 import com.red_velvet.yumhub.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override val LOG_TAG: String = "nenene"
     private val navController by lazy { findNavController(R.id.nav_host_fragment_content_main) }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun getLayoutResId(): Int = R.layout.activity_main
 
@@ -26,6 +31,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         initNavigationDestinationListener()
         setupActionBarWithNavController(navController)
         binding.bottomNav.setupWithNavController(navController)
+        observeUIEvents()
     }
 
 
@@ -47,6 +53,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 else -> {
                     binding.bottomNav.isVisible = false
                     supportActionBar?.show()
+                }
+            }
+        }
+    }
+
+    private fun observeUIEvents() {
+        lifecycleScope.launch {
+            val effect = viewModel.effect.first()
+            when (effect) {
+                MainUIEffect.NavigateToSignUp -> {
+                    navController.navigate(R.id.signupFragment)
+                }
+
+                MainUIEffect.NavigateToHome -> {
+                    navController.navigate(R.id.homeFragment)
                 }
             }
         }
