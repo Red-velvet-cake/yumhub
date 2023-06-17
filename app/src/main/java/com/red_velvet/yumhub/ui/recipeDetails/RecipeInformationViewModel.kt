@@ -1,6 +1,6 @@
 package com.red_velvet.yumhub.ui.recipeDetails
 
-import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
+import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.usecases.recipes.GetRecipeInformationUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -26,7 +26,7 @@ class RecipeInformationViewModel @Inject constructor(
         )
     }
 
-    private fun onSuccess(recipe: RecipeInformation) {
+    private fun onSuccess(recipe: RecipeInformationEntity) {
         _state.update { recipe.map().copy(isLoading = false) }
     }
 

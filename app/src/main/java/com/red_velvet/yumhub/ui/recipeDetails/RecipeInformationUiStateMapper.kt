@@ -1,8 +1,9 @@
 package com.red_velvet.yumhub.ui.recipeDetails
 
-import com.red_velvet.yumhub.domain.models.recipes.RecipeInformation
+import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 
-fun RecipeInformation.map(): RecipeInformationUIState {
+
+fun RecipeInformationEntity.map(): RecipeInformationUIState {
     return RecipeInformationUIState(
         image = this.image,
         title = this.title,
@@ -14,7 +15,7 @@ fun RecipeInformation.map(): RecipeInformationUIState {
     )
 }
 
-fun RecipeInformation.toDishTypeUIState(): List<DishTypeUIState> {
+fun RecipeInformationEntity.toDishTypeUIState(): List<DishTypeUIState> {
     return this.dishTypes.map {
         DishTypeUIState(
             dishType = it
@@ -22,8 +23,8 @@ fun RecipeInformation.toDishTypeUIState(): List<DishTypeUIState> {
     }
 }
 
-fun RecipeInformation.toIngredientsUIState(): List<IngredientsUIState> {
-    return this.extendedIngredients.map { extendedIngredient ->
+fun RecipeInformationEntity.toIngredientsUIState(): List<IngredientsUIState> {
+    return extendedIngredientEntities.map { extendedIngredient ->
         IngredientsUIState(
             image = extendedIngredient.image,
             original = extendedIngredient.original
