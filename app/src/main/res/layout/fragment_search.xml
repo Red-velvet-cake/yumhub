@@ -67,15 +67,11 @@
                     app:srcCompat="@drawable/cancel"
                     />
                 <androidx.cardview.widget.CardView
-                    android:layout_width="@dimen/spacing_xxxxlarge"
-                    android:layout_height="match_parent"
+                    style="@style/CardSearchFilterStyle"
                     app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
                     app:InputText="@{viewModel.uiState.searchInput}"
                     app:sortDir="@{viewModel.uiState.sortDirection}"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'
-                    android:background="@color/green_green100"
-                    android:backgroundTint="@color/green_green100"
-                    android:elevation="@dimen/no_width"
                     app:cardElevation="@dimen/no_width"
                     app:cardCornerRadius="@dimen/_75dp"
                    >
@@ -87,14 +83,10 @@
 
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_width="@dimen/spacing_xxxxlarge"
-                    android:layout_height="match_parent"
+                    style="@style/CardSearchFilterStyle"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("dsc")}'
                     app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
                     app:showIfAsc="@{viewModel.uiState.sortDirection}"
-                    android:background="@color/green_green100"
-                    android:backgroundTint="@color/green_green100"
-                    android:elevation="@dimen/no_width"
                     app:cardElevation="@dimen/no_width"
                     app:cardCornerRadius="@dimen/_75dp"
                     >
@@ -106,14 +98,10 @@
 
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_width="@dimen/spacing_xxxxlarge"
-                    android:layout_height="match_parent"
+                    style="@style/CardSearchFilterStyle"
                     app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'
                     app:showIfDsc="@{viewModel.uiState.sortDirection}"
-                    android:background="@color/green_green100"
-                    android:backgroundTint="@color/green_green100"
-                    android:elevation="@dimen/no_width"
                     app:cardElevation="@dimen/no_width"
                     app:cardCornerRadius="@dimen/_75dp"
                     >
@@ -165,70 +153,48 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Popularity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 style="@style/Chip.Regular.Small"
                 android:text="@string/popularity"
-                android:checkable="true"
                 android:onClick='@{() -> viewModel.onSelectFilterType("popularity")}'
-                android:paddingHorizontal="@dimen/_12dp"
-                android:paddingVertical="@dimen/_6dp"
                 app:checkedIconEnabled="false"
       />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Healthy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/healthy"
                 android:onClick='@{() -> viewModel.onSelectFilterType("healthy")}'
-                android:paddingHorizontal="@dimen/_12dp"
-                android:paddingVertical="@dimen/_6dp"
-                app:selectionRequired="true"
                 style="@style/Chip.Regular.Small"
                 app:checkedIconEnabled="false"
            />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/time"
                 android:onClick='@{() -> viewModel.onSelectFilterType("time")}'
-                android:paddingHorizontal="@dimen/_12dp"
-                android:paddingVertical="@dimen/_6dp"
                 style="@style/Chip.Regular.Small"
                 app:checkedIconEnabled="false"
            />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Carbs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/carbs"
                 android:onClick='@{() -> viewModel.onSelectFilterType("carbs")}'
-                android:paddingHorizontal="@dimen/_12dp"
-                android:paddingVertical="@dimen/_6dp"
                 style="@style/Chip.Regular.Small"
                 app:checkedIconEnabled="false"
   />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_calories"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 style="@style/Chip.Regular.Small"
+                app:selectionRequired="true"
                 android:text="@string/calories"
                 android:onClick='@{() -> viewModel.onSelectFilterType("calories")}'
-                android:paddingHorizontal="@dimen/_12dp"
-                android:paddingVertical="@dimen/_6dp"
-                android:textColor="@color/black_title_60"
                 app:checkedIconEnabled="false"
  />
         </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_search_result"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/no_width"
+            android:layout_height="@dimen/no_width"
             android:clipToPadding="false"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -257,34 +223,22 @@
             />
         <TextView
             android:id="@+id/textview_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large_24"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:textColor="@color/black_title_60"
-            android:textSize="@dimen/text_size_20"
+            style="@style/CustomSearchTextViewTitleStyle"
             app:resultList="@{viewModel.uiState.searchResult}"
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
-            android:fontFamily="@font/roboto_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView"
             android:text="@string/search_your_food"
             />
         <TextView
-            android:layout_width="@dimen/_200dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            style="@style/CustomTextViewSearchSubTitleStyle"
             app:resultList="@{viewModel.uiState.searchResult}"
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:textColor="@color/black_title_36"
-            android:textSize="@dimen/font_size_label"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title"
@@ -304,30 +258,18 @@
             />
         <TextView
             android:id="@+id/textview_title_404"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large_24"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:textColor="@color/black_title_60"
-            android:textSize="@dimen/text_size_20"
+            style="@style/CustomSearchTextViewTitleStyle"
             app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
-            android:fontFamily="@font/roboto_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView_404"
             android:text="@string/not_found"
             />
         <TextView
-            android:layout_width="@dimen/_200dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            style="@style/CustomTextViewSearchSubTitleStyle"
             app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:textColor="@color/black_title_36"
-            android:textSize="@dimen/font_size_label"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title_404"
@@ -346,28 +288,16 @@
             />
         <TextView
             android:id="@+id/textview_title_no_internet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large_24"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:textColor="@color/black_title_60"
-            android:textSize="@dimen/text_size_20"
+            style="@style/CustomSearchTextViewTitleStyle"
             android:showNoInternet="@{viewModel.uiState.error}"
-            android:fontFamily="@font/roboto_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet"
             android:text="@string/internet_is_not_available"
             />
         <TextView
-            android:layout_width="@dimen/_200dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            style="@style/CustomTextViewSearchSubTitleStyle"
             android:showNoInternet="@{viewModel.uiState.error}"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:textColor="@color/black_title_36"
-            android:textSize="@dimen/font_size_label"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title_no_internet"

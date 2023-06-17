@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.repositories
 
 import com.red_velvet.yumhub.domain.models.UserInformationEntity
+import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
 import com.red_velvet.yumhub.domain.repositories.UserRepository
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
@@ -24,7 +25,7 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getHash(): String {
-        return sharedPreferenceImpl.getHash()!!
+        return sharedPreferenceImpl.getHash() ?: throw NetworkException.UnAuthorizedException
     }
 
     override suspend fun saveCachingTimeStamp(key: String, cachingTime: Long) {

@@ -8,7 +8,7 @@ class GetSingleCategoryUseCase @Inject constructor(
     private val repository: RecipesRepository
 ) {
 
-    suspend operator fun invoke(): List<RecipeEntity> {
-        return repository.getSingleRecipeCategory("main course")
+    suspend operator fun invoke(type: String?, sort: String?): List<RecipeEntity> {
+        return repository.getSingleRecipeCategory(type, sort)
     }
 }

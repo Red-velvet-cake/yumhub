@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
 
     >
 
@@ -12,7 +10,7 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/SearchFragment"
+        android:id="@+id/searchFragment"
         android:enabled="true"
         android:icon="@drawable/search_bottom_selected"
         android:title="@string/search" />

@@ -70,5 +70,5 @@ interface RecipesRepository {
 
     suspend fun getCategoriesFromRemote(): List<CategoryEntity>
 
-    suspend fun getSingleRecipeCategory(categoryType: String): List<RecipeEntity>
+    suspend fun getSingleRecipeCategory(categoryType: String?, sort: String?): List<RecipeEntity>
 }

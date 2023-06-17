@@ -133,8 +133,11 @@ class RecipesRepositoryImpl @Inject constructor(
         return localDataSource.getCategories().map(CategoryLocalDto::toEntity)
     }
 
-    override suspend fun getSingleRecipeCategory(categoryType: String): List<RecipeEntity> {
-        return remoteDataSource.getRecipesByMealType(type = categoryType).results?.map(
+    override suspend fun getSingleRecipeCategory(
+        categoryType: String?,
+        sort: String?
+    ): List<RecipeEntity> {
+        return remoteDataSource.getRecipesByMealType(type = categoryType, sort = sort).results?.map(
             RecipeInformationResource::toRecipeEntity
         ) ?: emptyList()
     }

@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.home.HomeViewModel" />
+
     </data>
 
     <LinearLayout
@@ -72,6 +73,7 @@
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllCategoryRecipes()}"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
@@ -88,7 +90,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/category_title_text_view"
                     app:items="@{viewModel.State.categoryRecipesUiState}"
-                    tools:listitem="@layout/item_recipe_category" />
+                    tools:listitem="@layout/item_home_recipe_categories" />
 
                 <TextView
                     android:id="@id/quick_recipe_title_text_view"
@@ -106,6 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large_24"
                     android:layout_marginEnd="@dimen/spacing_normal"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllQuickRecipes(0)}"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
@@ -144,6 +147,7 @@
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllQuickRecipes(1)}"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
@@ -181,6 +185,7 @@
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/see_all"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllQuickRecipes(2)}"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintEnd_toEndOf="parent"

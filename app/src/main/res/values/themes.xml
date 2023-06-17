@@ -22,6 +22,13 @@
         <item name="chipStrokeWidth">1dp</item>
         <item name="android:textColor">@color/chip_text_color</item>
         <item name="chipCornerRadius">@dimen/fab_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">@dimen/_12dp</item>
+        <item name="android:paddingTop">@dimen/_6dp</item>
+        <item name="android:paddingLeft">@dimen/_12dp</item>
+        <item name="android:paddingBottom">@dimen/_6dp</item>
+
     </style>
 
     <style name="CustomTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -29,9 +36,8 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/text_size_24</item>
         <item name="android:layout_marginStart">@dimen/fab_margin</item>
-        <item name="android:layout_width">wrap_content</item> <!-- Add layout_width attribute -->
-        <item name="android:layout_height">wrap_content</item> <!-- Add layout_height attribute -->
-        <!-- Add any other custom style attributes you desire -->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="CustomSubTitleTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -62,4 +68,30 @@
         <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator</item>
     </style>
+    <style name="CardSearchFilterStyle">
+        <item name="android:background">@color/green_green100</item>
+        <item name="android:backgroundTint">@color/green_green100</item>
+        <item name="android:elevation">@dimen/no_width</item>
+        <item name="android:layout_width">@dimen/spacing_xxxxlarge</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="CustomSearchTextViewTitleStyle" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_large_24</item>
+        <item name="android:layout_marginBottom">@dimen/fab_margin</item>
+        <item name="android:textColor">@color/black_title_60</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+    <style name="CustomTextViewSearchSubTitleStyle">
+        <item name="android:layout_width">@dimen/_200dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/black_title_36</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
 </resources>
