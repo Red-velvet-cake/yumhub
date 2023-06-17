@@ -11,16 +11,18 @@
             type="com.red_velvet.yumhub.ui.deit.DietViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/bg_white"
         >
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_diet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_toolbar_diet"
+            app:layout_constraintTop_toTopOf="parent"
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -32,6 +34,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
+            android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/choose_one_section_of_the_diet"
@@ -40,9 +43,11 @@
             android:textColor="@color/black_title"
             android:layout_marginTop="@dimen/spacing_large_24"
             android:layout_marginHorizontal="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_diet"
             />
             <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_diet"
                 style="@style/Widget.Material3.ChipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,6 +55,10 @@
                 app:chipSpacingHorizontal="@dimen/small_space"
                 app:chipSpacingVertical="0dp"
                 app:selectionRequired="false"
+                android:layout_marginTop="@dimen/fab_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_title"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
@@ -143,40 +152,62 @@
             android:indeterminateTintMode="src_atop"
             android:layout_marginTop="@dimen/spacing_large_24"
             app:showIfLoading="@{viewModel.uiState.loading}"
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_diet_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/small_space"
+
             android:layout_marginHorizontal="@dimen/fab_margin"
             android:paddingTop="@dimen/fab_margin"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:items="@{viewModel.state.dietResult}"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:list="@{viewModel.uiState.dietResult}"
             app:spanCount="2"
-            app:showIfTrue="@{!viewModel.state.dietResult.isEmpty()}"
-            tools:listitem="@layout/item_diet_card" />
+            app:items="@{viewModel.uiState.dietResult}"
+            tools:listitem="@layout/item_diet_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
+            />
 
         <ImageView
+            android:id="@+id/image_view_diet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/diet_cover"
-            app:showIfTrue="@{viewModel.uiState.dietResult.isEmpty()}"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:list="@{viewModel.uiState.dietResult}"
             android:layout_marginTop="@dimen/space_48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
             />
         <TextView
+            android:id="@+id/text_view_subtitle"
             style="@style/deitTextViewStyle"
-            app:showIfTrue="@{viewModel.uiState.dietResult.isEmpty()}"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:list="@{viewModel.uiState.dietResult}"
             android:text="@string/there_are_various_types_of_diets_available"
             android:layout_marginTop="@dimen/spacing_large_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view_diet"
             />
         <TextView
             style="@style/deitTextViewStyle"
-            app:showIfTrue="@{viewModel.uiState.dietResult.isEmpty()}"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:list="@{viewModel.uiState.dietResult}"
             android:text="@string/choose_your_preferred_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_subtitle"
             />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

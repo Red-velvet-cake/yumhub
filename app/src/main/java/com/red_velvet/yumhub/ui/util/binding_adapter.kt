@@ -143,6 +143,27 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
     }
 }
 
+@BindingAdapter(value = ["app:list","app:loading"])
+fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean){
+    if(loading){
+        view.visibility =  View.GONE
+    }else if(list.isEmpty()){
+        view.visibility =  View.VISIBLE
+    }else{
+        view.visibility =  View.GONE
+    }
+}
+@BindingAdapter(value = ["app:list","app:loading"])
+fun<T> hideIfLoadingShowIfListNotEmpty(view: View, list: List<T>,loading:Boolean){
+    if(loading){
+        view.visibility =  View.GONE
+    }else if(list.isNotEmpty()){
+        view.visibility =  View.VISIBLE
+    }else{
+        view.visibility =  View.GONE
+    }
+}
+
 
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>) {
