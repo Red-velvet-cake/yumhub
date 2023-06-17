@@ -1,14 +1,21 @@
 package com.red_velvet.yumhub.ui.search
 
 import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,9 +24,18 @@ class SearchViewModel @Inject constructor(
 )  :BaseViewModel<SearchRecipeUIState>(SearchRecipeUIState())  {
     private  val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
-
+    private var debounceJob: Job? = null
+    private val _searchInputFlow = MutableStateFlow("")
     fun onInputSearchChange(newSearchInput:CharSequence){
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
+        _searchInputFlow.value = newSearchInput.toString()
+        debounceJob?.cancel()
+        debounceJob = viewModelScope.launch {
+            _searchInputFlow
+                .debounce(700)
+                .flowOn(Dispatchers.Default)
+                .collect { onGetData() }
+        }
     }
     fun onSearch(){
         _uiState.update { it.copy(isLoading = true) }
@@ -64,6 +80,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onClear(){
+        _searchInputFlow.value =""
         _uiState.update { it.copy(
             sort = "",
             searchInput = "",

@@ -20,6 +20,7 @@
             android:windowSoftInputMode="adjustPan"
             android:name=".ui.main.MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyApp.MySplash">
