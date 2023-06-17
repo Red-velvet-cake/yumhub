@@ -22,6 +22,12 @@
         <item name="chipStrokeWidth">1dp</item>
         <item name="android:textColor">@color/chip_text_color</item>
         <item name="chipCornerRadius">@dimen/fab_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/_6dp</item>
+        <item name="android:paddingTop">@dimen/_6dp</item>
+        <item name="android:paddingLeft">@dimen/_12dp</item>
+        <item name="android:paddingRight">@dimen/_12dp</item>
     </style>
 
     <style name="CustomTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -29,9 +35,9 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/text_size_24</item>
         <item name="android:layout_marginStart">@dimen/fab_margin</item>
-        <item name="android:layout_width">wrap_content</item> <!-- Add layout_width attribute -->
-        <item name="android:layout_height">wrap_content</item> <!-- Add layout_height attribute -->
-        <!-- Add any other custom style attributes you desire -->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
     </style>
 
     <style name="CustomSubTitleTextViewStyle" parent="Widget.AppCompat.TextView">

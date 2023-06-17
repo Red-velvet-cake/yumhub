@@ -1,13 +1,10 @@
 package com.red_velvet.yumhub.ui.deit
 
 import android.util.Log
-import androidx.room.util.query
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
-import com.red_velvet.yumhub.ui.search.SearchRecipeUIState
-import com.red_velvet.yumhub.ui.search.toRecipeSearchResultMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
