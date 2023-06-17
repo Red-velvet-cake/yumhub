@@ -149,15 +149,13 @@ fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean){
         view.visibility =  View.GONE
     }else if(list.isEmpty()){
         view.visibility =  View.VISIBLE
-    }else{
-        view.visibility =  View.GONE
     }
 }
-@BindingAdapter(value = ["app:list","app:loading"])
-fun<T> hideIfLoadingShowIfListNotEmpty(view: View, list: List<T>,loading:Boolean){
+@BindingAdapter(value = ["app:listResult","app:loading"])
+fun<T> hideIfLoadingShowIfListNotEmpty(view: View, listResult: List<T>,loading:Boolean){
     if(loading){
         view.visibility =  View.GONE
-    }else if(list.isNotEmpty()){
+    }else if(listResult.isNotEmpty()){
         view.visibility =  View.VISIBLE
     }else{
         view.visibility =  View.GONE

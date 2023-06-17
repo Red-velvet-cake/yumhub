@@ -167,7 +167,7 @@
             android:paddingTop="@dimen/fab_margin"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:loading="@{viewModel.uiState.isLoading}"
-            app:list="@{viewModel.uiState.dietResult}"
+            app:listResult="@{viewModel.uiState.dietResult}"
             app:spanCount="2"
             app:items="@{viewModel.uiState.dietResult}"
             tools:listitem="@layout/item_diet_card"

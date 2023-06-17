@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.ui.deit
 
 import android.util.Log
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
+import com.red_velvet.yumhub.domain.usecases.GetDietRecipeUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -13,12 +14,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DietViewModel @Inject constructor(
-    private val searchRecipeUseCase: SearchRecipeUseCase,
+    private val getDietRecipe: GetDietRecipeUseCase,
 )  : BaseViewModel<DietUIState>(DietUIState()) {
     private val _uiState = MutableStateFlow(DietUIState())
     val uiState: StateFlow<DietUIState> = _uiState
 
     fun onSelectType(type:String){
+        Log.i("AYA",type.toString())
         if(!ifSameFilterTypeSelected(type)){
             _uiState.update { it.copy(
                 isLoading = true,
@@ -30,11 +32,9 @@ class DietViewModel @Inject constructor(
     private fun onGetData(){
         tryToExecute(
             callee = {
-                searchRecipeUseCase.invoke(
-                    query="",
-                    sort = _uiState.value.type,
-                    sortDirection = "")
-            },
+                getDietRecipe.invoke(
+                    type = _uiState.value.type,
+                )},
             onSuccess = ::onSuccess,
             onError = ::onError
         )
