@@ -111,4 +111,8 @@
     <string name="primal">Primal</string>
     <string name="low_fodmap">Low FODMAP</string>
     <string name="whole30">Whole30</string>
+    <string name="nutritional_guide">Nutritional Guide</string>
+    <string name="choose_one_section_of_the_diet">Choose one section of the diet</string>
+    <string name="there_are_various_types_of_diets_available">there are various types of diets available</string>
+    <string name="choose_your_preferred_type">Choose your preferred type</string>
 </resources>

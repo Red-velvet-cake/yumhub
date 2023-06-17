@@ -82,11 +82,13 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.SearchFragment,
+                R.id.dietFragment
               -> {
                     this.supportActionBar?.hide()
                     binding.bottomNav.isVisible=false
                 }
-                R.id.onBoardingFragment, -> {
+                R.id.onBoardingFragment,
+                -> {
                     binding.bottomNav.isVisible=false
                     this.supportActionBar?.hide()
                 }

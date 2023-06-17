@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.deit.DietResultUIState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_x_small"
+        android:orientation="vertical">
+
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recipe_image_view"
+            android:layout_width="@dimen/size_160dp"
+            android:layout_height="@dimen/size_125dp"
+            app:imageUrl="@{item.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
+            tools:src="@drawable/recipe" />
+
+        <TextView
+            android:id="@+id/recipe_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="1"
+            android:text="@{item.title}"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/black_title"
+            tools:text="chicken"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_image_view"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

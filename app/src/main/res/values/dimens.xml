@@ -73,4 +73,7 @@
     <dimen name="radius_16dp">16dp</dimen>
     <dimen name="space_32dp">32dp</dimen>
     <dimen name="zero">0dp</dimen>
+    <dimen name="size_48dp">48dp</dimen>
+    <dimen name="size_160dp">160dp</dimen>
+    <dimen name="size_125dp">125dp</dimen>
 </resources>
