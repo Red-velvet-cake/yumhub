@@ -6,6 +6,6 @@ interface HealthyRecipeInteractionListener : BaseInteractionListener {
 
     fun doOnHealthyRecipeClicked(recipeId: Int)
 
-    fun doOnClickSeeAllHealthyRecipes()
+    fun doOnClickSeeAllHealthyRecipes(type: Int)
 
 }

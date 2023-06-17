@@ -6,6 +6,6 @@ interface PopularRecipeInteractionListener : BaseInteractionListener {
 
     fun doOnPopularRecipeClicked(recipeId: Int)
 
-    fun doOnClickSeeAllPopularRecipes()
+    fun doOnClickSeeAllPopularRecipes(type: Int)
 
 }

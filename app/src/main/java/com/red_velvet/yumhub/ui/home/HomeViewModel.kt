@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
     HealthyRecipeInteractionListener, QuickRecipeInteractionListener,
     PopularRecipeInteractionListener {
 
-    private val _effect = MutableSharedFlow<HomeUIEffect>(replay = 0)
+    private val _effect = MutableSharedFlow<HomeUIEffect>()
     val effect = _effect.asSharedFlow()
 
     init {
@@ -146,20 +146,20 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnQuickRecipe(recipeId)) }
     }
 
-    override fun doOnClickSeeAllQuickRecipes() {
-        viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnSeeAllQuickRecipes) }
+    override fun doOnClickSeeAllQuickRecipes(type: Int) {
+        viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnSeeAllQuickRecipes(type)) }
     }
 
-    override fun doOnClickSeeAllPopularRecipes() {
-        viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnSeeAllPopularRecipes) }
+    override fun doOnClickSeeAllPopularRecipes(type: Int) {
+        viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnSeeAllPopularRecipes(type)) }
     }
 
     override fun doOnHealthyRecipeClicked(recipeId: Int) {
         viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnHealthyRecipe(recipeId)) }
     }
 
-    override fun doOnClickSeeAllHealthyRecipes() {
-        viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnSeeAllHealthyRecipes) }
+    override fun doOnClickSeeAllHealthyRecipes(type: Int) {
+        viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnSeeAllHealthyRecipes(type)) }
     }
 
 }

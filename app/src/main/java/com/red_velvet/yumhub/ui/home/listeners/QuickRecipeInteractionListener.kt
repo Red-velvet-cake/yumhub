@@ -6,6 +6,6 @@ interface QuickRecipeInteractionListener : BaseInteractionListener {
 
     fun doOnQuickRecipeClicked(recipeId: Int)
 
-    fun doOnClickSeeAllQuickRecipes()
+    fun doOnClickSeeAllQuickRecipes(type: Int)
 
 }

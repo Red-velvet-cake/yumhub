@@ -39,7 +39,11 @@
         tools:layout="@layout/fragment_category_recipes">
         <argument
             android:name="categoryTitle"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/recipeCategoriesFragment"

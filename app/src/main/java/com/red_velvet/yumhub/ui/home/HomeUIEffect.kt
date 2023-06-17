@@ -8,11 +8,11 @@ sealed interface HomeUIEffect {
 
     data class ClickOnQuickRecipe(val id: Int) : HomeUIEffect
 
-    object ClickOnSeeAllPopularRecipes : HomeUIEffect
+    data class ClickOnSeeAllPopularRecipes(val type: Int) : HomeUIEffect
 
-    object ClickOnSeeAllHealthyRecipes : HomeUIEffect
+    data class ClickOnSeeAllHealthyRecipes(val type: Int) : HomeUIEffect
 
-    object ClickOnSeeAllQuickRecipes : HomeUIEffect
+    data class ClickOnSeeAllQuickRecipes(val type: Int) : HomeUIEffect
 
     data class ClickOnCategory(val title: String) : HomeUIEffect
 

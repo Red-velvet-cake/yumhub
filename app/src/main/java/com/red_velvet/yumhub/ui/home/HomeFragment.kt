@@ -34,7 +34,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
         val quickRecipeAdapter = QuickRecipeAdapter(emptyList(), viewModel)
 
         binding.apply {
-            categoryListener = viewModel
             categoryRecyclerView.adapter = categoriesRecipeAdapter
             popularRecyclerView.adapter = popularRecipeAdapter
             healthyRecyclerView.adapter = healthyRecipeAdapter
@@ -53,16 +52,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
                 is HomeUIEffect.ClickOnPopularRecipe -> onClickPopularRecipe(effect.id)
                 is HomeUIEffect.ClickOnQuickRecipe -> onClickQuickRecipe(effect.id)
                 HomeUIEffect.ClickOnSeeAllCategories -> onClickSeeAllCategories()
-                HomeUIEffect.ClickOnSeeAllHealthyRecipes -> onClickSeeAllHealthyRecipes()
-                HomeUIEffect.ClickOnSeeAllPopularRecipes -> onClickSeeAllPopularRecipes()
-                HomeUIEffect.ClickOnSeeAllQuickRecipes -> onClickSeeAllQuickRecipes()
+                is HomeUIEffect.ClickOnSeeAllHealthyRecipes -> onClickSeeAllHealthyRecipes(effect.type)
+                is HomeUIEffect.ClickOnSeeAllPopularRecipes -> onClickSeeAllPopularRecipes(effect.type)
+                is HomeUIEffect.ClickOnSeeAllQuickRecipes -> onClickSeeAllQuickRecipes(effect.type)
             }
         }
     }
 
     private fun onClickCategory(categoryTitle: String) {
         val directions =
-            HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(categoryTitle)
+            HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(categoryTitle, 0)
         findNavController().navigate(directions)
     }
 
@@ -78,16 +77,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
 
     }
 
-    private fun onClickSeeAllPopularRecipes() {
-
+    private fun onClickSeeAllPopularRecipes(type: Int) {
+        val directions =
+            HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(null, type)
+        findNavController().navigate(directions)
     }
 
-    private fun onClickSeeAllHealthyRecipes() {
-
+    private fun onClickSeeAllHealthyRecipes(type: Int) {
+        val directions =
+            HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(null, type)
+        findNavController().navigate(directions)
     }
 
-    private fun onClickSeeAllQuickRecipes() {
-
+    private fun onClickSeeAllQuickRecipes(type: Int) {
+        val directions =
+            HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(null, type)
+        findNavController().navigate(directions)
     }
 
     private fun onClickSeeAllCategories() {

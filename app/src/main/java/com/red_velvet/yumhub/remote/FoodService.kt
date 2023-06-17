@@ -41,7 +41,8 @@ interface FoodService {
     @GET("recipes/complexSearch")
     suspend fun getRecipesByMealType(
         @Query("type") type: String? = "",
-        @Query("addRecipeInformation") addRecipeInformation: Boolean? = true
+        @Query("addRecipeInformation") addRecipeInformation: Boolean? = true,
+        @Query("sort") sort: String? = ""
     ): Response<RecipeSearchPaginationResource>
 
     @GET("recipes/{id}/information")

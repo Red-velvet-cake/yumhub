@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.category.CategoryRecipesFragment">
+        tools:context=".ui.see_all.SeeAllRecipesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_category_recycler_view"

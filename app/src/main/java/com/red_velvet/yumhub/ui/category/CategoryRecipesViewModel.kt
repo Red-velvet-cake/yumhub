@@ -16,11 +16,11 @@ class CategoryRecipesViewModel @Inject constructor(
 ) : BaseViewModel<CategoryRecipesUiState>(CategoryRecipesUiState()), RecipeInteractionListener {
 
 
-    fun getRecipesByCategoryTitle(type: String) {
+    fun getRecipesByCategoryTitle(type: String?, sort: String?) {
         _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             tryToExecute(
-                { getSingleCategoryUseCase(type) },
+                { getSingleCategoryUseCase(type, sort) },
                 onSuccess = ::onGetRecipesSuccess,
                 onError = ::onError
             )

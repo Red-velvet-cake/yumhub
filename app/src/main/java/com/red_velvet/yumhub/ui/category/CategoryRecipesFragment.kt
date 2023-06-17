@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentCategoryRecipesBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +24,22 @@ class CategoryRecipesFragment :
         super.onViewCreated(view, savedInstanceState)
         val categoryRecipesAdapter = CategoryRecipesAdapter(emptyList(), viewModel)
         binding.recipeCategoryRecyclerView.adapter = categoryRecipesAdapter
-        viewModel.getRecipesByCategoryTitle(args.categoryTitle)
+
+        val type = args.categoryTitle
+        if (type != null) {
+            viewModel.getRecipesByCategoryTitle(type, getRecipesType(args.type))
+        } else {
+            viewModel.getRecipesByCategoryTitle(null, getRecipesType(args.type))
+        }
+
+    }
+
+    private fun getRecipesType(type: Int): String {
+        return when (type) {
+            0 -> "healthiness"
+            1 -> "popular"
+            2 -> "quick"
+            else -> ""
+        }
     }
 }
