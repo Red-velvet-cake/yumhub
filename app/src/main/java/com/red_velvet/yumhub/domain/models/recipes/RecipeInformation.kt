@@ -14,11 +14,12 @@ data class RecipeInformation(
     val title: String,
     val analyzedInstructions: List<AnalyzedInstructions>,
     val cheap: Boolean,
-    val cookingMinutes : Int,
+    val cookingMinutes: Int,
     val cuisines: List<String>,
     val diets: List<String>,
     val dishTypes: List<String>,
     val extendedIngredients: List<ExtendedIngredient>,
     val glutenFree: Boolean,
     val healthScore: Int,
+    val description: String,
 )

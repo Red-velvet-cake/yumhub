@@ -60,4 +60,10 @@
     <string name="quick_recipes">Quick Recipes</string>
     <string name="see_all">See all</string>
     <string name="healthy_recipes">Healthy Recipes</string>
+    <string name="title_details">Details</string>
+    <string name="dish_types">Dish Types</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="go_to_cooking_steps">Go To Cooking Steps</string>
+    <string name="min">Min</string>
+    <string name="servings">Servings</string>
 </resources>

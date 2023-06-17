@@ -36,7 +36,8 @@ fun RecipeInformationDto.toModel(): RecipeInformation {
         dishTypes = this.dishTypes,
         extendedIngredients = extendedIngredients.map { it.toModel() },
         glutenFree = this.glutenFree.orFalse(),
-        healthScore = this.healthScore.orZero()
+        healthScore = this.healthScore.orZero(),
+        description = this.summary.orEmpty(),
     )
 }
 
@@ -81,8 +82,9 @@ fun ExtendedIngredientDto.toModel(): ExtendedIngredient {
         aisle = aisle.orEmpty(),
         amount = amount.orZero(),
         id = id.orZero(),
-        image = image.orEmpty(),
+        image = "https://spoonacular.com/cdn/ingredients_100x100/$image".orEmpty(),
         name = name.orEmpty(),
-        unit = unit.orEmpty()
+        unit = unit.orEmpty(),
+        original = name.orEmpty()
     )
 }
