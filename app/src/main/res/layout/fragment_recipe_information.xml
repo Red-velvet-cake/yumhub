@@ -17,14 +17,6 @@
         android:orientation="vertical"
         app:layoutDescription="@xml/fragment_recipe_information_xml_constraintlayout2_scene">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="@string/title_details" />
 
         <ImageView
             android:id="@+id/image_recipe"
@@ -34,7 +26,7 @@
             app:imageUrl="@{viewModel.state.image}"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_details"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/home" />
 
         <androidx.constraintlayout.widget.Guideline
