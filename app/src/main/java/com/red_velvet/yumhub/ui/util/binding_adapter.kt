@@ -1,8 +1,11 @@
 package com.red_velvet.yumhub.ui.util
 
+import android.os.Build
+import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import androidx.core.view.isVisible
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -163,3 +166,13 @@ fun loadImage(view: ImageView, imageUrl: String) {
         .centerCrop()
         .into(view)
 }
+
+@BindingAdapter("android:showHtml")
+fun showHtml(view: TextView, html: String?) {
+    view.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT)
+    } else {
+        Html.fromHtml(html)
+    }
+}
+

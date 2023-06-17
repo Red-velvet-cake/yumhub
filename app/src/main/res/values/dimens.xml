@@ -20,6 +20,7 @@
 
     <dimen name="search_height">56dp</dimen>
     <dimen name="no_width">0dp</dimen>
+    <dimen name="no_height">0dp</dimen>
 
     <dimen name="splash_image_height">186dp</dimen>
     <dimen name="splash_image_width">124dp</dimen>
@@ -73,4 +74,12 @@
     <dimen name="radius_16dp">16dp</dimen>
     <dimen name="space_32dp">32dp</dimen>
     <dimen name="zero">0dp</dimen>
+
+    <dimen name="_55dp">55dp</dimen>
+    <dimen name="_38dp">38dp</dimen>
+    <dimen name="_4dp">4dp</dimen>
+    <dimen name="_25dp">25dp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="item_ingredient_image_width">68dp</dimen>
+    <dimen name="item_ingredient_image_height">48dp</dimen>
 </resources>

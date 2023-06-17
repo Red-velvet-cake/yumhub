@@ -21,4 +21,5 @@ data class RecipeInformationEntity(
     val extendedIngredientEntities: List<ExtendedIngredientEntity>,
     val glutenFree: Boolean,
     val healthScore: Int,
+    val description: String,
 )

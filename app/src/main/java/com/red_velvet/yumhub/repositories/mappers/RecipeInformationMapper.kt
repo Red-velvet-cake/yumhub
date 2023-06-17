@@ -38,7 +38,8 @@ fun RecipeInformationResource.toEntity(): RecipeInformationEntity {
         dishTypes = this.dishTypes ?: emptyList(),
         extendedIngredientEntities = extendedIngredients.map { it.toModel() },
         glutenFree = this.glutenFree.orFalse(),
-        healthScore = this.healthScore.orZero()
+        healthScore = this.healthScore.orZero(),
+        description = this.summary.orEmpty()
     )
 }
 
@@ -94,6 +95,7 @@ fun ExtendedIngredientResource.toModel(): ExtendedIngredientEntity {
         id = id.orZero(),
         image = image.orEmpty(),
         name = name.orEmpty(),
-        unit = unit.orEmpty()
+        unit = unit.orEmpty(),
+        original = original.orEmpty()
     )
 }
