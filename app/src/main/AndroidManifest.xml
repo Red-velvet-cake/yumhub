@@ -17,10 +17,12 @@
         android:theme="@style/Theme.YumHub"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.YumHub">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyApp.MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

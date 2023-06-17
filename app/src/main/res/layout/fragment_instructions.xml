@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.instructions.InstructionsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.instructions.InstructionsFragment">
+
+        <TextView
+            android:id="@+id/title_steps_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@color/primary"
+            android:drawablePadding="@dimen/spacing_x_x_small"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_x_x_small"
+            android:paddingEnd="@dimen/spacing_x_x_small"
+            android:text="@string/steps"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"
+            app:drawableStartCompat="@drawable/baseline_format_list_numbered_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/instructions_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal"
+            app:items="@{viewModel.state.steps}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_steps_text_view"
+            tools:listitem="@layout/item_instrections_step" />
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="@{viewModel.state.loading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/svgImageView_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:showInternalServerError="@{viewModel.state.error}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/search_no_internet" />
+
+        <TextView
+            android:id="@+id/textview_title_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:fontFamily="@font/roboto_medium"
+            android:showInternalServerError="@{viewModel.state.error}"
+            android:text="@string/internet_is_not_available"
+            android:textColor="@color/black_title_60"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

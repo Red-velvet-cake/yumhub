@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.domain.usecases
 
-import com.red_velvet.yumhub.data.repositories.IngredientRepository
-import com.red_velvet.yumhub.domain.models.IngredientSearch
+import com.red_velvet.yumhub.domain.models.IngredientSearchEntity
+import com.red_velvet.yumhub.domain.repositories.IngredientRepository
 import javax.inject.Inject
 
 class SearchIngredientUseCase @Inject constructor(
@@ -12,7 +12,7 @@ class SearchIngredientUseCase @Inject constructor(
         intolerances: String?,
         sort: String?,
         number: Int
-    ): List<IngredientSearch> {
+    ): List<IngredientSearchEntity> {
         return ingredientRepository.searchIngredient(
             query = query,
             sort = sort,

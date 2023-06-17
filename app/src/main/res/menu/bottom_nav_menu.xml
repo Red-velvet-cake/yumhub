@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/home_bottom_selected"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/searchFragment"
+        android:enabled="true"
+        android:icon="@drawable/search_bottom_selected"
+        android:title="@string/search" />
+
+    <item
+        android:id="@+id/signupFragment"
+        android:icon="@drawable/deit_bottom_selecter"
+        android:title="@string/diet" />
+
+    <item
+        android:id="@+id/seriesFragment"
+        android:icon="@drawable/meal_bottom_select"
+        android:title="@string/kitchen" />
+
+    <item
+        android:id="@+id/storiesFragment"
+        android:icon="@drawable/chef_nav_bottom"
+        android:title="@string/profile" />
+
+</menu>
