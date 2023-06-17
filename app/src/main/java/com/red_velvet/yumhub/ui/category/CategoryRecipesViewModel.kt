@@ -12,18 +12,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CategoryRecipesViewModel @Inject constructor(
-    private val getSingleCategoryUseCase: GetSingleCategoryUseCase
+    private val getSingleCategoryUseCase: GetSingleCategoryUseCase,
 ) : BaseViewModel<CategoryRecipesUiState>(CategoryRecipesUiState()), RecipeInteractionListener {
 
-    init {
-        getRecipesByCategoryTitle()
-    }
 
-    private fun getRecipesByCategoryTitle() {
+    fun getRecipesByCategoryTitle(type: String) {
         _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             tryToExecute(
-                getSingleCategoryUseCase::invoke,
+                { getSingleCategoryUseCase(type) },
                 onSuccess = ::onGetRecipesSuccess,
                 onError = ::onError
             )
