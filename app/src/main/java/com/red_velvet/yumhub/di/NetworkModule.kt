@@ -1,8 +1,8 @@
 package com.red_velvet.yumhub.di
 
 import com.red_velvet.yumhub.BuildConfig
-import com.red_velvet.yumhub.data.remote.AuthorizationInterceptor
-import com.red_velvet.yumhub.data.remote.FoodService
+import com.red_velvet.yumhub.remote.AuthorizationInterceptor
+import com.red_velvet.yumhub.remote.FoodService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideFoodService(retrofit: Retrofit):FoodService{
+    fun provideFoodService(retrofit: Retrofit): FoodService {
         return retrofit.create(FoodService::class.java)
     }
 
@@ -37,7 +37,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(authInterceptor: AuthorizationInterceptor):OkHttpClient{
+    fun provideOkHttpClient(authInterceptor: AuthorizationInterceptor): OkHttpClient {
         return OkHttpClient().newBuilder()
             .addInterceptor(authInterceptor)
             .build()

@@ -1,16 +1,15 @@
 package com.red_velvet.yumhub.domain.usecases.recipes
 
-import com.red_velvet.yumhub.data.repositories.RecipesRepositoryImpl
-import com.red_velvet.yumhub.domain.mapper.toModel
-import com.red_velvet.yumhub.domain.models.recipes.GuessNutrition
+import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
+import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import javax.inject.Inject
 
 class GetGuessNutritionUseCase @Inject constructor(
-    private val recipesRepositoryImpl: RecipesRepositoryImpl
+    private val recipesRepositoryImpl: RecipesRepository
 ) {
 
-    suspend fun guessNutrition(title: String): GuessNutrition {
-        return recipesRepositoryImpl.guessNutrition(title).toModel()
+    suspend operator fun invoke(title: String): GuessNutritionEntity {
+        return recipesRepositoryImpl.guessNutrition(title)
     }
 
 }

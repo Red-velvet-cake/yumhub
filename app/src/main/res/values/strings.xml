@@ -43,4 +43,67 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chief">Chief</string>
+    <string name="get_started_sign_up">Get Started!</string>
+    <string name="sign_up_intro">Look like you are new to us! Create an account for a complete experience.</string>
+    <string name="first_name_sign_up">First Name</string>
+    <string name="last_name_sign_up">Last Name</string>
+    <string name="username_sign_up">Username</string>
+    <string name="email_sign_up">Email</string>
+    <string name="password_sign_up">Password</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="search_food_drink_etc">Search food, drink, etc</string>
+    <string name="search_your_food">Search Your Food</string>
+    <string name="not_found">Not Found</string>
+    <string name="internet_is_not_available">Internet is not available</string>
+    <string name="enter_the_name_of_the_meal_or_the_type_of_food_you_wish_to_search_for">Enter the name of the meal or the type of food you wish to search for</string>
+    <string name="sorry_the_keyword_you_entered_connot_be_found_please_check_again_or_search_with_another_keyword">Sorry, the keyword you entered connot be found please check again or search with another keyword</string>
+    <string name="please_make_sure_you_are_connected_to_the_internet_and_try_again">Please make sure you are connected to the internet and try again</string>
+    <string name="image_description">image description</string>
+    <string name="salad">salad</string>
+    <string name="_7_ingrerdients">7 Ingrerdients</string>
+    <string name="_18_min">18 Min</string>
+    <string name="popularity">Popularity</string>
+    <string name="healthy">Healthy</string>
+    <string name="time">Time</string>
+    <string name="carbs">Carbs</string>
+    <string name="calories">Calories</string>
+    <string name="categories">Categories</string>
+    <string name="popular_recipes">Popular Recipes</string>
+    <string name="quick_recipes">Quick Recipes</string>
+    <string name="see_all">See all</string>
+    <string name="healthy_recipes">Healthy Recipes</string>
+    <string name="title_details">Details</string>
+    <string name="dish_types">Dish Types</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="go_to_cooking_steps">Go To Cooking Steps</string>
+    <string name="min">Min</string>
+    <string name="servings">Servings</string>
+    <string name="yumhub">YumHub</string>
+    <string name="home">home</string>
+    <string name="search">search</string>
+    <string name="diet">diet</string>
+    <string name="kitchen">kitchen</string>
+    <string name="profile">profile</string>
+    <string name="choose_your">Choose Your</string>
+    <string name="favorite_food">Favorite Food</string>
+    <string name="vegetarian_meat_dishes_pasta">Vegetarian Meat / Dishes Pasta</string>
+    <string name="dishes_salads">Dishes / Salads /</string>
+    <string name="vegetarian_meat_dishes">Vegetarian Meat / Dishes</string>
+    <string name="pasta_dishes_salads">Pasta Dishes / Salads /</string>
+    <string name="desserts_soups_seafood">Desserts / Soups / Seafood</string>
+    <string name="delicious">Delicious</string>
+    <string name="food_menu">Food Menu</string>
+    <string name="there_are_many">There are Many</string>
+    <string name="food_recipes">Food Recipes</string>
+    <string name="in_the_app">In The App</string>
+    <string name="we_have_1500_user_reviews">We Have 1500+ User Reviews,</string>
+    <string name="you_can_check_in_the_application_store">You Can Check In The Application Store</string>
+    <string name="let_s_go">Let’s go</string>
+    <string name="hello_yoyo">Hello, yoyo</string>
+    <string name="choose_the_best_dish_for_you">Choose the best dish for you</string>
+    <string name="step">Step</string>
+    <string name="steps">Steps</string>
 </resources>

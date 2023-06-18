@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="black_light">#38000000</color>
+    <color name="black_title">#87000000</color>
+    <color name="black_title_60">#60000000</color>
+    <color name="black_title_36">#36000000</color>
+    <color name="bg_white">#FAFAFA</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#FFFFFFFF</color>
+    <color name="secondary">#F6F6F6</color>
+    <color name="primary">#5ABC84</color>
+    <color name="green_green100">#5ABC84</color>
+    <color name="green_green80">#CC5ABC84</color>
+    <color name="green_green60">#995ABC84</color>
+    <color name="green_green40">#665ABC84</color>
+    <color name="green_green20">#335ABC84</color>
+    <color name="green_green10">#1A5ABC84</color>
+    <color name="fontColor_primary">#DE000000</color>
+    <color name="fontColor_secondary">#99000000</color>
+    <color name="fontColor_accent">#61000000</color>
+    <color name="fontColor_white">#F9F9F9</color>
+    <color name="bottom_navigation_background">#14000000</color>
 </resources>
