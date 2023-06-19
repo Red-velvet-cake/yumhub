@@ -82,4 +82,6 @@
     <dimen name="_20dp">20dp</dimen>
     <dimen name="item_ingredient_image_width">68dp</dimen>
     <dimen name="item_ingredient_image_height">48dp</dimen>
+    <dimen name="_137dp">137dp</dimen>
+    <dimen name="_135dp">135dp</dimen>
 </resources>
