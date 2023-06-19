@@ -10,6 +10,7 @@ import com.red_velvet.yumhub.domain.usecases.recipes.GetCategoriesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetHealthyRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetPopularRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetQuickRecipesUseCase
+import com.red_velvet.yumhub.local.SharedPreferenceImpl
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import com.red_velvet.yumhub.ui.home.listeners.CategoryInteractionListener
@@ -29,7 +30,8 @@ class HomeViewModel @Inject constructor(
     private val getQuickRecipesUseCase: GetQuickRecipesUseCase,
     private val getPopularRecipesUseCase: GetPopularRecipesUseCase,
     private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase,
-    private val getCategoriesUseCase: GetCategoriesUseCase
+    private val getCategoriesUseCase: GetCategoriesUseCase,
+    private val sharedPreferenceImpl: SharedPreferenceImpl
 ) : BaseViewModel<HomeUiState>(HomeUiState()), CategoryInteractionListener,
     HealthyRecipeInteractionListener, QuickRecipeInteractionListener,
     PopularRecipeInteractionListener {
@@ -38,12 +40,22 @@ class HomeViewModel @Inject constructor(
     val effect = _effect.asSharedFlow()
 
     init {
+
         getCategories()
         getPopularRecipes()
         getHealthyRecipes()
         getQuickRecipes()
+        getUserName()
     }
 
+    private fun getUserName(){
+     val name= sharedPreferenceImpl.getUserName()
+        if(name != null){
+            _state.update {
+                it.copy(name=name)
+            }
+        }
+    }
     private fun getQuickRecipes() {
         _state.update { it.copy(isLoading = true) }
         tryToExecute(
