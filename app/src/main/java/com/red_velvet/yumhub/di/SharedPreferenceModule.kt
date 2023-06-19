@@ -2,8 +2,8 @@ package com.red_velvet.yumhub.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.red_velvet.yumhub.local.SharedPreferenceImpl
-import com.red_velvet.yumhub.repositories.datasources.SharedPreferenceService
+import com.red_velvet.local.SharedPreferenceImpl
+import com.red_velvet.repository.datasources.SharedPreferenceService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ object SharedPreferenceModule {
 
     @Provides
     @Singleton
-    fun provideSharedPrefService(sharedPreferenceImpl: SharedPreferenceImpl): SharedPreferenceService {
+    fun provideSharedPrefService(sharedPreferenceImpl:SharedPreferenceImpl): SharedPreferenceService {
         return sharedPreferenceImpl
     }
 }

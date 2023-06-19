@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.ui.home.QuickRecipeUiState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_x_small"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cooking_time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_textview"
+            android:drawablePadding="6dp"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp"
+            android:text="@{String.format(`%s Min`, item.cookingTime)}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_label"
+            android:translationZ="1dp"
+            app:drawableStartCompat="@drawable/timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="3 Min" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recipe_image_view"
+            android:layout_width="160dp"
+            android:layout_height="125dp"
+            app:imageUrl="@{item.recipeImage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
+            tools:src="@drawable/recipe" />
+
+        <TextView
+            android:id="@+id/recipe_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:maxLines="1"
+            android:text="@{item.recipeTitle}"
+            android:textSize="@dimen/font_size_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_image_view"
+             />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

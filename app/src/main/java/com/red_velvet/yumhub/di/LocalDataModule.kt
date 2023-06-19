@@ -1,13 +1,13 @@
 package com.red_velvet.yumhub.di
 
-import com.red_velvet.yumhub.domain.repositories.RecipesRepository
-import com.red_velvet.yumhub.domain.repositories.UserRepository
-import com.red_velvet.yumhub.local.LocalDataSourceImpl
-import com.red_velvet.yumhub.remote.RemoteDataSourceImpl
-import com.red_velvet.yumhub.repositories.RecipesRepositoryImpl
-import com.red_velvet.yumhub.repositories.UserRepositoryImpl
-import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
-import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
+import com.red_velvet.domain.repositories.RecipesRepository
+import com.red_velvet.domain.repositories.UserRepository
+import com.red_velvet.local.LocalDataSourceImpl
+import com.red_velvet.remote.RemoteDataSourceImpl
+import com.red_velvet.repository.RecipesRepositoryImpl
+import com.red_velvet.repository.UserRepositoryImpl
+import com.red_velvet.repository.datasources.LocalDataSource
+import com.red_velvet.repository.datasources.RemoteDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,5 +32,5 @@ abstract class LocalDataModule {
 
     @Binds
     @Singleton
-    abstract fun bindUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository
+    abstract fun bindUserRepository(userRepositoryImpl: UserRepositoryImpl):UserRepository
 }

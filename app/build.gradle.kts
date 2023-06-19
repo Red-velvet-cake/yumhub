@@ -60,6 +60,11 @@ android {
 
 dependencies {
 
+    api (project(":ui"))
+    api (project(":domain"))
+    api (project(":local"))
+    api (project(":remote"))
+    api(project(":repository"))
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -72,7 +77,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.fragment:fragment-ktx:1.5.7")
     implementation("androidx.activity:activity-ktx:1.7.1")
-
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -94,7 +98,6 @@ dependencies {
     val nav_version = "2.5.1"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
-
     //room
     val room_version = "2.5.1"
     implementation("androidx.room:room-runtime:$room_version")

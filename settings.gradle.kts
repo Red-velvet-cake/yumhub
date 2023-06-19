@@ -15,4 +15,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "YumHub‏"
 include(":app")
- 
+include(":domain")
+include(":remote")
+include(":local")
+include(":ui")
+include(":repository")

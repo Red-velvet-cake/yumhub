@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/recipeCategoryFragment">
+
+
+    <fragment
+        android:id="@+id/SearchFragment"
+        android:name="com.red_velvet.ui.search.SearchFragment"
+        android:label=""
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.red_velvet.ui.onboarding.OnBoardingFragment"
+        android:label=""
+        tools:layout="@layout/fragment_onboarding" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.red_velvet.ui.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.red_velvet.ui.signUp.SignUpFragment" />
+    <fragment
+        android:id="@+id/recipeCategoryFragment"
+        android:name="com.red_velvet.ui.category.RecipeCategoryFragment"
+        android:label="RecipeCategoryFragment" />
+    <fragment
+        android:id="@+id/recipeCategoriesFragment"
+        android:name="com.red_velvet.ui.recipecategories.RecipeCategoriesFragment"
+        android:label="Categories" />
+
+</navigation>
