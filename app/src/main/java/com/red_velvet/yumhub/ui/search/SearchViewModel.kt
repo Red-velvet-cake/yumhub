@@ -47,6 +47,7 @@ class SearchViewModel @Inject constructor(
                isLoading = true,
                isResultIsEmpty = false,
                sort = type,
+               sortDirection = ""
            ) }
            onGetData()
        }
@@ -56,6 +57,7 @@ class SearchViewModel @Inject constructor(
             _uiState.update { it.copy(
                 isLoading = false,
                 sort = "",
+                sortDirection = "",
                 isResultIsEmpty = false,
                 searchResult = emptyList()) }
             return true
