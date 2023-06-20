@@ -5,6 +5,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueViewModel" />
 
     </data>
 
@@ -51,8 +55,9 @@
             <EditText
                 android:layout_width="@dimen/_248dp"
                 android:layout_height="@dimen/space_48dp"
-                android:background="@drawable/rounded_corner_background"
+                android:background="@drawable/text_input_rounded"
                 android:hint="@string/enter_a_recipe_name"
+                android:text="@{viewModel.uiState.textInput}"
                 android:textColor="@color/black_title_60"
                 android:paddingVertical="@dimen/space_15dp"
                 android:paddingHorizontal="@dimen/_12dp"
@@ -60,6 +65,7 @@
                 android:textSize="@dimen/text_size_16"
                 android:textColorHint="@color/black_title_36"
                 android:layout_marginEnd="@dimen/small_space"
+                android:onTextChanged="@{(text,_, ___, __) -> viewModel.onInputSearchChange(text)}"
 
                 />
             <Button
@@ -70,6 +76,7 @@
                 android:paddingHorizontal="@dimen/fab_margin"
                 android:paddingVertical="@dimen/space_15dp"
                 app:cornerRadius="@dimen/radius_16dp"
+                android:onClick="@{() -> viewModel.onSearch()}"
                 android:textColor="@color/fontColor_white"
                 android:fontFamily="@font/roboto_medium"
                 android:backgroundTint="@color/primary"
@@ -106,6 +113,7 @@
                     <ImageView
                        style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/calarious"
+                        android:layout_marginStart="@dimen/space_26dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv_calories"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -117,8 +125,8 @@
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
-                        android:max="100"
-                        android:progress="30"
+                        android:max="2000"
+                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.calories)}"
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_calories"
                         />
@@ -126,7 +134,7 @@
                         android:id="@+id/tv_calories_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.calories)}'
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_calories"
                         app:layout_constraintStart_toEndOf="@id/progressBar_calories"
@@ -160,16 +168,14 @@
                     <TextView
                         android:id="@+id/tv_fat"
                         android:text="@string/fat"
-
                         style="@style/CustomNutrisonTextViewStyle"
-                        android:layout_marginEnd="@dimen/spacing_large_24"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         />
                     <ImageView
                         style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/fat"
-                        android:layout_marginStart="@dimen/spacing_large_24"
+                        android:layout_marginStart="@dimen/space_71dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv_fat"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -181,8 +187,8 @@
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
-                        android:max="100"
-                        android:progress="30"
+                        android:max="500"
+                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.fat)}"
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_fat"
                         />
@@ -190,7 +196,8 @@
                         android:id="@+id/tv_calories_fat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.fat)}'
+
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_fat"
                         app:layout_constraintStart_toEndOf="@id/progressBar_fat"
@@ -238,11 +245,16 @@
                         android:text="@string/carbs"
                         style="@style/CustomNutrisonTextViewStyle"
                         app:layout_constraintTop_toTopOf="parent"
+
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView_carbs"
                         app:layout_constraintStart_toStartOf="parent"
                         />
                     <ImageView
+                        android:id="@+id/imageView_carbs"
                         style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/carbs"
+                        android:layout_marginStart="@dimen/space_47dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv_carbs"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -254,8 +266,9 @@
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
-                        android:max="100"
-                        android:progress="30"
+                        android:max="1000"
+                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.carbs)}"
+
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_carb"
                         />
@@ -263,7 +276,8 @@
                         android:id="@+id/tv_carbs_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.carbs)}'
+
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_carbs"
                         app:layout_constraintStart_toEndOf="@id/progressBar_carbs"
@@ -305,7 +319,7 @@
                     <ImageView
                         style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/proten"
-                        android:layout_marginStart="@dimen/spacing_large_24"
+                        android:layout_marginStart="@dimen/space_35dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv_protein"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -317,8 +331,8 @@
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
-                        android:max="100"
-                        android:progress="30"
+                        android:max="500"
+                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.protein)}"
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_proten"
                         />
@@ -326,7 +340,8 @@
                         android:id="@+id/tv_protein_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.protein)}'
+
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_protein"
                         app:layout_constraintStart_toEndOf="@id/progressBar_protein"

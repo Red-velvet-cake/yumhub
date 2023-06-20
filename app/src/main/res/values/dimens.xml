@@ -92,4 +92,9 @@
     <dimen name="textsize_14sp">14sp</dimen>
     <dimen name="size_8dp">8dp</dimen>
     <dimen name="size_68dp">68dp</dimen>
+    <dimen name="space_30dp">30dp</dimen>
+    <dimen name="space_26dp">26dp</dimen>
+    <dimen name="space_71dp">71dp</dimen>
+    <dimen name="space_47dp">47dp</dimen>
+    <dimen name="space_35dp">35dp</dimen>
 </resources>
