@@ -75,5 +75,10 @@
         android:name="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationFragment"
         android:label="RecipeInformationFragment"
         tools:layout="@layout/fragment_recipe_information" />
+    <fragment
+        android:id="@+id/dietFragment"
+        android:name="com.red_velvet.yumhub.ui.deit.DietFragment"
+        android:label=""
+        tools:layout="@layout/fragment_deit" />
 
 </navigation>

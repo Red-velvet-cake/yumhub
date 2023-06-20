@@ -28,13 +28,6 @@
         <item name="android:paddingTop">@dimen/_6dp</item>
         <item name="android:paddingLeft">@dimen/_12dp</item>
         <item name="android:paddingBottom">@dimen/_6dp</item>
-
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">@dimen/_6dp</item>
-        <item name="android:paddingTop">@dimen/_6dp</item>
-        <item name="android:paddingLeft">@dimen/_12dp</item>
-        <item name="android:paddingRight">@dimen/_12dp</item>
     </style>
 
     <style name="CustomTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -44,8 +37,7 @@
         <item name="android:layout_marginStart">@dimen/fab_margin</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+
 
     </style>
 
