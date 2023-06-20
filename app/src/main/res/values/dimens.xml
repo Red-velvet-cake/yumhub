@@ -85,4 +85,11 @@
     <dimen name="_248dp">248dp</dimen>
     <dimen name="space_15dp">15dp</dimen>
     <dimen name="_72dp">72dp</dimen>
+    <dimen name="space_10dp">10dp</dimen>
+    <dimen name="nutrition_card_width_136dp">136dp</dimen>
+    <dimen name="size_160dp">160dp</dimen>
+    <dimen name="size_136dp">136dp</dimen>
+    <dimen name="textsize_14sp">14sp</dimen>
+    <dimen name="size_8dp">8dp</dimen>
+    <dimen name="size_68dp">68dp</dimen>
 </resources>

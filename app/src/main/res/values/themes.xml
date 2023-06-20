@@ -93,5 +93,31 @@
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
     </style>
+    <style name="CustomNutrisionCardViewStyle" parent="">
+        <item name="android:layout_height">@dimen/size_136dp</item>
+        <item name="android:layout_width">@dimen/size_160dp</item>
+        <item name="cardElevation">@dimen/no_width</item>
+        <item name="android:background">@color/white</item>
+        <item name="cardCornerRadius">@dimen/radius_16dp</item>
+    </style>
+    <style name="CustomNutrisonTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black_title</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="CustomNutrisonImageViewStyle" parent="">
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="CustomNutrisonTitleStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black_title</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
 
 </resources>
