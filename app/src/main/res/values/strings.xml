@@ -106,4 +106,8 @@
     <string name="choose_the_best_dish_for_you">Choose the best dish for you</string>
     <string name="step">Step</string>
     <string name="steps">Steps</string>
+    <string name="stay_on_top_of_your_food_intake_with_our">Stay on top of your food intake with our</string>
+    <string name="nutrition_tracker">nutrition tracker</string>
+    <string name="enter_a_recipe_name">Enter a recipe name</string>
+    <string name="apply">Apply</string>
 </resources>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -7,7 +9,78 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/bg_white"
+        >
+        <TextView
+            android:id="@+id/tv_nutritional_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stay_on_top_of_your_food_intake_with_our"
+            android:textColor="@color/black_title"
+            android:textSize="@dimen/text_size_16"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/tv_nutrition_tracker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nutrition_tracker"
+            android:textColor="@color/black_title"
+            android:textSize="@dimen/text_size_16"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nutritional_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_nutritional_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nutritional_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nutrition_tracker"
+            android:layout_marginTop="@dimen/space_32dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:layout_marginHorizontal="@dimen/fab_margin"
+            app:layout_constraintTop_toBottomOf="@+id/iv_nutritional_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <EditText
+                android:layout_width="@dimen/_248dp"
+                android:layout_height="@dimen/space_48dp"
+                android:background="@drawable/rounded_corner_background"
+                android:hint="@string/enter_a_recipe_name"
+                android:textColor="@color/black_title_60"
+                android:paddingVertical="@dimen/space_15dp"
+                android:paddingHorizontal="@dimen/_12dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/text_size_16"
+                android:textColorHint="@color/black_title_36"
+                android:layout_marginEnd="@dimen/small_space"
+
+                />
+
+            <Button
+                android:layout_width="@dimen/_72dp"
+                android:layout_height="@dimen/button_height"
+                android:text="@string/apply"
+                android:paddingHorizontal="@dimen/fab_margin"
+                android:paddingVertical="@dimen/space_15dp"
+                app:cornerRadius="@dimen/radius_16dp"
+                android:textColor="@color/fontColor_white"
+                android:fontFamily="@font/roboto_medium"
+                android:backgroundTint="@color/primary"
+                />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
