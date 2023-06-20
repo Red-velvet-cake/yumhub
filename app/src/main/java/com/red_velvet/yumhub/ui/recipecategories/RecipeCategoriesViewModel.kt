@@ -29,7 +29,7 @@ class RecipeCategoriesViewModel @Inject constructor(
 
     private fun onGetRecipeCategoriesSuccess(categories: List<CategoryEntity>) {
         val recipeCategories = categories.toCategoryUiState()
-        _state.update { it.copy(recipesList = recipeCategories, isLoading = false) }
+        _state.update { it.copy(categoriesList = recipeCategories, isLoading = false) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {

@@ -14,10 +14,6 @@ class RecipeInformationViewModel @Inject constructor(
 ) : BaseViewModel<RecipeInformationUIState>(RecipeInformationUIState()), DishTypeListener,
     IngredientsListener {
 
-    init {
-        getRecipeInformation(1038, false)
-    }
-
     fun getRecipeInformation(id: Int, includeNutrition: Boolean) {
         tryToExecute(
             { getRecipeInformationUseCase.invoke(id, includeNutrition) },

@@ -24,7 +24,7 @@
             android:paddingTop="@dimen/spacing_large_24"
             android:paddingEnd="@dimen/spacing_x_small"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:items="@{viewModel.state.recipesList}"
+            app:items="@{viewModel.state.categoriesList}"
             app:spanCount="3"
             tools:listitem="@layout/item_recipe_categories" />
 

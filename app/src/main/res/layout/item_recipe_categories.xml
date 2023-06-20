@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.red_velvet.yumhub.ui.home.RecipeUiState" />
+            type="com.red_velvet.yumhub.ui.home.CategoryUiState" />
     </data>
 
     <LinearLayout
@@ -21,7 +21,7 @@
             android:id="@+id/category_image_view"
             android:layout_width="104dp"
             android:layout_height="104dp"
-            app:setDrawableResource="@{item.recipeImage}"
+            app:setDrawableResource="@{item.categoryImage}"
             app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
             tools:src="@drawable/appteizer" />
 
@@ -31,7 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_x_small"
             android:fontFamily="@font/roboto_regular"
-            android:text="@{item.recipeTitle}"
+            android:text="@{item.categoryTitle}"
             android:textColor="@color/fontColor_primary"
             android:textSize="@dimen/font_size_title" />
 
