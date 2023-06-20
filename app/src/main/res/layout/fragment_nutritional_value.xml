@@ -88,6 +88,8 @@
             >
             <androidx.cardview.widget.CardView
               style="@style/CustomNutrisionCardViewStyle"
+                android:backgroundTint="@color/white"
+                android:layout_marginEnd="@dimen/spacing_small"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
@@ -148,6 +150,7 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 style="@style/CustomNutrisionCardViewStyle"
+                android:backgroundTint="@color/white"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
@@ -222,6 +225,8 @@
             >
             <androidx.cardview.widget.CardView
                 style="@style/CustomNutrisionCardViewStyle"
+                android:backgroundTint="@color/white"
+                android:layout_marginEnd="@dimen/spacing_small"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
@@ -282,6 +287,7 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 style="@style/CustomNutrisionCardViewStyle"
+                android:backgroundTint="@color/white"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
