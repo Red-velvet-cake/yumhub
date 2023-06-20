@@ -16,8 +16,6 @@ import com.red_velvet.yumhub.ui.home.listeners.CategoryInteractionListener
 import com.red_velvet.yumhub.ui.home.listeners.RecipeInteractionListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,11 +26,8 @@ class HomeViewModel @Inject constructor(
     private val getPopularRecipesUseCase: GetPopularRecipesUseCase,
     private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase,
     private val getCategoriesUseCase: GetCategoriesUseCase
-) : BaseViewModel<HomeUiState>(HomeUiState()), CategoryInteractionListener,
+) : BaseViewModel<HomeUiState, HomeUIEffect>(HomeUiState()), CategoryInteractionListener,
     RecipeInteractionListener {
-
-    private val _effect = MutableSharedFlow<HomeUIEffect>()//It can have multiple subscriber
-    val effect = _effect.asSharedFlow()
 
     init {
         getCategories()

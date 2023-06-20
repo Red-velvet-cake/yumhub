@@ -19,16 +19,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewModel>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeUIEffect, HomeViewModel>() {
 
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_home
     override val viewModel: HomeViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        observeOnUIEffects()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,11 +41,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
         }
     }
 
-    private fun observeOnUIEffects() {
-        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
+    override fun observeOnUIEffects() {
+        lifecycleScope.launch {
+            viewModel.effect.collectLatest { handleUIEffect(it) }
+        }
     }
 
-    private fun handleUIEffect(uiEffect: HomeUIEffect) {
+    override fun handleUIEffect(uiEffect: HomeUIEffect) {
         Log.d("alhams", "observeOnUIEffects: $uiEffect")
         when (uiEffect) {
             is HomeUIEffect.ClickOnCategory -> onClickCategory(uiEffect.title)

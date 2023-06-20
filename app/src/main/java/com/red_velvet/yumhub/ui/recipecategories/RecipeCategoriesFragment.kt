@@ -12,11 +12,18 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeCategoriesFragment :
-    BaseFragment<FragmentRecipeCategoriesBinding, RecipeCategoriesUiState, RecipeCategoriesViewModel>() {
+    BaseFragment<FragmentRecipeCategoriesBinding, RecipeCategoriesUiState, RecipeCategoriesUIEffect, RecipeCategoriesViewModel>() {
 
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_recipe_categories
     override val viewModel: RecipeCategoriesViewModel by viewModels()
+    override fun observeOnUIEffects() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun handleUIEffect(uiEffect: RecipeCategoriesUIEffect) {
+//        TODO("Not yet implemented")
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

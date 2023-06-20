@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeCategoriesViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase
-) : BaseViewModel<RecipeCategoriesUiState>(RecipeCategoriesUiState()) {
+) : BaseViewModel<RecipeCategoriesUiState, RecipeCategoriesUIEffect>(RecipeCategoriesUiState()) {
 
     init {
         getRecipeCategories()

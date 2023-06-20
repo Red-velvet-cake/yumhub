@@ -13,8 +13,8 @@ import javax.inject.Inject
 @HiltViewModel
 class CategoryRecipesViewModel @Inject constructor(
     private val getSingleCategoryUseCase: GetSingleCategoryUseCase,
-) : BaseViewModel<CategoryRecipesUiState>(CategoryRecipesUiState()), RecipeInteractionListener {
-
+) : BaseViewModel<CategoryRecipesUiState, CategoryRecipesUIEffect>(CategoryRecipesUiState()),
+    RecipeInteractionListener {
 
     fun getRecipesByCategoryTitle(type: String?, sort: String?) {
         _state.update { it.copy(isLoading = true) }
@@ -34,5 +34,9 @@ class CategoryRecipesViewModel @Inject constructor(
 
     private fun onError(errorUIState: ErrorUIState) {
         _state.update { it.copy(error = errorUIState, isLoading = false) }
+    }
+
+    override fun doOnRecipeClicked(recipeId: Int) {
+        viewModelScope.launch { _effect.emit(CategoryRecipesUIEffect.ClickOnRecipe(recipeId)) }
     }
 }

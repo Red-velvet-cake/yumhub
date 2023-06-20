@@ -11,7 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class InstructionsViewModel @Inject constructor(
     private val getRecipeInstructions: GetAnalyzedRecipeInstructionsUseCase,
-) : BaseViewModel<InstructionsUIState>(InstructionsUIState()), StepsInteractionListener {
+) : BaseViewModel<InstructionsUIState, InstructionsUIEffect>(InstructionsUIState()),
+    StepsInteractionListener {
 
     init {
         getAnalyzedRecipeInstructions(660228)

@@ -10,4 +10,4 @@ data class HomeUiState(
     val categoryRecipesUiState: List<CategoryUiState> = emptyList(),
     val error: ErrorUIState? = null,
     val isLoading: Boolean = false
-) : BaseUiState()
+) : BaseUiState

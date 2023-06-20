@@ -13,9 +13,17 @@ import dagger.hilt.android.AndroidEntryPoint
 class RecipeInformationFragment : BaseFragment<
         FragmentRecipeInformationBinding,
         RecipeInformationUIState,
+        RecipeDetailsUIEffect,
         RecipeInformationViewModel>() {
     override val layoutIdFragment: Int = R.layout.fragment_recipe_information
     override val viewModel: RecipeInformationViewModel by viewModels()
+    override fun observeOnUIEffects() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun handleUIEffect(uiEffect: RecipeDetailsUIEffect) {
+//        TODO("Not yet implemented")
+    }
 
     private val args: RecipeInformationFragmentArgs by navArgs()
 

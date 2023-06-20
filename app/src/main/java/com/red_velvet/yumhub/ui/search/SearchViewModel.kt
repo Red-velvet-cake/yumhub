@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
@@ -21,12 +20,12 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRecipeUseCase: SearchRecipeUseCase,
-)  :BaseViewModel<SearchRecipeUIState>(SearchRecipeUIState())  {
-    private  val _uiState = MutableStateFlow(SearchRecipeUIState())
-    val uiState : StateFlow<SearchRecipeUIState> = _uiState
+) : BaseViewModel<SearchRecipeUIState, SearchUIEffect>(SearchRecipeUIState()) {
+    private val _uiState = MutableStateFlow(SearchRecipeUIState())
+    val uiState: StateFlow<SearchRecipeUIState> = _uiState
     private var debounceJob: Job? = null
     private val _searchInputFlow = MutableStateFlow("")
-    fun onInputSearchChange(newSearchInput:CharSequence){
+    fun onInputSearchChange(newSearchInput: CharSequence) {
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
         _searchInputFlow.value = newSearchInput.toString()
         debounceJob?.cancel()

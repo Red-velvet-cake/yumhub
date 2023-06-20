@@ -11,7 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeInformationViewModel @Inject constructor(
     private val getRecipeInformationUseCase: GetRecipeInformationUseCase
-) : BaseViewModel<RecipeInformationUIState>(RecipeInformationUIState()), DishTypeListener,
+) : BaseViewModel<RecipeInformationUIState, RecipeDetailsUIEffect>(RecipeInformationUIState()),
+    DishTypeListener,
     IngredientsListener {
 
     fun getRecipeInformation(id: Int, includeNutrition: Boolean) {
