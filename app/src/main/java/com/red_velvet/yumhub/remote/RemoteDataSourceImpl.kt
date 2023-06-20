@@ -55,9 +55,10 @@ class RemoteDataSourceImpl @Inject constructor(
 
     override suspend fun getRecipesByMealType(
         type: String?,
-        addRecipeInformation: Boolean?
+        addRecipeInformation: Boolean?,
+        sort: String?
     ): RecipeSearchPaginationResource {
-        return tryToExecute { foodService.getRecipesByMealType(type, addRecipeInformation) }
+        return tryToExecute { foodService.getRecipesByMealType(type, addRecipeInformation, sort) }
     }
 
     override suspend fun getRecipeInformation(

@@ -1,12 +1,17 @@
 package com.red_velvet.yumhub.ui.signUp
 
+import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
 import com.red_velvet.yumhub.domain.usecases.SignUpValidation
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,6 +19,9 @@ class SignUpViewModel @Inject constructor(
     private val saveUserInformation: SaveUserNameAndHashUseCase,
     private val signUpValidation: SignUpValidation,
 ) : BaseViewModel<SignUpUIState>(SignUpUIState()) {
+
+    private val _effect = MutableSharedFlow<SignupUIEffect>()
+    val effect = _effect.asSharedFlow()
 
     fun onUsernameChange(username: String) {
         _state.update { it.copy(username = username, usernameError = null) }
@@ -51,10 +59,14 @@ class SignUpViewModel @Inject constructor(
     }
 
     private fun onSignUpSuccess(unit:Unit) {
+        viewModelScope.launch {
+            _effect.emit(SignupUIEffect.LoggedInSuccessfully)
+        }
         _state.update { it.copy(isLoading = false) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
+        Log.d("alhams", "onError: $errorUiState")
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 

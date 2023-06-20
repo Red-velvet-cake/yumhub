@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/bg_white"
         android:fitsSystemWindows="true"
-        tools:context=".ui.MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

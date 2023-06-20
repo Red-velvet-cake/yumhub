@@ -34,6 +34,7 @@ interface RemoteDataSource {
     suspend fun getRecipesByMealType(
         type: String? = "",
         addRecipeInformation: Boolean? = true,
+        sort: String?
     ): RecipeSearchPaginationResource
 
     suspend fun getRecipeInformation(
