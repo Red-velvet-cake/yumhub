@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRecipeUseCase: SearchRecipeUseCase,
-)  :BaseViewModel<SearchRecipeUIState>(SearchRecipeUIState())  {
+)  :BaseViewModel<SearchRecipeUIState>(SearchRecipeUIState()),SearchRecipeInteractionListener  {
     private  val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
     private var debounceJob: Job? = null
@@ -102,6 +102,10 @@ class SearchViewModel @Inject constructor(
     private fun onError(errorUiState: ErrorUIState) {
         Log.i("AYA",errorUiState.toString())
         _state.update { it.copy(error = errorUiState, isLoading = false) }
+    }
+
+    override fun doOnRecipeClicked(recipeId: Int) {
+        TODO("Not yet implemented")
     }
 
 }

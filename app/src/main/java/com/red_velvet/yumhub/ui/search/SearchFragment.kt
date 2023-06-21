@@ -19,7 +19,7 @@ class SearchFragment :BaseFragment<FragmentSearchBinding,SearchRecipeUIState,Sea
     override val viewModel: SearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val searchAdapter = SearchAdapter(mutableListOf())
+        val searchAdapter = SearchAdapter(mutableListOf(),viewModel)
         binding.recyclerSearchResult.adapter = searchAdapter
         super.onViewCreated(view, savedInstanceState)
     }
