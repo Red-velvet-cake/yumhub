@@ -30,8 +30,9 @@ class SearchFragment :BaseFragment<FragmentSearchBinding,SearchRecipeUIState,Sea
     }
     private fun observeOnUIEffects() {
         lifecycleScope.launch {
-            val effect = viewModel.effect.first()
-            onClickRecipe(effect.recipeId)
+            when (val effect = viewModel.effect.first()) {
+                is SearchUIEffect.ClickOnRecipe -> onClickRecipe(effect.recipeId)
+            }
         }
     }
     private fun onClickRecipe(recipeId: Int) {
