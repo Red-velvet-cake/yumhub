@@ -47,7 +47,7 @@ class SearchViewModel @Inject constructor(
                isLoading = true,
                isResultIsEmpty = false,
                sort = type,
-               sortDirection = ""
+               sortDirection = "asc"
            ) }
            onGetData()
        }
