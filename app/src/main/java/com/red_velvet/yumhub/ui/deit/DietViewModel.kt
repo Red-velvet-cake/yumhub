@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DietViewModel @Inject constructor(
     private val getDietRecipe: GetDietRecipeUseCase,
-)  : BaseViewModel<DietUIState>(DietUIState()) {
+)  : BaseViewModel<DietUIState>(DietUIState()),DietRecipeInteractionListener {
     private val _uiState = MutableStateFlow(DietUIState())
     val uiState: StateFlow<DietUIState> = _uiState
 
@@ -59,5 +59,9 @@ class DietViewModel @Inject constructor(
     private fun onError(errorUiState: ErrorUIState) {
         Log.i("AYA",errorUiState.toString())
         _state.update { it.copy(error = errorUiState, isLoading = false) }
+    }
+
+    override fun doOnRecipeClicked(recipeId: Int) {
+        TODO("Not yet implemented")
     }
 }
