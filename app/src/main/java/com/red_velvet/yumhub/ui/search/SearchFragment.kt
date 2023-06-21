@@ -18,14 +18,12 @@ class SearchFragment :BaseFragment<FragmentSearchBinding,SearchRecipeUIState,Sea
     @LayoutRes
     override val layoutIdFragment: Int= R.layout.fragment_search
     override val viewModel: SearchViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        observeOnUIEffects()
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val searchAdapter = SearchAdapter(mutableListOf(),viewModel)
         binding.recyclerSearchResult.adapter = searchAdapter
+        observeOnUIEffects()
         super.onViewCreated(view, savedInstanceState)
     }
     private fun observeOnUIEffects() {
