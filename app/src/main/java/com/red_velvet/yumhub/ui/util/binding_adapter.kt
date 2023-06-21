@@ -4,14 +4,19 @@ import android.os.Build
 import android.text.Html
 import android.view.View
 import android.widget.ImageView
-import androidx.core.view.isVisible
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.ui.base.BaseAdapter
 import com.red_velvet.yumhub.ui.base.ErrorUIState
+
+@BindingAdapter("android:hideWhenErr")
+fun hideWhenError(view: View, errorState: ErrorUIState?) {
+    view.isVisible = errorState != null
+}
 
 @BindingAdapter("android:showNoInternet")
 fun showNoInternet(view: View, errorState: ErrorUIState?) {
