@@ -1,15 +1,19 @@
 package com.red_velvet.yumhub.ui.deit
 
 import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.usecases.GetDietRecipeUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,7 +22,8 @@ class DietViewModel @Inject constructor(
 )  : BaseViewModel<DietUIState>(DietUIState()),DietRecipeInteractionListener {
     private val _uiState = MutableStateFlow(DietUIState())
     val uiState: StateFlow<DietUIState> = _uiState
-
+    private val _effect = MutableSharedFlow<DietUIEffect>()
+    val effect = _effect.asSharedFlow()
     fun onSelectType(type:String){
         Log.i("AYA",type.toString())
         if(!ifSameFilterTypeSelected(type)){
@@ -62,6 +67,7 @@ class DietViewModel @Inject constructor(
     }
 
     override fun doOnRecipeClicked(recipeId: Int) {
-        TODO("Not yet implemented")
+        viewModelScope.launch { _effect.emit(DietUIEffect.ClickOnRecipe(recipeId)) }
+
     }
 }

@@ -4,13 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.deit.DietResultUIState" />
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.deit.DietRecipeInteractionListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/size_160dp"
+        android:onClick="@{() -> listener.doOnRecipeClicked(item.id)}"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_x_small"
         android:orientation="vertical">
