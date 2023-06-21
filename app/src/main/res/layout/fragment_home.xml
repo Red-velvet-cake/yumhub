@@ -32,7 +32,7 @@
                 app:navigationIcon="@drawable/icon_toolbar"
                 app:subtitle="@string/choose_the_best_dish_for_you"
                 app:subtitleTextAppearance="@style/MyToolbarSubtitleTextAppearance"
-                app:title="@{@string/hello + viewModel.State.name}"
+                app:title="@{@string/hello + ' '  + viewModel.State.name}"
                 app:titleTextAppearance="@style/MyToolbarTitleTextAppearance" />
         </com.google.android.material.appbar.AppBarLayout>
 

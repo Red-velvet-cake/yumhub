@@ -19,7 +19,6 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val saveUserInformation: SaveUserNameAndHashUseCase,
     private val signUpValidation: SignUpValidation,
-    private val sharedPreferenceImpl: SharedPreferenceImpl
 ) : BaseViewModel<SignUpUIState>(SignUpUIState()) {
 
     private val _effect = MutableSharedFlow<SignupUIEffect>()
@@ -61,7 +60,6 @@ class SignUpViewModel @Inject constructor(
     }
 
     private fun onSignUpSuccess(unit:Unit) {
-        sharedPreferenceImpl.saveUserName(_state.value.firstName)
         viewModelScope.launch {
             _effect.emit(SignupUIEffect.LoggedInSuccessfully)
         }
