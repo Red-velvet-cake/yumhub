@@ -6,11 +6,14 @@ import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
+import com.red_velvet.yumhub.ui.home.HomeUIEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
@@ -26,6 +29,8 @@ class SearchViewModel @Inject constructor(
     val uiState : StateFlow<SearchRecipeUIState> = _uiState
     private var debounceJob: Job? = null
     private val _searchInputFlow = MutableStateFlow("")
+    private val _effect = MutableSharedFlow<SearchUIEffect>()
+    val effect = _effect.asSharedFlow()
     fun onInputSearchChange(newSearchInput:CharSequence){
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
         _searchInputFlow.value = newSearchInput.toString()
@@ -105,7 +110,7 @@ class SearchViewModel @Inject constructor(
     }
 
     override fun doOnRecipeClicked(recipeId: Int) {
-        TODO("Not yet implemented")
+       viewModelScope.launch { _effect.emit(SearchUIEffect.ClickOnRecipe(recipeId)) }
     }
 
 }

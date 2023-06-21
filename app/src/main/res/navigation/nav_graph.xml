@@ -11,9 +11,6 @@
         android:name="com.red_velvet.yumhub.ui.search.SearchFragment"
         android:label=""
         tools:layout="@layout/fragment_search" >
-        <argument
-            android:name="recipeId"
-            app:argType="integer" />
         <action
             android:id="@+id/action_searchFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
@@ -81,6 +78,10 @@
         android:id="@+id/recipeInformationFragment"
         android:name="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationFragment"
         android:label="RecipeInformationFragment"
-        tools:layout="@layout/fragment_recipe_information" />
+        tools:layout="@layout/fragment_recipe_information" >
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
