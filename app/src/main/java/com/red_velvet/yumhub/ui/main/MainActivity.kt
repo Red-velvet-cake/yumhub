@@ -56,7 +56,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     binding.bottomNav.isVisible = true
                 }
 
-                R.id.signupFragment -> {
+                R.id.signupFragment ,
+                R.id.onBoardingFragment-> {
                     supportActionBar?.hide()
                     binding.bottomNav.isVisible = false
                 }
