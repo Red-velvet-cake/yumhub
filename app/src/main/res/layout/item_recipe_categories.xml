@@ -8,12 +8,17 @@
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.home.CategoryUiState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.recipecategories.CategoryInteractionListener" />
     </data>
 
     <LinearLayout
         android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_x_small"
+        android:onClick="@{() -> listener.onCategoryClicked(item.categoryTitle)}"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:orientation="vertical">
 

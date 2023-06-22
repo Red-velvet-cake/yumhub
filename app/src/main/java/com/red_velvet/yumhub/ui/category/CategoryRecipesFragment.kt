@@ -7,15 +7,12 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentCategoryRecipesBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
-
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.security.InvalidParameterException
 
 @AndroidEntryPoint
 class CategoryRecipesFragment : BaseFragment<
@@ -27,20 +24,11 @@ class CategoryRecipesFragment : BaseFragment<
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_category_recipes
     override val viewModel: CategoryRecipesViewModel by viewModels()
-    private val args: CategoryRecipesFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val categoryRecipesAdapter = CategoryRecipesAdapter(emptyList(), viewModel)
         binding.recipeCategoryRecyclerView.adapter = categoryRecipesAdapter
-
-        val type = args.categoryTitle
-        if (type != null) {
-            viewModel.getRecipesByCategoryTitle(type, getRecipesType(args.type))
-        } else {
-            viewModel.getRecipesByCategoryTitle(null, getRecipesType(args.type))
-        }
-
     }
 
     override fun observeOnUIEffects() {
@@ -60,14 +48,5 @@ class CategoryRecipesFragment : BaseFragment<
                 id
             )
         findNavController().navigate(directions)
-    }
-
-    private fun getRecipesType(type: Int): String {
-        return when (type) {
-            0 -> "healthiness"
-            1 -> "popular"
-            2 -> "quick"
-            else -> throw InvalidParameterException()
-        }
     }
 }
