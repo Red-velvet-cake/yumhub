@@ -8,4 +8,4 @@ data class CategoryRecipesUiState(
     val recipesList: List<RecipeUiState> = emptyList(),
     val error: ErrorUIState? = null,
     val isLoading: Boolean = false
-) : BaseUiState()
+) : BaseUiState

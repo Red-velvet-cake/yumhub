@@ -191,6 +191,7 @@
                 android:text="@string/go_to_cooking_steps"
                 android:textColor="@color/primary"
                 android:textSize="@dimen/font_size_title"
+                android:onClick="@{() -> viewModel.onShowRecipeCookingStepsClicked(viewModel.args.id)}"
                 app:layout_constraintBottom_toBottomOf="@id/text_ingredients_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/text_ingredients_title" />

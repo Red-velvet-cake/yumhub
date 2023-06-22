@@ -51,7 +51,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         navController.addOnDestinationChangedListener { _, destination, arguments ->
             when (destination.id) {
                 R.id.homeFragment,
-                R.id.searchFragment -> {
+                R.id.searchFragment ,
+                R.id.dietFragment-> {
                     supportActionBar?.hide()
                     binding.bottomNav.isVisible = true
                 }

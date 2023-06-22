@@ -16,6 +16,11 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/fontColor_primary</item>
     </style>
+    <style name="DietToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/fontColor_primary</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
 
     <style name="MyToolbarSubtitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:textSize">12sp</item>
@@ -37,4 +42,13 @@
         <item name="android:paddingStart">@dimen/spacing_normal</item>
         <item name="android:paddingEnd">@dimen/spacing_x_small</item>
     </style>
+    <style name="deitTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black_title_36</item>
+    </style>
+
 </resources>

@@ -151,6 +151,27 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
     }
 }
 
+@BindingAdapter(value = ["app:list","app:loading"])
+fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean){
+    if(loading){
+        view.visibility =  View.GONE
+    }else if(list.isEmpty()){
+        view.visibility =  View.VISIBLE
+    }else{
+        view.visibility =  View.GONE
+    }
+}
+@BindingAdapter(value = ["app:listResult","app:loading"])
+fun<T> hideIfLoadingShowIfListNotEmpty(view: View, listResult: List<T>,loading:Boolean){
+    if(loading){
+        view.visibility =  View.GONE
+    }else if(listResult.isNotEmpty()){
+        view.visibility =  View.VISIBLE
+    }else{
+        view.visibility =  View.GONE
+    }
+}
+
 
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>) {
@@ -169,6 +190,7 @@ fun loadImage(view: ImageView, imageUrl: String) {
     Glide.with(view).load(imageUrl)
         .fitCenter()
         .centerCrop()
+        .placeholder(R.drawable.baseline_image_24)
         .into(view)
 }
 

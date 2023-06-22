@@ -1,7 +1,9 @@
 package com.red_velvet.yumhub.ui.search
 
-sealed interface SearchUIEffect {
-     val recipeId: Int
+import com.red_velvet.yumhub.ui.base.BaseUIEffect
 
-    data class ClickOnRecipe(override val recipeId: Int) : SearchUIEffect
+sealed interface SearchUIEffect : BaseUIEffect {
+
+    data class ClickOnRecipe(val recipeId: Int) : SearchUIEffect
+
 }
