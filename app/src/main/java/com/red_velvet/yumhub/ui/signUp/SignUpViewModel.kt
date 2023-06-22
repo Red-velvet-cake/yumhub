@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
 import com.red_velvet.yumhub.domain.usecases.SignUpValidation
+import com.red_velvet.yumhub.local.SharedPreferenceImpl
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel

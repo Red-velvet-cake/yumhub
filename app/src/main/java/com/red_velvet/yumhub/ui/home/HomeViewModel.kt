@@ -6,6 +6,7 @@ import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
+import com.red_velvet.yumhub.domain.usecases.GetUserNameUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetCategoriesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetHealthyRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetPopularRecipesUseCase
@@ -25,7 +26,8 @@ class HomeViewModel @Inject constructor(
     private val getQuickRecipesUseCase: GetQuickRecipesUseCase,
     private val getPopularRecipesUseCase: GetPopularRecipesUseCase,
     private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase,
-    private val getCategoriesUseCase: GetCategoriesUseCase
+    private val getCategoriesUseCase: GetCategoriesUseCase,
+    private val getUserNameUseCase: GetUserNameUseCase
 ) : BaseViewModel<HomeUiState, HomeUIEffect>(HomeUiState()), CategoryInteractionListener,
     RecipeInteractionListener {
 
@@ -34,8 +36,21 @@ class HomeViewModel @Inject constructor(
         getPopularRecipes()
         getHealthyRecipes()
         getQuickRecipes()
+        getUserName()
     }
 
+    private  fun getUserName(){
+        tryToExecute(
+            callee = getUserNameUseCase::invoke,
+            onSuccess = ::onGetUserNameSuccess,
+            onError = ::onError
+        )
+    }
+    private fun onGetUserNameSuccess(name: String) {
+        _state.update {
+            it.copy(name = name)
+        }
+    }
     private fun getQuickRecipes() {
         _state.update { it.copy(isLoading = true) }
         tryToExecute(

@@ -16,9 +16,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SearchFragment :
     BaseFragment<FragmentSearchBinding, SearchRecipeUIState, SearchUIEffect, SearchViewModel>() {
+
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_search
     override val viewModel: SearchViewModel by viewModels()
+
     override fun observeOnUIEffects() {
         lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
     }

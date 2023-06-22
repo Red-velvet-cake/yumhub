@@ -13,11 +13,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bg_white"
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -29,7 +31,7 @@
                 app:navigationIcon="@drawable/icon_toolbar"
                 app:subtitle="@string/choose_the_best_dish_for_you"
                 app:subtitleTextAppearance="@style/MyToolbarSubtitleTextAppearance"
-                app:title="@string/hello_yoyo"
+                app:title="@{@string/hello + ' '  + viewModel.State.name}"
                 app:titleTextAppearance="@style/MyToolbarTitleTextAppearance" />
         </com.google.android.material.appbar.AppBarLayout>
 
