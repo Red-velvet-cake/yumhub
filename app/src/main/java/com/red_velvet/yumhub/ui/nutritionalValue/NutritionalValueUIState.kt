@@ -7,5 +7,5 @@ data class NutritionalValueUIState(
     val error: ErrorUIState? = null,
     val isLoading: Boolean = false,
     val textInput: String = "",
-    val nutritionalValueResultUIState:NutritionalValueResultUIState? = null
-):BaseUiState()
+    val nutritionalValueResultUIState: NutritionalValueResultUIState? = null
+) : BaseUiState

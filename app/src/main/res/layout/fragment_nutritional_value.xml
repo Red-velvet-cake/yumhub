@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
@@ -57,7 +55,7 @@
                 android:layout_height="@dimen/space_48dp"
                 android:background="@drawable/text_input_rounded"
                 android:hint="@string/enter_a_recipe_name"
-                android:text="@{viewModel.uiState.textInput}"
+                android:text="@{viewModel.state.textInput}"
                 android:textColor="@color/black_title_60"
                 android:paddingVertical="@dimen/space_15dp"
                 android:paddingHorizontal="@dimen/_12dp"
@@ -76,7 +74,7 @@
                 android:paddingHorizontal="@dimen/fab_margin"
                 android:paddingVertical="@dimen/space_15dp"
                 app:cornerRadius="@dimen/radius_16dp"
-                android:onClick="@{() -> viewModel.onSearch()}"
+                android:onClick="@{() -> viewModel.doOnApplyRecipe()}"
                 android:textColor="@color/fontColor_white"
                 android:fontFamily="@font/roboto_medium"
                 android:backgroundTint="@color/primary"
@@ -126,7 +124,7 @@
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
                         android:max="2000"
-                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.calories)}"
+                        android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.calories)}"
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_calories"
                         />
@@ -134,7 +132,7 @@
                         android:id="@+id/tv_calories_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.calories)}'
+                        android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.calories)}'
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_calories"
                         app:layout_constraintStart_toEndOf="@id/progressBar_calories"
@@ -188,7 +186,7 @@
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
                         android:max="500"
-                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.fat)}"
+                        android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.fat)}"
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_fat"
                         />
@@ -196,7 +194,7 @@
                         android:id="@+id/tv_calories_fat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.fat)}'
+                        android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.fat)}'
 
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_fat"
@@ -267,7 +265,7 @@
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
                         android:max="1000"
-                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.carbs)}"
+                        android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.carbs)}"
 
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_carb"
@@ -276,7 +274,7 @@
                         android:id="@+id/tv_carbs_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.carbs)}'
+                        android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.carbs)}'
 
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_carbs"
@@ -332,7 +330,7 @@
                         android:layout_width="@dimen/size_8dp"
                         android:layout_height="@dimen/size_68dp"
                         android:max="500"
-                        android:progress="@{(int)Math.round(viewModel.uiState.nutritionalValueResultUIState.protein)}"
+                        android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.protein)}"
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_proten"
                         />
@@ -340,7 +338,7 @@
                         android:id="@+id/tv_protein_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%.2f",viewModel.uiState.nutritionalValueResultUIState.protein)}'
+                        android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.protein)}'
 
                         android:layout_marginStart="@dimen/spacing_large_24"
                         app:layout_constraintTop_toBottomOf="@id/tv_protein"
