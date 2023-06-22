@@ -42,9 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeUIEffect
     }
 
     override fun observeOnUIEffects() {
-        lifecycleScope.launch {
-            viewModel.effect.collectLatest { handleUIEffect(it) }
-        }
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
     }
 
     override fun handleUIEffect(uiEffect: HomeUIEffect) {

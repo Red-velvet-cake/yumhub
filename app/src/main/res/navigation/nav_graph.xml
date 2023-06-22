@@ -75,7 +75,11 @@
         android:id="@+id/instructionsFragment"
         android:name="com.red_velvet.yumhub.ui.instructions.InstructionsFragment"
         android:label="InstructionsFragment"
-        tools:layout="@layout/fragment_instructions" />
+        tools:layout="@layout/fragment_instructions">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/recipeInformationFragment"
         android:name="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationFragment"
@@ -87,6 +91,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_categoryRecipesFragment"
+            app:destination="@id/categoryRecipesFragment" />
     </fragment>
 
 </navigation>

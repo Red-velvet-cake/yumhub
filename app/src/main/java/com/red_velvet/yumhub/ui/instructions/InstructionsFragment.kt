@@ -15,11 +15,11 @@ class InstructionsFragment :
     override val viewModel: InstructionsViewModel by viewModels()
 
     override fun observeOnUIEffects() {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
 
     override fun handleUIEffect(uiEffect: InstructionsUIEffect) {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
