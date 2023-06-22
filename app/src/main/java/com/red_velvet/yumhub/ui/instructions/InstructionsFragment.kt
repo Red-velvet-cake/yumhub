@@ -10,13 +10,21 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class InstructionsFragment :
-    BaseFragment<FragmentInstructionsBinding, InstructionsUIState, InstructionsViewModel>() {
+    BaseFragment<FragmentInstructionsBinding, InstructionsUIState, InstructionsUIEffect, InstructionsViewModel>() {
     override val layoutIdFragment = R.layout.fragment_instructions
     override val viewModel: InstructionsViewModel by viewModels()
 
+    override fun observeOnUIEffects() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun handleUIEffect(uiEffect: InstructionsUIEffect) {
+//        TODO("Not yet implemented")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val instructionsAdapter = InstructionsAdapter(emptyList(),viewModel)
+        val instructionsAdapter = InstructionsAdapter(emptyList(), viewModel)
         binding.instructionsRecyclerView.adapter = instructionsAdapter
     }
 }

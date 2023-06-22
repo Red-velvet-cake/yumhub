@@ -3,14 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.search.SearchResultUIState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.search.SearchInteractionListener" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="@dimen/no_width"
+        android:onClick="@{() -> listener.onRecipeSearchResultClicked(item.id)}"
         android:background="@color/white"
         android:layout_marginTop="@dimen/small_space"
         android:layout_marginHorizontal="@dimen/fab_margin"

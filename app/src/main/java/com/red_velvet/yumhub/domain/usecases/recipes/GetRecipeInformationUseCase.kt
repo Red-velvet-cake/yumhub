@@ -9,9 +9,8 @@ class GetRecipeInformationUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(
-        id: Int,
-        includeNutrition: Boolean?
+        id: Int
     ): RecipeInformationEntity {
-        return recipesRepositoryImpl.getRecipeInformation(id, includeNutrition)
+        return recipesRepositoryImpl.getRecipeInformation(id)
     }
 }

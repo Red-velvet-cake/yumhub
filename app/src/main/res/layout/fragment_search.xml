@@ -66,22 +66,22 @@
                     android:layout_marginVertical="@dimen/fab_margin"
                     app:srcCompat="@drawable/cancel"
                     />
-                <androidx.cardview.widget.CardView
-                    style="@style/CardSearchFilterStyle"
-                    app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
-                    app:InputText="@{viewModel.uiState.searchInput}"
-                    app:sortDir="@{viewModel.uiState.sortDirection}"
-                    android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'
-                    app:cardElevation="@dimen/no_width"
-                    app:cardCornerRadius="@dimen/_75dp"
-                   >
-                    <ImageView
-                        android:layout_margin="@dimen/fab_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/asc_dsc" />
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    style="@style/CardSearchFilterStyle"-->
+<!--                    app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"-->
+<!--                    app:InputText="@{viewModel.uiState.searchInput}"-->
+<!--                    app:sortDir="@{viewModel.uiState.sortDirection}"-->
+<!--                    android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'-->
+<!--                    app:cardElevation="@dimen/no_width"-->
+<!--                    app:cardCornerRadius="@dimen/_75dp"-->
+<!--                   >-->
+<!--                    <ImageView-->
+<!--                        android:layout_margin="@dimen/fab_margin"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:src="@drawable/asc_dsc" />-->
 
-                </androidx.cardview.widget.CardView>
+<!--                </androidx.cardview.widget.CardView>-->
                 <androidx.cardview.widget.CardView
                     style="@style/CardSearchFilterStyle"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("dsc")}'

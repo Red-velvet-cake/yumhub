@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.home.HomeViewModel" />
@@ -14,11 +13,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bg_white"
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -30,7 +31,7 @@
                 app:navigationIcon="@drawable/icon_toolbar"
                 app:subtitle="@string/choose_the_best_dish_for_you"
                 app:subtitleTextAppearance="@style/MyToolbarSubtitleTextAppearance"
-                app:title="@string/hello_yoyo"
+                app:title="@{@string/hello + ' '  + viewModel.State.name}"
                 app:titleTextAppearance="@style/MyToolbarTitleTextAppearance" />
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -108,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large_24"
                     android:layout_marginEnd="@dimen/spacing_normal"
-                    android:onClick="@{() -> viewModel.doOnClickSeeAllQuickRecipes(0)}"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(0)}"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
@@ -147,7 +148,7 @@
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
-                    android:onClick="@{() -> viewModel.doOnClickSeeAllQuickRecipes(1)}"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(1)}"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
@@ -185,7 +186,7 @@
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/see_all"
-                    android:onClick="@{() -> viewModel.doOnClickSeeAllQuickRecipes(2)}"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(2)}"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintEnd_toEndOf="parent"

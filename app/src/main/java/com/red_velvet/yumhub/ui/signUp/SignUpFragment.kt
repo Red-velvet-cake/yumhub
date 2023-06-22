@@ -1,7 +1,6 @@
 package com.red_velvet.yumhub.ui.signUp
 
 
-import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,16 +13,12 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpUIState, SignUpViewModel>() {
+class SignUpFragment :
+    BaseFragment<FragmentSignUpBinding, SignUpUIState, SignupUIEffect, SignUpViewModel>() {
     override val layoutIdFragment = R.layout.fragment_sign_up
     override val viewModel: SignUpViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        observeUIEvents()
-    }
-
-    private fun observeUIEvents() {
+    override fun observeOnUIEffects() {
         lifecycleScope.launch {
             when (viewModel.effect.first()) {
                 SignupUIEffect.LoggedInSuccessfully -> {
@@ -32,4 +27,9 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpUIState, SignUp
             }
         }
     }
+
+    override fun handleUIEffect(uiEffect: SignupUIEffect) {
+//        TODO("Not yet implemented")
+    }
+
 }
