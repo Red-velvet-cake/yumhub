@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/sign_up_image"
+            android:src="@drawable/signup"
             android:contentDescription="@string/chief" />
 
         <TextView
