@@ -43,10 +43,8 @@ class CategoryRecipesFragment : BaseFragment<
     }
 
     private fun onClickRecipe(id: Int) {
-        val directions =
-            CategoryRecipesFragmentDirections.actionCategoryRecipesFragmentToRecipeInformationFragment(
-                id
-            )
+        val directions = CategoryRecipesFragmentDirections
+            .actionCategoryRecipesFragmentToRecipeInformationFragment(id)
         findNavController().navigate(directions)
     }
 }
