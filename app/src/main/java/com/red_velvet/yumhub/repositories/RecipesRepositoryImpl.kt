@@ -38,6 +38,12 @@ class RecipesRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : RecipesRepository {
+    override suspend fun getDietRecipe(type: String): List<SearchRecipeEntity> {
+     return remoteDataSource.searchRecipe(diet=type)
+         .results?.map(RecipeInformationResource::toRecipeSearchEntity)
+        ?: emptyList()
+    }
+
 
     override suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity> {
         return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationResource::toPopularEntity)

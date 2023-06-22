@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecipesRepository {
 
+    suspend fun getDietRecipe(type:String) :List<SearchRecipeEntity>
+
     suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity>
 
     suspend fun getHealthyRecipesFromRemote(sort: String): List<HealthyRecipeEntity>

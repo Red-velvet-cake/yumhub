@@ -8,10 +8,15 @@
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.home.QuickRecipeUiState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.home.listeners.RecipeInteractionListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="160dp"
+        android:onClick="@{() -> listener.doOnRecipeClicked(item.id)}"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_x_small"
         android:orientation="vertical">

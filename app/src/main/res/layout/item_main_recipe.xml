@@ -8,12 +8,17 @@
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.home.RecipeUiState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.home.listeners.RecipeInteractionListener" />
     </data>
 
     <LinearLayout
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_x_small"
+        android:onClick="@{() -> listener.doOnRecipeClicked(item.id)}"
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
