@@ -23,7 +23,6 @@ class DietFragment : BaseFragment<FragmentDeitBinding, DietUIState, DietUIEffect
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val dietAdapter = DietAdapter(mutableListOf(), viewModel)
         binding.recipeDietRecyclerView.adapter = dietAdapter
-        observeOnUIEffects()
         super.onViewCreated(view, savedInstanceState)
     }
 
