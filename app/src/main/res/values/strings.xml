@@ -106,4 +106,11 @@
     <string name="choose_the_best_dish_for_you">Choose the best dish for you</string>
     <string name="step">Step</string>
     <string name="steps">Steps</string>
+    <string name="choose_any_day_of_the_week">Choose any day of the week</string>
+    <string name="choose_a_meal_time">Choose a meal time</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_meal">Add Meal</string>
 </resources>
