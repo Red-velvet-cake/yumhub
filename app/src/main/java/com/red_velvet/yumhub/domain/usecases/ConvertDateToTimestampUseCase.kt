@@ -13,6 +13,6 @@ class ConvertDateToTimestampUseCase @Inject constructor() {
         return LocalDateTime.of(year, month, dayOfMonth, 0, 0, 0)
             .atZone(ZoneId.systemDefault())
             .toInstant()
-            .toEpochMilli()
+            .toEpochMilli().div(1000)
     }
 }

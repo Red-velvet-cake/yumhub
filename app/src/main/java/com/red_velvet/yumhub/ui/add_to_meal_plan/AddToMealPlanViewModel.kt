@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.ui.add_to_meal_plan
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.usecases.AddToMealPlanUseCase
 import com.red_velvet.yumhub.domain.usecases.ConvertDateToTimestampUseCase
@@ -14,8 +15,16 @@ import javax.inject.Inject
 @HiltViewModel
 class AddToMealPlanViewModel @Inject constructor(
     private val addToMealPlanUseCase: AddToMealPlanUseCase,
-    private val convertDateToTimestampUseCase: ConvertDateToTimestampUseCase
+    private val convertDateToTimestampUseCase: ConvertDateToTimestampUseCase,
+    stateHandle: SavedStateHandle
 ) : BaseViewModel<AddToMealPlanUiState>(AddToMealPlanUiState()), OnChooseMealTimeListener {
+
+    private val mealId = 640338
+//    AddToMealPlanFragmentArgs.fromSavedStateHandle(stateHandle)
+
+    init {
+        _state.update { it.copy(addMealUiState = it.addMealUiState.copy(id = mealId)) }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun onUpdateSelectedDate(year: Int, month: Int, dayOfMonth: Int) {
@@ -33,7 +42,9 @@ class AddToMealPlanViewModel @Inject constructor(
                 val mealPlanEntity = it.addMealUiState.toEntity()
                 addToMealPlanUseCase(mealPlanEntity)
             }
+
         }
     }
+
 
 }
