@@ -51,9 +51,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeUIEffect
             is HomeUIEffect.ClickOnCategory -> onClickCategory(uiEffect.title)
             is HomeUIEffect.ClickOnRecipe -> onClickRecipe(uiEffect.id)
             is HomeUIEffect.ClickOnSeeAllCategories -> onClickSeeAllCategories()
-            is HomeUIEffect.ClickOnSeeAllHealthyRecipes -> onClickSeeAllHealthyRecipes(uiEffect.type)
-            is HomeUIEffect.ClickOnSeeAllPopularRecipes -> onClickSeeAllPopularRecipes(uiEffect.type)
-            is HomeUIEffect.ClickOnSeeAllQuickRecipes -> onClickSeeAllQuickRecipes(uiEffect.type)
+            is HomeUIEffect.ClickOnSeeAllHealthyRecipes -> onClickSeeAllRecipes(uiEffect.type)
+            is HomeUIEffect.ClickOnSeeAllPopularRecipes -> onClickSeeAllRecipes(uiEffect.type)
+            is HomeUIEffect.ClickOnSeeAllQuickRecipes -> onClickSeeAllRecipes(uiEffect.type)
         }
     }
 
@@ -68,19 +68,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeUIEffect
         findNavController().navigate(directions)
     }
 
-    private fun onClickSeeAllPopularRecipes(type: Int) {
-        val directions =
-            HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(null, type)
-        findNavController().navigate(directions)
-    }
-
-    private fun onClickSeeAllHealthyRecipes(type: Int) {
-        val directions =
-            HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(null, type)
-        findNavController().navigate(directions)
-    }
-
-    private fun onClickSeeAllQuickRecipes(type: Int) {
+    private fun onClickSeeAllRecipes(type: Int) {
         val directions =
             HomeFragmentDirections.actionHomeFragmentToCategoryRecipesFragment(null, type)
         findNavController().navigate(directions)
