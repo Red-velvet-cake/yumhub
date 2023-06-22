@@ -62,9 +62,6 @@
         <argument
             android:name="type"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_categoryRecipesFragment_to_recipeInformationFragment"
-            app:destination="@id/recipeInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeCategoriesFragment"
@@ -98,6 +95,16 @@
         <action
             android:id="@+id/action_recipeInformationFragment_to_categoryRecipesFragment"
             app:destination="@id/categoryRecipesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dietFragment"
+        android:name="com.red_velvet.yumhub.ui.deit.DietFragment"
+        android:label=""
+        tools:layout="@layout/fragment_deit">
+        <action
+            android:id="@+id/action_dietFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
     </fragment>
 
 </navigation>
