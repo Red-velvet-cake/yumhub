@@ -20,11 +20,14 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRecipeUseCase: SearchRecipeUseCase,
-) : BaseViewModel<SearchRecipeUIState, SearchUIEffect>(SearchRecipeUIState()) {
+) : BaseViewModel<SearchRecipeUIState, SearchUIEffect>(SearchRecipeUIState()),
+    SearchInteractionListener {
+
     private val _uiState = MutableStateFlow(SearchRecipeUIState())
     val uiState: StateFlow<SearchRecipeUIState> = _uiState
     private var debounceJob: Job? = null
     private val _searchInputFlow = MutableStateFlow("")
+
     fun onInputSearchChange(newSearchInput: CharSequence) {
         _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
         _searchInputFlow.value = newSearchInput.toString()
@@ -36,69 +39,91 @@ class SearchViewModel @Inject constructor(
                 .collect { onGetData() }
         }
     }
-    fun onSearch(){
+
+    fun onSearch() {
         _uiState.update { it.copy(isLoading = true) }
         onGetData()
     }
-    fun onSelectFilterType(type:String){
-       if(!ifSameFilterTypeSelected(type)){
-           _uiState.update { it.copy(
-               isLoading = true,
-               isResultIsEmpty = false,
-               sort = type,
-           ) }
-           onGetData()
-       }
+
+    fun onSelectFilterType(type: String) {
+        if (!ifSameFilterTypeSelected(type)) {
+            _uiState.update {
+                it.copy(
+                    isLoading = true,
+                    isResultIsEmpty = false,
+                    sort = type,
+                )
+            }
+            onGetData()
+        }
     }
-    private fun ifSameFilterTypeSelected(type :String):Boolean{
-        if(type == _uiState.value.sort){
-            _uiState.update { it.copy(
-                isLoading = false,
-                sort = "",
-                isResultIsEmpty = false,
-                searchResult = emptyList()) }
+
+    private fun ifSameFilterTypeSelected(type: String): Boolean {
+        if (type == _uiState.value.sort) {
+            _uiState.update {
+                it.copy(
+                    isLoading = false,
+                    sort = "",
+                    isResultIsEmpty = false,
+                    searchResult = emptyList()
+                )
+            }
             return true
         }
-        return  false
+        return false
     }
-    fun onSelectSortDirection(sortDirection:String){
+
+    fun onSelectSortDirection(sortDirection: String) {
         _uiState.update { it.copy(isLoading = true, sortDirection = sortDirection) }
         onGetData()
     }
-    private fun onGetData(){
+
+    private fun onGetData() {
         tryToExecute(
             callee = {
                 searchRecipeUseCase.invoke(
-                    query=_uiState.value.searchInput ,
+                    query = _uiState.value.searchInput,
                     sort = _uiState.value.sort,
-                    sortDirection = _uiState.value.sortDirection)
+                    sortDirection = _uiState.value.sortDirection
+                )
             },
             onSuccess = ::onSuccess,
             onError = ::onError
         )
     }
 
-    fun onClear(){
-        _searchInputFlow.value =""
-        _uiState.update { it.copy(
-            sort = "",
-            searchInput = "",
-            isLoading = false,
-            isResultIsEmpty =false ) }
+    fun onClear() {
+        _searchInputFlow.value = ""
+        _uiState.update {
+            it.copy(
+                sort = "",
+                searchInput = "",
+                isLoading = false,
+                isResultIsEmpty = false
+            )
+        }
     }
 
-    private fun onSuccess(recipes: List<SearchRecipeEntity>){
-        val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
-        Log.i("AYA",searchResult.toString())
+    private fun onSuccess(recipes: List<SearchRecipeEntity>) {
+        val searchResult = recipes.map { it.toRecipeSearchResultMapper() }
+        Log.i("AYA", searchResult.toString())
 
-        _uiState.update { it.copy(
-            searchResult = searchResult,
-            isLoading = false,
-            isResultIsEmpty =searchResult.isEmpty() ) }
+        _uiState.update {
+            it.copy(
+                searchResult = searchResult,
+                isLoading = false,
+                isResultIsEmpty = searchResult.isEmpty()
+            )
+        }
     }
+
     private fun onError(errorUiState: ErrorUIState) {
-        Log.i("AYA",errorUiState.toString())
+        Log.i("AYA", errorUiState.toString())
         _state.update { it.copy(error = errorUiState, isLoading = false) }
+    }
+
+    override fun onRecipeSearchResultClicked(recipeId: Int) {
+        viewModelScope.launch { _effect.emit(SearchUIEffect.ClickOnRecipe(recipeId)) }
     }
 
 }
