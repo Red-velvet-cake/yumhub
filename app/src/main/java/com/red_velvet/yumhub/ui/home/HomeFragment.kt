@@ -15,11 +15,11 @@ import com.red_velvet.yumhub.ui.home.adapters.PopularRecipeAdapter
 import com.red_velvet.yumhub.ui.home.adapters.QuickRecipeAdapter
 import com.red_velvet.yumhub.ui.home.adapters.RecipesCategoriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewModel>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeUIEffect, HomeViewModel>() {
 
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_home
@@ -39,23 +39,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
             healthyRecyclerView.adapter = healthyRecipeAdapter
             quickRecyclerView.adapter = quickRecipeAdapter
         }
-        observeOnUIEffects()
     }
 
-    private fun observeOnUIEffects() {
-        lifecycleScope.launch {
-            val effect = viewModel.effect.first()
-            Log.d("alhams", "observeOnUIEffects: $effect")
-            when (effect) {
-                is HomeUIEffect.ClickOnCategory -> onClickCategory(effect.title)
-                is HomeUIEffect.ClickOnHealthyRecipe -> onClickHealthyRecipe(effect.id)
-                is HomeUIEffect.ClickOnPopularRecipe -> onClickPopularRecipe(effect.id)
-                is HomeUIEffect.ClickOnQuickRecipe -> onClickQuickRecipe(effect.id)
-                HomeUIEffect.ClickOnSeeAllCategories -> onClickSeeAllCategories()
-                is HomeUIEffect.ClickOnSeeAllHealthyRecipes -> onClickSeeAllHealthyRecipes(effect.type)
-                is HomeUIEffect.ClickOnSeeAllPopularRecipes -> onClickSeeAllPopularRecipes(effect.type)
-                is HomeUIEffect.ClickOnSeeAllQuickRecipes -> onClickSeeAllQuickRecipes(effect.type)
-            }
+    override fun observeOnUIEffects() {
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
+    }
+
+    override fun handleUIEffect(uiEffect: HomeUIEffect) {
+        Log.d("alhams", "observeOnUIEffects: $uiEffect")
+        when (uiEffect) {
+            is HomeUIEffect.ClickOnCategory -> onClickCategory(uiEffect.title)
+            is HomeUIEffect.ClickOnRecipe -> onClickRecipe(uiEffect.id)
+            is HomeUIEffect.ClickOnSeeAllCategories -> onClickSeeAllCategories()
+            is HomeUIEffect.ClickOnSeeAllHealthyRecipes -> onClickSeeAllHealthyRecipes(uiEffect.type)
+            is HomeUIEffect.ClickOnSeeAllPopularRecipes -> onClickSeeAllPopularRecipes(uiEffect.type)
+            is HomeUIEffect.ClickOnSeeAllQuickRecipes -> onClickSeeAllQuickRecipes(uiEffect.type)
         }
     }
 
@@ -65,16 +63,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
         findNavController().navigate(directions)
     }
 
-    private fun onClickHealthyRecipe(id: Int) {
-
-    }
-
-    private fun onClickPopularRecipe(id: Int) {
-
-    }
-
-    private fun onClickQuickRecipe(id: Int) {
-
+    private fun onClickRecipe(id: Int) {
+        val directions = HomeFragmentDirections.actionHomeFragmentToRecipeInformationFragment(id)
+        findNavController().navigate(directions)
     }
 
     private fun onClickSeeAllPopularRecipes(type: Int) {

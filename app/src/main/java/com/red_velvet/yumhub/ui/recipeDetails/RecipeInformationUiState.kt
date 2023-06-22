@@ -14,7 +14,7 @@ data class RecipeInformationUIState(
     val ingredientsUIState: List<IngredientsUIState> = emptyList(),
     val isLoading: Boolean = true,
     val error: ErrorUIState? = null
-) : BaseUiState()
+) : BaseUiState
 
 
 data class DishTypeUIState(
