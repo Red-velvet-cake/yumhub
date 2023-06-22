@@ -4,8 +4,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
+import com.red_velvet.yumhub.domain.models.toMealPlanResource
 import com.red_velvet.yumhub.domain.repositories.MealRepository
-import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealResource
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
 import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
 import com.red_velvet.yumhub.repositories.mappers.toEntity
@@ -20,11 +20,12 @@ class MealRepositoryImpl @Inject constructor(
 ) : MealRepository {
 
     override suspend fun addToMealPlan(
-        addToMeal: AddMealResource,
+        addToMeal: MealPlanEntity,
         username: String,
         hash: String
     ) {
-        remoteDataSource.addToMealPlan(addToMeal, username, hash)
+        val mealPlanObj = addToMeal.toMealPlanResource()
+        remoteDataSource.addToMealPlan(mealPlanObj, username, hash)
     }
 
     override fun getWeekMealsPlan(
@@ -76,6 +77,8 @@ class MealRepositoryImpl @Inject constructor(
 //                it.toEntity(Instant.now().toEpochMilli())
 //            }?.let { localDataSource.insertWeekPlanMeal(it) }
 //        }
+
+
 }
 
 
