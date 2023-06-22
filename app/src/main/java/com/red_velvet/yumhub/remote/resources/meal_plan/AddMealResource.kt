@@ -11,7 +11,7 @@ data class AddMealResource(
     @SerializedName("slot")
     val slot: Int? = 0,
     @SerializedName("type")
-    val type: String? = "",
+    val type: MealPlanItemType = MealPlanItemType.INGREDIENTS,
     @SerializedName("value")
     val valueResource: ValueResource? = ValueResource()
 )
