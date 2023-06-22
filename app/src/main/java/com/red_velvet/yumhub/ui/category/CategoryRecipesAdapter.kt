@@ -13,4 +13,6 @@ class CategoryRecipesAdapter(
 
 }
 
-interface RecipeInteractionListener : BaseInteractionListener
+interface RecipeInteractionListener : BaseInteractionListener {
+    fun doOnRecipeClicked(recipeId: Int)
+}

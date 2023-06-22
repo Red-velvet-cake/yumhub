@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.recipeDetails.DishTypeUIState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.recipeDetails.DishTypeListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +27,7 @@
             android:paddingHorizontal="@dimen/spacing_small"
             android:paddingVertical="@dimen/small_space"
             android:text="@{item.dishType}"
+            android:onClick="@{() -> listener.onDishTypeClicked(item.dishType)}"
             android:textColor="@color/fontColor_secondary"
             android:textSize="@dimen/text_size_16"
             app:chipStrokeColor="@color/primary"

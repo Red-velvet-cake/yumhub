@@ -9,6 +9,7 @@ import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
 fun List<PopularRecipeEntity>.toPopularUiState(): List<RecipeUiState> {
     return this.map {
         RecipeUiState(
+            id = it.id,
             recipeImage = it.image,
             recipeTitle = it.title
         )
@@ -18,6 +19,7 @@ fun List<PopularRecipeEntity>.toPopularUiState(): List<RecipeUiState> {
 fun List<HealthyRecipeEntity>.toHealthyUiState(): List<RecipeUiState> {
     return this.map {
         RecipeUiState(
+            id = it.id,
             recipeImage = it.image,
             recipeTitle = it.title
         )
@@ -27,6 +29,7 @@ fun List<HealthyRecipeEntity>.toHealthyUiState(): List<RecipeUiState> {
 fun List<QuickRecipeEntity>.toQuickRecipeUiState(): List<QuickRecipeUiState> {
     return this.map {
         QuickRecipeUiState(
+            id = it.id,
             recipeImage = it.image,
             recipeTitle = it.title,
             cookingTime = it.cookingMinutes
@@ -34,11 +37,11 @@ fun List<QuickRecipeEntity>.toQuickRecipeUiState(): List<QuickRecipeUiState> {
     }
 }
 
-fun List<CategoryEntity>.toCategoryUiState(): List<RecipeUiState> {
+fun List<CategoryEntity>.toCategoryUiState(): List<CategoryUiState> {
     return this.map {
-        RecipeUiState(
-            recipeImage = it.imageResource.toString(),
-            recipeTitle = it.title
+        CategoryUiState(
+            categoryImage = it.imageResource.toString(),
+            categoryTitle = it.title
         )
     }
 }
