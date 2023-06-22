@@ -17,7 +17,7 @@
         android:layout_width="@dimen/size_160dp"
         android:onClick="@{() -> listener.doOnRecipeClicked(item.id)}"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/spacing_x_small"
+        android:layout_marginHorizontal="@dimen/tiny_space"
         android:orientation="vertical">
 
 
