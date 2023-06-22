@@ -165,6 +165,7 @@
 
             android:layout_marginHorizontal="@dimen/fab_margin"
             android:paddingTop="@dimen/fab_margin"
+            android:paddingBottom="@dimen/spacing_large_24"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:loading="@{viewModel.uiState.isLoading}"
             app:listResult="@{viewModel.uiState.dietResult}"
