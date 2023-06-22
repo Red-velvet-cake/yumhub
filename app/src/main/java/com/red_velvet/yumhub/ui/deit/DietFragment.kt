@@ -10,30 +10,36 @@ import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentDeitBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DietFragment  : BaseFragment<FragmentDeitBinding, DietUIState, DietViewModel>(){
+class DietFragment : BaseFragment<FragmentDeitBinding, DietUIState, DietUIEffect, DietViewModel>() {
+
     @LayoutRes
-    override val layoutIdFragment: Int= R.layout.fragment_deit
+    override val layoutIdFragment: Int = R.layout.fragment_deit
     override val viewModel: DietViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val dietAdapter = DietAdapter(mutableListOf(),viewModel)
+        val dietAdapter = DietAdapter(mutableListOf(), viewModel)
         binding.recipeDietRecyclerView.adapter = dietAdapter
         observeOnUIEffects()
         super.onViewCreated(view, savedInstanceState)
     }
-    private fun observeOnUIEffects() {
-        lifecycleScope.launch {
-            when (val effect = viewModel.effect.first()) {
-                is DietUIEffect.ClickOnRecipe -> onClickRecipe(effect.recipeId)
-            }
+
+    override fun observeOnUIEffects() {
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
+    }
+
+    override fun handleUIEffect(uiEffect: DietUIEffect) {
+        when (uiEffect) {
+            is DietUIEffect.ClickOnRecipe -> onClickRecipe(uiEffect.recipeId)
         }
     }
+
     private fun onClickRecipe(recipeId: Int) {
         val directions =
-            DietFragmentDirections.actionDietFragmentToRecipeInformationFragment()
+            DietFragmentDirections.actionDietFragmentToRecipeInformationFragment(recipeId)
         findNavController().navigate(directions)
     }
 }

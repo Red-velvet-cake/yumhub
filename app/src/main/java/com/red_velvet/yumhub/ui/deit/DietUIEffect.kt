@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.ui.deit
 
-sealed interface DietUIEffect{
-    val recipeId: Int
+import com.red_velvet.yumhub.ui.base.BaseUIEffect
 
-    data class ClickOnRecipe(override val recipeId: Int) : DietUIEffect
+sealed interface DietUIEffect : BaseUIEffect {
+    data class ClickOnRecipe(val recipeId: Int) : DietUIEffect
 }
