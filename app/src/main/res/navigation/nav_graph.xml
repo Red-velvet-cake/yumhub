@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/addToMealPlanFragment">
 
 
     <fragment
@@ -75,5 +75,14 @@
         android:name="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationFragment"
         android:label="RecipeInformationFragment"
         tools:layout="@layout/fragment_recipe_information" />
+    <fragment
+        android:id="@+id/addToMealPlanFragment"
+        android:name="com.red_velvet.yumhub.ui.add_to_meal_plan.AddToMealPlanFragment"
+        android:label="Add Meal"
+        tools:layout="@layout/fragment_add_to_meal_plan">
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
