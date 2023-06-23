@@ -29,7 +29,7 @@
         android:title="@string/nutrition_tracker" />
 
     <item
-        android:id="@+id/storiesFragment"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/chef_nav_bottom"
         android:title="@string/profile" />
 

@@ -101,4 +101,6 @@
     <dimen name="size_125dp">125dp</dimen>
     <dimen name="_137dp">137dp</dimen>
     <dimen name="_135dp">135dp</dimen>
+    <dimen name="_16dp">16dp</dimen>
+    <dimen name="_10dp">10dp</dimen>
 </resources>
