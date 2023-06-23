@@ -8,6 +8,7 @@ import com.red_velvet.yumhub.domain.usecases.AddToMealPlanUseCase
 import com.red_velvet.yumhub.domain.usecases.ConvertDateToTimestampUseCase
 import com.red_velvet.yumhub.domain.usecases.ValidateAddToMealPlanUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
+import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -22,15 +23,14 @@ class AddToMealPlanViewModel @Inject constructor(
 ) : BaseViewModel<AddToMealPlanUiState, AddToMealPlanUiEffect>(AddToMealPlanUiState()),
     OnChooseMealTimeListener {
 
-    private val mealId = 640338
-//    AddToMealPlanFragmentArgs.fromSavedStateHandle(stateHandle)
+    private val args = AddToMealPlanFragmentArgs.fromSavedStateHandle(stateHandle)
 
     init {
-        _state.update { it.copy(addMealUiState = it.addMealUiState.copy(id = mealId)) }
+        _state.update { it.copy(addMealUiState = it.addMealUiState.copy(id = args.recipeId)) }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun onUpdateSelectedDate(year: Int, month: Int, dayOfMonth: Int) {
+    override fun onUpdateSelectedDate(year: Int, month: Int, dayOfMonth: Int) {
         if (month > 0) {
             val timeStamp = convertDateToTimestampUseCase(year, month, dayOfMonth)
             _state.update { it.copy(addMealUiState = it.addMealUiState.copy(timeStamp = timeStamp)) }
@@ -43,16 +43,29 @@ class AddToMealPlanViewModel @Inject constructor(
         _state.update { it.copy(addMealUiState = it.addMealUiState.copy(slot = slot)) }
     }
 
-    fun onAddRecipeToMealPlan() {
+    override fun onAddRecipeToMealPlan() {
         viewModelScope.launch {
             val timeStamp = _state.value.addMealUiState.timeStamp
             if (validateAddToMealPlanUseCase(timeStamp)) {
                 val mealPlanEntity = _state.value.addMealUiState.toEntity()
-                addToMealPlanUseCase(mealPlanEntity)
+                tryToExecute(
+                    { addToMealPlanUseCase(mealPlanEntity) },
+                    ::onSuccess,
+                    ::onError
+                )
             } else {
                 onInvalidInput()
             }
         }
+    }
+
+    private fun onSuccess(unit: Unit) {
+        _state.update { it.copy(errorState = null) }
+        viewModelScope.launch { _effect.emit(AddToMealPlanUiEffect.AddToMealPlan) }
+    }
+
+    private fun onError(errorState: ErrorUIState) {
+        _state.update { it.copy(errorState = errorState) }
     }
 
     private fun onInvalidInput() {
@@ -60,6 +73,5 @@ class AddToMealPlanViewModel @Inject constructor(
             _effect.emit(AddToMealPlanUiEffect.InvalidInput)
         }
     }
-
 
 }
