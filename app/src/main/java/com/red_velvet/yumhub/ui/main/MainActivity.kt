@@ -7,7 +7,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.red_velvet.yumhub.R
@@ -50,6 +49,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.searchFragment,
+                R.id.nutritionalValueFragment,
+                R.id.profileFragment,
                 R.id.dietFragment -> {
                     supportActionBar?.hide()
                     binding.bottomNav.isVisible = true
@@ -59,12 +60,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.onBoardingFragment -> {
                     supportActionBar?.hide()
                     binding.bottomNav.isVisible = false
-                }
-
-                R.id.profileFragment -> {
-                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                    supportActionBar?.setDisplayShowHomeEnabled(false)
-                    supportActionBar?.show()
                 }
 
                 else -> {

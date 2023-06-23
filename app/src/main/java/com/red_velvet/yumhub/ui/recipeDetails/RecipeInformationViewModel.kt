@@ -16,7 +16,7 @@ class RecipeInformationViewModel @Inject constructor(
     private val getRecipeInformationUseCase: GetRecipeInformationUseCase,
     stateHandle: SavedStateHandle
 ) : BaseViewModel<RecipeInformationUIState, RecipeDetailsUIEffect>(RecipeInformationUIState()),
-    DishTypeListener, ShowRecipeCookingStepsInteractionListener, IngredientsListener {
+    DishTypeListener, RecipeInformationInteractionListener, IngredientsListener {
 
     val args = RecipeInformationFragmentArgs.fromSavedStateHandle(stateHandle)
 
@@ -50,6 +50,10 @@ class RecipeInformationViewModel @Inject constructor(
 
     override fun onShowRecipeCookingStepsClicked(recipeId: Int) {
         viewModelScope.launch { _effect.emit(RecipeDetailsUIEffect.ClickOnGoToCookingSteps(recipeId)) }
+    }
+
+    override fun onAddToMealPlan(recipeId: Int) {
+        viewModelScope.launch { _effect.emit(RecipeDetailsUIEffect.ClickAddToMealPlan(recipeId)) }
     }
 
 }

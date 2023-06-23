@@ -42,7 +42,16 @@ class RecipeInformationFragment : BaseFragment<
             is RecipeDetailsUIEffect.ClickOnGoToCookingSteps -> onShowRecipeCookingStepsClicked(
                 uiEffect.recipeId
             )
+
+            is RecipeDetailsUIEffect.ClickAddToMealPlan -> onClickAddToMealPlan(uiEffect.recipeId)
         }
+    }
+
+    private fun onClickAddToMealPlan(recipeId: Int) {
+        val directions = RecipeInformationFragmentDirections
+            .actionRecipeInformationFragmentToAddToMealPlanFragment(recipeId)
+
+        findNavController().navigate(directions)
     }
 
     private fun onShowRecipeCookingStepsClicked(recipeId: Int) {
