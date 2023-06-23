@@ -109,4 +109,8 @@
     <string name="so_we_can_calculate_your_calories_and_suggest_meals_that_work_for_you">So we can calculate your calories and suggest meals that work for you</string>
     <string name="choose_the_gender">Choose the gender</string>
     <string name="what_is_your_activity_level">What is your activity level?</string>
+    <string name="what_is_your_goal">What is your goal?</string>
+    <string name="maintain_weight">Maintain Weight</string>
+    <string name="loss_weight">Loss Weight</string>
+    <string name="gain_weight">Gain Weight</string>
 </resources>
