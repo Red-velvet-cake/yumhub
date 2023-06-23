@@ -12,5 +12,4 @@ sealed interface ProfileUiEffect : BaseUIEffect {
     object ClickOnNutritionalValue : ProfileUiEffect
 
     object ClickOnFoodSuggester : ProfileUiEffect
-
 }

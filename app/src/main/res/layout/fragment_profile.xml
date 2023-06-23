@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.profile.ProfileViewModel" />
     </data>
 
     <ScrollView
@@ -45,13 +48,12 @@
                 android:id="@+id/profile_image"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/icon_toolbar"
                 app:layout_constraintBottom_toBottomOf="@id/profile_bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_bg"
-                app:shapeAppearanceOverlay="@style/CircleImageStyle"
-                tools:src="@tools:sample/avatars" />
+                app:shapeAppearanceOverlay="@style/CircleImageStyle" />
 
             <TextView
                 android:id="@+id/profile_name"
@@ -59,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
+                android:text="@{viewModel.state.username}"
                 app:layout_constraintEnd_toEndOf="@id/profile_image"
                 app:layout_constraintStart_toStartOf="@id/profile_image"
                 app:layout_constraintTop_toBottomOf="@id/profile_image"
