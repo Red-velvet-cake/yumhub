@@ -5,11 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
 import com.red_velvet.yumhub.domain.usecases.SignUpValidation
+import com.red_velvet.yumhub.local.SharedPreferenceImpl
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,10 +17,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val saveUserInformation: SaveUserNameAndHashUseCase,
     private val signUpValidation: SignUpValidation,
-) : BaseViewModel<SignUpUIState>(SignUpUIState()) {
-
-    private val _effect = MutableSharedFlow<SignupUIEffect>()
-    val effect = _effect.asSharedFlow()
+) : BaseViewModel<SignUpUIState, SignupUIEffect>(SignUpUIState()) {
 
     fun onUsernameChange(username: String) {
         _state.update { it.copy(username = username, usernameError = null) }

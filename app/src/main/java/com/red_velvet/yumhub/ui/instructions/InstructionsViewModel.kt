@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.ui.instructions
 
+import androidx.lifecycle.SavedStateHandle
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.usecases.GetAnalyzedRecipeInstructionsUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -11,10 +12,14 @@ import javax.inject.Inject
 @HiltViewModel
 class InstructionsViewModel @Inject constructor(
     private val getRecipeInstructions: GetAnalyzedRecipeInstructionsUseCase,
-) : BaseViewModel<InstructionsUIState>(InstructionsUIState()), StepsInteractionListener {
+    savedState: SavedStateHandle
+) : BaseViewModel<InstructionsUIState, InstructionsUIEffect>(InstructionsUIState()),
+    StepsInteractionListener {
+
+    private val args = InstructionsFragmentArgs.fromSavedStateHandle(savedState)
 
     init {
-        getAnalyzedRecipeInstructions(660228)
+        getAnalyzedRecipeInstructions(args.id)
     }
 
     private fun getAnalyzedRecipeInstructions(id: Int) {
@@ -35,7 +40,7 @@ class InstructionsViewModel @Inject constructor(
         analyzedRecipeInstructions: List<AnalyzedInstructionsEntity>,
     ) {
         val steps = analyzedRecipeInstructions.toAnalyzedInstructionUiState().flatMap { it.steps }
-        _state.update { it.copy( steps = steps, isLoading = false) }
+        _state.update { it.copy(steps = steps, isLoading = false) }
     }
 
 }
