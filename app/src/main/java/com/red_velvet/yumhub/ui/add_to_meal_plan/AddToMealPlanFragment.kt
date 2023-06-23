@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentAddToMealPlanBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -31,7 +32,18 @@ class AddToMealPlanFragment :
     override fun handleUIEffect(uiEffect: AddToMealPlanUiEffect) {
         when (uiEffect) {
             AddToMealPlanUiEffect.InvalidInput -> onInvalidInput()
+            AddToMealPlanUiEffect.ClickOnCancelAddToMealPlan -> onCancelAddToMealPlan()
+            AddToMealPlanUiEffect.AddToMealPlan -> onAddToMealPlan()
         }
+    }
+
+    private fun onAddToMealPlan() {
+        Toast.makeText(requireContext(), "Added to meal plan", Toast.LENGTH_SHORT).show()
+        findNavController().navigateUp()
+    }
+
+    private fun onCancelAddToMealPlan() {
+        Toast.makeText(requireContext(), "Added to meal plan failed", Toast.LENGTH_SHORT).show()
     }
 
     private fun onInvalidInput() {

@@ -5,4 +5,9 @@ import com.red_velvet.yumhub.ui.base.BaseUIEffect
 sealed interface AddToMealPlanUiEffect : BaseUIEffect {
 
     object InvalidInput : AddToMealPlanUiEffect
+
+    object ClickOnCancelAddToMealPlan : AddToMealPlanUiEffect
+
+    object AddToMealPlan : AddToMealPlanUiEffect
+
 }
