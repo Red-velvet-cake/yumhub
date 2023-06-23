@@ -1,8 +1,6 @@
 package com.red_velvet.yumhub.ui.main
 
-import com.red_velvet.yumhub.R
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -11,13 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-
+import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.ActivityMainBinding
 import com.red_velvet.yumhub.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import java.security.AccessController.getContext
 
 
 @AndroidEntryPoint
@@ -32,7 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        window.navigationBarColor =  ContextCompat.getColor(this,R.color.black)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
         setSupportActionBar(binding.toolbar)
         initNavigationDestinationListener()
         setupActionBarWithNavController(navController)
@@ -51,14 +48,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         navController.addOnDestinationChangedListener { _, destination, arguments ->
             when (destination.id) {
                 R.id.homeFragment,
-                R.id.searchFragment ,
-                R.id.dietFragment-> {
+                R.id.searchFragment,
+                R.id.profileFragment,
+                R.id.dietFragment -> {
                     supportActionBar?.hide()
                     binding.bottomNav.isVisible = true
                 }
 
-                R.id.signupFragment ,
-                R.id.onBoardingFragment-> {
+                R.id.signupFragment,
+                R.id.onBoardingFragment -> {
                     supportActionBar?.hide()
                     binding.bottomNav.isVisible = false
                 }
