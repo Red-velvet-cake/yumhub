@@ -15,6 +15,7 @@ import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
 import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipesByRangeOfCaloriesResource
 import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
 import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
 import retrofit2.Response
@@ -130,6 +131,13 @@ class RemoteDataSourceImpl @Inject constructor(
         stepBreakdown: Boolean?,
     ): List<AnalyzedInstructionResource> {
         return tryToExecute {foodService.getAnalyzedInstructions(id,stepBreakdown)}
+    }
+
+    override suspend fun getRecipesByCalories(
+        minCalories: Double,
+        maxCalories: Double,
+    ): List<RecipesByRangeOfCaloriesResource> {
+        return tryToExecute { foodService.getRecipesByRangeCalories(minCalories = minCalories , maxCalories = maxCalories) }
     }
 
     private suspend fun <T> tryToExecute(func: suspend () -> Response<T>): T {
