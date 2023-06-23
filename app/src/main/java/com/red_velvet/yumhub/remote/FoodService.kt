@@ -14,6 +14,7 @@ import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
 import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipesByRangeOfCaloriesResource
 import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
 import retrofit2.Response
 import retrofit2.http.Body
@@ -117,4 +118,9 @@ interface FoodService {
         @Path("id") id: Int,
         @Query("stepBreakdown") stepBreakdown: Boolean? = false,
         ): Response<List<AnalyzedInstructionResource>>
+    @GET ("recipes/findByNutrients")
+    suspend fun getRecipesByRangeCalories(
+    @Query("minCalories") minCalories: Double = 50.0,
+    @Query("maxCalories") maxCalories: Double = 5000.0
+    ): Response<List<RecipesByRangeOfCaloriesResource>>
 }
