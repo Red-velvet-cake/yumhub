@@ -13,6 +13,7 @@ import com.red_velvet.yumhub.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 @AndroidEntryPoint
 class AddToMealPlanFragment :
@@ -34,12 +35,14 @@ class AddToMealPlanFragment :
     }
 
     private fun onInvalidInput() {
-        Toast.makeText(requireContext(), "InvalidInput", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Invalid input date", Toast.LENGTH_SHORT).show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.mealsRadioGroup.setOnCheckedChangeListener(this)
+        val c = Calendar.getInstance()
+        binding.datePicker.minDate = c.timeInMillis
     }
 
     override fun onCheckedChanged(radioGroup: RadioGroup?, checkedId: Int) {
@@ -49,6 +52,5 @@ class AddToMealPlanFragment :
             R.id.dinner_radio_button -> viewModel.onChooseMealPlanTime(2)
         }
     }
-
 
 }
