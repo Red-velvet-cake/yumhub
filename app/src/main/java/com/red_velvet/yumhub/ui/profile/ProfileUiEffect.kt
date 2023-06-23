@@ -7,9 +7,13 @@ sealed interface ProfileUiEffect : BaseUIEffect {
 
     object ClickOnChatBot : ProfileUiEffect
 
+    object ClickOnFavorites : ProfileUiEffect
+
     object ClickOnReviewFood : ProfileUiEffect
 
     object ClickOnNutritionalValue : ProfileUiEffect
 
     object ClickOnFoodSuggester : ProfileUiEffect
+
+    object ClickOnLogout : ProfileUiEffect
 }
