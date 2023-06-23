@@ -49,11 +49,10 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_diet"
                 style="@style/Widget.Material3.ChipGroup"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/fab_margin"
-                app:chipSpacingHorizontal="@dimen/small_space"
-                app:chipSpacingVertical="0dp"
+                app:chipSpacingVertical="8dp"
                 app:selectionRequired="false"
                 android:layout_marginTop="@dimen/fab_margin"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,38 +62,39 @@
 
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
-                    android:text="@string/gluten_free"
-                    app:chipCornerRadius="@dimen/small_space"
+                    android:layout_marginTop="0dp"
                     android:checkable="true"
                     android:onClick='@{() -> viewModel.onSelectType("Gluten Free")}'
+                    android:text="@string/gluten_free"
                     app:checkedIconEnabled="false"
-                    />
+                    app:chipMinTouchTargetSize="10dp"
+                   />
                 <com.google.android.material.chip.Chip
                     android:text="@string/ketogenic"
-                    app:chipCornerRadius="@dimen/small_space"
                     android:onClick='@{() -> viewModel.onSelectType("Ketogenic")}'
                     app:selectionRequired="true"
                     style="@style/Chip.Regular.Small"
                     app:checkedIconEnabled="false"
+                    app:chipMinTouchTargetSize="10dp"
                     />
 
                 <com.google.android.material.chip.Chip
                     android:text="@string/vegetarian"
-                    app:chipCornerRadius="@dimen/small_space"
                     android:onClick='@{() -> viewModel.onSelectType("vegetarian")}'
                     style="@style/Chip.Regular.Small"
                     app:checkedIconEnabled="false"
+                    app:chipMinTouchTargetSize="10dp"
                     />
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
                     android:text="@string/vegan"
-                    app:chipCornerRadius="@dimen/small_space"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Vegan")}'
                     app:checkedIconEnabled="false"
                     />
                 <com.google.android.material.chip.Chip
                     android:text="@string/lacto_vegetarian"
-                    app:chipCornerRadius="@dimen/small_space"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Lacto-Vegetarian")}'
                     style="@style/Chip.Regular.Small"
                     app:checkedIconEnabled="false"
@@ -102,28 +102,28 @@
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
                     android:text="@string/primal"
-                    app:chipCornerRadius="@dimen/small_space"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Primal")}'
                     app:checkedIconEnabled="false"
                     />
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
                     android:text="@string/ovo_vegetarian"
-                    app:chipCornerRadius="@dimen/small_space"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Ovo-Vegetarian")}'
                     app:checkedIconEnabled="false"
                     />
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
                     android:text="@string/pescetarian"
-                    app:chipCornerRadius="@dimen/small_space"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Pescetarian")}'
                     app:checkedIconEnabled="false"
                     />
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
-                    app:chipCornerRadius="@dimen/small_space"
                     android:text="@string/paleo"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Paleo")}'
                     app:checkedIconEnabled="false"
                     />
@@ -131,7 +131,7 @@
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
                     android:text="@string/low_fodmap"
-                    app:chipCornerRadius="@dimen/small_space"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Low FODMAP")}'
                     app:checkedIconEnabled="false"
                     />
@@ -139,7 +139,7 @@
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Regular.Small"
                     android:text="@string/whole30"
-                    app:chipCornerRadius="@dimen/small_space"
+                    app:chipMinTouchTargetSize="10dp"
                     android:onClick='@{() -> viewModel.onSelectType("Whole30")}'
                     app:checkedIconEnabled="false"
                     />
@@ -159,11 +159,15 @@
             />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_diet_recycler_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/no_width"
+            android:layout_height="@dimen/no_width"
             android:clipToPadding="false"
-
-            android:layout_marginHorizontal="@dimen/fab_margin"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
+            android:layout_marginHorizontal="@dimen/spacing_small_12"
             android:paddingTop="@dimen/fab_margin"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:loading="@{viewModel.uiState.isLoading}"
@@ -171,11 +175,7 @@
             app:spanCount="2"
             app:items="@{viewModel.uiState.dietResult}"
             tools:listitem="@layout/item_diet_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chip_diet"
             />
-
         <ImageView
             android:id="@+id/image_view_diet"
             android:layout_width="wrap_content"
