@@ -106,4 +106,7 @@
     <string name="choose_the_best_dish_for_you">Choose the best dish for you</string>
     <string name="step">Step</string>
     <string name="steps">Steps</string>
+    <string name="so_we_can_calculate_your_calories_and_suggest_meals_that_work_for_you">So we can calculate your calories and suggest meals that work for you</string>
+    <string name="choose_the_gender">Choose the gender</string>
+    <string name="what_is_your_activity_level">What is your activity level?</string>
 </resources>
