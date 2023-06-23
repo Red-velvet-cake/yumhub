@@ -20,6 +20,7 @@ import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipesByRangeOfCaloriesResource
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
 import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
 import com.red_velvet.yumhub.repositories.mappers.toAnalyzedInstructionEntity
@@ -142,4 +143,9 @@ class RecipesRepositoryImpl @Inject constructor(
         ) ?: emptyList()
     }
 
+    override suspend fun getMealByCalories(minCalories: Double, maxCalories: Double): List<RecipeEntity> {
+        return remoteDataSource.getRecipesByCalories(minCalories = minCalories , maxCalories = maxCalories).map(
+            RecipesByRangeOfCaloriesResource::toEntity
+        )
+    }
 }
