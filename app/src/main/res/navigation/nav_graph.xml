@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_recipeInformationFragment_to_categoryRecipesFragment"
             app:destination="@id/categoryRecipesFragment" />
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_addToMealPlanFragment"
+            app:destination="@id/addToMealPlanFragment" />
     </fragment>
 
     <fragment
@@ -113,6 +116,15 @@
         <action
             android:id="@+id/action_dietFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addToMealPlanFragment"
+        android:name="com.red_velvet.yumhub.ui.add_to_meal_plan.AddToMealPlanFragment"
+        android:label="Add Meal"
+        tools:layout="@layout/fragment_add_to_meal_plan">
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>
