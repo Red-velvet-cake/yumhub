@@ -24,9 +24,9 @@
         android:title="@string/diet" />
 
     <item
-        android:id="@+id/seriesFragment"
+        android:id="@+id/nutritionalValueFragment"
         android:icon="@drawable/meal_bottom_select"
-        android:title="@string/kitchen" />
+        android:title="@string/nutrition_tracker" />
 
     <item
         android:id="@+id/profileFragment"
