@@ -112,7 +112,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.red_velvet.yumhub.ui.profile.ProfileFragment"
-        android:label="ProfileFragment"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
 </navigation>
