@@ -113,4 +113,5 @@
     <string name="maintain_weight">Maintain Weight</string>
     <string name="loss_weight">Loss Weight</string>
     <string name="gain_weight">Gain Weight</string>
+    <string name="suggestions_meals_suitable_you">Suggestions meals</string>
 </resources>
