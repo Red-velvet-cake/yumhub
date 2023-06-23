@@ -16,6 +16,11 @@
             app:destination="@id/recipeInformationFragment" />
     </fragment>
     <fragment
+        android:id="@+id/nutritionalValueFragment"
+        android:name="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueFragment"
+        android:label=""
+        tools:layout="@layout/fragment_nutritional_value" />
+    <fragment
         android:id="@+id/onBoardingFragment"
         android:name="com.red_velvet.yumhub.ui.onboarding.OnBoardingFragment"
         android:label=""

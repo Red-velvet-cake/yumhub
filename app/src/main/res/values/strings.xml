@@ -122,4 +122,12 @@
     <string name="there_are_various_types_of_diets_available">there are various types of diets available</string>
     <string name="choose_your_preferred_type">Choose your preferred type</string>
     <string name="hello">hello</string>
+    <string name="stay_on_top_of_your_food_intake_with_our">Stay on top of your food intake with our</string>
+    <string name="nutrition_tracker">nutrition tracker</string>
+    <string name="enter_a_recipe_name">Enter a recipe name</string>
+    <string name="apply">Apply</string>
+    <string name="kcal">kcal</string>
+    <string name="fat">Fat</string>
+    <string name="grams">grams</string>
+    <string name="protein">Protein</string>
 </resources>
