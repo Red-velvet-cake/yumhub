@@ -122,4 +122,10 @@
     <string name="there_are_various_types_of_diets_available">there are various types of diets available</string>
     <string name="choose_your_preferred_type">Choose your preferred type</string>
     <string name="hello">hello</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="chat_bot">Chat Bot</string>
+    <string name="favorite">Favorite</string>
+    <string name="review_food">Review Food</string>
+    <string name="nutritional_value">Nutraional Value</string>
+    <string name="food_suggester">Food Suggester</string>
 </resources>
