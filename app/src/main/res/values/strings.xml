@@ -124,8 +124,9 @@
     <string name="hello">hello</string>
     <string name="personal_information">Personal Information</string>
     <string name="chat_bot">Chat Bot</string>
-    <string name="favorite">Favorite</string>
+    <string name="favorite">Favorites</string>
     <string name="review_food">Review Food</string>
-    <string name="nutritional_value">Nutraional Value</string>
+    <string name="nutritional_value">Nutritional Value</string>
     <string name="food_suggester">Food Suggester</string>
+    <string name="logout">Logout</string>
 </resources>

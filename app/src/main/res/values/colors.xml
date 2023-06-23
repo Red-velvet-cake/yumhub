@@ -22,4 +22,5 @@
     <color name="fontColor_white">#F9F9F9</color>
     <color name="bottom_navigation_background">#14000000</color>
     <color name="transparent">#00000000</color>
+    <color name="red">#E53935</color>
 </resources>
