@@ -90,6 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/space_48dp"
             android:layout_marginStart="@dimen/spacing_normal"
+            android:onClick="@{() -> viewModel.onCancelAddToMealPlan()}"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/_4dp"
             android:background="@drawable/bg_btn_stroke_solid"

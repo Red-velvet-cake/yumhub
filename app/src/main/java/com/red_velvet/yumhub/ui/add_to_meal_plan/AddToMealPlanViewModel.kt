@@ -21,7 +21,7 @@ class AddToMealPlanViewModel @Inject constructor(
     private val convertDateToTimestampUseCase: ConvertDateToTimestampUseCase,
     stateHandle: SavedStateHandle
 ) : BaseViewModel<AddToMealPlanUiState, AddToMealPlanUiEffect>(AddToMealPlanUiState()),
-    OnChooseMealTimeListener {
+    AddToMealPlanInteractionListener {
 
     private val args = AddToMealPlanFragmentArgs.fromSavedStateHandle(stateHandle)
 
@@ -37,6 +37,10 @@ class AddToMealPlanViewModel @Inject constructor(
         } else {
             onInvalidInput()
         }
+    }
+
+    override fun onCancelAddToMealPlan() {
+        viewModelScope.launch { _effect.emit(AddToMealPlanUiEffect.ClickOnCancelAddToMealPlan) }
     }
 
     override fun onChooseMealPlanTime(slot: Int) {

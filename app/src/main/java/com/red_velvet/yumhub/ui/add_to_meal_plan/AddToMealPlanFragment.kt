@@ -43,7 +43,7 @@ class AddToMealPlanFragment :
     }
 
     private fun onCancelAddToMealPlan() {
-        Toast.makeText(requireContext(), "Added to meal plan failed", Toast.LENGTH_SHORT).show()
+        findNavController().navigateUp()
     }
 
     private fun onInvalidInput() {
