@@ -99,14 +99,15 @@
                 android:text="@{viewModel.state.title}"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title_medium"
-                app:layout_constraintBottom_toBottomOf="@id/image_save"
-                app:layout_constraintEnd_toStartOf="@id/image_save"
+                app:layout_constraintBottom_toBottomOf="@id/button_add_to_meal_plan"
+                app:layout_constraintEnd_toStartOf="@id/button_add_to_meal_plan"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/image_save"
+                app:layout_constraintTop_toTopOf="@id/button_add_to_meal_plan"
                 tools:text="Pasta with Garlic , Scallions , Cauliflower Breadcrumbs" />
 
             <ImageView
-                android:id="@+id/image_save"
+                android:id="@+id/button_add_to_meal_plan"
+                android:onClick="@{() -> viewModel.onAddToMealPlan(viewModel.state.id)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_38dp"

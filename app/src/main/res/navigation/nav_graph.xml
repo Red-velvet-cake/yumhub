@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/addToMealPlanFragment">
+    app:startDestination="@id/homeFragment">
 
 
     <fragment
@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_recipeInformationFragment_to_categoryRecipesFragment"
             app:destination="@id/categoryRecipesFragment" />
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_addToMealPlanFragment"
+            app:destination="@id/addToMealPlanFragment" />
     </fragment>
 
     <fragment

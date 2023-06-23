@@ -5,6 +5,7 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 
 fun RecipeInformationEntity.map(): RecipeInformationUIState {
     return RecipeInformationUIState(
+        id = id,
         image = this.image,
         title = this.title,
         readyInMinutes = this.readyInMinutes,
