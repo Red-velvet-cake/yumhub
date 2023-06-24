@@ -25,10 +25,51 @@ class MealsSuggesterFragment:BaseFragment<FragmentFoodSuggesterStepOneBinding, M
             val effect = viewModel.effect.collect{
                 when(it)
                 {
-                    is MealsSuggesterUiEffect.clickOnGenderSelector -> genderSelector(it.gender)
+                    is MealsSuggesterUiEffect.ClickOnGenderSelector -> genderSelector(it.gender)
+                    is MealsSuggesterUiEffect.ClickOnActivityLevelSelector -> activityLevelSelector(it.activityLevel)
                 }
             }
 
+        }
+    }
+
+    private fun activityLevelSelector(activityLevel: String) {
+        when(activityLevel)
+        {
+            "Lazy"->{
+                binding.lazy.background = resources.getDrawable(R.color.primary)
+                binding.lazy.setTextColor(resources.getColor(R.color.white))
+                binding.lazy.compoundDrawableTintList=resources.getColorStateList(R.color.white)
+                binding.Normal.background = resources.getDrawable(R.color.white)
+                binding.Normal.setTextColor(resources.getColor(R.color.black))
+                binding.Normal.compoundDrawableTintList=resources.getColorStateList(R.color.black)
+                binding.VeryActive.background = resources.getDrawable(R.color.white)
+                binding.VeryActive.setTextColor(resources.getColor(R.color.black))
+                binding.VeryActive.compoundDrawableTintList=resources.getColorStateList(R.color.black)
+            }
+            "Normal"->{
+                binding.Normal.background = resources.getDrawable(R.color.primary)
+                binding.Normal.setTextColor(resources.getColor(R.color.white))
+                binding.Normal.compoundDrawableTintList=resources.getColorStateList(R.color.white)
+                binding.lazy.background = resources.getDrawable(R.color.white)
+                binding.lazy.setTextColor(resources.getColor(R.color.black))
+                binding.lazy.compoundDrawableTintList=resources.getColorStateList(R.color.black)
+                binding.VeryActive.background = resources.getDrawable(R.color.white)
+                binding.VeryActive.setTextColor(resources.getColor(R.color.black))
+                binding.VeryActive.compoundDrawableTintList=resources.getColorStateList(R.color.black)
+            }
+            else->{
+                binding.VeryActive.background = resources.getDrawable(R.color.primary)
+                binding.VeryActive.setTextColor(resources.getColor(R.color.white))
+                binding.VeryActive.compoundDrawableTintList=resources.getColorStateList(R.color.white)
+                binding.Normal.background = resources.getDrawable(R.color.white)
+                binding.Normal.setTextColor(resources.getColor(R.color.black))
+                binding.Normal.compoundDrawableTintList=resources.getColorStateList(R.color.black)
+                binding.lazy.background = resources.getDrawable(R.color.white)
+                binding.lazy.setTextColor(resources.getColor(R.color.black))
+                binding.lazy.compoundDrawableTintList=resources.getColorStateList(R.color.black)
+
+            }
         }
     }
 
