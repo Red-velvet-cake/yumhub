@@ -57,7 +57,9 @@ class LocalDataSourceImpl @Inject constructor(
     override suspend fun insertHistoryItem(historyItemLocalDto: List<HistoryItemLocalDto>) {
         mealsDao.insertHistoryMeal(historyItemLocalDto)
     }
-
+    override suspend fun deleteHistoryItem(mealId: Int) {
+        mealsDao.deleteHistoryMeal(mealId)
+    }
 
     private val mealTypes = listOf(
         "main course",

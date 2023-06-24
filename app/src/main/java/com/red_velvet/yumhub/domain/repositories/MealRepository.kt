@@ -17,6 +17,8 @@ interface MealRepository {
 
     suspend fun addToHistoryMeals(historyMealEntity: List<HistoryMealEntity>)
 
+    suspend fun deleteFromHistoryMeals(mealId: Int)
+
     suspend fun getHistoryMeals(): Flow<List<HistoryMealEntity>>
 
 

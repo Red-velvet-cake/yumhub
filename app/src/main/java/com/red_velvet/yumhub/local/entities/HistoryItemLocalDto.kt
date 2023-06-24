@@ -9,5 +9,5 @@ data class HistoryItemLocalDto(
     val title: String,
     val image: String,
     val description: String,
-    val date: String
+    val viewedAt: Long
 )

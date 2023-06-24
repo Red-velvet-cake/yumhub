@@ -27,8 +27,9 @@ interface MealsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHistoryMeal(historyItemLocalDto: List<HistoryItemLocalDto>)
 
-    @Query("SELECT * FROM HISTORY_ITEM")
+    @Query("SELECT * FROM HISTORY_ITEM ORDER BY viewedAt DESC")
     fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>>
 
-
+    @Query("DELETE FROM HISTORY_ITEM WHERE id = :mealId")
+    suspend fun deleteHistoryMeal(mealId: Int)
 }

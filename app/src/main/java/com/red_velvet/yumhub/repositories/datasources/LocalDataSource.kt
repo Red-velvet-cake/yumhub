@@ -32,6 +32,6 @@ interface LocalDataSource {
     fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>>
 
     suspend fun insertHistoryItem(historyItemLocalDto: List<HistoryItemLocalDto>)
-
+    suspend fun deleteHistoryItem(mealId: Int)
 
 }
