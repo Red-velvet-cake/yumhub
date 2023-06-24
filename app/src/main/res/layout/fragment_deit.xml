@@ -29,6 +29,11 @@
             app:title="@string/nutritional_guide"
             app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
     </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -159,12 +164,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
             />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_diet_recycler_view"
-            android:layout_width="@dimen/no_width"
-            android:layout_height="@dimen/no_width"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -185,10 +190,10 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/search_no_internet"
             android:showInternalServerError="@{viewModel.uiState.error}"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
             />
         <TextView
             style="@style/deitTextViewStyle"
@@ -238,6 +243,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_view_subtitle"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>
