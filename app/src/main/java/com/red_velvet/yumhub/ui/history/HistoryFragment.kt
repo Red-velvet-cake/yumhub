@@ -5,6 +5,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentHistoryBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -31,9 +32,9 @@ class HistoryFragment :
     }
 
     private fun onRecipeClicked(itemId: Int) {
-//        val directions =
-//            SearchFragmentDirections.actionSearchFragmentToRecipeInformationFragment(itemId)
-//        findNavController().navigate(directions)
+        val directions =
+            HistoryFragmentDirections.actionHistoryFragmentToRecipeInformationFragment(itemId)
+        findNavController().navigate(directions)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
