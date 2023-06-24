@@ -13,11 +13,11 @@ class FavoritesFragment :
     override val viewModel: FavoritesViewModel by viewModels()
 
     override fun observeOnUIEffects() {
-        TODO("Not yet implemented")
+
     }
 
     override fun handleUIEffect(uiEffect: FavoritesUiEffect) {
-        TODO("Not yet implemented")
+
     }
 
 }
