@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.red_velvet.yumhub.ui.history.HistoryUIState" />
+            type="com.red_velvet.yumhub.ui.history.HistoryUIState.HistoryItemUIState" />
 
         <variable
             name="listener"
@@ -35,7 +35,7 @@
                 style="@style/CardImageStyle"
                 android:layout_width="@dimen/image_card_width_80dp"
                 android:layout_height="@dimen/image_card_height_64dp"
-                android:layout_marginRight="@dimen/_12dp"
+                android:layout_marginEnd="@dimen/_12dp"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{item.image}"
                 app:layout_constraintDimensionRatio="16:9"

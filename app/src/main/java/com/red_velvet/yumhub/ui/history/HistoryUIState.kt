@@ -7,4 +7,12 @@ data class HistoryUIState(
     val searchResult: List<HistoryItemUIState> = emptyList(),
     val isResultIsEmpty: Boolean = false,
     val error: ErrorUIState? = null,
-) : BaseUiState
+) : BaseUiState {
+    data class HistoryItemUIState(
+        val id: Int,
+        val title: String,
+        val image: String,
+        val description: String,
+    )
+
+}
