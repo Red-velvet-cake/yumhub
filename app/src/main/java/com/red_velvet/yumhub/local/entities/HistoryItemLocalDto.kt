@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "HISTORY_ITEM")
 data class HistoryItemLocalDto(
-    @PrimaryKey val id: Int,
+    val id: Int,
     val title: String,
     val image: String,
     val description: String
