@@ -144,4 +144,8 @@
     <string name="dinner">Dinner</string>
     <string name="cancel">Cancel</string>
     <string name="add_meal">Add Meal</string>
+    <string name="hello_welcome_to_our_chatbot">Hello! Welcome to our chatbot.</string>
+    <string name="i_m_here_to_assist_you_with_any_questions">I\'m here to assist you with any questions</string>
+    <string name="related_to_recipes_and_cooking">related to recipes and cooking.</string>
+    <string name="send_a_message">Send a message</string>
 </resources>
