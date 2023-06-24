@@ -38,11 +38,14 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
     view.visibility =
         if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
-@BindingAdapter(value=["app:showIfListEmpty","loading"])
-fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
-    view.isVisible = value
-    if (loading) {
+@BindingAdapter(value=["app:showIfListEmpty","loading","app:error"])
+fun showIfNotFound(view: View, value: Boolean,loading:Boolean,errorState: ErrorUIState?) {
+    if(errorState != null){
+        view.isVisible = false
+    }else if (loading) {
         view.isVisible = false;
+    }else{
+        view.isVisible = value
     }
 }
 @BindingAdapter("app:showIfTrue")

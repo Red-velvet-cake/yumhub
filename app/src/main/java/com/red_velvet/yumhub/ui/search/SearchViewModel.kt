@@ -114,7 +114,8 @@ class SearchViewModel @Inject constructor(
             it.copy(
                 searchResult = searchResult,
                 isLoading = false,
-                isResultIsEmpty = searchResult.isEmpty()
+                isResultIsEmpty = searchResult.isEmpty(),
+                error= null
             )
         }
     }
@@ -124,7 +125,8 @@ class SearchViewModel @Inject constructor(
             it.copy(
                 isLoading = false,
                 isResultIsEmpty = true,
-                error = errorUiState
+                error = errorUiState,
+                searchResult = emptyList()
             )
         }
     }
