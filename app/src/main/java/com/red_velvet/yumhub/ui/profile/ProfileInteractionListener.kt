@@ -7,6 +7,7 @@ interface ProfileInteractionListener {
 
     fun doOnFavoritesClicked()
 
+    fun doOnHistoryClicked()
     fun doOnReviewFoodClicked()
 
     fun doOnNutritionalValueClicked()

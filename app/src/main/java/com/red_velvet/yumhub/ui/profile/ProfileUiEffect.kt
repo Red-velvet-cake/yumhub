@@ -9,6 +9,8 @@ sealed interface ProfileUiEffect : BaseUIEffect {
 
     object ClickOnFavorites : ProfileUiEffect
 
+    object ClickOnHistory : ProfileUiEffect
+
     object ClickOnReviewFood : ProfileUiEffect
 
     object ClickOnNutritionalValue : ProfileUiEffect

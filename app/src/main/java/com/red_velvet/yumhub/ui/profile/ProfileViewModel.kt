@@ -20,9 +20,7 @@ class ProfileViewModel @Inject constructor(
 
     private fun getUsername() {
         tryToExecute(
-            callee = getUsername::invoke,
-            onSuccess = ::onGetUsernameSuccess,
-            onError = ::onError
+            callee = getUsername::invoke, onSuccess = ::onGetUsernameSuccess, onError = ::onError
         )
     }
 
@@ -48,6 +46,10 @@ class ProfileViewModel @Inject constructor(
 
     override fun doOnFavoritesClicked() {
         viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnFavorites) }
+    }
+
+    override fun doOnHistoryClicked() {
+        viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnHistory) }
     }
 
     override fun doOnReviewFoodClicked() {
