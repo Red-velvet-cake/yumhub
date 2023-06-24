@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.history.HistoryUIState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.history.HistoryInteractionListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/small_space"
+        android:background="@color/white"
+        android:onClick="@{() -> listener.onHistoryItemClicked(item.id)}"
+        app:cardCornerRadius="@dimen/raduis_16dp"
+        app:cardElevation="@dimen/no_width">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/small_space">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                style="@style/CardImageStyle"
+                android:layout_width="@dimen/image_card_width_80dp"
+                android:layout_height="@dimen/image_card_height_64dp"
+                android:layout_marginRight="@dimen/_12dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{item.image}"
+                app:layout_constraintDimensionRatio="16:9"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/small_space">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/black_title"
+                    android:textSize="@dimen/text_size_12sp"
+                    app:text="@{item.title}"
+                    tools:text="@string/salad" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_space"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black_title_36"
+                    android:textSize="@dimen/text_size_12sp"
+                    app:text='@{item.description}'
+                    tools:text="@string/_7_ingrerdients" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
