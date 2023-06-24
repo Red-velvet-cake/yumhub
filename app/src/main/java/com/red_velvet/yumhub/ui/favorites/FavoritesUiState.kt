@@ -4,7 +4,14 @@ import com.red_velvet.yumhub.ui.base.BaseUiState
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 
 data class FavoritesUiState(
-    val favorites: List<String> = emptyList(),
+    val favoritesRecipes: List<RecipeUiState> = emptyList(),
     val isLoading: Boolean = false,
     val error: ErrorUIState? = null
-) : BaseUiState
+) : BaseUiState {
+    data class RecipeUiState(
+        val id: Int = 0,
+        val title: String = "",
+        val image: String = "",
+        val overview: String = "",
+    )
+}
