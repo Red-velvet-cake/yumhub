@@ -1,4 +1,5 @@
 package com.red_velvet.yumhub.ui.mealsSuggester
 
-interface MealsSuggesterUiEffect {
+sealed interface MealsSuggesterUiEffect {
+    data class clickOnGenderSelector(val gender: String):MealsSuggesterUiEffect
 }
