@@ -5,6 +5,7 @@ import com.red_velvet.yumhub.local.daos.MealsDao
 import com.red_velvet.yumhub.local.daos.RecipeDao
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
+import com.red_velvet.yumhub.local.entities.HistoryItemLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
@@ -13,12 +14,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(
-    private val recipeDao: RecipeDao,
-    private val mealsDao: MealsDao
+    private val recipeDao: RecipeDao, private val mealsDao: MealsDao
 ) : LocalDataSource {
     override fun getWeekMealsPlan(
-        fromTimestamp: Long,
-        toTimestamp: Long
+        fromTimestamp: Long, toTimestamp: Long
     ): Flow<List<MealPlanLocalDto>> {
         return mealsDao.getWeekMealsPlan(fromTimestamp, toTimestamp)
     }
@@ -49,6 +48,14 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun insertQuickRecipes(quickRecipes: List<QuickRecipeLocalDto>) {
         recipeDao.insertQuickRecipes(quickRecipes)
+    }
+
+    override fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>> {
+        return mealsDao.getHistoryMeals()
+    }
+
+    override suspend fun insertHistoryItem(historyItemLocalDto: List<HistoryItemLocalDto>) {
+        mealsDao.insertHistoryMeal(historyItemLocalDto)
     }
 
 
