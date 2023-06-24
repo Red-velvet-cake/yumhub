@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.ui.mealsSuggester
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.usecases.CalculateNeededCaloriesUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -23,14 +22,12 @@ class MealsSuggesterViewModel @Inject constructor(
       fun updateGender(gender: String)
     {
         _state.update { it.copy(gender = gender) }
-        viewModelScope.launch { _effect.emit(MealsSuggesterUiEffect.clickOnGenderSelector(gender)) }
-        Log.i("jalalCheff",_state.value.toString())
+        viewModelScope.launch { _effect.emit(MealsSuggesterUiEffect.ClickOnGenderSelector(gender)) }
     }
      fun updateActivityLevel(activityLevel: String)
     {
         _state.update { it.copy(activityLevel = activityLevel) }
-
-        Log.i("jalalCheff",_state.value.toString())
+        viewModelScope.launch { _effect.emit(MealsSuggesterUiEffect.ClickOnActivityLevelSelector(activityLevel)) }
     }
 
     }
