@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.usecases.CalculateNeededCaloriesUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -19,16 +20,20 @@ class MealsSuggesterStep2ViewModel @Inject constructor(
     val effect = _effect.asSharedFlow()
 
 
-
-      fun updateGoal(goal: String)
-    {
+    fun updateGoal(goal: String) {
         _state.update { it.copy(goal = goal) }
         viewModelScope.launch { _effect.emit(MealsSuggesterStep2UiEffect.ClickOnGoalSelector(goal)) }
     }
-/*     fun updateActivityLevel(activityLevel: String)
-    {
-        _state.update { it.copy(activityLevel = activityLevel) }
-        viewModelScope.launch { _effect.emit(MealsSuggesterStep2UiEffect.ClickOnActivityLevelSelector(activityLevel)) }
-    }*/
 
+    fun updateTall(tall: String) {
+        _state.update { it.copy(tall = tall.toInt()) }
     }
+
+    fun updateAge(age: String) {
+        _state.update { it.copy(age = age.toInt()) }
+    }
+
+    fun updateWeight(weight: String) {
+        _state.update { it.copy(weight = weight.toInt()) }
+    }
+}
