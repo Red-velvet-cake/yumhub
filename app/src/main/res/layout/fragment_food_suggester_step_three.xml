@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+<variable
+    name="viewModel"
+    type="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.MealsSuggesterStep3ViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,6 +91,7 @@
             tools:text="2052"
             android:textSize="@dimen/spacing_large_24"
             android:drawableStart="@drawable/fire_svgrepo_com"
+            android:text="@{String.valueOf(viewModel.state.calories)}"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/green_green100"
             app:layout_constraintTop_toBottomOf="@id/Tell_us_more_about_yourself_id"
@@ -109,18 +112,20 @@
             app:layout_constraintStart_toStartOf="parent"
             />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recipe_category_recycler_view"
+            android:id="@+id/suggested_meals_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/_0dp"
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingStart="@dimen/spacing_normal"
             android:paddingTop="@dimen/spacing_large_24"
             android:paddingEnd="@dimen/_4dp"
+            app:items="@{viewModel.state.meals}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/item_meal_suggested"
             app:layout_constraintTop_toBottomOf="@id/suggestions_meals_suitable_you_id"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
