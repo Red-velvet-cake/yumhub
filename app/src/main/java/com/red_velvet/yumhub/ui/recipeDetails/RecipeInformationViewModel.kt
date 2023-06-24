@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.ui.recipeDetails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
+import com.red_velvet.yumhub.domain.usecases.AddToHistoryMealsUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetRecipeInformationUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeInformationViewModel @Inject constructor(
     private val getRecipeInformationUseCase: GetRecipeInformationUseCase,
+    private val addToHistoryMealsUseCase: AddToHistoryMealsUseCase,
     stateHandle: SavedStateHandle
 ) : BaseViewModel<RecipeInformationUIState, RecipeDetailsUIEffect>(RecipeInformationUIState()),
     DishTypeListener, RecipeInformationInteractionListener, IngredientsListener {
@@ -33,8 +35,16 @@ class RecipeInformationViewModel @Inject constructor(
     }
 
     private fun onSuccess(recipe: RecipeInformationEntity) {
+        addToHistory(recipe)
         _state.update { recipe.map().copy(isLoading = false) }
     }
+
+    private fun addToHistory(recipe: RecipeInformationEntity) {
+        viewModelScope.launch {
+            addToHistoryMealsUseCase(recipe.toHistoryMealEntity())
+        }
+    }
+
 
     private fun onError(error: ErrorUIState) {
         _state.update { it.copy(isLoading = false, error = error) }
