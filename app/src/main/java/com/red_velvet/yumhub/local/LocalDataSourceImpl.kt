@@ -50,7 +50,7 @@ class LocalDataSourceImpl @Inject constructor(
         recipeDao.insertQuickRecipes(quickRecipes)
     }
 
-    override fun getHistoryMeals(): List<HistoryItemLocalDto> {
+    override fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>> {
         return mealsDao.getHistoryMeals()
     }
 

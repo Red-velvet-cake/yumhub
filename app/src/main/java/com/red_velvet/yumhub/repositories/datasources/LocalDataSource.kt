@@ -29,7 +29,7 @@ interface LocalDataSource {
     suspend fun insertQuickRecipes(quickRecipes: List<QuickRecipeLocalDto>)
 
 
-    fun getHistoryMeals(): List<HistoryItemLocalDto>
+    fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>>
 
     suspend fun insertHistoryItem(historyItemLocalDto: List<HistoryItemLocalDto>)
 

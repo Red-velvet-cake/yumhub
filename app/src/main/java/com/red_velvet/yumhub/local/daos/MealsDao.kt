@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.red_velvet.yumhub.local.entities.HistoryItemLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
+import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import kotlinx.coroutines.flow.Flow
 
 
@@ -27,7 +28,7 @@ interface MealsDao {
     suspend fun insertHistoryMeal(historyItemLocalDto: List<HistoryItemLocalDto>)
 
     @Query("SELECT * FROM HISTORY_ITEM")
-    fun getHistoryMeals(): List<HistoryItemLocalDto>
+    fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>>
 
 
 }

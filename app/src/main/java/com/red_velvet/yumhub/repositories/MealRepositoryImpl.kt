@@ -41,9 +41,11 @@ class MealRepositoryImpl @Inject constructor(
         localDataSource.insertHistoryItem(historyMealEntity.map(HistoryMealEntity::toHistoryItemLocalDto))
     }
 
-    override fun getHistoryMeals(): List<HistoryMealEntity> {
+    override suspend fun getHistoryMeals(): Flow<List<HistoryMealEntity>> {
         return localDataSource.getHistoryMeals().map {
-            it.toHistoryItemLocalEntity()
+            it.map { historyItemLocalDto ->
+                historyItemLocalDto.toHistoryItemLocalEntity()
+            }
         }
     }
 
