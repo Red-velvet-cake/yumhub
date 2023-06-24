@@ -6,7 +6,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.red_velvet.yumhub.ui.search.SearchViewModel" />
+            type="com.red_velvet.yumhub.ui.search.HistoryViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
