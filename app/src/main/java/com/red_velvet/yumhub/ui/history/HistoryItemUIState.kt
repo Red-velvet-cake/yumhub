@@ -4,5 +4,5 @@ data class HistoryItemUIState(
     val id: Int,
     val title: String,
     val image: String,
-    val description: Int,
+    val description: String,
 )
