@@ -180,4 +180,3 @@ fun showHtml(view: TextView, html: String?) {
         Html.fromHtml(html)
     }
 }
-

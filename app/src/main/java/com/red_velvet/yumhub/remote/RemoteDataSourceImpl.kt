@@ -34,6 +34,8 @@ class RemoteDataSourceImpl @Inject constructor(
         includeIngredients: String?,
         excludeIngredients: String?,
         sort: String?,
+        offset: Int?,
+        number: Int?,
         sortDirection: String?,
         addRecipeInformation: Boolean?
     ): RecipeSearchPaginationResource {
@@ -47,6 +49,8 @@ class RemoteDataSourceImpl @Inject constructor(
                 includeIngredients,
                 excludeIngredients,
                 sort,
+                offset,
+                number,
                 sortDirection,
                 addRecipeInformation
             )

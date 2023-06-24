@@ -2,7 +2,7 @@ package com.red_velvet.yumhub.domain.usecases.recipes
 
 import javax.inject.Inject
 
-class GetMinutAsHourAndMinuts @Inject constructor() {
+class GetMinuteAsHourAndMinutes @Inject constructor() {
 
     operator fun invoke(readyInMinutes: String, ):String {
             return  formatMinutesAsDuration(readyInMinutes)

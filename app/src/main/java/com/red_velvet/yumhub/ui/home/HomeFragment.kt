@@ -43,7 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeViewMode
     }
 
     private fun observeOnUIEffects() {
-        lifecycleScope.launch {
+       viewLifecycleOwner.lifecycleScope.launch {
             val effect = viewModel.effect.first()
             Log.d("alhams", "observeOnUIEffects: $effect")
             when (effect) {

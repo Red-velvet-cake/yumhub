@@ -205,7 +205,7 @@
             app:loadingSearch="@{viewModel.uiState.loading}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:searchInput="@{viewModel.uiState.searchInput}"
-            app:items="@{viewModel.uiState.searchResult}"
+
             tools:listitem="@layout/item_search_card" />
         <ImageView
             android:id="@+id/svgImageView"
@@ -215,7 +215,7 @@
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
-            app:resultList="@{viewModel.uiState.searchResult}"
+            app:resultList="@{viewModel.uiState.searchResult1}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -224,7 +224,7 @@
         <TextView
             android:id="@+id/textview_title"
             style="@style/CustomSearchTextViewTitleStyle"
-            app:resultList="@{viewModel.uiState.searchResult}"
+            app:resultList="@{viewModel.uiState.searchResult1}"
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
@@ -235,7 +235,7 @@
             />
         <TextView
             style="@style/CustomTextViewSearchSubTitleStyle"
-            app:resultList="@{viewModel.uiState.searchResult}"
+            app:resultList="@{viewModel.uiState.searchResult1}"
             app:searchText="@{viewModel.uiState.searchInput}"
             app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"

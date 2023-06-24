@@ -15,6 +15,7 @@ import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
 import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
+import retrofit2.http.Query
 
 interface RemoteDataSource {
 
@@ -27,6 +28,8 @@ interface RemoteDataSource {
         includeIngredients: String? = "",
         excludeIngredients: String? = "",
         sort: String? = "",
+        offset: Int? = 0,
+        number: Int? = 1,
         sortDirection: String? = "asc",
         addRecipeInformation: Boolean? = true,
     ): RecipeSearchPaginationResource

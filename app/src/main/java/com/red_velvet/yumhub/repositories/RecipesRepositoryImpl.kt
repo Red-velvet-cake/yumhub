@@ -1,6 +1,10 @@
 package com.red_velvet.yumhub.repositories
 
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
@@ -19,6 +23,7 @@ import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
+import com.red_velvet.yumhub.paging_source.RecipePagingSource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
 import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
@@ -36,7 +41,7 @@ import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSource,
 ) : RecipesRepository {
 
     override suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity> {
@@ -55,17 +60,16 @@ class RecipesRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun searchRecipe(
+    override fun searchRecipe(
         query: String?,
         sort: String?,
         sortDirection: String?
-    ): List<SearchRecipeEntity> {
-        return remoteDataSource.searchRecipe(
-            query = query,
-            sort = sort,
-            sortDirection = sortDirection
-        ).results?.map(RecipeInformationResource::toRecipeSearchEntity)
-            ?: emptyList()
+    ): Flow<PagingData<SearchRecipeEntity>> {
+        return Pager(
+            config = PagingConfig( pageSize = 20, enablePlaceholders = false),
+            pagingSourceFactory = { RecipePagingSource(remoteDataSource, query ?: "",sort,sortDirection) }
+        ).flow.map { pagingData ->
+            pagingData.map (RecipeInformationResource::toRecipeSearchEntity)}
     }
 
     override suspend fun getRecipeInformation(

@@ -6,6 +6,11 @@
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.search.SearchResultUIState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.home.listeners.CategoryInteractionListener" />
+
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

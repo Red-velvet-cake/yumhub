@@ -2,18 +2,18 @@ package com.red_velvet.yumhub.ui.search
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,7 +33,6 @@ class SearchViewModel @Inject constructor(
         debounceJob = viewModelScope.launch {
             _searchInputFlow
                 .debounce(700)
-                .flowOn(Dispatchers.Default)
                 .collect { onGetData() }
         }
     }
@@ -57,7 +56,7 @@ class SearchViewModel @Inject constructor(
                 isLoading = false,
                 sort = "",
                 isResultIsEmpty = false,
-                searchResult = emptyList()) }
+                searchResult = PagingData.empty()) }
             return true
         }
         return  false
@@ -67,12 +66,12 @@ class SearchViewModel @Inject constructor(
         onGetData()
     }
     private fun onGetData(){
-        tryToExecute(
-            callee = {
+        tryToExecutePaging(
+            call = {
                 searchRecipeUseCase.invoke(
                     query=_uiState.value.searchInput ,
                     sort = _uiState.value.sort,
-                    sortDirection = _uiState.value.sortDirection)
+                    sortDirection = _uiState.value.sortDirection).cachedIn(viewModelScope)
             },
             onSuccess = ::onSuccess,
             onError = ::onError
@@ -88,14 +87,14 @@ class SearchViewModel @Inject constructor(
             isResultIsEmpty =false ) }
     }
 
-    private fun onSuccess(recipes: List<SearchRecipeEntity>){
+    private suspend fun onSuccess(recipes: PagingData<SearchRecipeEntity>){
         val searchResult=  recipes.map { it.toRecipeSearchResultMapper() }
         Log.i("AYA",searchResult.toString())
 
         _uiState.update { it.copy(
             searchResult = searchResult,
             isLoading = false,
-            isResultIsEmpty =searchResult.isEmpty() ) }
+            isResultIsEmpty = false ) }
     }
     private fun onError(errorUiState: ErrorUIState) {
         Log.i("AYA",errorUiState.toString())

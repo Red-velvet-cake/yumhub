@@ -1,16 +1,16 @@
 package com.red_velvet.yumhub.ui.search
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentSearchBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment :BaseFragment<FragmentSearchBinding,SearchRecipeUIState,SearchViewModel>(){
@@ -19,8 +19,12 @@ class SearchFragment :BaseFragment<FragmentSearchBinding,SearchRecipeUIState,Sea
     override val viewModel: SearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val searchAdapter = SearchAdapter(mutableListOf())
+        val searchAdapter = SearchAdapter()
         binding.recyclerSearchResult.adapter = searchAdapter
-        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiState.collectLatest { uiState ->
+                searchAdapter.submitData(viewLifecycleOwner.lifecycle, uiState.searchResult)
+            }
+        }
     }
 }

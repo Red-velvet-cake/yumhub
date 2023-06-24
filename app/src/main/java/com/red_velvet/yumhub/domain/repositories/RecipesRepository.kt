@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.domain.repositories
 
 
+import androidx.paging.PagingData
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
@@ -22,11 +23,11 @@ interface RecipesRepository {
 
     suspend fun getQuickRecipes(sort: String): List<QuickRecipeEntity>
 
-    suspend fun searchRecipe(
+    fun searchRecipe(
         query: String? = null,
         sort: String? = null,
         sortDirection: String? = null,
-    ): List<SearchRecipeEntity>
+    ): Flow<PagingData<SearchRecipeEntity>>
 
 
     suspend fun getRecipeInformation(

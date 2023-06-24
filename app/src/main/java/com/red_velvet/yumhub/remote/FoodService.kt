@@ -34,6 +34,8 @@ interface FoodService {
         @Query("includeIngredients") includeIngredients: String? = "",
         @Query("excludeIngredients") excludeIngredients: String? = "",
         @Query("sort") sort: String? = "",
+        @Query("offset") offset: Int? = 0,
+        @Query("number") number: Int? = 1,
         @Query("sortDirection") sortDirection: String? = "",
         @Query("addRecipeInformation") addRecipeInformation: Boolean? = true,
     ): Response<RecipeSearchPaginationResource>
