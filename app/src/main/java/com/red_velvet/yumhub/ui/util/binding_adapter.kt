@@ -151,9 +151,11 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
     }
 }
 
-@BindingAdapter(value = ["app:list","app:loading"])
-fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean){
+@BindingAdapter(value = ["app:list","app:loading","app:error"])
+fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean,error: ErrorUIState?){
     if(loading){
+        view.visibility =  View.GONE
+    }else if(error != null){
         view.visibility =  View.GONE
     }else if(list.isEmpty()){
         view.visibility =  View.VISIBLE

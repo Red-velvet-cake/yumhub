@@ -52,8 +52,7 @@ class DietViewModel @Inject constructor(
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.i("AYA", errorUiState.toString())
-        _state.update { it.copy(error = errorUiState, isLoading = false) }
+        _uiState.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
     override fun doOnRecipeClicked(recipeId: Int) {
