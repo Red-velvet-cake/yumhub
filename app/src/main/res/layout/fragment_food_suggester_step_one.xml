@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+<variable
+    name="viewModel"
+    type="com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterViewModel"
+    />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,18 +111,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/what_we_can_do_id"
             />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/male_container_id"
             android:layout_width="@dimen/_160dp"
             android:layout_height="@dimen/_74dp"
-            android:backgroundTint="@color/primary"
-            android:background="@color/primary"
-            android:layout_marginTop="@dimen/_12dp"
             android:layout_marginStart="@dimen/radius_16dp"
-            app:layout_constraintTop_toBottomOf="@id/Choose_the_gender_id"
+            android:layout_marginTop="@dimen/_12dp"
+            android:background="@color/primary"
+            android:onClick="@{()->viewModel.updateGender(&quot;Male&quot;)}"
             app:layout_constraintStart_toStartOf="parent"
-            app:shapeAppearanceOverlay="@style/CustomGenderSelector"
-            />
+            app:layout_constraintTop_toBottomOf="@id/Choose_the_gender_id"
+            app:shapeAppearanceOverlay="@style/CustomGenderSelector" />
+
         <TextView
             android:id="@+id/male_text_id"
             android:layout_width="wrap_content"
@@ -141,6 +145,7 @@
             android:layout_marginTop="@dimen/_12dp"
             android:layout_marginEnd="@dimen/radius_16dp"
             android:background="@color/white"
+            android:onClick="@{()->viewModel.updateGender(&quot;Female&quot;)}"
             app:layout_constraintTop_toBottomOf="@id/Choose_the_gender_id"
             app:layout_constraintStart_toEndOf="@id/male_container_id"
             app:layout_constraintEnd_toEndOf="parent"
@@ -183,6 +188,7 @@
             android:layout_marginTop="@dimen/_12dp"
             android:layout_marginStart="@dimen/radius_16dp"
             android:padding="@dimen/radius_16dp"
+            android:onClick="@{()->viewModel.updateActivityLevel(&quot;Lazy&quot;)}"
             android:drawableTop="@drawable/sleeping_circle"
             android:text="lazy"
             android:textAlignment="center"
@@ -202,6 +208,7 @@
             android:padding="@dimen/radius_16dp"
             android:drawableTop="@drawable/expressionless_circle"
             android:text="Normal"
+            android:onClick="@{()->viewModel.updateActivityLevel(&quot;Normal&quot;)}"
             android:textAlignment="center"
             style="@style/CustomActivityLevelSelector"
             app:layout_constraintTop_toBottomOf="@id/what_is_your_activity_level_id"
@@ -219,6 +226,7 @@
             android:paddingVertical="@dimen/radius_16dp"
             android:drawableTop="@drawable/smile_circle"
             android:text="Very Active"
+            android:onClick="@{()->viewModel.updateActivityLevel(&quot;VeryActive&quot;)}"
             android:textAlignment="center"
             style="@style/CustomActivityLevelSelector"
             app:layout_constraintTop_toBottomOf="@id/what_is_your_activity_level_id"
