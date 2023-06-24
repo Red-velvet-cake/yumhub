@@ -1,4 +1,4 @@
-package com.red_velvet.yumhub.ui.mealsSuggester
+package com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1
 
 import android.os.Bundle
 import android.view.View
@@ -12,10 +12,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MealsSuggesterFragment:BaseFragment<FragmentFoodSuggesterStepOneBinding, MealsSuggesterUiState , MealsSuggesterViewModel>() {
+class MealsSuggesterStep1Fragment:BaseFragment<FragmentFoodSuggesterStepOneBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1ViewModel>() {
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_food_suggester_step_one
-    override val viewModel: MealsSuggesterViewModel by viewModels()
+    override val viewModel: MealsSuggesterStep1ViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         observeOnUiEffect()
     }
@@ -25,8 +25,8 @@ class MealsSuggesterFragment:BaseFragment<FragmentFoodSuggesterStepOneBinding, M
             val effect = viewModel.effect.collect{
                 when(it)
                 {
-                    is MealsSuggesterUiEffect.ClickOnGenderSelector -> genderSelector(it.gender)
-                    is MealsSuggesterUiEffect.ClickOnActivityLevelSelector -> activityLevelSelector(it.activityLevel)
+                    is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> genderSelector(it.gender)
+                    is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> activityLevelSelector(it.activityLevel)
                 }
             }
 
