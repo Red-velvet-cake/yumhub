@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-
+<variable
+    name="item"
+    type="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.MealsSuggesterStep3UiState.SuggestedMeals" />
     </data>
 
     <LinearLayout
@@ -15,18 +16,21 @@
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/category_image_view"
+            android:id="@+id/suggested_meals_image"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             android:scaleType="fitXY"
+            app:imageUrl="@{item.imageUrl}"
             app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
             tools:src="@drawable/appteizer" />
 
         <TextView
+            android:id="@+id/suggested_meals_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_x_small"
+            android:text="@{item.title}"
             android:fontFamily="@font/roboto_regular"
             android:textColor="@color/fontColor_primary"
             android:textSize="@dimen/font_size_title"
