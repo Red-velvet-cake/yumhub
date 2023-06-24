@@ -72,10 +72,10 @@
                     android:hint="@string/send_a_message"
                     android:textSize="@dimen/text_size_16"
                     android:gravity="center_vertical"
-                    app:shapeAppearanceOverlay="@style/RoundedCorner"
+                    android:background="@drawable/rounded_corner_background"
                     android:textColorHint="@color/black_title_36"
                     android:layout_height="@dimen/spacing_xxxxlarge"
-                    android:background="@color/white"
+
                     android:fontFamily="@font/roboto_regular"
                     android:radius="@dimen/spacing_xlarge"
                     android:backgroundTint="@color/white"
