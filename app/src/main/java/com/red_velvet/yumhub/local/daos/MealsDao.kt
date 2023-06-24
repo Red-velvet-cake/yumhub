@@ -27,7 +27,7 @@ interface MealsDao {
     suspend fun insertHistoryMeal(historyItemLocalDto: List<HistoryItemLocalDto>)
 
     @Query("SELECT * FROM HISTORY_ITEM")
-    fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>>
+    fun getHistoryMeals(): List<HistoryItemLocalDto>
 
 
 }

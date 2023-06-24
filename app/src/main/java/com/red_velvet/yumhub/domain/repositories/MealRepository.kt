@@ -15,9 +15,9 @@ interface MealRepository {
         fromTimestamp: Long, toTimestamp: Long
     ): Flow<List<MealPlanEntity>>
 
-    suspend fun addToHistoryMeals(historyMealEntity: HistoryMealEntity)
+    suspend fun addToHistoryMeals(historyMealEntity: List<HistoryMealEntity>)
 
-    fun getHistoryMeals(): Flow<List<HistoryMealEntity>>
+    fun getHistoryMeals(): List<HistoryMealEntity>
 
 
     suspend fun refreshWeekMealsPlan(

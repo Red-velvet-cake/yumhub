@@ -5,7 +5,7 @@ import com.red_velvet.yumhub.domain.utils.orZero
 import com.red_velvet.yumhub.local.entities.HistoryItemLocalDto
 
 data class HistoryMealEntity(
-    val id: Int, val title: String, val image: String, val description: String
+    val id: Int, val title: String, val image: String, val description: String, val date: String
 )
 
 
@@ -15,5 +15,6 @@ fun HistoryItemLocalDto.toHistoryItemLocalEntity(): HistoryMealEntity {
         title = title.orEmpty(),
         image = image.orEmpty(),
         description = description.orEmpty(),
+        date = date.orEmpty()
     )
 }

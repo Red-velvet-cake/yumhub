@@ -37,13 +37,13 @@ class MealRepositoryImpl @Inject constructor(
             }
     }
 
-    override suspend fun addToHistoryMeals(historyMealEntity: HistoryMealEntity) {
-        localDataSource.insertHistoryItem(historyMealEntity.toHistoryItemLocalDto())
+    override suspend fun addToHistoryMeals(historyMealEntity: List<HistoryMealEntity>) {
+        localDataSource.insertHistoryItem(historyMealEntity.map(HistoryMealEntity::toHistoryItemLocalDto))
     }
 
-    override fun getHistoryMeals(): Flow<List<HistoryMealEntity>> {
-        return localDataSource.getHistoryMeals().map { historyMealEntities ->
-            historyMealEntities.map { it.toHistoryItemLocalEntity() }
+    override fun getHistoryMeals(): List<HistoryMealEntity> {
+        return localDataSource.getHistoryMeals().map {
+            it.toHistoryItemLocalEntity()
         }
     }
 
@@ -63,27 +63,7 @@ class MealRepositoryImpl @Inject constructor(
                 }
             }?.flatten()!!
         )
-
-//        val l = remoteDataSource.getWeekMealPlan(
-//            date,
-//            username,
-//            hash
-//        ).dayResources?.let {
-//            it.map {
-//                it.itemResources?.map {
-//                    it.toEntity(Instant.now().toEpochMilli())
-//                }
-//            }
-//        }
-
     }
-//            .map { day ->
-//            day.items?.map {
-//                it.toEntity(Instant.now().toEpochMilli())
-//            }?.let { localDataSource.insertWeekPlanMeal(it) }
-//        }
-
-
 }
 
 
