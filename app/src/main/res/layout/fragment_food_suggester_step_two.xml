@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2.MealsSuggesterStep2ViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,8 +114,8 @@
             android:id="@+id/maintain_weight_container_id"
             android:layout_width="@dimen/_104dp"
             android:layout_height="@dimen/_88dp"
-            android:backgroundTint="@color/primary"
-            android:background="@color/primary"
+            android:background="@color/white"
+            android:onClick="@{()->viewModel.updateGoal(&quot;Maintain Weight&quot;)}"
             android:layout_marginTop="@dimen/_12dp"
             android:layout_marginEnd="@dimen/_8dp"
             app:layout_constraintTop_toBottomOf="@id/what_is_your_goal_id"
@@ -121,14 +123,14 @@
             app:shapeAppearanceOverlay="@style/CustomGenderSelector"
             />
         <TextView
-            android:id="@+id/male_text_id"
+            android:id="@+id/maintain_weight_text_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/maintain_weight"
             android:lines="2"
             android:maxEms="4"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/white"
+            android:textColor="@color/fontColor_secondary"
             android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="@id/maintain_weight_container_id"
             app:layout_constraintEnd_toEndOf="@id/maintain_weight_container_id"
@@ -141,13 +143,14 @@
             android:layout_height="@dimen/_88dp"
             android:layout_marginTop="@dimen/_12dp"
             android:background="@color/white"
+            android:onClick="@{()->viewModel.updateGoal(&quot;Loss Weight&quot;)}"
             app:layout_constraintTop_toBottomOf="@id/what_is_your_goal_id"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:shapeAppearanceOverlay="@style/CustomGenderSelector"
             />
         <TextView
-            android:id="@+id/female_text_id"
+            android:id="@+id/loss_weight_text_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/loss_weight"
@@ -167,6 +170,7 @@
             android:layout_height="@dimen/_88dp"
             android:layout_marginTop="@dimen/_12dp"
             android:background="@color/white"
+            android:onClick="@{()->viewModel.updateGoal(&quot;Gain Weight&quot;)}"
             app:layout_constraintTop_toBottomOf="@id/what_is_your_goal_id"
             app:layout_constraintStart_toEndOf="@id/loss_weight_container_id"
             app:shapeAppearanceOverlay="@style/CustomGenderSelector"
@@ -191,6 +195,8 @@
             android:layout_width="@dimen/_160dp"
             android:layout_height="192dp"
             android:layout_marginTop="@dimen/spacing_large_24"
+            android:textAlignment="center"
+            android:inputType="number"
             android:background="@drawable/activity_selector_shape"
             app:layout_constraintStart_toStartOf="@id/maintain_weight_container_id"
             app:layout_constraintTop_toBottomOf="@id/maintain_weight_container_id"
@@ -212,6 +218,8 @@
             android:layout_width="@dimen/_160dp"
             android:layout_height="92dp"
             android:layout_marginTop="@dimen/spacing_large_24"
+            android:textAlignment="center"
+            android:inputType="number"
             android:background="@drawable/activity_selector_shape"
             app:layout_constraintStart_toEndOf="@id/your_weight_input_id"
             app:layout_constraintTop_toBottomOf="@id/maintain_weight_container_id"
@@ -233,6 +241,8 @@
             android:layout_width="@dimen/_160dp"
             android:layout_height="92dp"
             android:layout_marginTop="@dimen/_8dp"
+            android:textAlignment="center"
+            android:inputType="number"
             android:background="@drawable/activity_selector_shape"
             app:layout_constraintStart_toEndOf="@id/your_weight_input_id"
             app:layout_constraintTop_toBottomOf="@id/your_tall_input_id"
@@ -256,7 +266,8 @@
             android:fontFamily="@font/roboto_regular"
             android:textColor="@color/fontColor_secondary"
             android:text="Next"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/space_48dp"
+            app:layout_constraintTop_toBottomOf="@id/your_age_input_id"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/radius_16dp"
             android:layout_marginBottom="@dimen/_182dp"
