@@ -120,8 +120,13 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.i("AYA", errorUiState.toString())
-        _state.update { it.copy(error = errorUiState, isLoading = false) }
+        _uiState.update {
+            it.copy(
+                isLoading = false,
+                isResultIsEmpty = true,
+                error = errorUiState
+            )
+        }
     }
 
     override fun onRecipeSearchResultClicked(recipeId: Int) {
