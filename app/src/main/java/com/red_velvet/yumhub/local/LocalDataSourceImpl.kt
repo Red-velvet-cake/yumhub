@@ -4,6 +4,7 @@ import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.local.daos.MealsDao
 import com.red_velvet.yumhub.local.daos.RecipeDao
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
+import com.red_velvet.yumhub.local.entities.FavoriteRecipeDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
@@ -49,6 +50,22 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun insertQuickRecipes(quickRecipes: List<QuickRecipeLocalDto>) {
         recipeDao.insertQuickRecipes(quickRecipes)
+    }
+
+    override suspend fun getFavoriteRecipes(): List<FavoriteRecipeDto> {
+        return recipeDao.getFavoriteRecipes()
+    }
+
+    override suspend fun saveFavoriteRecipe(recipe: FavoriteRecipeDto) {
+        recipeDao.saveFavoriteRecipe(recipe)
+    }
+
+    override suspend fun deleteFavoriteRecipe(recipe: FavoriteRecipeDto) {
+        recipeDao.deleteFavoriteRecipe(recipe)
+    }
+
+    override suspend fun clearFavoriteRecipes() {
+        recipeDao.clearFavoriteRecipes()
     }
 
 
