@@ -22,13 +22,13 @@ class ProfileFragment :
 
     override fun handleUIEffect(uiEffect: ProfileUiEffect) {
         when (uiEffect) {
-            is ProfileUiEffect.ClickOnPersonalInfo -> navigateToPersonalInfoScreen()
+            is ProfileUiEffect.ClickOnSettings -> navigateToPersonalInfoScreen()
             is ProfileUiEffect.ClickOnChatBot -> navigateToChatBotScreen()
             is ProfileUiEffect.ClickOnFavorites -> navigateToFavoritesScreen()
-            is ProfileUiEffect.ClickOnReviewFood -> navigateToReviewFoodScreen()
+            is ProfileUiEffect.ClickOnHistory -> navigateToReviewFoodScreen()
             is ProfileUiEffect.ClickOnNutritionalValue -> navigateToNutritionalScreen()
             is ProfileUiEffect.ClickOnFoodSuggester -> navigateToFoodSuggesterScreen()
-            is ProfileUiEffect.ClickOnLogout -> navigateToLoginScreen()
+            is ProfileUiEffect.ClickOnMealTest -> navigateToMealTestScreen()
         }
     }
 
@@ -47,6 +47,6 @@ class ProfileFragment :
 
     private fun navigateToFoodSuggesterScreen() {}
 
-    private fun navigateToLoginScreen() {}
+    private fun navigateToMealTestScreen() {}
 
 }

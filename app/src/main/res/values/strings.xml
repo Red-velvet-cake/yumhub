@@ -148,4 +148,7 @@
     <string name="empty_fav_description">There are no favorite recipes yet. \nPlease choose your favorite recipes and save them here.</string>
     <string name="item_has_been_removed">Item has been removed</string>
     <string name="undo">Undo</string>
+    <string name="settings">Settings</string>
+    <string name="history">History</string>
+    <string name="test_your_meal">Test Your Meal</string>
 </resources>
