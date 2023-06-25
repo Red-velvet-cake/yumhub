@@ -24,6 +24,7 @@
         android:elevation="0dp"
         android:focusable="true"
         android:onClick="@{() -> listener.onFavoriteRecipeClicked(item.id)}"
+        app:cardCornerRadius="@dimen/_16dp"
         app:contentPadding="@dimen/size_8dp"
         app:strokeWidth="0dp">
 
@@ -57,7 +58,7 @@
                 app:layout_constraintStart_toEndOf="@id/img_favorite"
                 app:layout_constraintTop_toTopOf="@id/img_favorite"
                 app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Moon Cake" />
+                tools:text="Dolma" />
 
             <TextView
                 android:id="@+id/overview"
