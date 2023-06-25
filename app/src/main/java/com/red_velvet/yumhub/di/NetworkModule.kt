@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.di
 
-import com.red_velvet.yumhub.BuildConfig
 import com.red_velvet.yumhub.remote.AuthorizationInterceptor
 import com.red_velvet.yumhub.remote.FoodService
 import dagger.Module
@@ -29,7 +28,7 @@ object NetworkModule {
         gsonConverterFactory: GsonConverterFactory,
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl("https://api.spoonacular.com")
             .client(client)
             .addConverterFactory(gsonConverterFactory)
             .build()

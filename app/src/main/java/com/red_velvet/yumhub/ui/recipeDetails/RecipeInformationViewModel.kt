@@ -15,7 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeInformationViewModel @Inject constructor(
     private val getRecipeInformationUseCase: GetRecipeInformationUseCase,
-    private val addToHistoryMealsUseCase: AddToHistoryMealsUseCase,
     stateHandle: SavedStateHandle
 ) : BaseViewModel<RecipeInformationUIState, RecipeDetailsUIEffect>(RecipeInformationUIState()),
     DishTypeListener, RecipeInformationInteractionListener, IngredientsListener {
@@ -35,14 +34,7 @@ class RecipeInformationViewModel @Inject constructor(
     }
 
     private fun onSuccess(recipe: RecipeInformationEntity) {
-        addToHistory(recipe)
         _state.update { recipe.map().copy(isLoading = false) }
-    }
-
-    private fun addToHistory(recipe: RecipeInformationEntity) {
-        viewModelScope.launch {
-            addToHistoryMealsUseCase(recipe.toHistoryMealEntity())
-        }
     }
 
 

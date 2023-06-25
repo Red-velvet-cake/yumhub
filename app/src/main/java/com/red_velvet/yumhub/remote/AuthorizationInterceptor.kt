@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.remote
 
-import com.red_velvet.yumhub.BuildConfig
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -10,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 class AuthorizationInterceptor @Inject constructor() : Interceptor {
 
-    private val apiKey = BuildConfig.API_KEY
+    private val apiKey ="0c119dde6cee4c37ac86eb1f653691c9"
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
