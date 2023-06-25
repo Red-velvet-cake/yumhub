@@ -12,6 +12,7 @@ import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealResource
 import com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanResource
 import com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanResource
 import com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionResource
+import com.red_velvet.yumhub.remote.resources.recipe.NutritionWidgetResource
 import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
 import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
@@ -131,6 +132,10 @@ class RemoteDataSourceImpl @Inject constructor(
         stepBreakdown: Boolean?,
     ): List<AnalyzedInstructionResource> {
         return tryToExecute {foodService.getAnalyzedInstructions(id,stepBreakdown)}
+    }
+
+    override suspend fun getNutritionWidget(id: Int): NutritionWidgetResource {
+        return tryToExecute { foodService.getNutritionWidget(id) }
     }
 
     private suspend fun <T> tryToExecute(func: suspend () -> Response<T>): T {
