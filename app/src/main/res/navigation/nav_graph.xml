@@ -130,6 +130,19 @@
         android:id="@+id/profileFragment"
         android:name="com.red_velvet.yumhub.ui.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.red_velvet.yumhub.ui.favorites.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_favoritesFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
+    </fragment>
 
 </navigation>

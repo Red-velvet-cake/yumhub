@@ -65,8 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/no_height"
             android:scaleType="centerCrop"
-            app:imageUrl="@{viewModel.state.image}"
             android:visibility="@{viewModel.state.image == null ? View.GONE : View.VISIBLE}"
+            app:imageUrl="@{viewModel.state.image}"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -84,9 +84,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/no_height"
             android:background="@drawable/card_scroll"
+            android:hideWhenErr="@{viewModel.state.error}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:hideWhenErr="@{viewModel.state.error}"
             app:layout_constraintTop_toBottomOf="@id/guideline_2">
 
             <TextView
@@ -107,11 +107,11 @@
 
             <ImageView
                 android:id="@+id/button_add_to_meal_plan"
-                android:onClick="@{() -> viewModel.onAddToMealPlan(viewModel.state.id)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_38dp"
                 android:layout_marginEnd="@dimen/fab_margin"
+                android:onClick="@{() -> viewModel.onAddToMealPlan(viewModel.state.id)}"
                 android:src="@drawable/ic_save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -180,9 +180,9 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/roboto_regular"
                 android:lines="5"
-                android:showHtml="@{viewModel.state.description}"
                 android:textColor="@color/fontColor_accent"
                 android:textSize="@dimen/font_size_title"
+                app:htmlText="@{viewModel.state.description}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/text_recipe_time"
                 app:layout_constraintTop_toBottomOf="@id/text_recipe_time" />
@@ -233,10 +233,10 @@
                 android:drawableEnd="@drawable/ic_go_to_screen"
                 android:drawablePadding="@dimen/_4dp"
                 android:fontFamily="@font/roboto_medium"
+                android:onClick="@{() -> viewModel.onShowRecipeCookingStepsClicked(viewModel.args.id)}"
                 android:text="@string/go_to_cooking_steps"
                 android:textColor="@color/primary"
                 android:textSize="@dimen/font_size_title"
-                android:onClick="@{() -> viewModel.onShowRecipeCookingStepsClicked(viewModel.args.id)}"
                 app:layout_constraintBottom_toBottomOf="@id/text_ingredients_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/text_ingredients_title" />
