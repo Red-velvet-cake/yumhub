@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
+import com.red_velvet.yumhub.local.entities.QuickAnswerLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import kotlinx.coroutines.flow.Flow
 
