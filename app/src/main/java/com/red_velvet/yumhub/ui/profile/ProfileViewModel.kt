@@ -38,8 +38,8 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    override fun doOnPersonalInfoClicked() {
-        viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnPersonalInfo) }
+    override fun doOnSettingsClicked() {
+        viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnSettings) }
     }
 
     override fun doOnChatBotClicked() {
@@ -50,8 +50,8 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnFavorites) }
     }
 
-    override fun doOnReviewFoodClicked() {
-        viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnReviewFood) }
+    override fun doOnHistoryClicked() {
+        viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnHistory) }
     }
 
     override fun doOnNutritionalValueClicked() {
@@ -60,6 +60,10 @@ class ProfileViewModel @Inject constructor(
 
     override fun doOnFoodSuggesterClicked() {
         viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnFoodSuggester) }
+    }
+
+    override fun doOnMealTestClicked() {
+        viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnMealTest) }
     }
 
 }
