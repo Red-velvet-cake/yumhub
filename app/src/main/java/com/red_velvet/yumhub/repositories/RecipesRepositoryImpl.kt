@@ -7,6 +7,8 @@ import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.NutritionWidgetEntity
+import com.red_velvet.yumhub.domain.models.recipes.NutritionalInfoEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickAnswerEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
@@ -39,9 +41,9 @@ class RecipesRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : RecipesRepository {
     override suspend fun getDietRecipe(type: String): List<SearchRecipeEntity> {
-     return remoteDataSource.searchRecipe(diet=type)
-         .results?.map(RecipeInformationResource::toRecipeSearchEntity)
-        ?: emptyList()
+        return remoteDataSource.searchRecipe(diet = type)
+            .results?.map(RecipeInformationResource::toRecipeSearchEntity)
+            ?: emptyList()
     }
 
 
@@ -85,7 +87,8 @@ class RecipesRepositoryImpl @Inject constructor(
         id: Int,
         stepBreakdown: Boolean?,
     ): List<AnalyzedInstructionsEntity> {
-        return remoteDataSource.getAnalyzedInstructions(id,stepBreakdown).toAnalyzedInstructionEntity()
+        return remoteDataSource.getAnalyzedInstructions(id, stepBreakdown)
+            .toAnalyzedInstructionEntity()
     }
 
     override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipeEntity> {
@@ -146,6 +149,10 @@ class RecipesRepositoryImpl @Inject constructor(
         return remoteDataSource.getRecipesByMealType(type = categoryType, sort = sort).results?.map(
             RecipeInformationResource::toRecipeEntity
         ) ?: emptyList()
+    }
+
+    override suspend fun getNutritionWidget(id: Int): NutritionWidgetEntity {
+        return remoteDataSource.getNutritionWidget(id).toEntity()
     }
 
 }

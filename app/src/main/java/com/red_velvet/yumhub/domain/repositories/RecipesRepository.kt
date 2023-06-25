@@ -5,6 +5,7 @@ import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.NutritionWidgetEntity
 import com.red_velvet.yumhub.domain.models.recipes.NutritionalInfoEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickAnswerEntity
@@ -76,5 +77,5 @@ interface RecipesRepository {
 
     suspend fun getSingleRecipeCategory(categoryType: String?, sort: String?): List<RecipeEntity>
 
-    suspend fun getNutritionWidget(id: Int): List<NutritionalInfoEntity>
+    suspend fun getNutritionWidget(id: Int): NutritionWidgetEntity
 }
