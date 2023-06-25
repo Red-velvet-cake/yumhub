@@ -10,6 +10,7 @@ import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealResource
 import com.red_velvet.yumhub.remote.resources.meal_plan.ResultAddToMealPlanResource
 import com.red_velvet.yumhub.remote.resources.meal_plan.WeekMealPlanResource
 import com.red_velvet.yumhub.remote.resources.recipe.GuessNutritionResource
+import com.red_velvet.yumhub.remote.resources.recipe.NutritionWidgetResource
 import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
 import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
@@ -116,5 +117,9 @@ interface FoodService {
     suspend fun getAnalyzedInstructions(
         @Path("id") id: Int,
         @Query("stepBreakdown") stepBreakdown: Boolean? = false,
-        ): Response<List<AnalyzedInstructionResource>>
+    ): Response<List<AnalyzedInstructionResource>>
+
+    @GET("recipes/{id}/nutritionWidget")
+    suspend fun getNutritionWidget(@Path("id") id: Int): Response<List<NutritionWidgetResource>>
 }
+
