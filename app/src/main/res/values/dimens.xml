@@ -104,4 +104,6 @@
     <dimen name="_16dp">16dp</dimen>
     <dimen name="_10dp">10dp</dimen>
     <dimen name="space_56dp">56dp</dimen>
+    <dimen name="_182dp">182dp</dimen>
+    <dimen name="_272dp">272dp</dimen>
 </resources>
