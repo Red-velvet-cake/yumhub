@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.ui.profile
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentProfileBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -35,7 +36,10 @@ class ProfileFragment :
 
     private fun navigateToChatBotScreen() {}
 
-    private fun navigateToFavoritesScreen() {}
+    private fun navigateToFavoritesScreen() {
+        val action = ProfileFragmentDirections.actionProfileFragmentToFavoritesFragment()
+        findNavController().navigate(action)
+    }
 
     private fun navigateToReviewFoodScreen() {}
 

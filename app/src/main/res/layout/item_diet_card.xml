@@ -14,9 +14,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="@dimen/size_160dp"
+        android:layout_width="match_parent"
         android:onClick="@{() -> listener.doOnRecipeClicked(item.id)}"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fab_margin"
         android:layout_marginHorizontal="@dimen/tiny_space"
         android:orientation="vertical">
 
