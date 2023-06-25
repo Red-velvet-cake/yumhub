@@ -21,7 +21,7 @@ class FavoriteRecipesAdapter(
     }
 
     fun showUndoSnackBar(view: View, item: FavoritesUiState.RecipeUiState) {
-        val snackBar = Snackbar.make(view, "", Snackbar.LENGTH_LONG)
+        val snackBar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT)
 
         val customSnackBarBinding = SnackbarFavoritesUndoBinding.inflate(
             LayoutInflater.from(view.context),
