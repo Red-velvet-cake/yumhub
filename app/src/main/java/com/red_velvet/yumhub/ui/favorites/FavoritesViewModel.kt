@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.usecases.GetFavoriteRecipesUseCase
 import com.red_velvet.yumhub.domain.usecases.RemoveFavoriteRecipeUseCase
+import com.red_velvet.yumhub.domain.usecases.SaveFavoriteRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class FavoritesViewModel @Inject constructor(
     private val getFavoriteRecipes: GetFavoriteRecipesUseCase,
     private val removeFavoriteRecipe: RemoveFavoriteRecipeUseCase,
+    private val saveFavoriteRecipe: SaveFavoriteRecipeUseCase
 ) : BaseViewModel<FavoritesUiState, FavoritesUiEffect>(FavoritesUiState()),
     FavoriteInteractionListener {
     init {
@@ -44,6 +46,13 @@ class FavoritesViewModel @Inject constructor(
     override fun onFavoriteRecipeRemoved(recipe: RecipeEntity) {
         viewModelScope.launch {
             removeFavoriteRecipe(recipe)
+            getFavorites()
+        }
+    }
+
+    override fun onUndoRecipeRemoved(recipe: FavoritesUiState.RecipeUiState) {
+        viewModelScope.launch {
+            saveFavoriteRecipe(recipe.toEntity())
             getFavorites()
         }
     }

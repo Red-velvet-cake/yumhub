@@ -8,4 +8,6 @@ interface FavoriteInteractionListener : BaseInteractionListener {
     fun onFavoriteRecipeClicked(id: Int)
 
     fun onFavoriteRecipeRemoved(recipe: RecipeEntity)
+
+    fun onUndoRecipeRemoved(recipe: FavoritesUiState.RecipeUiState)
 }
