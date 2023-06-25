@@ -14,3 +14,12 @@ fun RecipeEntity.toUiState(): FavoritesUiState.RecipeUiState {
 fun List<RecipeEntity>.toUiState(): List<FavoritesUiState.RecipeUiState> {
     return map { it.toUiState() }
 }
+
+fun FavoritesUiState.RecipeUiState.toEntity(): RecipeEntity {
+    return RecipeEntity(
+        id = id,
+        title = title,
+        imageUrl = image,
+        overview = overview
+    )
+}
