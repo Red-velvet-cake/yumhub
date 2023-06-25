@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.ingredients.IngredientsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.ingredients.IngredientsFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/title_ingredients" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_extended_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/no_height"
+            android:layout_marginHorizontal="@dimen/spacing_normal"
+            android:layout_marginStart="16dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_18dp"
+            android:paddingBottom="@dimen/spacing_xlarge"
+            app:items="@{viewModel.state.resultIngredient}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_ingredients"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/item_extended_ingredients" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

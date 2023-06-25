@@ -24,6 +24,6 @@ data class DishTypeUIState(
 
 data class IngredientsUIState(
     val image: String,
-    val original: String
+    val name: String
 )
 

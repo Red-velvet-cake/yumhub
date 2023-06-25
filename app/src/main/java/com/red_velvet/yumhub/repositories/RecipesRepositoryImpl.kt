@@ -2,9 +2,11 @@ package com.red_velvet.yumhub.repositories
 
 
 import com.red_velvet.yumhub.domain.mapper.toEntity
+import com.red_velvet.yumhub.domain.mapper.toModel
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
+import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
@@ -140,6 +142,18 @@ class RecipesRepositoryImpl @Inject constructor(
         return remoteDataSource.getRecipesByMealType(type = categoryType, sort = sort).results?.map(
             RecipeInformationResource::toRecipeEntity
         ) ?: emptyList()
+    }
+
+    override suspend fun getExtendedIngredients(
+        id: Int,
+        includeNutrition: Boolean
+    ): List<ExtendedIngredientEntity> {
+//        return remoteDataSource.getExtendedIngredients(id, includeNutrition).map(
+//            ExtendedIngredientResource::toModel
+//        )
+
+        return remoteDataSource.getRecipeInformation(id, includeNutrition)
+            .extendedIngredients.map { it.toModel() }
     }
 
 }

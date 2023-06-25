@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.domain.repositories
 
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
+import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
@@ -71,4 +72,7 @@ interface RecipesRepository {
     suspend fun getCategoriesFromRemote(): List<CategoryEntity>
 
     suspend fun getSingleRecipeCategory(categoryType: String?, sort: String?): List<RecipeEntity>
+
+    suspend fun getExtendedIngredients(id: Int, includeNutrition: Boolean)
+            : List<ExtendedIngredientEntity>
 }
