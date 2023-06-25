@@ -146,6 +146,6 @@
     <string name="add_meal">Add Meal</string>
     <string name="there_are_no_favourites">There are no favourites</string>
     <string name="empty_fav_description">There are no favorite recipes yet. \nPlease choose your favorite recipes and save them here.</string>
-    <string name="item_has_been_removed">Item has been removed successfully</string>
+    <string name="item_has_been_removed">Item has been removed</string>
     <string name="undo">Undo</string>
 </resources>
