@@ -1,10 +1,9 @@
 package com.red_velvet.yumhub.ui.util
 
-import android.os.Build
-import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -210,12 +209,10 @@ fun loadImage(view: ImageView, imageUrl: String) {
         .into(view)
 }
 
-@BindingAdapter("android:showHtml")
+@BindingAdapter("app:htmlText")
 fun showHtml(view: TextView, html: String?) {
-    view.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT)
-    } else {
-        Html.fromHtml(html)
+    if (html != null) {
+        view.text = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
 
@@ -223,4 +220,3 @@ fun showHtml(view: TextView, html: String?) {
 fun showWhenEmpty(view: View, boolean: Boolean) {
     view.isVisible = boolean
 }
-
