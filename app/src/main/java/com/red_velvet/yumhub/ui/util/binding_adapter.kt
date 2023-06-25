@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.ui.base.BaseAdapter
 import com.red_velvet.yumhub.ui.base.ErrorUIState
+import com.red_velvet.yumhub.ui.home.HomeSliderItemUiState
+import com.red_velvet.yumhub.ui.home.adapters.HomeSliderAdapter
 
 @BindingAdapter("android:hideWhenErr")
 fun hideWhenError(view: View, errorState: ErrorUIState?) {
@@ -208,3 +211,11 @@ fun showHtml(view: TextView, html: String?) {
     }
 }
 
+@BindingAdapter("pagerItems")
+fun setViewPagerItems(viewPager: ViewPager, items: List<HomeSliderItemUiState>?) {
+    if (items == null) {
+        return
+    }
+    val adapter = HomeSliderAdapter(items)
+    viewPager.adapter = adapter
+}
