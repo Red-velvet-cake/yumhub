@@ -30,4 +30,8 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun providesMealsDao(foodDatabase: FoodDatabase) = foodDatabase.mealsDao()
+
+    @Provides
+    @Singleton
+    fun providesChatBotDao(foodDatabase: FoodDatabase) = foodDatabase.chatBotDao()
 }
