@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "QUICK_ANSWER_TABLE")
 data class QuickAnswerLocalDto(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val qsn: String,
-    val answer: String,
-    val image: Int
+    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    val qsn: String?,
+    val answer: String?,
+    val image: String?
 )
