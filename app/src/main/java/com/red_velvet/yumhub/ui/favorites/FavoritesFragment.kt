@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFavoritesBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -20,8 +21,11 @@ class FavoritesFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val favoriteRecipesAdapter = FavoriteRecipesAdapter(emptyList(), viewModel)
+        val favoriteRecipesAdapter = FavoriteRecipesAdapter(mutableListOf(), viewModel)
         binding.favoritesRecycler.adapter = favoriteRecipesAdapter
+
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(favoriteRecipesAdapter))
+        itemTouchHelper.attachToRecyclerView(binding.favoritesRecycler)
     }
 
     override fun observeOnUIEffects() {
