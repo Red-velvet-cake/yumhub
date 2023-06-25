@@ -27,7 +27,6 @@ class ProfileFragment :
             is ProfileUiEffect.ClickOnReviewFood -> navigateToReviewFoodScreen()
             is ProfileUiEffect.ClickOnNutritionalValue -> navigateToNutritionalScreen()
             is ProfileUiEffect.ClickOnFoodSuggester -> navigateToFoodSuggesterScreen()
-            is ProfileUiEffect.ClickOnLogout -> navigateToLoginScreen()
         }
     }
 
@@ -42,7 +41,5 @@ class ProfileFragment :
     private fun navigateToNutritionalScreen() {}
 
     private fun navigateToFoodSuggesterScreen() {}
-
-    private fun navigateToLoginScreen() {}
 
 }

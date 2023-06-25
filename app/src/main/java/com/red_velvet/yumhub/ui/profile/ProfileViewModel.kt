@@ -62,8 +62,4 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnFoodSuggester) }
     }
 
-    override fun doOnLogoutClicked() {
-        viewModelScope.launch { _effect.emit(ProfileUiEffect.ClickOnLogout) }
-    }
-
 }

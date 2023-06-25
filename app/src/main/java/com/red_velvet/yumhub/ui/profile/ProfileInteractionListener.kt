@@ -12,6 +12,4 @@ interface ProfileInteractionListener {
     fun doOnNutritionalValueClicked()
 
     fun doOnFoodSuggesterClicked()
-
-    fun doOnLogoutClicked()
 }
