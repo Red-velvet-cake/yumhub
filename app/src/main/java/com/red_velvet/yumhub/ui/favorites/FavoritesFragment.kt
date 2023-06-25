@@ -24,7 +24,7 @@ class FavoritesFragment :
         val favoriteRecipesAdapter = FavoriteRecipesAdapter(mutableListOf(), viewModel)
         binding.favoritesRecycler.adapter = favoriteRecipesAdapter
 
-        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(favoriteRecipesAdapter))
+        val itemTouchHelper = ItemTouchHelper(FavoriteItemTouchCallback(favoriteRecipesAdapter))
         itemTouchHelper.attachToRecyclerView(binding.favoritesRecycler)
     }
 

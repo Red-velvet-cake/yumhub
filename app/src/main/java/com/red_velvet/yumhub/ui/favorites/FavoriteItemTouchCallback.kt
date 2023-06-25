@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.red_velvet.yumhub.R
 
-class SwipeToDeleteCallback(
+class FavoriteItemTouchCallback(
     private val adapter: FavoriteRecipesAdapter
 ) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
