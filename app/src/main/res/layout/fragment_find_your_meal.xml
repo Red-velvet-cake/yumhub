@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.fnd_meal.FindYourMealViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/spacing_xxxxlarge"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center_vertical"
+            android:hint="@string/search_food_drink_etc"
+            android:onTextChanged="@{(text,_, ___, __) -> viewModel.onSearchInputTextChanged(text)}"
+            android:paddingVertical="@dimen/spacing_small"
+            android:radius="@dimen/spacing_xlarge"
+            android:text="@{viewModel.uiState.searchInput}"
+            android:textColor="@color/black_title_60"
+            android:textColorHint="@color/black_title_36"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
