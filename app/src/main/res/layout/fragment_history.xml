@@ -18,22 +18,6 @@
         android:background="@color/bg_white"
         tools:context=".ui.search.SearchFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_toolbar_diet"
-            android:fitsSystemWindows="true"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/my_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_48dp"
-                app:title="History"
-                app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
-        </com.google.android.material.appbar.AppBarLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_history_list"
@@ -41,20 +25,20 @@
             android:layout_height="@dimen/no_width"
             android:clipToPadding="false"
             android:orientation="vertical"
-            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:hideIfIsHistoryEmpty="@{!viewModel.uiState.resultIsEmpty}"
             app:items="@{viewModel.uiState.historyItems}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar_history"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_history_card" />
 
         <ImageView
             android:id="@+id/svgImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:hideIfIsHistoryEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +49,7 @@
             android:id="@+id/textview_title"
             style="@style/CustomSearchTextViewTitleStyle"
             android:text="No History Found"
-            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:hideIfIsHistoryEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView" />
