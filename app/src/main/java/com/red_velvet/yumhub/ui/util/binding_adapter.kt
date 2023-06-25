@@ -38,11 +38,14 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
     view.visibility =
         if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
-@BindingAdapter(value=["app:showIfListEmpty","loading"])
-fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
-    view.isVisible = value
-    if (loading) {
+@BindingAdapter(value=["app:showIfListEmpty","loading","app:error"])
+fun showIfNotFound(view: View, value: Boolean,loading:Boolean,errorState: ErrorUIState?) {
+    if(errorState != null){
+        view.isVisible = false
+    }else if (loading) {
         view.isVisible = false;
+    }else{
+        view.isVisible = value
     }
 }
 @BindingAdapter("app:showIfTrue")
@@ -151,9 +154,11 @@ fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,I
     }
 }
 
-@BindingAdapter(value = ["app:list","app:loading"])
-fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean){
+@BindingAdapter(value = ["app:list","app:loading","app:error"])
+fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean,error: ErrorUIState?){
     if(loading){
+        view.visibility =  View.GONE
+    }else if(error != null){
         view.visibility =  View.GONE
     }else if(list.isEmpty()){
         view.visibility =  View.VISIBLE
