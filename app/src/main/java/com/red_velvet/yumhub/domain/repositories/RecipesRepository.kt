@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.domain.repositories
 
 
+import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
@@ -76,6 +77,8 @@ interface RecipesRepository {
     suspend fun getCategoriesFromRemote(): List<CategoryEntity>
 
     suspend fun getSingleRecipeCategory(categoryType: String?, sort: String?): List<RecipeEntity>
+
+    suspend fun getHomeSliderImagesList(): List<SliderItemEntity>
 
     suspend fun getNutritionWidget(id: Int): NutritionWidgetEntity
 }

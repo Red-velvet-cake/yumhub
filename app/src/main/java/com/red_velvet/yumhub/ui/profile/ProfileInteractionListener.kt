@@ -1,17 +1,17 @@
 package com.red_velvet.yumhub.ui.profile
 
 interface ProfileInteractionListener {
-    fun doOnPersonalInfoClicked()
+    fun doOnSettingsClicked()
 
     fun doOnChatBotClicked()
 
     fun doOnFavoritesClicked()
 
-    fun doOnReviewFoodClicked()
+    fun doOnHistoryClicked()
 
     fun doOnNutritionalValueClicked()
 
     fun doOnFoodSuggesterClicked()
 
-    fun doOnLogoutClicked()
+    fun doOnMealTestClicked()
 }

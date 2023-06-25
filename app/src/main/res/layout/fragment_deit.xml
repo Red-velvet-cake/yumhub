@@ -10,28 +10,37 @@
             name="viewModel"
             type="com.red_velvet.yumhub.ui.deit.DietViewModel" />
     </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_diet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_toolbar_diet"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_48dp"
+            app:title="@string/nutritional_guide"
+            app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/bg_white"
         >
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_diet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_toolbar_diet"
-            app:layout_constraintTop_toTopOf="parent"
-            android:fitsSystemWindows="true">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/my_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_48dp"
-                app:title="@string/nutritional_guide"
-                app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
-        </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
             android:id="@+id/text_view_title"
@@ -44,7 +53,7 @@
             android:layout_marginTop="@dimen/spacing_large_24"
             android:layout_marginHorizontal="@dimen/fab_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appbar_diet"
+            app:layout_constraintTop_toTopOf="parent"
             />
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_diet"
@@ -155,12 +164,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
             />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_diet_recycler_view"
-            android:layout_width="@dimen/no_width"
-            android:layout_height="@dimen/no_width"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -168,13 +177,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chip_diet"
             android:layout_marginHorizontal="@dimen/spacing_small_12"
-            android:paddingTop="@dimen/fab_margin"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:loading="@{viewModel.uiState.isLoading}"
             app:listResult="@{viewModel.uiState.dietResult}"
             app:spanCount="2"
             app:items="@{viewModel.uiState.dietResult}"
             tools:listitem="@layout/item_diet_card"
+            />
+        <ImageView
+            android:id="@+id/svgImageView_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/search_no_internet"
+            android:showInternalServerError="@{viewModel.uiState.error}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
+            />
+        <TextView
+            style="@style/deitTextViewStyle"
+            android:showInternalServerError="@{viewModel.uiState.error}"
+            android:text="@string/internet_is_not_available"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet"
             />
         <ImageView
             android:id="@+id/image_view_diet"
@@ -184,6 +212,7 @@
             android:src="@drawable/diet_cover"
             app:loading="@{viewModel.uiState.isLoading}"
             app:list="@{viewModel.uiState.dietResult}"
+            app:error="@{viewModel.uiState.error}"
             android:layout_marginTop="@dimen/space_48dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -194,6 +223,8 @@
             style="@style/deitTextViewStyle"
             app:loading="@{viewModel.uiState.isLoading}"
             app:list="@{viewModel.uiState.dietResult}"
+            app:error="@{viewModel.uiState.error}"
+
             android:text="@string/there_are_various_types_of_diets_available"
             android:layout_marginTop="@dimen/spacing_large_24"
             app:layout_constraintStart_toStartOf="parent"
@@ -204,10 +235,14 @@
             style="@style/deitTextViewStyle"
             app:loading="@{viewModel.uiState.isLoading}"
             app:list="@{viewModel.uiState.dietResult}"
+            app:error="@{viewModel.uiState.error}"
+
             android:text="@string/choose_your_preferred_type"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_view_subtitle"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </layout>

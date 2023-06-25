@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.ui.profile
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentProfileBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -21,13 +22,13 @@ class ProfileFragment :
 
     override fun handleUIEffect(uiEffect: ProfileUiEffect) {
         when (uiEffect) {
-            is ProfileUiEffect.ClickOnPersonalInfo -> navigateToPersonalInfoScreen()
+            is ProfileUiEffect.ClickOnSettings -> navigateToPersonalInfoScreen()
             is ProfileUiEffect.ClickOnChatBot -> navigateToChatBotScreen()
             is ProfileUiEffect.ClickOnFavorites -> navigateToFavoritesScreen()
-            is ProfileUiEffect.ClickOnReviewFood -> navigateToReviewFoodScreen()
+            is ProfileUiEffect.ClickOnHistory -> navigateToReviewFoodScreen()
             is ProfileUiEffect.ClickOnNutritionalValue -> navigateToNutritionalScreen()
             is ProfileUiEffect.ClickOnFoodSuggester -> navigateToFoodSuggesterScreen()
-            is ProfileUiEffect.ClickOnLogout -> navigateToLoginScreen()
+            is ProfileUiEffect.ClickOnMealTest -> navigateToMealTestScreen()
         }
     }
 
@@ -35,7 +36,10 @@ class ProfileFragment :
 
     private fun navigateToChatBotScreen() {}
 
-    private fun navigateToFavoritesScreen() {}
+    private fun navigateToFavoritesScreen() {
+        val action = ProfileFragmentDirections.actionProfileFragmentToFavoritesFragment()
+        findNavController().navigate(action)
+    }
 
     private fun navigateToReviewFoodScreen() {}
 
@@ -43,6 +47,6 @@ class ProfileFragment :
 
     private fun navigateToFoodSuggesterScreen() {}
 
-    private fun navigateToLoginScreen() {}
+    private fun navigateToMealTestScreen() {}
 
 }

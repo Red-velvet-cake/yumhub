@@ -7,13 +7,11 @@
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.home.HomeViewModel" />
-
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -41,18 +39,17 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_large_24"
                 tools:context=".ui.home.HomeFragment">
 
-
-                <ImageView
-                    android:id="@+id/featured_home_image_view"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/slider_view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:src="@drawable/home"
+                    pagerItems="@{viewModel.state.sliderImagesList}"
+                    android:layout_height="152dp"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/categories"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/featured_home_image_view" />
+                    app:layout_constraintTop_toBottomOf="@+id/slider_view_pager" />
 
 
                 <TextView
@@ -74,8 +71,8 @@
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
-                    android:onClick="@{() -> viewModel.doOnClickSeeAllCategoryRecipes()}"
                     android:fontFamily="@font/roboto_regular"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllCategoryRecipes()}"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
@@ -87,10 +84,10 @@
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:items="@{viewModel.State.categoryRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/category_title_text_view"
-                    app:items="@{viewModel.State.categoryRecipesUiState}"
                     tools:listitem="@layout/item_home_recipe_categories" />
 
                 <TextView
@@ -109,10 +106,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large_24"
                     android:layout_marginEnd="@dimen/spacing_normal"
-                    android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(0)}"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(0)}"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
@@ -124,10 +121,10 @@
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:items="@{viewModel.state.quickRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quick_recipe_title_text_view"
-                    app:items="@{viewModel.state.quickRecipesUiState}"
                     tools:listitem="@layout/item_quick_recipe" />
 
                 <TextView
@@ -148,8 +145,8 @@
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
-                    android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(1)}"
                     android:fontFamily="@font/roboto_regular"
+                    android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(1)}"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
@@ -162,10 +159,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/small_space"
+                    app:items="@{viewModel.state.popularRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popular_recipe_title_text_view"
-                    app:items="@{viewModel.state.popularRecipesUiState}"
                     tools:listitem="@layout/item_main_recipe" />
 
                 <TextView
@@ -185,8 +182,8 @@
                     android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="@string/see_all"
                     android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(2)}"
+                    android:text="@string/see_all"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -196,11 +193,12 @@
                     android:id="@+id/healthyRecyclerView"
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/spacing_large_24"
                     android:layout_height="wrap_content"
+                    app:items="@{viewModel.state.healthyRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/healthy_recipe_title_text_view"
-                    app:items="@{viewModel.state.healthyRecipesUiState}"
                     tools:listitem="@layout/item_main_recipe" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

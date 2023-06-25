@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.repositories
 
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
+import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
@@ -16,6 +17,7 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
+import com.red_velvet.yumhub.domain.models.toEntity
 import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
@@ -149,6 +151,10 @@ class RecipesRepositoryImpl @Inject constructor(
         return remoteDataSource.getRecipesByMealType(type = categoryType, sort = sort).results?.map(
             RecipeInformationResource::toRecipeEntity
         ) ?: emptyList()
+    }
+
+    override suspend fun getHomeSliderImagesList(): List<SliderItemEntity> {
+        return localDataSource.getHomeSliderImagesList().toEntity()
     }
 
     override suspend fun getNutritionWidget(id: Int): NutritionWidgetEntity {

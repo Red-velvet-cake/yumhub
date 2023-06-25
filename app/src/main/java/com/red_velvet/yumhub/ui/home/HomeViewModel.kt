@@ -2,10 +2,12 @@ package com.red_velvet.yumhub.ui.home
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
+import com.red_velvet.yumhub.domain.usecases.GetHomeSliderImagesListUseCase
 import com.red_velvet.yumhub.domain.usecases.GetUserNameUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetCategoriesUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetHealthyRecipesUseCase
@@ -27,7 +29,8 @@ class HomeViewModel @Inject constructor(
     private val getPopularRecipesUseCase: GetPopularRecipesUseCase,
     private val getHealthyRecipesUseCase: GetHealthyRecipesUseCase,
     private val getCategoriesUseCase: GetCategoriesUseCase,
-    private val getUserNameUseCase: GetUserNameUseCase
+    private val getUserNameUseCase: GetUserNameUseCase,
+    private val getHomeSliderImagesListUseCase: GetHomeSliderImagesListUseCase
 ) : BaseViewModel<HomeUiState, HomeUIEffect>(HomeUiState()), CategoryInteractionListener,
     RecipeInteractionListener {
 
@@ -37,20 +40,23 @@ class HomeViewModel @Inject constructor(
         getHealthyRecipes()
         getQuickRecipes()
         getUserName()
+        getHomeSliderImageList()
     }
 
-    private  fun getUserName(){
+    private fun getUserName() {
         tryToExecute(
             callee = getUserNameUseCase::invoke,
             onSuccess = ::onGetUserNameSuccess,
             onError = ::onError
         )
     }
+
     private fun onGetUserNameSuccess(name: String) {
         _state.update {
             it.copy(name = name)
         }
     }
+
     private fun getQuickRecipes() {
         _state.update { it.copy(isLoading = true) }
         tryToExecute(
@@ -151,6 +157,21 @@ class HomeViewModel @Inject constructor(
 
     override fun doOnClickSeeAllRecipes(type: Int) {
         viewModelScope.launch { _effect.emit(HomeUIEffect.ClickOnSeeAllHealthyRecipes(type)) }
+    }
+
+    private fun getHomeSliderImageList() {
+        tryToExecute(
+            getHomeSliderImagesListUseCase::invoke,
+            onSuccess = ::onGetSliderImagesListSuccess,
+            onError = ::onError
+        )
+    }
+
+    private fun onGetSliderImagesListSuccess(sliderImageList: List<SliderItemEntity>) {
+        val imageList = sliderImageList.toUiState()
+        _state.update {
+            it.copy(sliderImagesList = imageList, isLoading = false)
+        }
     }
 
 }
