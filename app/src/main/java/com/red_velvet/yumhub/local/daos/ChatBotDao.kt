@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ChatBotDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert()
     suspend fun insertChatBotMessage(quickAnswerLocalDto: QuickAnswerLocalDto)
 
     @Query("SELECT * FROM QUICK_ANSWER_TABLE")
