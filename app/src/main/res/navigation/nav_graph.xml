@@ -15,11 +15,7 @@
             android:id="@+id/action_searchFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/chatbotFragment"
-        android:name="com.red_velvet.yumhub.ui.chatbot.ChatbotFragment"
-        android:label="ChatBot"
-        tools:layout="@layout/fragment_chatbot" />
+
     <fragment
         android:id="@+id/nutritionalValueFragment"
         android:name="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueFragment"
@@ -136,9 +132,15 @@
         android:name="com.red_velvet.yumhub.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
+
         <action
             android:id="@+id/action_profileFragment_to_chatbotFragment"
             app:destination="@id/chatbotFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.red_velvet.yumhub.ui.chatbot.ChatbotFragment"
+        android:label="ChatBot" />
+    ]
 
 </navigation>
