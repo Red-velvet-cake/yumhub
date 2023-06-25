@@ -1,12 +1,14 @@
 package com.red_velvet.yumhub.local
 
 import com.red_velvet.yumhub.R
+import com.red_velvet.yumhub.local.daos.ChatBotDao
 import com.red_velvet.yumhub.local.daos.MealsDao
 import com.red_velvet.yumhub.local.daos.RecipeDao
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
+import com.red_velvet.yumhub.local.entities.QuickAnswerLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
 import kotlinx.coroutines.flow.Flow
@@ -14,8 +16,18 @@ import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(
     private val recipeDao: RecipeDao,
-    private val mealsDao: MealsDao
+    private val mealsDao: MealsDao,
+    private val chatBotDao: ChatBotDao
 ) : LocalDataSource {
+
+    override suspend fun insertChatBotMessage(quickAnswerLocalDto: QuickAnswerLocalDto) {
+        chatBotDao.insertChatBotMessage(quickAnswerLocalDto)
+    }
+
+override fun getChatBotMessages(): Flow<List<QuickAnswerLocalDto>> {
+        return chatBotDao.getChatBotMessages()
+    }
+
     override fun getWeekMealsPlan(
         fromTimestamp: Long,
         toTimestamp: Long
