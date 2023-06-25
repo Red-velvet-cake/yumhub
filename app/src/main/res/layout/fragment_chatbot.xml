@@ -5,11 +5,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.chatbot.ChatBotViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/bg_white"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_chatbot"
@@ -17,18 +21,22 @@
             android:layout_height="@dimen/no_width"
             android:clipToPadding="false"
             android:orientation="vertical"
+            android:paddingBottom="@dimen/space_56dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="@id/text_view_input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:stackFromEnd="true"
+            app:items="@{viewModel.uiState.quickAnswerResult}"
             tools:listitem="@layout/item_mesage" />
         <ImageView
             android:id="@+id/imageView_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
             android:src="@drawable/chatbotwelcome"
-            app:layout_constraintBottom_toBottomOf="@id/text_view_input"
+            app:layout_constraintBottom_toTopOf="@id/text_view_input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -36,6 +44,7 @@
             android:id="@+id/textView_welcome"
             android:layout_width="wrap_content"
             style="@style/CustomTextViewSearchSubTitleStyle"
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
             android:layout_marginTop="@dimen/spacing_large_24"
             android:text="@string/hello_welcome_to_our_chatbot"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +55,7 @@
             style="@style/CustomTextViewSearchSubTitleStyle"
             android:layout_marginTop="@dimen/no_width"
             android:layout_width="wrap_content"
-
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
             android:text="@string/i_m_here_to_assist_you_with_any_questions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,21 +64,29 @@
             style="@style/CustomTextViewSearchSubTitleStyle"
             android:layout_marginTop="@dimen/no_width"
             android:layout_width="wrap_content"
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
             android:text="@string/related_to_recipes_and_cooking"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_welcome_2"/>
-        <com.google.android.material.textfield.TextInputLayout
+
+        <LinearLayout
             android:id="@+id/text_view_input"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_xxxxlarge"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="@dimen/spacing_xxxlarge"
-            android:layout_marginHorizontal="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/space_56dp"
+            android:layout_marginBottom="@dimen/spacing_large_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/bg_white">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xxxxlarge"
+            android:paddingHorizontal="@dimen/fab_margin"
             android:orientation="horizontal"
             android:background="@drawable/rounded_corner_background"
             app:shapeAppearanceOverlay="@style/RoundedCorner"
-            app:layout_constraintBottom_toBottomOf="parent"
+
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,18 +100,19 @@
                     android:paddingVertical="@dimen/spacing_small"
                     android:hint="@string/send_a_message"
                     android:textSize="@dimen/text_size_16"
+                    android:text="@{viewModel.uiState.quickAnswer}"
                     android:gravity="center_vertical"
                     android:background="@drawable/rounded_corner_background"
                     android:textColorHint="@color/black_title_36"
                     android:layout_height="@dimen/spacing_xxxxlarge"
-
+                    android:onTextChanged="@{(text,_, ___, __) -> viewModel.onInputSearchChange(text)}"
                     android:fontFamily="@font/roboto_regular"
                     android:radius="@dimen/spacing_xlarge"
                     android:backgroundTint="@color/white"
                     />
-
                 <androidx.cardview.widget.CardView
                     style="@style/CardSearchFilterStyle"
+                    android:onClick="@{() -> viewModel.onSend()}"
                     app:cardElevation="@dimen/no_width"
                     app:cardCornerRadius="@dimen/_75dp"
                     >
@@ -108,5 +126,6 @@
             </LinearLayout>
             />
         </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
