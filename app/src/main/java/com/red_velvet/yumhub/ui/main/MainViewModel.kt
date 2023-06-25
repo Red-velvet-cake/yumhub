@@ -6,18 +6,13 @@ import com.red_velvet.yumhub.domain.usecases.GetHashUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getHashUseCase: GetHashUseCase
-) : BaseViewModel<MainUIState>(MainUIState()) {
-
-    private val _effect = MutableSharedFlow<MainUIEffect>()
-    val effect = _effect.asSharedFlow()
+) : BaseViewModel<MainUIState, MainUIEffect>(MainUIState()) {
 
     init {
         authenticateUser()

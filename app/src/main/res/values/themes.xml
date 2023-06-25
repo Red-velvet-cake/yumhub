@@ -1,6 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.YumHub" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:navigationIcon">@color/primary</item>
+        <item name="colorControlNormal">@color/primary</item>
+
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
@@ -28,7 +33,6 @@
         <item name="android:paddingTop">@dimen/_6dp</item>
         <item name="android:paddingLeft">@dimen/_12dp</item>
         <item name="android:paddingBottom">@dimen/_6dp</item>
-
     </style>
 
     <style name="CustomTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -38,6 +42,8 @@
         <item name="android:layout_marginStart">@dimen/fab_margin</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+
+
     </style>
 
     <style name="CustomSubTitleTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -92,6 +98,33 @@
         <item name="android:textColor">@color/black_title_36</item>
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+    <style name="CustomNutrisionCardViewStyle" parent="">
+        <item name="background">@color/bg_white</item>
+        <item name="android:layout_height">@dimen/size_136dp</item>
+        <item name="android:layout_width">@dimen/size_160dp</item>
+        <item name="cardElevation">@dimen/no_width</item>
+        <item name="android:background">@color/white</item>
+        <item name="cardCornerRadius">@dimen/radius_16dp</item>
+    </style>
+    <style name="CustomNutrisonTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black_title</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="CustomNutrisonImageViewStyle" parent="">
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="CustomNutrisonTitleStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black_title</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
     </style>
 
 </resources>

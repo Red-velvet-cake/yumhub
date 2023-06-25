@@ -4,6 +4,7 @@ package com.red_velvet.yumhub.repositories
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toModel
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
+import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
@@ -16,6 +17,7 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
+import com.red_velvet.yumhub.domain.models.toEntity
 import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
@@ -40,6 +42,12 @@ class RecipesRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : RecipesRepository {
+
+    override suspend fun getDietRecipe(type: String): List<SearchRecipeEntity> {
+        return remoteDataSource.searchRecipe(diet = type)
+            .results?.map(RecipeInformationResource::toRecipeSearchEntity)
+            ?: emptyList()
+    }
 
     override suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity> {
         return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationResource::toPopularEntity)
@@ -81,7 +89,8 @@ class RecipesRepositoryImpl @Inject constructor(
         id: Int,
         stepBreakdown: Boolean?,
     ): List<AnalyzedInstructionsEntity> {
-        return remoteDataSource.getAnalyzedInstructions(id,stepBreakdown).toAnalyzedInstructionEntity()
+        return remoteDataSource.getAnalyzedInstructions(id, stepBreakdown)
+            .toAnalyzedInstructionEntity()
     }
 
     override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipeEntity> {
@@ -144,14 +153,14 @@ class RecipesRepositoryImpl @Inject constructor(
         ) ?: emptyList()
     }
 
+    override suspend fun getHomeSliderImagesList(): List<SliderItemEntity> {
+        return localDataSource.getHomeSliderImagesList().toEntity()
+    }
+
     override suspend fun getExtendedIngredients(
         id: Int,
         includeNutrition: Boolean
     ): List<ExtendedIngredientEntity> {
-//        return remoteDataSource.getExtendedIngredients(id, includeNutrition).map(
-//            ExtendedIngredientResource::toModel
-//        )
-
         return remoteDataSource.getRecipeInformation(id, includeNutrition)
             .extendedIngredients.map { it.toModel() }
     }

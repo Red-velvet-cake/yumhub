@@ -8,4 +8,4 @@ data class InstructionsUIState(
     val steps: List<StepsUiState> = emptyList(),
     val isLoading: Boolean = false,
     val error: ErrorUIState? = null,
-):BaseUiState()
+) : BaseUiState

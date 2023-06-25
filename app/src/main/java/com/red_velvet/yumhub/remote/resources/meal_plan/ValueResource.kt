@@ -7,9 +7,9 @@ data class ValueResource(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("imageType")
-    val imageType: String? = null,
+    val imageType: String? = "",
     @SerializedName("servings")
-    val servings: Int? = null,
+    val servings: Int? = 0,
     @SerializedName("title")
-    val title: String? = null
+    val title: String? = ""
 )

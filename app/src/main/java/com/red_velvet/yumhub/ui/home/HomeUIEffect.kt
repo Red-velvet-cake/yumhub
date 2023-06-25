@@ -1,12 +1,10 @@
 package com.red_velvet.yumhub.ui.home
 
-sealed interface HomeUIEffect {
+import com.red_velvet.yumhub.ui.base.BaseUIEffect
 
-    data class ClickOnPopularRecipe(val id: Int) : HomeUIEffect
+sealed interface HomeUIEffect : BaseUIEffect {
 
-    data class ClickOnHealthyRecipe(val id: Int) : HomeUIEffect
-
-    data class ClickOnQuickRecipe(val id: Int) : HomeUIEffect
+    data class ClickOnRecipe(val id: Int) : HomeUIEffect
 
     data class ClickOnSeeAllPopularRecipes(val type: Int) : HomeUIEffect
 

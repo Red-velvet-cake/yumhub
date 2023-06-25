@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.remote
 
+import android.util.Log
 import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
 import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
 import com.red_velvet.yumhub.remote.resources.ExtendedIngredientResource
@@ -142,6 +143,7 @@ class RemoteDataSourceImpl @Inject constructor(
 
     private suspend fun <T> tryToExecute(func: suspend () -> Response<T>): T {
         val response = func()
+        Log.d("TAG", "tryToExecute: ${response.code()}")
         if (response.isSuccessful) {
             return response.body() ?: throw NetworkException.NotFoundException
         }

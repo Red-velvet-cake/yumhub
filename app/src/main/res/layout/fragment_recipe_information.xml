@@ -8,6 +8,8 @@
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -17,17 +19,58 @@
         android:orientation="vertical"
         app:layoutDescription="@xml/fragment_recipe_information_xml_constraintlayout2_scene">
 
+        <ProgressBar
+            android:id="@+id/progress_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.state.loading}" />
+
+        <LinearLayout
+            android:id="@+id/layout_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:showNoInternet="@{viewModel.state.error}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_137dp"
+                android:layout_height="@dimen/_135dp"
+                android:layout_gravity="center"
+                android:src="@drawable/search_no_internet" />
+
+            <TextView
+                style="@style/CustomSearchTextViewTitleStyle"
+                android:showNoInternet="@{viewModel.state.error}"
+                android:text="@string/internet_is_not_available"
+                app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet" />
+
+            <TextView
+                style="@style/CustomTextViewSearchSubTitleStyle"
+                android:showNoInternet="@{viewModel.state.error}"
+                android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/image_recipe"
             android:layout_width="match_parent"
             android:layout_height="@dimen/no_height"
             android:scaleType="centerCrop"
+            android:visibility="@{viewModel.state.image == null ? View.GONE : View.VISIBLE}"
             app:imageUrl="@{viewModel.state.image}"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/home" />
+            tools:src="@drawable/slide_1" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -41,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/no_height"
             android:background="@drawable/card_scroll"
+            android:hideWhenErr="@{viewModel.state.error}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_2">
@@ -55,18 +99,19 @@
                 android:text="@{viewModel.state.title}"
                 android:textColor="@color/fontColor_primary"
                 android:textSize="@dimen/font_size_title_medium"
-                app:layout_constraintBottom_toBottomOf="@id/image_save"
-                app:layout_constraintEnd_toStartOf="@id/image_save"
+                app:layout_constraintBottom_toBottomOf="@id/button_add_to_meal_plan"
+                app:layout_constraintEnd_toStartOf="@id/button_add_to_meal_plan"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/image_save"
+                app:layout_constraintTop_toTopOf="@id/button_add_to_meal_plan"
                 tools:text="Pasta with Garlic , Scallions , Cauliflower Breadcrumbs" />
 
             <ImageView
-                android:id="@+id/image_save"
+                android:id="@+id/button_add_to_meal_plan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_38dp"
                 android:layout_marginEnd="@dimen/fab_margin"
+                android:onClick="@{() -> viewModel.onAddToMealPlan(viewModel.state.id)}"
                 android:src="@drawable/ic_save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -135,9 +180,9 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/roboto_regular"
                 android:lines="5"
-                android:showHtml="@{viewModel.state.description}"
                 android:textColor="@color/fontColor_accent"
                 android:textSize="@dimen/font_size_title"
+                app:htmlText="@{viewModel.state.description}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/text_recipe_time"
                 app:layout_constraintTop_toBottomOf="@id/text_recipe_time" />
@@ -188,6 +233,7 @@
                 android:drawableEnd="@drawable/ic_go_to_screen"
                 android:drawablePadding="@dimen/_4dp"
                 android:fontFamily="@font/roboto_medium"
+                android:onClick="@{() -> viewModel.onShowRecipeCookingStepsClicked(viewModel.args.id)}"
                 android:text="@string/go_to_cooking_steps"
                 android:textColor="@color/primary"
                 android:textSize="@dimen/font_size_title"

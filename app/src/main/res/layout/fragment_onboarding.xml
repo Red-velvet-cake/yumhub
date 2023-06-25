@@ -164,7 +164,6 @@
           android:text="@string/let_s_go"
           app:showIfTrue="@{viewModel.uiState.lastTab}"
           app:cornerRadius="@dimen/radius_16dp"
-
           android:textColor="@color/fontColor_white"
           android:fontFamily="@font/roboto_medium"
           android:backgroundTint="@color/primary"

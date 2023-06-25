@@ -17,4 +17,4 @@ data class SignUpUIState(
     val isLoading: Boolean = false,
     val error: ErrorUIState? = null,
     val isSignUpButtonClicked: Boolean = false
-) : BaseUiState()
+) : BaseUiState

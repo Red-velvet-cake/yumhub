@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.domain.repositories
 
 
+import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
@@ -16,6 +17,8 @@ import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
 import kotlinx.coroutines.flow.Flow
 
 interface RecipesRepository {
+
+    suspend fun getDietRecipe(type:String) :List<SearchRecipeEntity>
 
     suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity>
 
@@ -72,6 +75,8 @@ interface RecipesRepository {
     suspend fun getCategoriesFromRemote(): List<CategoryEntity>
 
     suspend fun getSingleRecipeCategory(categoryType: String?, sort: String?): List<RecipeEntity>
+
+    suspend fun getHomeSliderImagesList(): List<SliderItemEntity>
 
     suspend fun getExtendedIngredients(id: Int, includeNutrition: Boolean)
             : List<ExtendedIngredientEntity>
