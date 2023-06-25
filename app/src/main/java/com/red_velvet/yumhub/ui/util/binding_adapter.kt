@@ -38,58 +38,65 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
     view.visibility =
         if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
-@BindingAdapter(value=["app:showIfListEmpty","loading"])
-fun showIfNotFound(view: View, value: Boolean,loading:Boolean) {
+
+@BindingAdapter(value = ["app:showIfListEmpty", "loading"])
+fun showIfNotFound(view: View, value: Boolean, loading: Boolean) {
     view.isVisible = value
     if (loading) {
         view.isVisible = false;
     }
 }
+
 @BindingAdapter("app:showIfTrue")
 fun showIfTrue(view: View, value: Boolean) {
-    if(value){
-        view.visibility =View.VISIBLE
-    }else{
-        view.visibility =View.GONE
+    if (value) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
     }
 }
+
 @BindingAdapter("app:changeStyleIfTrue")
 fun changeStyleIfTrue(view: View, value: Boolean) {
-    if(value){
+    if (value) {
         view.setBackgroundResource(R.drawable.rounded_border_full_indectior)
         val layoutParams = view.layoutParams
-        layoutParams.width =  view.context.resources.getDimensionPixelSize(R.dimen.space_40dp)
+        layoutParams.width = view.context.resources.getDimensionPixelSize(R.dimen.space_40dp)
         view.layoutParams = layoutParams
-    }else{
+    } else {
         view.setBackgroundResource(R.drawable.rounded_border_indecator)
         val layoutParams = view.layoutParams
         layoutParams.width = view.context.resources.getDimensionPixelSize(R.dimen.size_6dp)
         view.layoutParams = layoutParams
     }
 }
+
 @BindingAdapter("app:showIfAsc")
 fun showIfAsc(view: View, value: String) {
-    if(value == "asc"){
-        view.visibility =View.VISIBLE
-    }else{
-        view.visibility =View.GONE
+    if (value == "asc") {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
     }
 }
+
 @BindingAdapter("app:hideIfZero")
 fun hideIfZero(view: View, value: Int) {
-    if(value == 0){
+    if (value == 0) {
         view.isVisible = false
     }
 }
+
 @BindingAdapter("app:showIfDsc")
 fun showIfDsc(view: View, value: String) {
-    if(value == "dsc"){
-        view.visibility =View.VISIBLE
-    }else{
-        view.visibility =View.GONE
+    if (value == "dsc") {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
     }
 
 }
+
 @BindingAdapter("app:hideIfListEmpty")
 fun hideIfListEmpty(view: View, value: Boolean) {
     view.isVisible = !value
@@ -99,76 +106,85 @@ fun hideIfListEmpty(view: View, value: Boolean) {
 fun showIfLoading(view: View, value: Boolean) {
     view.isVisible = value
 }
-@BindingAdapter(value = ["app:searchInput",  "app:loadingSearch","app:isResultEmpty" ])
-fun <T> hideWhenSuccessSearch(view: View, text: String, loading: Boolean,isResultEmpty:Boolean) {
-    view.visibility = if (text.isNotBlank()  && !loading) {
+
+@BindingAdapter(value = ["app:searchInput", "app:loadingSearch", "app:isResultEmpty"])
+fun <T> hideWhenSuccessSearch(view: View, text: String, loading: Boolean, isResultEmpty: Boolean) {
+    view.visibility = if (text.isNotBlank() && !loading) {
         View.VISIBLE
-    } else if(text.isEmpty() && !isResultEmpty ){
+    } else if (text.isEmpty() && !isResultEmpty) {
         View.VISIBLE
-    }
-    else {
+    } else {
         View.INVISIBLE
     }
 }
-@BindingAdapter(value = ["app:searchInput","app:isResultEmpty"])
-fun <T> showToClearIfNoResult(view: View, text: String,isResultEmpty:Boolean) {
-    if(isResultEmpty){
-        view.visibility=   View.VISIBLE
-    }else if(text.isEmpty()){
-        view.visibility=   View.GONE
-    }else {
-        view.visibility=   View.GONE
-    }
-}
-@BindingAdapter(value = ["app:searchText","app:isResultEmpty","app:loading","app:resultList"])
-fun <T> hideIfInputEmptyOrNoResult(
-    view: View,
-    searchText: String,
-    isResultEmpty:Boolean,
-    loading:Boolean,
-    resultList:List<T>) {
-    if (searchText.isNotEmpty()) {
-        view.visibility =  View.INVISIBLE
-    }else if(searchText.isEmpty() && isResultEmpty ){
-        view.visibility =  View.INVISIBLE
-    }else  if(loading){
-        view.visibility =  View.INVISIBLE
-    }else if(searchText.isEmpty() && resultList.isNotEmpty()){
-        view.visibility =  View.INVISIBLE
-    }
-    else {
-        view.visibility =  View.VISIBLE
-    }
-}
-@BindingAdapter(value = ["app:sortDir","app:isResultEmpty","app:InputText"])
-fun <T> hideIfNoResultOrSort(view: View, sortDir: String,isResultEmpty:Boolean,InputText:String) {
-    if (sortDir.isNotEmpty()) {
-        view.visibility =  View.GONE
-    }else  if(isResultEmpty && InputText.isNotEmpty() ){
-        view.visibility =  View.GONE
-    }else {
-        view.visibility =  View.VISIBLE
+
+@BindingAdapter(value = ["app:searchInput", "app:isResultEmpty"])
+fun <T> showToClearIfNoResult(view: View, text: String, isResultEmpty: Boolean) {
+    if (isResultEmpty) {
+        view.visibility = View.VISIBLE
+    } else if (text.isEmpty()) {
+        view.visibility = View.GONE
+    } else {
+        view.visibility = View.GONE
     }
 }
 
-@BindingAdapter(value = ["app:list","app:loading"])
-fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean){
-    if(loading){
-        view.visibility =  View.GONE
-    }else if(list.isEmpty()){
-        view.visibility =  View.VISIBLE
-    }else{
-        view.visibility =  View.GONE
+@BindingAdapter(value = ["app:searchText", "app:isResultEmpty", "app:loading", "app:resultList"])
+fun <T> hideIfInputEmptyOrNoResult(
+    view: View,
+    searchText: String,
+    isResultEmpty: Boolean,
+    loading: Boolean,
+    resultList: List<T>
+) {
+    if (searchText.isNotEmpty()) {
+        view.visibility = View.INVISIBLE
+    } else if (searchText.isEmpty() && isResultEmpty) {
+        view.visibility = View.INVISIBLE
+    } else if (loading) {
+        view.visibility = View.INVISIBLE
+    } else if (searchText.isEmpty() && resultList.isNotEmpty()) {
+        view.visibility = View.INVISIBLE
+    } else {
+        view.visibility = View.VISIBLE
     }
 }
-@BindingAdapter(value = ["app:listResult","app:loading"])
-fun<T> hideIfLoadingShowIfListNotEmpty(view: View, listResult: List<T>,loading:Boolean){
-    if(loading){
-        view.visibility =  View.GONE
-    }else if(listResult.isNotEmpty()){
-        view.visibility =  View.VISIBLE
-    }else{
-        view.visibility =  View.GONE
+
+@BindingAdapter(value = ["app:sortDir", "app:isResultEmpty", "app:InputText"])
+fun <T> hideIfNoResultOrSort(
+    view: View,
+    sortDir: String,
+    isResultEmpty: Boolean,
+    InputText: String
+) {
+    if (sortDir.isNotEmpty()) {
+        view.visibility = View.GONE
+    } else if (isResultEmpty && InputText.isNotEmpty()) {
+        view.visibility = View.GONE
+    } else {
+        view.visibility = View.VISIBLE
+    }
+}
+
+@BindingAdapter(value = ["app:list", "app:loading"])
+fun <T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>, loading: Boolean) {
+    if (loading) {
+        view.visibility = View.GONE
+    } else if (list.isEmpty()) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
+    }
+}
+
+@BindingAdapter(value = ["app:listResult", "app:loading"])
+fun <T> hideIfLoadingShowIfListNotEmpty(view: View, listResult: List<T>, loading: Boolean) {
+    if (loading) {
+        view.visibility = View.GONE
+    } else if (listResult.isNotEmpty()) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
     }
 }
 
@@ -201,5 +217,10 @@ fun showHtml(view: TextView, html: String?) {
     } else {
         Html.fromHtml(html)
     }
+}
+
+@BindingAdapter("android:showWhenEmpty")
+fun showWhenEmpty(view: View, boolean: Boolean) {
+    view.isVisible = boolean
 }
 
