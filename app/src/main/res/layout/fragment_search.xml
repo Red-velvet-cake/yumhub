@@ -66,22 +66,6 @@
                     android:layout_marginVertical="@dimen/fab_margin"
                     app:srcCompat="@drawable/cancel"
                     />
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    style="@style/CardSearchFilterStyle"-->
-<!--                    app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"-->
-<!--                    app:InputText="@{viewModel.uiState.searchInput}"-->
-<!--                    app:sortDir="@{viewModel.uiState.sortDirection}"-->
-<!--                    android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'-->
-<!--                    app:cardElevation="@dimen/no_width"-->
-<!--                    app:cardCornerRadius="@dimen/_75dp"-->
-<!--                   >-->
-<!--                    <ImageView-->
-<!--                        android:layout_margin="@dimen/fab_margin"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:src="@drawable/asc_dsc" />-->
-
-<!--                </androidx.cardview.widget.CardView>-->
                 <androidx.cardview.widget.CardView
                     style="@style/CardSearchFilterStyle"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("dsc")}'
@@ -251,6 +235,7 @@
             app:srcCompat="@drawable/not_found_search"
             app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
+            app:error="@{viewModel.uiState.error}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -261,6 +246,8 @@
             style="@style/CustomSearchTextViewTitleStyle"
             app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
+            app:error="@{viewModel.uiState.error}"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView_404"
@@ -270,6 +257,7 @@
             style="@style/CustomTextViewSearchSubTitleStyle"
             app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
             app:loading="@{viewModel.uiState.loading}"
+            app:error="@{viewModel.uiState.error}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title_404"
@@ -280,7 +268,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/search_no_internet"
-            android:showNoInternet="@{viewModel.uiState.error}"
+            android:showInternalServerError="@{viewModel.uiState.error}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -289,7 +277,7 @@
         <TextView
             android:id="@+id/textview_title_no_internet"
             style="@style/CustomSearchTextViewTitleStyle"
-            android:showNoInternet="@{viewModel.uiState.error}"
+            android:showInternalServerError="@{viewModel.uiState.error}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet"
@@ -297,7 +285,7 @@
             />
         <TextView
             style="@style/CustomTextViewSearchSubTitleStyle"
-            android:showNoInternet="@{viewModel.uiState.error}"
+            android:showInternalServerError="@{viewModel.uiState.error}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title_no_internet"

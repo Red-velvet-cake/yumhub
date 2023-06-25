@@ -11,9 +11,11 @@ import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentHomeBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
 import com.red_velvet.yumhub.ui.home.adapters.HealthyRecipeAdapter
+import com.red_velvet.yumhub.ui.home.adapters.HomeSliderAdapter
 import com.red_velvet.yumhub.ui.home.adapters.PopularRecipeAdapter
 import com.red_velvet.yumhub.ui.home.adapters.QuickRecipeAdapter
 import com.red_velvet.yumhub.ui.home.adapters.RecipesCategoriesAdapter
+import com.red_velvet.yumhub.ui.home.adapters.ViewPagerTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -28,16 +30,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeUIEffect
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val categoriesRecipeAdapter = RecipesCategoriesAdapter(emptyList(), viewModel)
         val popularRecipeAdapter = PopularRecipeAdapter(emptyList(), viewModel)
         val healthyRecipeAdapter = HealthyRecipeAdapter(emptyList(), viewModel)
         val quickRecipeAdapter = QuickRecipeAdapter(emptyList(), viewModel)
+        val homeSliderAdapter = HomeSliderAdapter(emptyList())
 
         binding.apply {
             categoryRecyclerView.adapter = categoriesRecipeAdapter
             popularRecyclerView.adapter = popularRecipeAdapter
             healthyRecyclerView.adapter = healthyRecipeAdapter
             quickRecyclerView.adapter = quickRecipeAdapter
+            sliderViewPager.adapter = homeSliderAdapter
+            sliderViewPager.setPageTransformer(false, ViewPagerTransformer())
         }
     }
 

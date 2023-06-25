@@ -7,10 +7,13 @@ import androidx.core.text.HtmlCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.ui.base.BaseAdapter
 import com.red_velvet.yumhub.ui.base.ErrorUIState
+import com.red_velvet.yumhub.ui.home.HomeSliderItemUiState
+import com.red_velvet.yumhub.ui.home.adapters.HomeSliderAdapter
 
 @BindingAdapter("android:hideWhenErr")
 fun hideWhenError(view: View, errorState: ErrorUIState?) {
@@ -37,15 +40,16 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
     view.visibility =
         if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
-
-@BindingAdapter(value = ["app:showIfListEmpty", "loading"])
-fun showIfNotFound(view: View, value: Boolean, loading: Boolean) {
-    view.isVisible = value
-    if (loading) {
+@BindingAdapter(value=["app:showIfListEmpty","loading","app:error"])
+fun showIfNotFound(view: View, value: Boolean,loading:Boolean,errorState: ErrorUIState?) {
+    if(errorState != null){
+        view.isVisible = false
+    }else if (loading) {
         view.isVisible = false;
+    }else{
+        view.isVisible = value
     }
 }
-
 @BindingAdapter("app:showIfTrue")
 fun showIfTrue(view: View, value: Boolean) {
     if (value) {
@@ -54,7 +58,6 @@ fun showIfTrue(view: View, value: Boolean) {
         view.visibility = View.GONE
     }
 }
-
 @BindingAdapter("app:changeStyleIfTrue")
 fun changeStyleIfTrue(view: View, value: Boolean) {
     if (value) {
@@ -69,7 +72,6 @@ fun changeStyleIfTrue(view: View, value: Boolean) {
         view.layoutParams = layoutParams
     }
 }
-
 @BindingAdapter("app:showIfAsc")
 fun showIfAsc(view: View, value: String) {
     if (value == "asc") {
@@ -78,14 +80,12 @@ fun showIfAsc(view: View, value: String) {
         view.visibility = View.GONE
     }
 }
-
 @BindingAdapter("app:hideIfZero")
 fun hideIfZero(view: View, value: Int) {
     if (value == 0) {
         view.isVisible = false
     }
 }
-
 @BindingAdapter("app:showIfDsc")
 fun showIfDsc(view: View, value: String) {
     if (value == "dsc") {
@@ -95,7 +95,6 @@ fun showIfDsc(view: View, value: String) {
     }
 
 }
-
 @BindingAdapter("app:hideIfListEmpty")
 fun hideIfListEmpty(view: View, value: Boolean) {
     view.isVisible = !value
@@ -165,14 +164,16 @@ fun <T> hideIfNoResultOrSort(
     }
 }
 
-@BindingAdapter(value = ["app:list", "app:loading"])
-fun <T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>, loading: Boolean) {
-    if (loading) {
-        view.visibility = View.GONE
-    } else if (list.isEmpty()) {
-        view.visibility = View.VISIBLE
-    } else {
-        view.visibility = View.GONE
+@BindingAdapter(value = ["app:list","app:loading","app:error"])
+fun<T> hideIfLoadingShowIfListEmpty(view: View, list: List<T>,loading:Boolean,error: ErrorUIState?){
+    if(loading){
+        view.visibility =  View.GONE
+    }else if(error != null){
+        view.visibility =  View.GONE
+    }else if(list.isEmpty()){
+        view.visibility =  View.VISIBLE
+    }else{
+        view.visibility =  View.GONE
     }
 }
 
@@ -219,4 +220,13 @@ fun showHtml(view: TextView, html: String?) {
 @BindingAdapter("android:showWhenEmpty")
 fun showWhenEmpty(view: View, boolean: Boolean) {
     view.isVisible = boolean
+}
+
+@BindingAdapter("pagerItems")
+fun setViewPagerItems(viewPager: ViewPager, items: List<HomeSliderItemUiState>?) {
+    if (items == null) {
+        return
+    }
+    val adapter = HomeSliderAdapter(items)
+    viewPager.adapter = adapter
 }

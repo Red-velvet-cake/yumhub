@@ -9,6 +9,7 @@ import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
+import com.red_velvet.yumhub.local.entities.SliderItemLocalDto
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -50,6 +51,14 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun insertQuickRecipes(quickRecipes: List<QuickRecipeLocalDto>) {
         recipeDao.insertQuickRecipes(quickRecipes)
+    }
+
+    override suspend fun getHomeSliderImagesList(): List<SliderItemLocalDto> {
+        return listOf(
+            SliderItemLocalDto(R.drawable.slide_1),
+            SliderItemLocalDto(R.drawable.slide_2),
+            SliderItemLocalDto(R.drawable.slide_3)
+        )
     }
 
     override suspend fun getFavoriteRecipes(): List<FavoriteRecipeDto> {

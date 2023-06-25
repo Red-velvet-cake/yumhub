@@ -70,7 +70,7 @@
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/home" />
+            tools:src="@drawable/slide_1" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
