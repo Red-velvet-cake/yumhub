@@ -10,7 +10,7 @@
             type="com.red_velvet.yumhub.ui.history.HistoryUIState.HistoryItemUIState" />
 
         <variable
-            name="historyListener"
+            name="listener"
             type="com.red_velvet.yumhub.ui.history.HistoryInteractionListener" />
     </data>
 
@@ -20,7 +20,7 @@
         android:layout_marginHorizontal="@dimen/fab_margin"
         android:layout_marginTop="@dimen/small_space"
         android:background="@color/white"
-        android:onClick="@{() -> historyListener.onHistoryItemClicked(item.id)}"
+        android:onClick="@{() -> listener.onHistoryItemClicked(item.id)}"
         app:cardCornerRadius="@dimen/raduis_16dp"
         app:cardElevation="@dimen/no_width">
 
