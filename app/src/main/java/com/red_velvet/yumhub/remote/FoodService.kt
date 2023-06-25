@@ -120,6 +120,6 @@ interface FoodService {
     ): Response<List<AnalyzedInstructionResource>>
 
     @GET("recipes/{id}/nutritionWidget")
-    suspend fun getNutritionWidget(@Path("id") id: Int): Response<List<NutritionWidgetResource>>
+    suspend fun getNutritionWidget(@Path("id") id: Int): Response<NutritionWidgetResource>
 }
 
