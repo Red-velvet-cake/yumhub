@@ -5,6 +5,7 @@ import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
+import com.red_velvet.yumhub.domain.models.recipes.NutritionalInfoEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickAnswerEntity
 import com.red_velvet.yumhub.domain.models.recipes.QuickRecipeEntity
@@ -13,6 +14,7 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
 import kotlinx.coroutines.flow.Flow
+
 
 interface RecipesRepository {
 
@@ -73,4 +75,6 @@ interface RecipesRepository {
     suspend fun getCategoriesFromRemote(): List<CategoryEntity>
 
     suspend fun getSingleRecipeCategory(categoryType: String?, sort: String?): List<RecipeEntity>
+
+    suspend fun getNutritionWidget(id: Int): List<NutritionalInfoEntity>
 }
