@@ -6,10 +6,12 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
+import android.os.CountDownTimer
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.TextView
 import com.red_velvet.yumhub.R
 import java.util.Collections
 
@@ -18,17 +20,26 @@ class PuzzleView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val imagePaint = Paint().apply { isAntiAlias = true }
     private val images: MutableList<Bitmap> = mutableListOf()
     private var imagesCopy: List<Bitmap> = listOf()
-    private var rows = 4
-    private var cols = 4
+    private var rows: Int = 0
+    private var cols: Int = 0
     private val imageRect = Rect()
     private var selectedIndex: Int? = null
     private var correctOrder = mutableListOf<Int>()
     var onPuzzleSolvedListener: OnPuzzleSolvedListener? = null
+    var onPuzzleFailedListener: OnPuzzleFailedListener? = null
     private var isPuzzleSolved = false
+    private var countDownTimer: CountDownTimer? = null
+    var timerTextView: TextView? = null
 
-    init {
+    fun setupPuzzle(rows: Int, cols: Int) {
+        this.rows = rows
+        this.cols = cols
+        images.clear()
+        correctOrder.clear()
         preparePuzzleImages()
         shuffleImages()
+        startTimer()
+        invalidate()
     }
 
     private fun preparePuzzleImages() {
@@ -49,6 +60,20 @@ class PuzzleView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             }
         }
         imagesCopy = images.toList()
+    }
+    private fun startTimer() {
+        countDownTimer = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                timerTextView?.text = "${millisUntilFinished / 1000}"
+                Log.d("startTimer", "onTick: $millisUntilFinished")
+            } // 30 seconds
+            override fun onFinish() {
+                if (!isPuzzleSolved) {
+                    onPuzzleFailedListener?.onPuzzleFailed()
+                }
+            }
+        }
+        countDownTimer?.start()
     }
 
     private fun shuffleImages() {
@@ -112,6 +137,7 @@ class PuzzleView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             animate().alpha(1f).setDuration(100).start()
             if (isSolved()) {
                 isPuzzleSolved = true
+                countDownTimer?.cancel() // stop the timer
                 onPuzzleSolvedListener?.onPuzzleSolved()
             }
         }.start()
@@ -125,8 +151,18 @@ class PuzzleView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         }
         return result
     }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        countDownTimer?.cancel()
+        timerTextView = null
+    }
+
 }
 
 interface OnPuzzleSolvedListener {
     fun onPuzzleSolved()
+}
+interface OnPuzzleFailedListener {
+    fun onPuzzleFailed()
 }

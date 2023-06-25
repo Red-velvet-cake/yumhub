@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/puzzleFragment">
 
 
     <fragment
@@ -75,5 +75,9 @@
         android:name="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationFragment"
         android:label="RecipeInformationFragment"
         tools:layout="@layout/fragment_recipe_information" />
+    <fragment
+        android:id="@+id/puzzleFragment"
+        android:name="com.red_velvet.yumhub.ui.puzzle.PuzzleFragment"
+        android:label="PuzzleFragment" />
 
 </navigation>

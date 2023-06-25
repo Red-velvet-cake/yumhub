@@ -13,9 +13,23 @@
         android:layout_height="match_parent"
         tools:context=".ui.puzzle.PuzzleFragment">
 
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="24sp"
+            android:textColor="#FF0E00"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/puzzleView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <com.red_velvet.yumhub.ui.puzzle.PuzzleView
             android:id="@+id/puzzleView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/space_48dp"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
