@@ -4,4 +4,6 @@ interface OnBoardingInteractionListener {
 
     fun onClickNext()
 
+    fun onClickStart()
+
 }

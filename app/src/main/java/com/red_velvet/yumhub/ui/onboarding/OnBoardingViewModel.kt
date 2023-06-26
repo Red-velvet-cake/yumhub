@@ -1,8 +1,10 @@
 package com.red_velvet.yumhub.ui.onboarding
 
+import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -21,5 +23,9 @@ class OnBoardingViewModel @Inject constructor() :
                 it.copy(isFirstTab = false, isSecondTab = true)
             }
         }
+    }
+
+    override fun onClickStart() {
+        viewModelScope.launch { _effect.emit() }
     }
 }
