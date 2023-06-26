@@ -159,4 +159,5 @@
     <string name="unauthorized">Unauthorized</string>
     <string name="connection_timeout">Connection timeout</string>
     <string name="internal_server_error">Internal server error</string>
+    <string name="meal_plan">Meal plan</string>
 </resources>
