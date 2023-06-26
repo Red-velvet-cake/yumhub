@@ -1,6 +1,6 @@
 package com.red_velvet.yumhub.remote
 
-import com.red_velvet.yumhub.BuildConfig
+import com.red_velvet.yumhub.repositories.datasources.SharedPreferenceService
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -8,9 +8,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthorizationInterceptor @Inject constructor() : Interceptor {
-
-    private val apiKey = BuildConfig.API_KEY
+class AuthorizationInterceptor @Inject constructor(
+    private val sharedPreferenceService: SharedPreferenceService
+) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
@@ -23,7 +23,7 @@ class AuthorizationInterceptor @Inject constructor() : Interceptor {
 
     private fun buildUrl(url: HttpUrl): HttpUrl {
         return url.newBuilder()
-            .addQueryParameter(API_KEY, apiKey)
+            .addQueryParameter(API_KEY, sharedPreferenceService.getApiKey())
             .build()
     }
 
