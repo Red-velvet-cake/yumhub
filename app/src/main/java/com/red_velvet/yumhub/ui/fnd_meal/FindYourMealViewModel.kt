@@ -28,8 +28,6 @@ class FindYourMealViewModel @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    private val _uiState = MutableStateFlow(SearchRecipeUIState())
-    val uiState: StateFlow<SearchRecipeUIState> = _uiState
     private val _searchInputFlow = MutableStateFlow("")
     private var debounceJob: Job? = null
 
@@ -55,7 +53,7 @@ class FindYourMealViewModel @Inject constructor(
         tryToExecute(
             callee = {
                 searchRecipeUseCase.invoke(
-                    query = _uiState.value.searchInput,
+                    query = _state.value.searchInput,
                     sort = "",
                     sortDirection = ""
                 )
@@ -68,7 +66,6 @@ class FindYourMealViewModel @Inject constructor(
 
     private fun onSearchForRecipesSuccess(recipe: List<SearchRecipeEntity>) {
         val recipesUiState = recipe.map(SearchRecipeEntity::toFindYourMealResultUiState)
-        Log.i("mustafa", recipesUiState.toString())
         _state.update {
             it.copy(
                 isLoading = false,
@@ -82,7 +79,7 @@ class FindYourMealViewModel @Inject constructor(
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        _uiState.update {
+        _state.update {
             it.copy(
                 isLoading = false,
                 isResultIsEmpty = true,
