@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mealPlanFragment">
 
 
     <fragment
@@ -143,5 +144,9 @@
             android:id="@+id/action_favoritesFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mealPlanFragment"
+        android:name="com.red_velvet.yumhub.ui.mealPlan.MealPlanFragment"
+        android:label="Meal Plan" />
 
 </navigation>
