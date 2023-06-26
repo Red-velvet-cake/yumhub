@@ -23,10 +23,9 @@
             android:layout_marginHorizontal="@dimen/_16dp"
             android:layout_marginVertical="@dimen/_16dp"
             android:layout_weight="1"
-            android:background="@color/white"
+            android:background="@drawable/search_bar_backround"
             android:backgroundTint="@color/white"
             android:drawableStart="@drawable/searchfavorite1"
-            android:drawableEnd="@drawable/cancel"
             android:drawablePadding="@dimen/_8dp"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center_vertical"
@@ -46,31 +45,142 @@
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large_24"
             android:indeterminate="true"
             android:indeterminateTint="@color/primary"
             android:indeterminateTintMode="src_atop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_bar"
             app:showIfLoading="@{viewModel.state.loading}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_find_your_meal_result"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_8dp"
+            android:layout_width="@dimen/no_width"
+            android:layout_height="@dimen/no_height"
             android:clipToPadding="false"
             android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_large_24"
+            android:paddingEnd="@dimen/spacing_x_small"
+            android:visibility="invisible"
             app:isResultEmpty="@{viewModel.state.resultIsEmpty}"
             app:items="@{viewModel.state.searchResult}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_bar"
             app:loadingSearch="@{viewModel.state.loading}"
             app:searchInput="@{viewModel.state.searchInput}"
             app:spanCount="2"
             tools:listitem="@layout/item_find_your_meal_result" />
+
+        <ImageView
+            android:id="@+id/svgImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desserts_soups_seafood"
+            android:visibility="invisible"
+            app:isResultEmpty="@{viewModel.state.resultIsEmpty}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loading="@{viewModel.state.loading}"
+            app:resultList="@{viewModel.state.searchResult}"
+            app:searchText="@{viewModel.state.searchInput}"
+            app:srcCompat="@drawable/search" />
+
+        <TextView
+            android:id="@+id/textview_title"
+            style="@style/CustomSearchTextViewTitleStyle"
+            android:text="@string/text_find_your_meal_title"
+            android:visibility="invisible"
+            app:isResultEmpty="@{viewModel.state.resultIsEmpty}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView"
+            app:loading="@{viewModel.state.loading}"
+            app:resultList="@{viewModel.state.searchResult}"
+            app:searchText="@{viewModel.state.searchInput}" />
+
+        <TextView
+            style="@style/CustomTextViewSearchSubTitleStyle"
+            android:text="@string/text_find_your_meal_note"
+            android:visibility="invisible"
+            app:isResultEmpty="@{viewModel.state.resultIsEmpty}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_title"
+            app:loading="@{viewModel.state.loading}"
+            app:resultList="@{viewModel.state.searchResult}"
+            app:searchText="@{viewModel.state.searchInput}" />
+
+        <ImageView
+            android:id="@+id/svgImageView_404"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfListEmpty="@{viewModel.state.resultIsEmpty}"
+            app:loading="@{viewModel.state.loading}"
+            app:error="@{viewModel.state.error}"
+            app:srcCompat="@drawable/not_found_search" />
+
+        <TextView
+            android:id="@+id/textview_title_404"
+            style="@style/CustomSearchTextViewTitleStyle"
+            android:text="@string/not_found"
+            app:error="@{viewModel.state.error}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_404"
+            app:loading="@{viewModel.state.loading}"
+            app:showIfListEmpty="@{viewModel.state.resultIsEmpty}" />
+
+        <TextView
+            style="@style/CustomTextViewSearchSubTitleStyle"
+            android:text="@string/sorry_the_keyword_you_entered_connot_be_found_please_check_again_or_search_with_another_keyword"
+            app:error="@{viewModel.state.error}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_title_404"
+            app:loading="@{viewModel.state.loading}"
+            app:showIfListEmpty="@{viewModel.state.resultIsEmpty}" />
+
+        <ImageView
+            android:id="@+id/svgImageView_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:showInternalServerError="@{viewModel.state.error}"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/search_no_internet" />
+
+        <TextView
+            android:id="@+id/textview_title_no_internet"
+            style="@style/CustomSearchTextViewTitleStyle"
+            android:showInternalServerError="@{viewModel.state.error}"
+            android:text="@string/internet_is_not_available"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet" />
+
+        <TextView
+            style="@style/CustomTextViewSearchSubTitleStyle"
+            android:showInternalServerError="@{viewModel.state.error}"
+            android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_title_no_internet" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
