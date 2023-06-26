@@ -76,13 +76,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/spacing_xxxlarge"
+            android:paddingHorizontal="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/spacing_large_24"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/bg_white">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_xxxxlarge"
-            android:paddingHorizontal="@dimen/fab_margin"
+
             android:orientation="horizontal"
             android:background="@drawable/rounded_corner_background"
             app:shapeAppearanceOverlay="@style/RoundedCorner"
