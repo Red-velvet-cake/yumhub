@@ -18,7 +18,7 @@ class ChatbotFragment : BaseFragment<FragmentChatbotBinding,
     override val viewModel: ChatBotViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val messageAdapter = MessageAdapter(mutableListOf())
+        val messageAdapter = MessageAdapter(emptyList())
         binding.recyclerChatbot.adapter = messageAdapter
         super.onViewCreated(view, savedInstanceState)
     }
