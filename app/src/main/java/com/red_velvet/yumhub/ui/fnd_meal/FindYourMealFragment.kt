@@ -5,9 +5,12 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFindYourMealBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.search.SearchFragmentDirections
+import com.red_velvet.yumhub.ui.search.SearchUIEffect
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -35,6 +38,14 @@ class FindYourMealFragment
     }
 
     override fun handleUIEffect(uiEffect: FindYourMaelUiEffect) {
-        TODO("Not yet implemented")
+//        when (uiEffect) {
+//            is FindYourMaelUiEffect.ClickOnResultItem -> onItemResultClicked(uiEffect.recipeId)
+//        }
     }
+//    private fun onItemResultClicked(recipeId: Int) {
+//        val directions =
+//            SearchFragmentDirections.actionSearchFragmentToRecipeInformationFragment(recipeId)
+//
+//        findNavController().navigate(directions)
+//    }
 }
