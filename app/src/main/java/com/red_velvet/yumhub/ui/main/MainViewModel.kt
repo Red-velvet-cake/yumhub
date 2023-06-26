@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun onGetUserHash(userHash: String) {
-
+        viewModelScope.launch { _effect.emit(MainUIEffect.NavigateToHome) }
     }
 
     private fun onError(errorUIState: ErrorUIState) {
@@ -34,6 +34,7 @@ class MainViewModel @Inject constructor(
             ErrorUIState.InternalServerError -> {}
             ErrorUIState.NoInternet -> {}
             ErrorUIState.UnAuthorized -> {
+                Log.d("alhams", "onError: ")
                 viewModelScope.launch {
                     _effect.emit(MainUIEffect.NavigateToSignUp)
                 }

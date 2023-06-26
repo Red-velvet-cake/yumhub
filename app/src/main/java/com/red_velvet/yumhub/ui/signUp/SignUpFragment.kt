@@ -21,11 +21,14 @@ class SignUpFragment :
     override fun observeOnUIEffects() {
         lifecycleScope.launch {
             when (viewModel.effect.first()) {
-                SignupUIEffect.LoggedInSuccessfully -> {
-                    findNavController().navigate(R.id.homeFragment)
-                }
+                SignupUIEffect.LoggedInSuccessfully -> onLoggedInSuccessfully()
             }
         }
+    }
+
+    private fun onLoggedInSuccessfully() {
+        val directions = SignUpFragmentDirections.actionSignupFragmentToHomeFragment()
+        findNavController().navigate(directions)
     }
 
     override fun handleUIEffect(uiEffect: SignupUIEffect) {
