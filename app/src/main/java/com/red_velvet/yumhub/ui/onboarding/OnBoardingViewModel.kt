@@ -10,21 +10,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OnBoardingViewModel @Inject constructor() :
-    BaseViewModel<OnBoardingUIState, OnBoardingUIEffect>(OnBoardingUIState()) {
+    BaseViewModel<OnBoardingUIState, OnBoardingUIEffect>(OnBoardingUIState()),
+    OnBoardingInteractionListener {
+
     private val _uiState = MutableStateFlow(OnBoardingUIState())
     val uiState: StateFlow<OnBoardingUIState> = _uiState
 
-    fun onNext() {
+    override fun onClickNext() {
         if (_uiState.value.isSecondTab) {
             _uiState.update {
                 it.copy(isFirstTab = false, isSecondTab = false, isLastTab = true)
             }
         } else {
             _uiState.update {
-                it.copy(isFirstTab = false , isSecondTab = true)
+                it.copy(isFirstTab = false, isSecondTab = true)
             }
-
         }
-
     }
 }
