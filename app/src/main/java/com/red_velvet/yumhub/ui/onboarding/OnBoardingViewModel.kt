@@ -26,6 +26,6 @@ class OnBoardingViewModel @Inject constructor() :
     }
 
     override fun onClickStart() {
-        viewModelScope.launch { _effect.emit() }
+        viewModelScope.launch { _effect.emit(OnBoardingUIEffect.ClickOnGoToSignup) }
     }
 }

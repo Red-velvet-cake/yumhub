@@ -162,6 +162,7 @@
           android:layout_marginTop="@dimen/space_32dp"
           android:layout_marginHorizontal="@dimen/spacing_normal"
           android:text="@string/let_s_go"
+          android:onClick="@{() -> viewModel.onClickStart()}"
           app:showIfTrue="@{viewModel.state.lastTab}"
           app:cornerRadius="@dimen/radius_16dp"
           android:textColor="@color/fontColor_white"
