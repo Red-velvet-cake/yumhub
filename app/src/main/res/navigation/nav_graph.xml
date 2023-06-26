@@ -144,5 +144,10 @@
             android:id="@+id/action_favoritesFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/findYourMealFragment"
+        android:name="com.red_velvet.yumhub.ui.fnd_meal.FindYourMealFragment"
+        android:label="FindYourMealFragment"
+        tools:layout="@layout/fragment_find_your_meal"/>
 
 </navigation>
