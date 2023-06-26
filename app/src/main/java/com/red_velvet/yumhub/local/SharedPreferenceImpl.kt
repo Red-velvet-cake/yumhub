@@ -44,6 +44,16 @@ class SharedPreferenceImpl @Inject constructor(
         return shearedPreferences.getLong(key, 0)
     }
 
+    override fun saveApiKey(apiKey: String) {
+        shearedPreferences.edit {
+            putString("apiKey", apiKey)
+        }
+    }
+
+    override fun getApiKey(): String? {
+        return shearedPreferences.getString("apiKey", null)
+    }
+
     private fun SharedPreferences.edit(
         commit: Boolean = false,
         action: SharedPreferences.Editor.() -> Unit

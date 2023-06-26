@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class AddToHistoryMealsUseCase @Inject constructor(
     private val mealRepository: MealRepository,
-    private val getHistoryMealsUsecase: GetHistoryMealsUsecase,
+    private val getHistoryMealsUsecase: GetHistoryMealsUseCase,
 ) {
     suspend operator fun invoke(historyMealEntity: HistoryMealEntity) {
         val historyList = getHistoryMealsUsecase().first().toMutableList()

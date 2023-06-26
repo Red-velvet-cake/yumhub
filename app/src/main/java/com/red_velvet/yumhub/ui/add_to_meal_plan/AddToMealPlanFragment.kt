@@ -2,12 +2,14 @@ package com.red_velvet.yumhub.ui.add_to_meal_plan
 
 import android.os.Bundle
 import android.view.View
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.google.android.material.chip.ChipGroup.OnCheckedStateChangeListener
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentAddToMealPlanBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -19,7 +21,7 @@ import java.util.Calendar
 @AndroidEntryPoint
 class AddToMealPlanFragment :
     BaseFragment<FragmentAddToMealPlanBinding, AddToMealPlanUiState, AddToMealPlanUiEffect, AddToMealPlanViewModel>(),
-    RadioGroup.OnCheckedChangeListener {
+    OnCheckedStateChangeListener {
 
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_add_to_meal_plan
@@ -52,17 +54,26 @@ class AddToMealPlanFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.mealsRadioGroup.setOnCheckedChangeListener(this)
-        val c = Calendar.getInstance()
-        binding.datePicker.minDate = c.timeInMillis
+        binding.mealPlanChipGroup.setOnCheckedStateChangeListener(this)
+        val calender = Calendar.getInstance()
+        binding.datePicker.minDate = calender.timeInMillis
     }
 
-    override fun onCheckedChanged(radioGroup: RadioGroup?, checkedId: Int) {
-        when (checkedId) {
-            R.id.breakfast_radio_button -> viewModel.onChooseMealPlanTime(0)
-            R.id.lunch_radio_button -> viewModel.onChooseMealPlanTime(1)
-            R.id.dinner_radio_button -> viewModel.onChooseMealPlanTime(2)
+    override fun onCheckedChanged(group: ChipGroup, checkedIds: MutableList<Int>) {
+        val selectedChipId = checkedIds.firstOrNull() ?: return
+        val selectedChip = group.findViewById<Chip>(selectedChipId)
+        when (selectedChip.id) {
+            R.id.breakfast_chip -> viewModel.onChooseMealPlanTime(BREAKFAST_TIME)
+            R.id.lunch_chip -> viewModel.onChooseMealPlanTime(LUNCH_TIME)
+            R.id.dinner_chip -> viewModel.onChooseMealPlanTime(DINNER_TIME)
         }
     }
 
+    private companion object {
+        const val BREAKFAST_TIME = 0
+        const val LUNCH_TIME = 1
+        const val DINNER_TIME = 2
+    }
+
 }
+

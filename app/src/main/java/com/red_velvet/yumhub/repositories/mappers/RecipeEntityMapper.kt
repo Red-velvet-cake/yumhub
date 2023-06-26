@@ -9,6 +9,7 @@ fun RecipeInformationResource.toRecipeEntity(): RecipeEntity {
     return RecipeEntity(
         id = id.orZero(),
         title = title.orEmpty(),
-        imageUrl = image.orEmpty()
+        imageUrl = image.orEmpty(),
+        overview = summary.orEmpty()
     )
 }

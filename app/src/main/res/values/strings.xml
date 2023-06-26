@@ -144,5 +144,19 @@
     <string name="dinner">Dinner</string>
     <string name="cancel">Cancel</string>
     <string name="add_meal">Add Meal</string>
+    <string name="there_are_no_favourites">There are no favourites</string>
+    <string name="empty_fav_description">There are no favorite recipes yet. \nPlease choose your favorite recipes and save them here.</string>
+    <string name="item_has_been_removed">Item has been removed</string>
+    <string name="undo">Undo</string>
+    <string name="settings">Settings</string>
     <string name="history">History</string>
+    <string name="test_your_meal">Test Your Meal</string>
+    <string name="name">Name</string>
+    <string name="api_key">Api key</string>
+    <string name="invalid_name">Name should be at least 3 characters with no special characters</string>
+    <string name="invalid_apikey">Api key should 32 characters hexadecimal string</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="unauthorized">Unauthorized</string>
+    <string name="connection_timeout">Connection timeout</string>
+    <string name="internal_server_error">Internal server error</string>
 </resources>

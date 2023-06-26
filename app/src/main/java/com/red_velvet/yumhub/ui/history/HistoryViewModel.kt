@@ -2,7 +2,7 @@ package com.red_velvet.yumhub.ui.history
 
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.HistoryMealEntity
-import com.red_velvet.yumhub.domain.usecases.GetHistoryMealsUsecase
+import com.red_velvet.yumhub.domain.usecases.GetHistoryMealsUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
-    private val getHistoryMeals: GetHistoryMealsUsecase,
+    private val getHistoryMeals: GetHistoryMealsUseCase,
 ) : BaseViewModel<HistoryUIState, HistoryUIEffect>(HistoryUIState()), HistoryInteractionListener {
 
     private val _uiState = MutableStateFlow(HistoryUIState())

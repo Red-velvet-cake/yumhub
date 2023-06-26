@@ -14,5 +14,4 @@ data class HistoryUIState(
         val image: String,
         val description: String,
     )
-
 }

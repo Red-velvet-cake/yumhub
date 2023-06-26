@@ -22,14 +22,13 @@ class ProfileFragment :
 
     override fun handleUIEffect(uiEffect: ProfileUiEffect) {
         when (uiEffect) {
-            is ProfileUiEffect.ClickOnPersonalInfo -> navigateToPersonalInfoScreen()
+            is ProfileUiEffect.ClickOnSettings -> navigateToPersonalInfoScreen()
             is ProfileUiEffect.ClickOnChatBot -> navigateToChatBotScreen()
             is ProfileUiEffect.ClickOnFavorites -> navigateToFavoritesScreen()
             is ProfileUiEffect.ClickOnHistory -> navigateToHistoryScreen()
-            is ProfileUiEffect.ClickOnReviewFood -> navigateToReviewFoodScreen()
             is ProfileUiEffect.ClickOnNutritionalValue -> navigateToNutritionalScreen()
             is ProfileUiEffect.ClickOnFoodSuggester -> navigateToFoodSuggesterScreen()
-            is ProfileUiEffect.ClickOnLogout -> navigateToLoginScreen()
+            is ProfileUiEffect.ClickOnMealTest -> navigateToMealTestScreen()
         }
     }
 
@@ -37,18 +36,20 @@ class ProfileFragment :
 
     private fun navigateToChatBotScreen() {}
 
-    private fun navigateToFavoritesScreen() {}
+    private fun navigateToFavoritesScreen() {
+        val action = ProfileFragmentDirections.actionProfileFragmentToFavoritesFragment()
+        findNavController().navigate(action)
+    }
+    
     private fun navigateToHistoryScreen() {
         val directions = ProfileFragmentDirections.actionProfileFragmentToHistoryFragment()
         findNavController().navigate(directions)
     }
 
-    private fun navigateToReviewFoodScreen() {}
-
     private fun navigateToNutritionalScreen() {}
 
     private fun navigateToFoodSuggesterScreen() {}
 
-    private fun navigateToLoginScreen() {}
+    private fun navigateToMealTestScreen() {}
 
 }

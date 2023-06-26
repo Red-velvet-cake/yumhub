@@ -53,6 +53,7 @@
             >
             <EditText
                 android:layout_width="@dimen/_248dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/space_48dp"
                 android:background="@drawable/text_input_rounded"
                 android:hint="@string/enter_a_recipe_name"
@@ -96,12 +97,13 @@
             <androidx.cardview.widget.CardView
               style="@style/CustomNutrisionCardViewStyle"
                 android:backgroundTint="@color/white"
+                android:layout_weight="1"
                 android:layout_marginEnd="@dimen/spacing_small"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
                     android:paddingVertical="@dimen/fab_margin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_calories"
@@ -113,9 +115,7 @@
                     <ImageView
                        style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/calarious"
-                        android:layout_marginStart="@dimen/space_26dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tv_calories"
                         app:layout_constraintTop_toTopOf="parent" />
                     <ProgressBar
                         android:layout_marginTop="@dimen/_4dp"
@@ -157,13 +157,14 @@
 
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:layout_weight="1"
                 style="@style/CustomNutrisionCardViewStyle"
                 android:backgroundTint="@color/white"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
                     android:paddingVertical="@dimen/fab_margin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_fat"
@@ -175,9 +176,8 @@
                     <ImageView
                         style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/fat"
-                        android:layout_marginStart="@dimen/space_71dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tv_fat"
+
                         app:layout_constraintTop_toTopOf="parent" />
                     <ProgressBar
                         android:layout_marginTop="@dimen/_4dp"
@@ -232,6 +232,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ll_nutritional_value_1"
             >
             <androidx.cardview.widget.CardView
+                android:layout_weight="1"
                 style="@style/CustomNutrisionCardViewStyle"
                 android:backgroundTint="@color/white"
                 android:layout_marginEnd="@dimen/spacing_small"
@@ -239,14 +240,13 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
                     android:paddingVertical="@dimen/fab_margin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_carbs"
                         android:text="@string/carbs"
                         style="@style/CustomNutrisonTextViewStyle"
                         app:layout_constraintTop_toTopOf="parent"
-
                         app:layout_constraintHorizontal_chainStyle="spread"
                         app:layout_constraintEnd_toStartOf="@+id/imageView_carbs"
                         app:layout_constraintStart_toStartOf="parent"
@@ -255,9 +255,7 @@
                         android:id="@+id/imageView_carbs"
                         style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/carbs"
-                        android:layout_marginStart="@dimen/space_47dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tv_carbs"
                         app:layout_constraintTop_toTopOf="parent" />
                     <ProgressBar
                         android:layout_marginTop="@dimen/_4dp"
@@ -301,13 +299,14 @@
 
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:layout_weight="1"
                 style="@style/CustomNutrisionCardViewStyle"
                 android:backgroundTint="@color/white"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
                     android:paddingVertical="@dimen/fab_margin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_protein"
@@ -320,9 +319,7 @@
                     <ImageView
                         style="@style/CustomNutrisonImageViewStyle"
                         android:src="@drawable/proten"
-                        android:layout_marginStart="@dimen/space_35dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tv_protein"
                         app:layout_constraintTop_toTopOf="parent" />
                     <ProgressBar
                         android:layout_marginTop="@dimen/_4dp"

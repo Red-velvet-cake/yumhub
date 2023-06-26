@@ -18,18 +18,22 @@ import java.time.Instant
 import javax.inject.Inject
 
 class MealRepositoryImpl @Inject constructor(
-    private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
 ) : MealRepository {
 
     override suspend fun addToMealPlan(
-        addToMeal: MealPlanEntity, username: String, hash: String
+        addToMeal: MealPlanEntity,
+        username: String,
+        hash: String
     ) {
         val mealPlanObj = addToMeal.toMealPlanResource()
         remoteDataSource.addToMealPlan(mealPlanObj, username, hash)
     }
 
     override fun getWeekMealsPlan(
-        fromTimestamp: Long, toTimestamp: Long
+        fromTimestamp: Long,
+        toTimestamp: Long
     ): Flow<List<MealPlanEntity>> {
         return localDataSource.getWeekMealsPlan(fromTimestamp, toTimestamp)
             .map { mealPlanEntities ->
@@ -55,12 +59,16 @@ class MealRepositoryImpl @Inject constructor(
 
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun refreshWeekMealsPlan(
-        date: String, username: String, hash: String
+        date: String,
+        username: String,
+        hash: String
     ) {
 
         localDataSource.insertWeekPlanMeal(
             remoteDataSource.getWeekMealPlan(
-                date, username, hash
+                date,
+                username,
+                hash
             ).dayResources?.let {
                 it.mapNotNull { day ->
                     day.itemResources?.map { item ->

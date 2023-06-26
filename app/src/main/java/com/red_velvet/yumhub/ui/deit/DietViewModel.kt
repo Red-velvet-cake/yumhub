@@ -48,12 +48,11 @@ class DietViewModel @Inject constructor(
     private fun onSuccess(recipes: List<SearchRecipeEntity>) {
         val dietResult = recipes.map { it.toDietResultMapper() }
         Log.i("AYA", dietResult.toString())
-        _uiState.update { it.copy(dietResult = dietResult, isLoading = false) }
+        _uiState.update { it.copy(dietResult = dietResult, isLoading = false,  error= null) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.i("AYA", errorUiState.toString())
-        _state.update { it.copy(error = errorUiState, isLoading = false) }
+        _uiState.update { it.copy(error = errorUiState, isLoading = false,dietResult = emptyList()) }
     }
 
     override fun doOnRecipeClicked(recipeId: Int) {

@@ -114,14 +114,21 @@ class SearchViewModel @Inject constructor(
             it.copy(
                 searchResult = searchResult,
                 isLoading = false,
-                isResultIsEmpty = searchResult.isEmpty()
+                isResultIsEmpty = searchResult.isEmpty(),
+                error= null
             )
         }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.i("AYA", errorUiState.toString())
-        _state.update { it.copy(error = errorUiState, isLoading = false) }
+        _uiState.update {
+            it.copy(
+                isLoading = false,
+                isResultIsEmpty = true,
+                error = errorUiState,
+                searchResult = emptyList()
+            )
+        }
     }
 
     override fun onRecipeSearchResultClicked(recipeId: Int) {
