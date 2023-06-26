@@ -151,4 +151,6 @@
     <string name="settings">Settings</string>
     <string name="history">History</string>
     <string name="test_your_meal">Test Your Meal</string>
+    <string name="text_find_your_meal_title">Find Your Meal</string>
+    <string name="text_find_your_meal_note">Here you can enter the name of your meal and let us test it</string>
 </resources>
