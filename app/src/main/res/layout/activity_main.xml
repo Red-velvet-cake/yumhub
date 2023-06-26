@@ -42,11 +42,11 @@
                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navGraph="@navigation/nav_graph" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_70dp"
                 android:background="@drawable/bottom_nav_bg"
