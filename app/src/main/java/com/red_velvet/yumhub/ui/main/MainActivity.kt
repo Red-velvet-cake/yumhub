@@ -83,7 +83,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         return lifecycleScope.async {
             val effect = viewModel.effect.first()
             return@async when (effect) {
-                MainUIEffect.NavigateToSignUp -> R.id.signupFragment
+                MainUIEffect.NavigateToSignUp -> R.id.onBoardingFragment
 
                 MainUIEffect.NavigateToHome -> R.id.homeFragment
             }
