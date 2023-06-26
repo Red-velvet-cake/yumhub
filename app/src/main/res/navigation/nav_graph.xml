@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/nutritionalValueFragment"
         android:name="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueFragment"
-        android:label="z"
+        android:label="Nutritional Value"
         tools:layout="@layout/fragment_nutritional_value" />
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_profileFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_nutritionalValueFragment"
+            app:destination="@id/nutritionalValueFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -146,6 +149,7 @@
     </fragment>
     <fragment
         android:id="@+id/mealPlanFragment"
+        tools:layout="@layout/fragment_meal_plan"
         android:name="com.red_velvet.yumhub.ui.mealPlan.MealPlanFragment"
         android:label="Meal Plan" />
 

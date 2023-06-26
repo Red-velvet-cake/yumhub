@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tv_nutritional_value"
             style="@style/CustomNutrisonTitleStyle"
-            android:layout_marginTop="@dimen/spacing_xxxxlarge"
+            android:layout_marginTop="@dimen/spacing_large_24"
             android:text="@string/stay_on_top_of_your_food_intake_with_our"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
