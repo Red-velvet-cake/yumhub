@@ -51,7 +51,7 @@
             android:id="@+id/action_signupFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:launchSingleTop="false"
-            app:popUpTo="@id/signupFragment"
+            app:popUpTo="@id/onBoardingFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
