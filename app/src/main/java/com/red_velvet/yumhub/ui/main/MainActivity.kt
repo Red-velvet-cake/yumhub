@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavGraph
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -13,6 +14,8 @@ import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.ActivityMainBinding
 import com.red_velvet.yumhub.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -23,18 +26,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val LOG_TAG: String = "nenene"
     private val navController by lazy { findNavController(R.id.nav_host_fragment_content_main) }
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var navGraph: NavGraph
 
     override fun getLayoutResId(): Int = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
-        setSupportActionBar(binding.toolbar)
-        initNavigationDestinationListener()
-        setupActionBarWithNavController(navController)
-        binding.bottomNav.setupWithNavController(navController)
-        observeUIEvents()
+        lifecycleScope.launch {
+            val graphInflater = navController.navInflater
+            navGraph = graphInflater.inflate(R.navigation.nav_graph)
+            navGraph.setStartDestination(observeOnNavigation().await())
+            navController.graph = navGraph
+            window.navigationBarColor = ContextCompat.getColor(this@MainActivity, R.color.black)
+            setSupportActionBar(binding.toolbar)
+            initNavigationDestinationListener()
+            setupActionBarWithNavController(navController)
+            binding.bottomNav.setupWithNavController(navController)
+        }
     }
 
 
@@ -70,17 +79,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-    private fun observeUIEvents() {
-        lifecycleScope.launch {
+    private fun observeOnNavigation(): Deferred<Int> {
+        return lifecycleScope.async {
             val effect = viewModel.effect.first()
-            when (effect) {
-                MainUIEffect.NavigateToSignUp -> {
-                    navController.navigate(R.id.signupFragment)
-                }
+            return@async when (effect) {
+                MainUIEffect.NavigateToSignUp -> R.id.signupFragment
 
-                MainUIEffect.NavigateToHome -> {
-                    navController.navigate(R.id.homeFragment)
-                }
+                MainUIEffect.NavigateToHome -> R.id.homeFragment
             }
         }
     }
