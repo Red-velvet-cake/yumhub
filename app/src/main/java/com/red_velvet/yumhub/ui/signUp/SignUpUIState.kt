@@ -11,5 +11,5 @@ data class SignUpUIState(
     val isValidName: Boolean = true,
     val isValidApiKey: Boolean = true
 ) : BaseUiState {
-    val isSignupButtonEnabled: Boolean = isValidName && isValidApiKey
+    val isValidForm: Boolean = isValidName && isValidApiKey
 }

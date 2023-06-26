@@ -13,4 +13,8 @@ class SignUpValidationUseCase @Inject constructor() {
         val regex = Regex("[a-fA-F0-9]{32}")
         return regex.matches(apiKey)
     }
+
+    fun validateForm(name: String, apiKey: String): Boolean {
+        return validateName(name) && validateApiKey(apiKey)
+    }
 }

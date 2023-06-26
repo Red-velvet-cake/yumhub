@@ -6,6 +6,7 @@ import com.red_velvet.yumhub.domain.usecases.SignUpValidationUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,33 +17,43 @@ class SignUpViewModel @Inject constructor(
     private val signUpValidation: SignUpValidationUseCase,
 ) : BaseViewModel<SignUpUIState, SignupUIEffect>(SignUpUIState()) {
 
+    private var signupJob: Job? = null
+
     fun onNameChange(name: String) {
-        _state.update { it.copy(name = name, isValidName = onValidateName(name)) }
+        _state.update {
+            it.copy(
+                name = name,
+                isValidName = signUpValidation.validateName(name)
+            )
+        }
     }
 
     fun onApiKeyChange(apiKey: String) {
-        _state.update { it.copy(apiKey = apiKey, isValidApiKey = onValidateApiKey(apiKey)) }
+        _state.update {
+            it.copy(
+                apiKey = apiKey,
+                isValidApiKey = signUpValidation.validateApiKey(apiKey)
+            )
+        }
     }
 
-    private fun onValidateName(name: String): Boolean {
-        return signUpValidation.validateName(name)
+    fun onSignUpButtonClicked() {
+        if (signupJob == null || signupJob?.isCompleted == true) {
+            trySignUp()
+        }
     }
 
-    private fun onValidateApiKey(apiKey: String): Boolean {
-        return signUpValidation.validateApiKey(apiKey)
-    }
-
-    fun onSignupButtonClicked() {
-        val currentState = _state.value
+    private fun trySignUp() {
         _state.update { it.copy(isLoading = true) }
-        if (onValidateName(currentState.name) && onValidateApiKey(currentState.apiKey)) {
-            tryToExecute(
+        val currentState = _state.value
+        if (signUpValidation.validateForm(currentState.name, currentState.apiKey)) {
+            signupJob = tryToExecute(
                 { saveUserInformation(currentState.name, currentState.apiKey) },
-                onSuccess = ::onSignUpSuccess,
-                onError = ::onError
+                ::onSignUpSuccess,
+                ::onError
             )
         } else {
-            _state.update { it.copy(isLoading = false) }
+            _state.update { it.copy(isLoading = false, isValidApiKey = false, isValidName = false) }
         }
     }
 
