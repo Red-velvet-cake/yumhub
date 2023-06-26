@@ -155,4 +155,8 @@
     <string name="api_key">Api key</string>
     <string name="invalid_name">Name should be at least 3 characters with no special characters</string>
     <string name="invalid_apikey">Api key should 32 characters hexadecimal string</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="unauthorized">Unauthorized</string>
+    <string name="connection_timeout">Connection timeout</string>
+    <string name="internal_server_error">Internal server error</string>
 </resources>

@@ -52,6 +52,7 @@ class SignUpViewModel @Inject constructor(
     }
 
     private fun onError(errorUiState: ErrorUIState) {
+        viewModelScope.launch { _effect.emit(SignupUIEffect.ShowError(errorUiState)) }
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
