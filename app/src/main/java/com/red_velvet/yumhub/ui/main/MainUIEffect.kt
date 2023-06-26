@@ -1,6 +1,8 @@
 package com.red_velvet.yumhub.ui.main
 
-sealed interface MainUIEffect {
+import com.red_velvet.yumhub.ui.base.BaseUIEffect
+
+sealed interface MainUIEffect : BaseUIEffect {
 
     object NavigateToSignUp : MainUIEffect
 

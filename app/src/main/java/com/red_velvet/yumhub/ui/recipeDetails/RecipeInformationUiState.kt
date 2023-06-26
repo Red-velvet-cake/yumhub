@@ -5,6 +5,7 @@ import com.red_velvet.yumhub.ui.base.ErrorUIState
 
 
 data class RecipeInformationUIState(
+    val id: Int = 0,
     val image: String = "",
     val title: String = "",
     val readyInMinutes: Int = 0,
@@ -14,7 +15,7 @@ data class RecipeInformationUIState(
     val ingredientsUIState: List<IngredientsUIState> = emptyList(),
     val isLoading: Boolean = true,
     val error: ErrorUIState? = null
-) : BaseUiState()
+) : BaseUiState
 
 
 data class DishTypeUIState(

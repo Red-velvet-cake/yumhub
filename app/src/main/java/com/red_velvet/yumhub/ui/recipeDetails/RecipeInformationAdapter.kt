@@ -13,7 +13,7 @@ class DishTypesAdapter(
 }
 
 interface DishTypeListener : BaseInteractionListener {
-    fun dishClicked(dish: String)
+    fun onDishTypeClicked(dish: String)
 }
 
 class IngredientsAdapter(
@@ -24,5 +24,5 @@ class IngredientsAdapter(
 }
 
 interface IngredientsListener : BaseInteractionListener {
-    fun ingredientClicked(id: Int)
+    fun onIngredientClicked(id: Int)
 }

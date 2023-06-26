@@ -6,18 +6,13 @@ import com.red_velvet.yumhub.domain.usecases.GetHashUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getHashUseCase: GetHashUseCase
-) : BaseViewModel<MainUIState>(MainUIState()) {
-
-    private val _effect = MutableSharedFlow<MainUIEffect>()
-    val effect = _effect.asSharedFlow()
+) : BaseViewModel<MainUIState, MainUIEffect>(MainUIState()) {
 
     init {
         authenticateUser()
@@ -28,7 +23,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun onGetUserHash(userHash: String) {
-
+        viewModelScope.launch { _effect.emit(MainUIEffect.NavigateToHome) }
     }
 
     private fun onError(errorUIState: ErrorUIState) {
@@ -39,6 +34,7 @@ class MainViewModel @Inject constructor(
             ErrorUIState.InternalServerError -> {}
             ErrorUIState.NoInternet -> {}
             ErrorUIState.UnAuthorized -> {
+                Log.d("alhams", "onError: ")
                 viewModelScope.launch {
                     _effect.emit(MainUIEffect.NavigateToSignUp)
                 }

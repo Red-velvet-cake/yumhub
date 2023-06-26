@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecipesRepository {
 
+    suspend fun getDietRecipe(type:String) :List<SearchRecipeEntity>
+
     suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity>
 
     suspend fun getHealthyRecipesFromRemote(sort: String): List<HealthyRecipeEntity>
@@ -71,6 +73,9 @@ interface RecipesRepository {
     suspend fun getCategoriesFromRemote(): List<CategoryEntity>
 
     suspend fun getSingleRecipeCategory(categoryType: String?, sort: String?): List<RecipeEntity>
+
+    suspend fun getHomeSliderImagesList(): List<SliderItemEntity>
+
     suspend fun getMealByCalories(
         minCalories: Double,
         maxCalories: Double

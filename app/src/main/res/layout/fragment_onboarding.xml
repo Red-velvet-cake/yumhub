@@ -20,97 +20,97 @@
       <ImageView
           android:layout_gravity="center"
           android:layout_marginTop="@dimen/space_64dp"
-          app:showIfTrue="@{viewModel.uiState.isFirstTab}"
+          app:showIfTrue="@{viewModel.state.isFirstTab}"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:src="@drawable/onboarding1"/>
       <TextView
           android:layout_marginTop="@dimen/space_48dp"
           style="@style/CustomTextViewStyle"
-          app:showIfTrue="@{viewModel.uiState.isFirstTab}"
+          app:showIfTrue="@{viewModel.state.isFirstTab}"
           android:text="@string/choose_your"/>
         <TextView
-           style="@style/CustomTextViewStyle"
-            app:showIfTrue="@{viewModel.uiState.isFirstTab}"
+            style="@style/CustomTextViewStyle"
+            app:showIfTrue="@{viewModel.state.isFirstTab}"
             android:text="@string/favorite_food"/>
         <TextView
             android:layout_marginTop="@dimen/fab_margin"
             style="@style/CustomSubTitleTextViewStyle"
-            app:showIfTrue="@{viewModel.uiState.isFirstTab}"
+            app:showIfTrue="@{viewModel.state.isFirstTab}"
             android:text="@string/vegetarian_meat_dishes"/>
         <TextView
             style="@style/CustomSubTitleTextViewStyle"
-            app:showIfTrue="@{viewModel.uiState.isFirstTab}"
+            app:showIfTrue="@{viewModel.state.isFirstTab}"
             android:text="@string/pasta_dishes_salads"/>
         <TextView
             style="@style/CustomSubTitleTextViewStyle"
-            app:showIfTrue="@{viewModel.uiState.isFirstTab}"
+            app:showIfTrue="@{viewModel.state.isFirstTab}"
             android:text="@string/desserts_soups_seafood"/>
       <ImageView
           android:layout_gravity="center"
           android:layout_marginTop="@dimen/space_64dp"
-          app:showIfTrue="@{viewModel.uiState.isSecondTab}"
+          app:showIfTrue="@{viewModel.state.isSecondTab}"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:src="@drawable/onboarding2"/>
       <TextView
           android:layout_marginTop="@dimen/space_48dp"
           style="@style/CustomTextViewStyle"
-          app:showIfTrue="@{viewModel.uiState.isSecondTab}"
+          app:showIfTrue="@{viewModel.state.isSecondTab}"
           android:text="@string/delicious"/>
       <TextView
           style="@style/CustomTextViewStyle"
-          app:showIfTrue="@{viewModel.uiState.isSecondTab}"
+          app:showIfTrue="@{viewModel.state.isSecondTab}"
           android:text="@string/food_menu"/>
       <TextView
           android:layout_marginTop="@dimen/fab_margin"
           style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{viewModel.uiState.isSecondTab}"
+          app:showIfTrue="@{viewModel.state.isSecondTab}"
           android:text="@string/vegetarian_meat_dishes"/>
       <TextView
           style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{viewModel.uiState.isSecondTab}"
+          app:showIfTrue="@{viewModel.state.isSecondTab}"
           android:text="@string/pasta_dishes_salads"/>
       <TextView
           style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{viewModel.uiState.isSecondTab}"
+          app:showIfTrue="@{viewModel.state.isSecondTab}"
           android:text="@string/desserts_soups_seafood"/>
     <ImageView
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/space_64dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:showIfTrue="@{viewModel.uiState.isLastTab}"
+        app:showIfTrue="@{viewModel.state.isLastTab}"
         android:src="@drawable/onboarding3" />
 
     <TextView
         android:layout_marginTop="@dimen/space_48dp"
         style="@style/CustomTextViewStyle"
-        app:showIfTrue="@{viewModel.uiState.isLastTab}"
+        app:showIfTrue="@{viewModel.state.isLastTab}"
         android:text="@string/there_are_many" />
 
     <TextView
         style="@style/CustomTextViewStyle"
-        app:showIfTrue="@{viewModel.uiState.isLastTab}"
+        app:showIfTrue="@{viewModel.state.isLastTab}"
 
         android:text="@string/food_recipes" />
 
     <TextView
         style="@style/CustomTextViewStyle"
-        app:showIfTrue="@{viewModel.uiState.isLastTab}"
+        app:showIfTrue="@{viewModel.state.isLastTab}"
 
         android:text="@string/in_the_app" />
 
     <TextView
         android:layout_marginTop="@dimen/fab_margin"
         style="@style/CustomSubTitleTextViewStyle"
-        app:showIfTrue="@{viewModel.uiState.isLastTab}"
+        app:showIfTrue="@{viewModel.state.isLastTab}"
 
         android:text="@string/we_have_1500_user_reviews" />
 
     <TextView
         style="@style/CustomSubTitleTextViewStyle"
-        app:showIfTrue="@{viewModel.uiState.isLastTab}"
+        app:showIfTrue="@{viewModel.state.isLastTab}"
         android:text="@string/you_can_check_in_the_application_store" />
 
     <LinearLayout
@@ -129,7 +129,7 @@
         <View
             android:layout_width="@dimen/size_6dp"
             android:layout_height="@dimen/size_6dp"
-            app:changeStyleIfTrue="@{viewModel.uiState.isFirstTab}"
+            app:changeStyleIfTrue="@{viewModel.state.isFirstTab}"
             android:layout_marginEnd="@dimen/tiny_space"
             android:background="@drawable/rounded_border_indecator" />
 
@@ -137,14 +137,14 @@
 
             android:layout_width="@dimen/size_6dp"
             android:layout_height="@dimen/size_6dp"
-            app:changeStyleIfTrue="@{viewModel.uiState.isSecondTab}"
+            app:changeStyleIfTrue="@{viewModel.state.isSecondTab}"
             android:layout_marginEnd="@dimen/tiny_space"
             android:background="@drawable/rounded_border_indecator" />
 
         <View
             android:layout_width="@dimen/size_6dp"
             android:layout_height="@dimen/size_6dp"
-            app:changeStyleIfTrue="@{viewModel.uiState.isLastTab}"
+            app:changeStyleIfTrue="@{viewModel.state.isLastTab}"
             android:layout_marginEnd="@dimen/tiny_space"
             android:background="@drawable/rounded_border_indecator" />
       </LinearLayout>
@@ -152,8 +152,8 @@
       <TextView
           android:layout_marginTop="@dimen/space_36dp"
           style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{!viewModel.uiState.lastTab}"
-          android:onClick="@{() -> viewModel.onNext()}"
+          app:showIfTrue="@{!viewModel.state.lastTab}"
+          android:onClick="@{() -> viewModel.onClickNext()}"
           android:text="@string/next" />
     </LinearLayout>
       <Button
@@ -162,9 +162,9 @@
           android:layout_marginTop="@dimen/space_32dp"
           android:layout_marginHorizontal="@dimen/spacing_normal"
           android:text="@string/let_s_go"
-          app:showIfTrue="@{viewModel.uiState.lastTab}"
+          android:onClick="@{() -> viewModel.onClickStart()}"
+          app:showIfTrue="@{viewModel.state.lastTab}"
           app:cornerRadius="@dimen/radius_16dp"
-
           android:textColor="@color/fontColor_white"
           android:fontFamily="@font/roboto_medium"
           android:backgroundTint="@color/primary"

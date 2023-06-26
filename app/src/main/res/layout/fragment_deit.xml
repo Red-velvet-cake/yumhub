@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.deit.DietViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_diet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_toolbar_diet"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_48dp"
+            app:title="@string/nutritional_guide"
+            app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_white"
+        >
+
+
+        <TextView
+            android:id="@+id/text_view_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_one_section_of_the_diet"
+            android:textSize="@dimen/text_size_16"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/black_title"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:layout_marginHorizontal="@dimen/fab_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_diet"
+                style="@style/Widget.Material3.ChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/fab_margin"
+                app:chipSpacingVertical="8dp"
+                app:selectionRequired="false"
+                android:layout_marginTop="@dimen/fab_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_title"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:layout_marginTop="0dp"
+                    android:checkable="true"
+                    android:onClick='@{() -> viewModel.onSelectType("Gluten Free")}'
+                    android:text="@string/gluten_free"
+                    app:checkedIconEnabled="false"
+                    app:chipMinTouchTargetSize="10dp"
+                   />
+                <com.google.android.material.chip.Chip
+                    android:text="@string/ketogenic"
+                    android:onClick='@{() -> viewModel.onSelectType("Ketogenic")}'
+                    app:selectionRequired="true"
+                    style="@style/Chip.Regular.Small"
+                    app:checkedIconEnabled="false"
+                    app:chipMinTouchTargetSize="10dp"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:text="@string/vegetarian"
+                    android:onClick='@{() -> viewModel.onSelectType("vegetarian")}'
+                    style="@style/Chip.Regular.Small"
+                    app:checkedIconEnabled="false"
+                    app:chipMinTouchTargetSize="10dp"
+                    />
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:text="@string/vegan"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Vegan")}'
+                    app:checkedIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    android:text="@string/lacto_vegetarian"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Lacto-Vegetarian")}'
+                    style="@style/Chip.Regular.Small"
+                    app:checkedIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:text="@string/primal"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Primal")}'
+                    app:checkedIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:text="@string/ovo_vegetarian"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Ovo-Vegetarian")}'
+                    app:checkedIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:text="@string/pescetarian"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Pescetarian")}'
+                    app:checkedIconEnabled="false"
+                    />
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:text="@string/paleo"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Paleo")}'
+                    app:checkedIconEnabled="false"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:text="@string/low_fodmap"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Low FODMAP")}'
+                    app:checkedIconEnabled="false"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Regular.Small"
+                    android:text="@string/whole30"
+                    app:chipMinTouchTargetSize="10dp"
+                    android:onClick='@{() -> viewModel.onSelectType("Whole30")}'
+                    app:checkedIconEnabled="false"
+                    />
+            </com.google.android.material.chip.ChipGroup>
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            app:showIfLoading="@{viewModel.uiState.loading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recipe_diet_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
+            android:layout_marginHorizontal="@dimen/spacing_small_12"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:listResult="@{viewModel.uiState.dietResult}"
+            app:spanCount="2"
+            app:items="@{viewModel.uiState.dietResult}"
+            tools:listitem="@layout/item_diet_card"
+            />
+        <ImageView
+            android:id="@+id/svgImageView_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/search_no_internet"
+            android:showInternalServerError="@{viewModel.uiState.error}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
+            />
+        <TextView
+            style="@style/deitTextViewStyle"
+            android:showInternalServerError="@{viewModel.uiState.error}"
+            android:text="@string/internet_is_not_available"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet"
+            />
+        <ImageView
+            android:id="@+id/image_view_diet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/diet_cover"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:list="@{viewModel.uiState.dietResult}"
+            app:error="@{viewModel.uiState.error}"
+            android:layout_marginTop="@dimen/space_48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_diet"
+            />
+        <TextView
+            android:id="@+id/text_view_subtitle"
+            style="@style/deitTextViewStyle"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:list="@{viewModel.uiState.dietResult}"
+            app:error="@{viewModel.uiState.error}"
+
+            android:text="@string/there_are_various_types_of_diets_available"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view_diet"
+            />
+        <TextView
+            style="@style/deitTextViewStyle"
+            app:loading="@{viewModel.uiState.isLoading}"
+            app:list="@{viewModel.uiState.dietResult}"
+            app:error="@{viewModel.uiState.error}"
+
+            android:text="@string/choose_your_preferred_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_subtitle"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

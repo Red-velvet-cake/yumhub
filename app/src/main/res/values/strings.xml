@@ -10,38 +10,6 @@
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -106,6 +74,59 @@
     <string name="choose_the_best_dish_for_you">Choose the best dish for you</string>
     <string name="step">Step</string>
     <string name="steps">Steps</string>
+    <string name="gluten_free">Gluten Free</string>
+    <string name="ketogenic">Ketogenic</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="lacto_vegetarian">Lacto-Vegetarian</string>
+    <string name="ovo_vegetarian">Ovo-Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="paleo">Paleo</string>
+    <string name="pescetarian">Pescetarian</string>
+    <string name="primal">Primal</string>
+    <string name="low_fodmap">Low FODMAP</string>
+    <string name="whole30">Whole30</string>
+    <string name="nutritional_guide">Nutritional Guide</string>
+    <string name="choose_one_section_of_the_diet">Choose one section of the diet</string>
+    <string name="there_are_various_types_of_diets_available">there are various types of diets available</string>
+    <string name="choose_your_preferred_type">Choose your preferred type</string>
+    <string name="hello">hello</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="chat_bot">Chat Bot</string>
+    <string name="favorite">Favorites</string>
+    <string name="review_food">Review Food</string>
+    <string name="nutritional_value">Nutritional Value</string>
+    <string name="food_suggester">Food Suggester</string>
+    <string name="logout">Logout</string>
+    <string name="stay_on_top_of_your_food_intake_with_our">Stay on top of your food intake with our</string>
+    <string name="nutrition_tracker">nutrition tracker</string>
+    <string name="enter_a_recipe_name">Enter a recipe name</string>
+    <string name="apply">Apply</string>
+    <string name="kcal">kcal</string>
+    <string name="fat">Fat</string>
+    <string name="grams">grams</string>
+    <string name="protein">Protein</string>
+    <string name="choose_any_day_of_the_week">Choose any day of the week</string>
+    <string name="choose_a_meal_time">Choose a meal time</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_meal">Add Meal</string>
+    <string name="there_are_no_favourites">There are no favourites</string>
+    <string name="empty_fav_description">There are no favorite recipes yet. \nPlease choose your favorite recipes and save them here.</string>
+    <string name="item_has_been_removed">Item has been removed</string>
+    <string name="undo">Undo</string>
+    <string name="settings">Settings</string>
+    <string name="history">History</string>
+    <string name="test_your_meal">Test Your Meal</string>
+    <string name="name">Name</string>
+    <string name="api_key">Api key</string>
+    <string name="invalid_name">Name should be at least 3 characters with no special characters</string>
+    <string name="invalid_apikey">Api key should 32 characters hexadecimal string</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="unauthorized">Unauthorized</string>
+    <string name="connection_timeout">Connection timeout</string>
+    <string name="internal_server_error">Internal server error</string>
     <string name="so_we_can_calculate_your_calories_and_suggest_meals_that_work_for_you">So we can calculate your calories and suggest meals that work for you</string>
     <string name="choose_the_gender">Choose the gender</string>
     <string name="what_is_your_activity_level">What is your activity level?</string>

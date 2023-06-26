@@ -1,12 +1,18 @@
 package com.red_velvet.yumhub.domain.models
 
+import com.red_velvet.yumhub.remote.resources.meal_plan.AddMealResource
+import com.red_velvet.yumhub.remote.resources.meal_plan.ValueResource
+
 data class MealPlanEntity(
-    val id: Int,
-    val position: Int,
-    val slot: Int,
-    val type: String,
-    val imageType: String,
-    val servings: Int,
-    val title: String,
-    val timestamp: Long
+    val slot: Int = 0,
+    val timestamp: Long = 0,
+    val id: Int
 )
+
+fun MealPlanEntity.toMealPlanResource(): AddMealResource {
+    return AddMealResource(
+        date = timestamp,
+        slot = slot,
+        valueResource = ValueResource(id = id)
+    )
+}

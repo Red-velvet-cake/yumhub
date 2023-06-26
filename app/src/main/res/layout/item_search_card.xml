@@ -3,14 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+
         <variable
             name="item"
             type="com.red_velvet.yumhub.ui.search.SearchResultUIState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.search.SearchInteractionListener" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="@dimen/no_width"
+        android:onClick="@{() -> listener.onRecipeSearchResultClicked(item.id)}"
         android:background="@color/white"
         android:layout_marginTop="@dimen/small_space"
         android:layout_marginHorizontal="@dimen/fab_margin"
@@ -61,6 +67,7 @@
                             android:textSize="@dimen/text_size_12sp"
                             android:layout_marginEnd="@dimen/small_space"
                             android:drawableStart="@drawable/ingredient"
+                            android:drawablePadding="@dimen/tiny_space"
                             android:textColor="@color/black_title_60"
                             android:text="@string/_7_ingrerdients" />
                         <TextView
@@ -69,6 +76,7 @@
                             app:text='@{item.readyInMinutes}'
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="@dimen/text_size_12sp"
+                            android:drawablePadding="@dimen/tiny_space"
                             android:drawableStart="@drawable/timer1"
                             android:textColor="@color/black_title_60"
                             android:text="@string/_18_min" />
