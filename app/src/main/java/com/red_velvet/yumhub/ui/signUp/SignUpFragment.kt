@@ -8,7 +8,6 @@ import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentSignUpBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
@@ -19,20 +18,18 @@ class SignUpFragment :
     override val viewModel: SignUpViewModel by viewModels()
 
     override fun observeOnUIEffects() {
-        lifecycleScope.launch {
-            when (viewModel.effect.first()) {
-                SignupUIEffect.LoggedInSuccessfully -> onLoggedInSuccessfully()
-            }
-        }
-    }
-
-    private fun onLoggedInSuccessfully() {
-        val directions = SignUpFragmentDirections.actionSignupFragmentToHomeFragment()
-        findNavController().navigate(directions)
+        lifecycleScope.launch { viewModel.effect.collect { handleUIEffect(it) } }
     }
 
     override fun handleUIEffect(uiEffect: SignupUIEffect) {
-//        TODO("Not yet implemented")
+        when (uiEffect) {
+            SignupUIEffect.LoggedInSuccessfully -> navigateToHome()
+        }
+    }
+
+    private fun navigateToHome() {
+        val action = SignUpFragmentDirections.actionSignupFragmentToHomeFragment()
+        findNavController().navigate(action)
     }
 
 }
