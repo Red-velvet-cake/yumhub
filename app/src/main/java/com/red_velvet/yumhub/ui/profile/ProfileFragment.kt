@@ -25,7 +25,7 @@ class ProfileFragment :
             is ProfileUiEffect.ClickOnSettings -> navigateToPersonalInfoScreen()
             is ProfileUiEffect.ClickOnChatBot -> navigateToChatBotScreen()
             is ProfileUiEffect.ClickOnFavorites -> navigateToFavoritesScreen()
-            is ProfileUiEffect.ClickOnHistory -> navigateToReviewFoodScreen()
+            is ProfileUiEffect.ClickOnHistory -> navigateToHistoryScreen()
             is ProfileUiEffect.ClickOnNutritionalValue -> navigateToNutritionalScreen()
             is ProfileUiEffect.ClickOnFoodSuggester -> navigateToFoodSuggesterScreen()
             is ProfileUiEffect.ClickOnMealTest -> navigateToMealTestScreen()
@@ -41,12 +41,17 @@ class ProfileFragment :
         findNavController().navigate(action)
     }
 
-    private fun navigateToReviewFoodScreen() {}
+    private fun navigateToHistoryScreen() {
+
+    }
 
     private fun navigateToNutritionalScreen() {}
 
     private fun navigateToFoodSuggesterScreen() {}
 
-    private fun navigateToMealTestScreen() {}
+    private fun navigateToMealTestScreen() {
+        val action = ProfileFragmentDirections.actionProfileFragmentToFindYourMealFragment()
+        findNavController().navigate(action)
+    }
 
 }

@@ -203,7 +203,7 @@
                     android:layout_marginTop="@dimen/_1dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="@{() -> viewModel.doOnFoodSuggesterClicked()}"
+                    android:onClick="@{() -> viewModel.doOnMealTestClicked()}"
                     app:cardBackgroundColor="@color/bg_white"
                     app:cardCornerRadius="0dp"
                     app:contentPadding="@dimen/_16dp"
