@@ -153,4 +153,6 @@
     <string name="test_your_meal">Test Your Meal</string>
     <string name="name">Name</string>
     <string name="api_key">Api key</string>
+    <string name="invalid_name">Name should be at least 3 characters with no special characters</string>
+    <string name="invalid_apikey">Api key should 32 characters hexadecimal string</string>
 </resources>

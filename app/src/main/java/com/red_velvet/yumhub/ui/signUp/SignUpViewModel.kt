@@ -1,11 +1,8 @@
 package com.red_velvet.yumhub.ui.signUp
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
-import com.red_velvet.yumhub.domain.usecases.SignUpValidation
-import com.red_velvet.yumhub.local.SharedPreferenceImpl
+import com.red_velvet.yumhub.domain.usecases.SignUpValidationUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,74 +13,46 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val saveUserInformation: SaveUserNameAndHashUseCase,
-    private val signUpValidation: SignUpValidation,
+    private val signUpValidation: SignUpValidationUseCase,
 ) : BaseViewModel<SignUpUIState, SignupUIEffect>(SignUpUIState()) {
 
-    fun onUsernameChange(username: String) {
-        _state.update { it.copy(username = username, usernameError = null) }
+    fun onNameChange(name: String) {
+        _state.update { it.copy(name = name, isValidName = onValidateName(name)) }
     }
 
-    fun onFirstNameChange(firstName: String) {
-        _state.update { it.copy(firstName = firstName, firstNameError = null) }
+    fun onApiKeyChange(apiKey: String) {
+        _state.update { it.copy(apiKey = apiKey, isValidApiKey = onValidateApiKey(apiKey)) }
     }
 
-    fun onLastNameChange(lastName: String) {
-        _state.update { it.copy(lastName = lastName, lastNameError = null) }
+    private fun onValidateName(name: String): Boolean {
+        return signUpValidation.validateName(name)
     }
 
-    fun onEmailChange(email: String) {
-        _state.update { it.copy(email = email, emailError = null) }
+    private fun onValidateApiKey(apiKey: String): Boolean {
+        return signUpValidation.validateApiKey(apiKey)
     }
 
-    fun onPasswordChange(password: String) {
-        _state.update { it.copy(password = password, passwordError = null) }
-    }
-
-    fun onSignUpButtonClicked() {
+    fun onSignupButtonClicked() {
         val currentState = _state.value
-        _state.update { it.copy(isLoading = true, isSignUpButtonClicked = true) }
-        if (signUpValidation.isFormValid(currentState.toUserInformation())) {
+        _state.update { it.copy(isLoading = true) }
+        if (onValidateName(currentState.name) && onValidateApiKey(currentState.apiKey)) {
             tryToExecute(
-                { saveUserInformation.invoke(currentState.toUserInformation()) },
+                { saveUserInformation(currentState.name, currentState.apiKey) },
                 onSuccess = ::onSignUpSuccess,
                 onError = ::onError
             )
         } else {
-            updateValidationErrors(currentState)
-            _state.update { it.copy(isLoading = false, isSignUpButtonClicked = false) }
+            _state.update { it.copy(isLoading = false) }
         }
     }
 
-    private fun onSignUpSuccess(unit:Unit) {
-        viewModelScope.launch {
-            _effect.emit(SignupUIEffect.LoggedInSuccessfully)
-        }
+    private fun onSignUpSuccess(unit: Unit) {
+        viewModelScope.launch { _effect.emit(SignupUIEffect.LoggedInSuccessfully) }
         _state.update { it.copy(isLoading = false) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.d("alhams", "onError: $errorUiState")
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
-    private fun updateValidationErrors(state: SignUpUIState) {
-        _state.update {
-            it.copy(
-                usernameError = signUpValidation.validateUsername(state.username),
-                firstNameError = signUpValidation.validateFirstName(state.firstName),
-                lastNameError = signUpValidation.validateLastName(state.lastName),
-                emailError = signUpValidation.validateEmail(state.email),
-                passwordError = signUpValidation.validatePassword(state.password)
-            )
-        }
-    }
-
-    private fun SignUpUIState.toUserInformation(): UserInformationEntity {
-        return UserInformationEntity(
-            username = username,
-            firstName = firstName,
-            lastName = lastName,
-            email = email,
-        )
-    }
 }

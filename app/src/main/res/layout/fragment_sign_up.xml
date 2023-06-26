@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:hint="@string/name"
-                        android:onTextChanged="@{(text, _, ___, __) -> viewModel.onUsernameChange(text.toString())}"
+                        android:afterTextChanged="@{(text) -> viewModel.onNameChange(text.toString())}"
                         android:padding="@dimen/spacing_normal"
                         android:textSize="@dimen/text_size_16" />
 
@@ -94,9 +94,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_x_small"
-                        android:text="@{viewModel.state.usernameError}"
+                        android:text="@string/invalid_name"
                         android:textColor="#CCF80000"
-                        android:visibility="@{viewModel.state.usernameError != null ? View.VISIBLE : View.GONE}" />
+                        android:visibility="@{viewModel.state.isValidName() ? View.GONE : View.VISIBLE}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:hint="@string/api_key"
-                        android:onTextChanged="@{(text, _, ___, __) -> viewModel.onUsernameChange(text.toString())}"
+                        android:onTextChanged="@{(text, _, ___, __) -> viewModel.onApiKeyChange(text.toString())}"
                         android:padding="@dimen/spacing_normal"
                         android:textSize="@dimen/text_size_16" />
 
@@ -128,9 +128,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_x_small"
-                        android:text="@{viewModel.state.usernameError}"
+                        android:text="@string/invalid_apikey"
                         android:textColor="#CCF80000"
-                        android:visibility="@{viewModel.state.usernameError != null ? View.VISIBLE : View.GONE}" />
+                        android:visibility="@{viewModel.state.isValidApiKey ? View.GONE : View.VISIBLE}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,8 +141,9 @@
                     android:layout_marginTop="@dimen/spacing_large_24"
                     android:backgroundTint="@color/primary"
                     android:fontFamily="@font/roboto_medium"
-                    android:onClick="@{()-> viewModel.onSignUpButtonClicked()}"
+                    android:enabled="@{viewModel.state.isSignupButtonEnabled}"
                     android:text="@string/sign_up_button"
+                    android:onClick="@{()-> viewModel.onSignupButtonClicked()}"
                     android:textColor="@color/fontColor_white"
                     android:textSize="@dimen/text_size_16"
                     app:cornerRadius="@dimen/radius_16dp"
