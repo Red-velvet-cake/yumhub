@@ -10,6 +10,7 @@ import com.red_velvet.yumhub.databinding.FragmentSignUpBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -20,7 +21,7 @@ class SignUpFragment :
     override val viewModel: SignUpViewModel by viewModels()
 
     override fun observeOnUIEffects() {
-        lifecycleScope.launch { viewModel.effect.collect { handleUIEffect(it) } }
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
     }
 
     override fun handleUIEffect(uiEffect: SignupUIEffect) {
