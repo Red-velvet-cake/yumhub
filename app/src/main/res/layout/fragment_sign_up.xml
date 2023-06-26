@@ -4,257 +4,163 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.signUp.SignUpViewModel" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/background">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        tools:context=".ui.signUp.SignUpFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/image_view_sign_up"
-            android:layout_width="@dimen/sign_up_image_width"
-            android:layout_height="@dimen/sign_up_image_height"
-            android:layout_marginTop="@dimen/spacing__x_large"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/signup"
-            android:contentDescription="@string/chief" />
-
-        <TextView
-            android:id="@+id/text_view_get_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/image_view_sign_up"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:textSize="@dimen/text_size_20"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/get_started_sign_up"
-            android:textColor="@color/fontColor_primary"/>
-
-        <TextView
-            android:id="@+id/text_view_sign_up_intro"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_large"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center"
-            android:text="@string/sign_up_intro"
-            android:textColor="@color/fontColor_secondary"
-            android:textSize="@dimen/text_size_16"
-            app:layout_constraintEnd_toEndOf="@id/text_view_get_start"
-            app:layout_constraintStart_toStartOf="@id/text_view_get_start"
-            app:layout_constraintTop_toBottomOf="@id/text_view_get_start" />
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/background">
 
-      <LinearLayout
-          android:id="@+id/linear_layout"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/spacing_large_24"
-          android:layout_marginHorizontal="@dimen/spacing_normal"
-          app:layout_constraintTop_toBottomOf="@id/text_view_sign_up_intro"
-          app:layout_constraintStart_toStartOf="parent"
-          android:weightSum="2"
-          android:baselineAligned="false">
-
-          <com.google.android.material.textfield.TextInputLayout
-              android:id="@+id/text_input_layout_first_name"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              app:boxCornerRadiusTopStart="@dimen/spacing_normal"
-              app:boxCornerRadiusBottomStart="@dimen/spacing_normal"
-              app:boxCornerRadiusBottomEnd="@dimen/spacing_normal"
-              app:boxCornerRadiusTopEnd="@dimen/spacing_normal"
-              android:textColorHint="@color/fontColor_accent"
-              app:hintTextColor="@color/green_green80"
-              app:boxStrokeColor="@color/green_green80"
-              android:layout_marginEnd="@dimen/spacing_x_small">
-              <com.google.android.material.textfield.TextInputEditText
-                  android:id="@+id/edit_text_first_name"
-                  android:layout_width="match_parent"
-                  android:layout_height="@dimen/edit_text_height"
-                  android:padding="@dimen/spacing_normal"
-                  android:textSize="@dimen/text_size_16"
-                  android:onTextChanged="@{(text, _, ___, __) -> viewModel.onFirstNameChange(text.toString())}"
-                  android:hint="@string/first_name_sign_up"/>
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginStart="@dimen/spacing_x_small"
-                  android:text="@{viewModel.state.firstNameError}"
-                  android:textColor="#CCF80000"
-                  android:visibility="@{viewModel.state.firstNameError != null ? View.VISIBLE : View.GONE}" />
-
-          </com.google.android.material.textfield.TextInputLayout>
-
-          <com.google.android.material.textfield.TextInputLayout
-              android:id="@+id/text_input_layout_last_name"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              app:boxCornerRadiusTopStart="@dimen/spacing_normal"
-              app:boxCornerRadiusBottomStart="@dimen/spacing_normal"
-              app:boxCornerRadiusBottomEnd="@dimen/spacing_normal"
-              app:boxCornerRadiusTopEnd="@dimen/spacing_normal"
-              android:textColorHint="@color/fontColor_accent"
-              app:hintTextColor="@color/green_green80"
-              app:boxStrokeColor="@color/green_green80"
-              android:layout_marginEnd="@dimen/spacing_x_small">
-              <com.google.android.material.textfield.TextInputEditText
-                  android:id="@+id/edit_text_last_name"
-                  android:layout_width="match_parent"
-                  android:layout_height="48dp"
-                  android:padding="@dimen/spacing_normal"
-                  android:textSize="@dimen/text_size_16"
-                  android:onTextChanged="@{(text, _, ___, __) -> viewModel.onLastNameChange(text.toString())}"
-                  android:hint="@string/last_name_sign_up"/>
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginStart="@dimen/spacing_x_small"
-                  android:text="@{viewModel.state.lastNameError}"
-                  android:textColor="#CCF80000"
-                  android:visibility="@{viewModel.state.lastNameError != null ? View.VISIBLE : View.GONE}" />
-
-          </com.google.android.material.textfield.TextInputLayout>
-      </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small_12"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            app:boxCornerRadiusTopStart="@dimen/spacing_normal"
-            app:boxCornerRadiusBottomStart="@dimen/spacing_normal"
-            app:boxCornerRadiusBottomEnd="@dimen/spacing_normal"
-            app:boxCornerRadiusTopEnd="@dimen/spacing_normal"
-            android:textColorHint="@color/fontColor_accent"
-            app:hintTextColor="@color/green_green80"
-            app:boxStrokeColor="@color/green_green80"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_username"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:padding="@dimen/spacing_normal"
-                android:textSize="@dimen/text_size_16"
-                android:onTextChanged="@{(text, _, ___, __) -> viewModel.onUsernameChange(text.toString())}"
-                android:hint="@string/username_sign_up"/>
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_x_small"
-                android:text="@{viewModel.state.usernameError}"
-                android:textColor="#CCF80000"
-                android:visibility="@{viewModel.state.usernameError != null ? View.VISIBLE : View.GONE}" />
+                android:background="@color/bg_white"
+                tools:context=".ui.signUp.SignUpFragment">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <ImageView
+                    android:id="@+id/image_view_sign_up"
+                    android:layout_width="@dimen/sign_up_image_width"
+                    android:layout_height="@dimen/sign_up_image_height"
+                    android:layout_marginTop="@dimen/spacing__x_large"
+                    android:contentDescription="@string/chief"
+                    android:src="@drawable/signup"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small_12"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            app:boxCornerRadiusTopStart="@dimen/spacing_normal"
-            app:boxCornerRadiusBottomStart="@dimen/spacing_normal"
-            app:boxCornerRadiusBottomEnd="@dimen/spacing_normal"
-            app:boxCornerRadiusTopEnd="@dimen/spacing_normal"
-            android:textColorHint="@color/fontColor_accent"
-            app:hintTextColor="@color/green_green80"
-            app:boxStrokeColor="@color/green_green80"
-            app:layout_constraintTop_toBottomOf="@id/text_input_layout_username">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_email"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:padding="@dimen/spacing_normal"
-                android:textSize="@dimen/text_size_16"
-                android:onTextChanged="@{(text, _, ___, __) -> viewModel.onEmailChange(text.toString())}"
-                android:hint="@string/email_sign_up"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_x_small"
-                android:text="@{viewModel.state.emailError}"
-                android:textColor="#CCF80000"
-                android:visibility="@{viewModel.state.emailError != null ? View.VISIBLE : View.GONE}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/text_view_get_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/get_started_sign_up"
+                    android:textColor="@color/fontColor_primary"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_view_sign_up" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small_12"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            app:boxCornerRadiusTopStart="@dimen/spacing_normal"
-            app:boxCornerRadiusBottomStart="@dimen/spacing_normal"
-            app:boxCornerRadiusBottomEnd="@dimen/spacing_normal"
-            app:boxCornerRadiusTopEnd="@dimen/spacing_normal"
-            android:textColorHint="@color/fontColor_accent"
-            app:passwordToggleEnabled="true"
-            app:hintTextColor="@color/green_green80"
-            app:boxStrokeColor="@color/green_green80"
-            app:layout_constraintTop_toBottomOf="@id/text_input_layout_email">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_password"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:padding="@dimen/spacing_normal"
-                android:textSize="@dimen/text_size_16"
-                android:onTextChanged="@{(text, _, ___, __) -> viewModel.onPasswordChange(text.toString())}"
-                android:inputType="textPassword"
-                android:hint="@string/password_sign_up"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_x_small"
-                android:text="@{viewModel.state.passwordError}"
-                android:textColor="#CCF80000"
-                android:visibility="@{viewModel.state.passwordError != null ? View.VISIBLE : View.GONE}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/text_view_sign_up_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="@string/sign_up_intro"
+                    android:textColor="@color/fontColor_secondary"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintEnd_toEndOf="@id/text_view_get_start"
+                    app:layout_constraintStart_toStartOf="@id/text_view_get_start"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_get_start" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="@dimen/spacing_large_24"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:text="@string/sign_up_button"
-            android:textSize="@dimen/text_size_16"
-            android:onClick="@{()-> viewModel.onSignUpButtonClicked()}"
-            android:textColor="@color/fontColor_white"
-            android:fontFamily="@font/roboto_medium"
-            android:backgroundTint="@color/primary"
-            app:cornerRadius="@dimen/radius_16dp"
-            app:layout_constraintTop_toBottomOf="@id/text_input_layout_password"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_large_24"
+                    android:textColorHint="@color/fontColor_accent"
+                    app:boxCornerRadiusBottomEnd="@dimen/spacing_normal"
+                    app:boxCornerRadiusBottomStart="@dimen/spacing_normal"
+                    app:boxCornerRadiusTopEnd="@dimen/spacing_normal"
+                    app:boxCornerRadiusTopStart="@dimen/spacing_normal"
+                    app:boxStrokeColor="@color/green_green80"
+                    app:hintTextColor="@color/green_green80"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_sign_up_intro">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:hint="@string/name"
+                        android:onTextChanged="@{(text, _, ___, __) -> viewModel.onUsernameChange(text.toString())}"
+                        android:padding="@dimen/spacing_normal"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_x_small"
+                        android:text="@{viewModel.state.usernameError}"
+                        android:textColor="#CCF80000"
+                        android:visibility="@{viewModel.state.usernameError != null ? View.VISIBLE : View.GONE}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_api_key"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_small_12"
+                    android:textColorHint="@color/fontColor_accent"
+                    app:boxCornerRadiusBottomEnd="@dimen/spacing_normal"
+                    app:boxCornerRadiusBottomStart="@dimen/spacing_normal"
+                    app:boxCornerRadiusTopEnd="@dimen/spacing_normal"
+                    app:boxCornerRadiusTopStart="@dimen/spacing_normal"
+                    app:boxStrokeColor="@color/green_green80"
+                    app:hintTextColor="@color/green_green80"
+                    app:layout_constraintTop_toBottomOf="@id/text_input_layout_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_api_key"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:hint="@string/api_key"
+                        android:onTextChanged="@{(text, _, ___, __) -> viewModel.onUsernameChange(text.toString())}"
+                        android:padding="@dimen/spacing_normal"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_x_small"
+                        android:text="@{viewModel.state.usernameError}"
+                        android:textColor="#CCF80000"
+                        android:visibility="@{viewModel.state.usernameError != null ? View.VISIBLE : View.GONE}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginHorizontal="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_large_24"
+                    android:backgroundTint="@color/primary"
+                    android:fontFamily="@font/roboto_medium"
+                    android:onClick="@{()-> viewModel.onSignUpButtonClicked()}"
+                    android:text="@string/sign_up_button"
+                    android:textColor="@color/fontColor_white"
+                    android:textSize="@dimen/text_size_16"
+                    app:cornerRadius="@dimen/radius_16dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_input_layout_api_key" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:indeterminate="true"
             android:indeterminateTint="@color/primary"
             android:indeterminateTintMode="src_atop"
-            android:visibility="@{viewModel.state.loading ? View.VISIBLE : View.GONE}"/>
-
+            android:visibility="@{viewModel.state.loading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 </layout>
