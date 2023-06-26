@@ -9,14 +9,16 @@ import androidx.lifecycle.lifecycleScope
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFoodSuggesterStepThreeBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiState
+import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MealsSuggesterStep3Fragment:BaseFragment<FragmentFoodSuggesterStepThreeBinding, MealsSuggesterStep3UiState, MealsSuggesterStep3ViewModel>() {
+class MealsSuggesterStep3Fragment:BaseFragment<FragmentFoodSuggesterStepThreeBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1ViewModel>() {
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_food_suggester_step_three
-    override val viewModel: MealsSuggesterStep3ViewModel by viewModels()
+    override val viewModel: MealsSuggesterStep1ViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         observeOnUiEffect()
         val mealSuggesterAdapter = MealSuggesterAdapter(mutableListOf(),viewModel)
@@ -25,7 +27,7 @@ class MealsSuggesterStep3Fragment:BaseFragment<FragmentFoodSuggesterStepThreeBin
 
     private fun observeOnUiEffect() {
         lifecycleScope.launch {
-            val effect = viewModel.effect.collect{
+            val effect = viewModel.effectStepThree.collect{
                 when(it)
                 {
                     is MealsSuggesterStep3UiEffect.ClickOnGoalSelector -> Log.i("jalal","do what you want")

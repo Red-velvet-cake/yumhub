@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2.MealsSuggesterStep2ViewModel" />
+            type="com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1ViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
