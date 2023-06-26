@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFoodSuggesterStepOneBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -36,9 +37,9 @@ class MealsSuggesterStep1Fragment :
     }
 
     private fun onNextButtonClicked() {
-//        val directions =
-//            MealsSuggesterStep1FragmentDirections.actionMealsSuggesterStep1FragmentToMealsSuggesterStep2Fragment()
-//        findNavController().navigate(directions)
+      val directions =
+          MealsSuggesterStep1FragmentDirections.actionMealsSuggesterStep1FragmentToMealsSuggesterStep2Fragment()
+      findNavController().navigate(directions)
     }
 
     private fun activityLevelSelector(activityLevel: String) {
