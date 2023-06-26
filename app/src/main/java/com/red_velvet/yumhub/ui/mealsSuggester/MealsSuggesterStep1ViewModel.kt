@@ -7,15 +7,8 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.usecases.CalculateNeededCaloriesUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
-import com.red_velvet.yumhub.ui.home.HomeUIEffect
-import com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1.MealsSuggesterStep1UiEffect
-import com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2.MealsSuggesterStep2UiEffect
-import com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.MealsSuggesterStep3UiEffect
 import com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.SuggestedMealsInteractionListener
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,38 +16,37 @@ import javax.inject.Inject
 @HiltViewModel
 class MealsSuggesterStep1ViewModel @Inject constructor(
     private val calculateNeededCaloriesUseCase: CalculateNeededCaloriesUseCase,
-) : BaseViewModel<MealsSuggesterStep1UiState>(MealsSuggesterStep1UiState()),SuggestedMealsInteractionListener {
-    private val _effectStepOne = MutableSharedFlow<MealsSuggesterStep1UiEffect>()
-    val effectStepOne = _effectStepOne.asSharedFlow()
-    private val _effectTwo = MutableSharedFlow<MealsSuggesterStep2UiEffect>()
-    val effectTwo = _effectTwo.asSharedFlow()
-    private val _effectStepThree = MutableSharedFlow<MealsSuggesterStep3UiEffect>()
-    val effectStepThree = _effectStepThree.asSharedFlow()
+) : BaseViewModel<MealsSuggesterStep1UiState, MealsSuggesterStep1UiEffect>(
+    MealsSuggesterStep1UiState()
+), SuggestedMealsInteractionListener {
 
-    fun updateGender(gender: String)
-    {
+    fun updateGender(gender: String) {
         _state.update { it.copy(gender = gender) }
-        viewModelScope.launch { _effectStepOne.emit(
-            MealsSuggesterStep1UiEffect.ClickOnGenderSelector(
-                gender
+        viewModelScope.launch {
+            _effect.emit(
+                MealsSuggesterStep1UiEffect.ClickOnGenderSelector(
+                    gender
+                )
             )
-        ) }
+        }
     }
      fun updateActivityLevel(activityLevel: String)
     {
         _state.update { it.copy(activityLevel = activityLevel) }
-        viewModelScope.launch { _effectStepOne.emit(
-            MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector(
-                activityLevel
+        viewModelScope.launch {
+            _effect.emit(
+                MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector(
+                    activityLevel
+                )
             )
-        ) }
-        Log.i("jalal",_state.value.toString())
+        }
+        Log.i("jalal", _state.value.toString())
     }
 
 
     fun updateGoal(goal: String) {
         _state.update { it.copy(goal = goal) }
-        viewModelScope.launch { _effectTwo.emit(MealsSuggesterStep2UiEffect.ClickOnGoalSelector(goal)) }
+        viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.ClickOnGoalSelector(goal)) }
     }
 
     fun updateTall(tall: String) {
@@ -104,7 +96,7 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
     }
     fun onNextButtonClicked()
     {
-        viewModelScope.launch { _effectStepOne.emit(MealsSuggesterStep1UiEffect.OnNextClicked) }
+        viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnNextClicked) }
     }
 
 

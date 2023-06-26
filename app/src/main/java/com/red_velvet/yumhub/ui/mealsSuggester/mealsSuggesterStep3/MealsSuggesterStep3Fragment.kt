@@ -9,32 +9,34 @@ import androidx.lifecycle.lifecycleScope
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFoodSuggesterStepThreeBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiEffect
 import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiState
 import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MealsSuggesterStep3Fragment:BaseFragment<FragmentFoodSuggesterStepThreeBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1ViewModel>() {
+class MealsSuggesterStep3Fragment :
+    BaseFragment<FragmentFoodSuggesterStepThreeBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1UiEffect, MealsSuggesterStep1ViewModel>() {
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_food_suggester_step_three
     override val viewModel: MealsSuggesterStep1ViewModel by viewModels()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        observeOnUiEffect()
-        val mealSuggesterAdapter = MealSuggesterAdapter(mutableListOf(),viewModel)
-        binding.suggestedMealsRecyclerView.adapter = mealSuggesterAdapter
+    override fun observeOnUIEffects() {
+        lifecycleScope.launch { viewModel.effect.collect { handleUIEffect(it) } }
     }
 
-    private fun observeOnUiEffect() {
-        lifecycleScope.launch {
-            val effect = viewModel.effectStepThree.collect{
-                when(it)
-                {
-                    is MealsSuggesterStep3UiEffect.ClickOnGoalSelector -> Log.i("jalal","do what you want")
-                }
-            }
-
+    override fun handleUIEffect(uiEffect: MealsSuggesterStep1UiEffect) {
+        when (uiEffect) {
+            is MealsSuggesterStep1UiEffect.ClickOnGoalSelector -> Log.i("jalal", "do what you want")
+            is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> {}
+            is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
+            MealsSuggesterStep1UiEffect.OnNextClicked -> {}
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val mealSuggesterAdapter = MealSuggesterAdapter(mutableListOf(), viewModel)
+        binding.suggestedMealsRecyclerView.adapter = mealSuggesterAdapter
     }
 
 }

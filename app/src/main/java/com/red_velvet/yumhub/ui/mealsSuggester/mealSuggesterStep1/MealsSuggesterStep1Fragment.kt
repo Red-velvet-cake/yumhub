@@ -1,15 +1,12 @@
 package com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1
 
-import android.os.Bundle
-import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFoodSuggesterStepOneBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
-import com.red_velvet.yumhub.ui.home.HomeFragmentDirections
+import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiEffect
 import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiState
 import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1ViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,32 +14,31 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MealsSuggesterStep1Fragment:BaseFragment<FragmentFoodSuggesterStepOneBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1ViewModel>() {
+class MealsSuggesterStep1Fragment :
+    BaseFragment<FragmentFoodSuggesterStepOneBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1UiEffect, MealsSuggesterStep1ViewModel>() {
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_food_suggester_step_one
     override val viewModel: MealsSuggesterStep1ViewModel by viewModels()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        observeOnUiEffect()
+    override fun observeOnUIEffects() {
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
     }
 
-    private fun observeOnUiEffect() {
-        lifecycleScope.launch {
-            val effect = viewModel.effectStepOne.collectLatest{
-                when(it)
-                {
-                    is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> genderSelector(it.gender)
-                    is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> activityLevelSelector(it.activityLevel)
-                    MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked()
-                }
-            }
+    override fun handleUIEffect(uiEffect: MealsSuggesterStep1UiEffect) {
+        when (uiEffect) {
+            is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> genderSelector(uiEffect.gender)
+            is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> activityLevelSelector(
+                uiEffect.activityLevel
+            )
 
+            MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked()
+            is MealsSuggesterStep1UiEffect.ClickOnGoalSelector -> {}
         }
     }
 
     private fun onNextButtonClicked() {
-        val directions =
-            MealsSuggesterStep1FragmentDirections.actionMealsSuggesterStep1FragmentToMealsSuggesterStep2Fragment()
-        findNavController().navigate(directions)
+//        val directions =
+//            MealsSuggesterStep1FragmentDirections.actionMealsSuggesterStep1FragmentToMealsSuggesterStep2Fragment()
+//        findNavController().navigate(directions)
     }
 
     private fun activityLevelSelector(activityLevel: String) {

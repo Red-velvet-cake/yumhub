@@ -8,16 +8,15 @@ data class MealsSuggesterStep1UiState(
     val gender: String = "Male",
     val activityLevel: String = "",
     val goal: String? = "",
-    val weight: Int? = 0 ,
+    val weight: Int? = 0,
     val tall: Int? = 0,
     val age: Int? = 0,
     val calories: Int? = 0,
-    val meals:List<SuggestedMeals>?= emptyList()
-):BaseUiState()
-{
+    val meals: List<SuggestedMeals>? = emptyList()
+) : BaseUiState {
     data class SuggestedMeals(
-        val imageUrl: String ,
-        val title: String ,
+        val imageUrl: String,
+        val title: String,
     )
 }
 fun RecipeEntity.toSuggestedMeals(): MealsSuggesterStep1UiState.SuggestedMeals{
