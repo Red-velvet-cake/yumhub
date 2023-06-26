@@ -6,7 +6,7 @@
     <data>
 <variable
     name="item"
-    type="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.MealsSuggesterStep3UiState.SuggestedMeals" />
+    type="com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiState.SuggestedMeals" />
     </data>
 
     <LinearLayout

@@ -5,7 +5,7 @@
     <data>
 <variable
     name="viewModel"
-    type="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1.MealsSuggesterStep1ViewModel"
+    type="com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1ViewModel"
     />
     </data>
 
@@ -239,6 +239,7 @@
             android:fontFamily="@font/roboto_regular"
             android:textColor="@color/fontColor_secondary"
             android:text="Next"
+            android:onClick="@{()->viewModel.onNextButtonClicked()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/radius_16dp"
