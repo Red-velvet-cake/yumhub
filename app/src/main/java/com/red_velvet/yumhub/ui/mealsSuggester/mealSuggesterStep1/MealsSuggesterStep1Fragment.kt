@@ -5,12 +5,15 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFoodSuggesterStepOneBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.home.HomeFragmentDirections
 import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiState
 import com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1ViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -24,15 +27,22 @@ class MealsSuggesterStep1Fragment:BaseFragment<FragmentFoodSuggesterStepOneBindi
 
     private fun observeOnUiEffect() {
         lifecycleScope.launch {
-            val effect = viewModel.effectStepOne.collect{
+            val effect = viewModel.effectStepOne.collectLatest{
                 when(it)
                 {
                     is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> genderSelector(it.gender)
                     is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> activityLevelSelector(it.activityLevel)
+                    MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked()
                 }
             }
 
         }
+    }
+
+    private fun onNextButtonClicked() {
+        val directions =
+            MealsSuggesterStep1FragmentDirections.actionMealsSuggesterStep1FragmentToMealsSuggesterStep2Fragment()
+        findNavController().navigate(directions)
     }
 
     private fun activityLevelSelector(activityLevel: String) {

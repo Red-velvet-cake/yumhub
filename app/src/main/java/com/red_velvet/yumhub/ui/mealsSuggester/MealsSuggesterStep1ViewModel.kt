@@ -7,6 +7,7 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.usecases.CalculateNeededCaloriesUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
+import com.red_velvet.yumhub.ui.home.HomeUIEffect
 import com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1.MealsSuggesterStep1UiEffect
 import com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2.MealsSuggesterStep2UiEffect
 import com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.MealsSuggesterStep3UiEffect
@@ -14,6 +15,7 @@ import com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.SuggestedMeal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -46,6 +48,7 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
                 activityLevel
             )
         ) }
+        Log.i("jalal",_state.value.toString())
     }
 
 
@@ -99,6 +102,11 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
     {
 
     }
+    fun onNextButtonClicked()
+    {
+        viewModelScope.launch { _effectStepOne.emit(MealsSuggesterStep1UiEffect.OnNextClicked) }
+    }
+
 
 
 }
