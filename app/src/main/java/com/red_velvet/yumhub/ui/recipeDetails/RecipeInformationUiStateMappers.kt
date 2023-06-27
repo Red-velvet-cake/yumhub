@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.ui.recipeDetails
 
+import com.red_velvet.yumhub.domain.models.HistoryMealEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 
 
@@ -27,8 +28,17 @@ fun RecipeInformationEntity.toDishTypeUIState(): List<DishTypeUIState> {
 fun RecipeInformationEntity.toIngredientsUIState(): List<IngredientsUIState> {
     return extendedIngredientEntities.map { extendedIngredient ->
         IngredientsUIState(
-            image = extendedIngredient.image,
-            original = extendedIngredient.original
+            image = extendedIngredient.image, original = extendedIngredient.original
         )
     }
+}
+
+fun RecipeInformationEntity.toHistoryMealEntity(): HistoryMealEntity {
+    return HistoryMealEntity(
+        id = id,
+        image = image,
+        title = title,
+        description = description,
+        viewedAt = 0,
+    )
 }
