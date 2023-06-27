@@ -67,6 +67,7 @@
                             android:textSize="@dimen/text_size_12sp"
                             android:layout_marginEnd="@dimen/small_space"
                             android:drawableStart="@drawable/ingredient"
+                            android:drawablePadding="@dimen/tiny_space"
                             android:textColor="@color/black_title_60"
                             android:text="@string/_7_ingrerdients" />
                         <TextView
@@ -75,6 +76,7 @@
                             app:text='@{item.readyInMinutes}'
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="@dimen/text_size_12sp"
+                            android:drawablePadding="@dimen/tiny_space"
                             android:drawableStart="@drawable/timer1"
                             android:textColor="@color/black_title_60"
                             android:text="@string/_18_min" />

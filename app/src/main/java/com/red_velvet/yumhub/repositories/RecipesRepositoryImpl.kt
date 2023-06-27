@@ -4,6 +4,7 @@ package com.red_velvet.yumhub.repositories
 import android.util.Log
 import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
+import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
@@ -15,6 +16,7 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
+import com.red_velvet.yumhub.domain.models.toEntity
 import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
@@ -41,9 +43,9 @@ class RecipesRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : RecipesRepository {
     override suspend fun getDietRecipe(type: String): List<SearchRecipeEntity> {
-     return remoteDataSource.searchRecipe(diet=type)
-         .results?.map(RecipeInformationResource::toRecipeSearchEntity)
-        ?: emptyList()
+        return remoteDataSource.searchRecipe(diet = type)
+            .results?.map(RecipeInformationResource::toRecipeSearchEntity)
+            ?: emptyList()
     }
 
 
@@ -87,7 +89,8 @@ class RecipesRepositoryImpl @Inject constructor(
         id: Int,
         stepBreakdown: Boolean?,
     ): List<AnalyzedInstructionsEntity> {
-        return remoteDataSource.getAnalyzedInstructions(id,stepBreakdown).toAnalyzedInstructionEntity()
+        return remoteDataSource.getAnalyzedInstructions(id, stepBreakdown)
+            .toAnalyzedInstructionEntity()
     }
 
     override suspend fun getSimilarRecipes(id: Int, number: Int?): List<SimilarRecipeEntity> {
@@ -160,6 +163,10 @@ class RecipesRepositoryImpl @Inject constructor(
         return remoteDataSource.getRecipesByMealType(type = categoryType, sort = sort).results?.map(
             RecipeInformationResource::toRecipeEntity
         ) ?: emptyList()
+    }
+
+    override suspend fun getHomeSliderImagesList(): List<SliderItemEntity> {
+        return localDataSource.getHomeSliderImagesList().toEntity()
     }
 
 }

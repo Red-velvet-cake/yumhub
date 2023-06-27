@@ -1,30 +1,31 @@
 package com.red_velvet.yumhub.ui.onboarding
 
+import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class OnBoardingViewModel @Inject constructor() :
-    BaseViewModel<OnBoardingUIState, OnBoardingUIEffect>(OnBoardingUIState()) {
-    private val _uiState = MutableStateFlow(OnBoardingUIState())
-    val uiState: StateFlow<OnBoardingUIState> = _uiState
+    BaseViewModel<OnBoardingUIState, OnBoardingUIEffect>(OnBoardingUIState()),
+    OnBoardingInteractionListener {
 
-    fun onNext() {
-        if (_uiState.value.isSecondTab) {
-            _uiState.update {
+    override fun onClickNext() {
+        if (_state.value.isSecondTab) {
+            _state.update {
                 it.copy(isFirstTab = false, isSecondTab = false, isLastTab = true)
             }
         } else {
-            _uiState.update {
-                it.copy(isFirstTab = false , isSecondTab = true)
+            _state.update {
+                it.copy(isFirstTab = false, isSecondTab = true)
             }
-
         }
+    }
 
+    override fun onClickStart() {
+        viewModelScope.launch { _effect.emit(OnBoardingUIEffect.ClickOnGoToSignup) }
     }
 }

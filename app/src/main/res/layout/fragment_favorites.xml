@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.favorites.FavoritesViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_white"
+        android:paddingHorizontal="@dimen/_16dp"
+        tools:context=".ui.favorites.FavoritesFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorites_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_12dp"
+            app:hideIfListEmpty="@{viewModel.state.favoritesRecipes.empty}"
+            app:items="@{viewModel.state.favoritesRecipes}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_favorite" />
+
+        <ImageView
+            android:id="@+id/empty_favorites_vector"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:showWhenEmpty="@{viewModel.state.favoritesRecipes.empty}"
+            android:src="@drawable/empty_favorites"
+            app:layout_constraintBottom_toTopOf="@id/empty_favorites_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/empty_favorites_title"
+            style="@style/TextStyle.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:showWhenEmpty="@{viewModel.state.favoritesRecipes.empty}"
+            android:text="@string/there_are_no_favourites"
+            android:textColor="@color/fontColor_secondary"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintBottom_toTopOf="@id/empty_favorites_description"
+            app:layout_constraintEnd_toEndOf="@id/empty_favorites_vector"
+            app:layout_constraintStart_toStartOf="@id/empty_favorites_vector"
+            app:layout_constraintTop_toBottomOf="@id/empty_favorites_vector" />
+
+        <TextView
+            android:id="@+id/empty_favorites_description"
+            style="@style/TextStyle.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4dp"
+            android:layout_marginBottom="?android:attr/actionBarSize"
+            android:gravity="center"
+            android:showWhenEmpty="@{viewModel.state.favoritesRecipes.empty}"
+            android:text="@string/empty_fav_description"
+            android:textColor="@color/fontColor_accent"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/empty_favorites_vector"
+            app:layout_constraintStart_toStartOf="@id/empty_favorites_vector"
+            app:layout_constraintTop_toBottomOf="@id/empty_favorites_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
