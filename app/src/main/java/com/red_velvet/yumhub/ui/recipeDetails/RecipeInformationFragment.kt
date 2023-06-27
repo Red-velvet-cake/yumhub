@@ -1,6 +1,9 @@
 package com.red_velvet.yumhub.ui.recipeDetails
 
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -66,6 +69,19 @@ class RecipeInformationFragment : BaseFragment<
             .actionRecipeInformationFragmentToCategoryRecipesFragment(type, 0)
 
         findNavController().navigate(directions)
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        val inflater = MenuInflater(context)
+        inflater.inflate(R.menu.menu_favorite, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return super.onContextItemSelected(item)
     }
 
 }
