@@ -3,7 +3,7 @@ package com.red_velvet.yumhub.ui.recipeDetails
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 
 
-fun RecipeInformationEntity.map(): RecipeInformationUIState {
+fun RecipeInformationEntity.toUIState(): RecipeInformationUIState {
     return RecipeInformationUIState(
         id = id,
         image = this.image,

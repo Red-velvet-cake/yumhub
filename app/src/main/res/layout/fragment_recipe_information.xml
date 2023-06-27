@@ -59,14 +59,6 @@
 
         </LinearLayout>
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_recipe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="@string/title_ingredients" />
-
         <ImageView
             android:id="@+id/image_recipe"
             android:layout_width="match_parent"
@@ -76,7 +68,7 @@
             app:imageUrl="@{viewModel.state.image}"
             app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_recipe"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/slide_1" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -193,7 +185,6 @@
                     android:layout_marginTop="@dimen/spacing_xlarge"
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:fontFamily="@font/roboto_regular"
-                    android:lines="5"
                     android:textColor="@color/fontColor_accent"
                     android:textSize="@dimen/font_size_title"
                     app:htmlText="@{viewModel.state.description}"

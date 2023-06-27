@@ -33,7 +33,7 @@ class RecipeInformationViewModel @Inject constructor(
     }
 
     private fun onSuccess(recipe: RecipeInformationEntity) {
-        _state.update { recipe.map().copy(isLoading = false) }
+        _state.update { recipe.toUIState().copy(isLoading = false, error = null) }
     }
 
     private fun onError(error: ErrorUIState) {

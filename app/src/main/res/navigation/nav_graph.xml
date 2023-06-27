@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_homeFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"

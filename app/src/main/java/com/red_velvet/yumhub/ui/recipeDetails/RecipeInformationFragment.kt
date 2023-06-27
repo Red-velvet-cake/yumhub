@@ -1,7 +1,7 @@
 package com.red_velvet.yumhub.ui.recipeDetails
 
 import android.os.Bundle
-import android.view.ContextMenu
+import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -33,6 +33,8 @@ class RecipeInformationFragment : BaseFragment<
 
         val ingredientsAdapter = IngredientsAdapter(emptyList(), viewModel)
         binding.recyclerViewIngredients.adapter = ingredientsAdapter
+
+        setHasOptionsMenu(true)
     }
 
     override fun observeOnUIEffects() {
@@ -71,13 +73,9 @@ class RecipeInformationFragment : BaseFragment<
         findNavController().navigate(directions)
     }
 
-    override fun onCreateContextMenu(
-        menu: ContextMenu,
-        v: View,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        val inflater = MenuInflater(context)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_favorite, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
