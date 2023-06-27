@@ -7,7 +7,7 @@ data class IngredientsUIState(
     val resultIngredient: List<ExtendedIngredientUIState> = emptyList(),
     val isLoading: Boolean = true,
     val error: ErrorUIState? = null
-) : BaseUiState()
+) : BaseUiState
 
 data class ExtendedIngredientUIState(
     val image: String,
