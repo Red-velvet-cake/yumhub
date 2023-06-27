@@ -17,22 +17,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.instructions.InstructionsFragment">
 
-        <TextView
-            android:id="@+id/title_steps_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:background="@color/primary"
-            android:drawablePadding="@dimen/spacing_x_x_small"
-            android:fontFamily="@font/roboto_bold"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/spacing_x_x_small"
-            android:paddingEnd="@dimen/spacing_x_x_small"
-            android:text="@string/steps"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_16"
-            app:drawableStartCompat="@drawable/baseline_format_list_numbered_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/instructions_recycler_view"
@@ -46,7 +30,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_steps_text_view"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_instrections_step" />
 
 
