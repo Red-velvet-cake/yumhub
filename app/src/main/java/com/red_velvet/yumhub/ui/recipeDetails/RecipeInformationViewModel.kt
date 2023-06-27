@@ -1,9 +1,10 @@
 package com.red_velvet.yumhub.ui.recipeDetails
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
-import com.red_velvet.yumhub.domain.usecases.AddToHistoryMealsUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetRecipeInformationUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -21,6 +22,9 @@ class RecipeInformationViewModel @Inject constructor(
 
     val args = RecipeInformationFragmentArgs.fromSavedStateHandle(stateHandle)
 
+    private val _isFavorite = MutableLiveData<Boolean>()
+    val isFavorite: LiveData<Boolean> = _isFavorite
+
     init {
         getRecipeInformation(args.id)
     }
@@ -34,7 +38,7 @@ class RecipeInformationViewModel @Inject constructor(
     }
 
     private fun onSuccess(recipe: RecipeInformationEntity) {
-        _state.update { recipe.map().copy(isLoading = false) }
+        _state.update { recipe.toUIState().copy(isLoading = false, error = null) }
     }
 
 
@@ -57,6 +61,16 @@ class RecipeInformationViewModel @Inject constructor(
     override fun onAddToMealPlan(recipeId: Int) {
         viewModelScope.launch { _effect.emit(RecipeDetailsUIEffect.ClickAddToMealPlan(recipeId)) }
     }
+
+    fun onListener() {
+        if (_isFavorite.value == true) {
+            _isFavorite.postValue(false)
+        } else {
+            _isFavorite.postValue(true)
+        }
+
+    }
+
 
 }
 

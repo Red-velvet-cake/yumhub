@@ -3,10 +3,12 @@ package com.red_velvet.yumhub.repositories
 
 import android.util.Log
 import com.red_velvet.yumhub.domain.mapper.toEntity
+import com.red_velvet.yumhub.domain.mapper.toModel
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
 import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
+import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
@@ -42,12 +44,12 @@ class RecipesRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : RecipesRepository {
+
     override suspend fun getDietRecipe(type: String): List<SearchRecipeEntity> {
         return remoteDataSource.searchRecipe(diet = type)
             .results?.map(RecipeInformationResource::toRecipeSearchEntity)
             ?: emptyList()
     }
-
 
     override suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity> {
         return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationResource::toPopularEntity)
@@ -167,6 +169,14 @@ class RecipesRepositoryImpl @Inject constructor(
 
     override suspend fun getHomeSliderImagesList(): List<SliderItemEntity> {
         return localDataSource.getHomeSliderImagesList().toEntity()
+    }
+
+    override suspend fun getExtendedIngredients(
+        id: Int,
+        includeNutrition: Boolean
+    ): List<ExtendedIngredientEntity> {
+        return remoteDataSource.getRecipeInformation(id, includeNutrition)
+            .extendedIngredients.map { it.toModel() }
     }
 
 }

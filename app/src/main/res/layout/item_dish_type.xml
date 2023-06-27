@@ -30,6 +30,7 @@
             android:onClick="@{() -> listener.onDishTypeClicked(item.dishType)}"
             android:textColor="@color/fontColor_secondary"
             android:textSize="@dimen/text_size_16"
+            app:chipCornerRadius="@dimen/_16dp"
             app:chipStrokeColor="@color/primary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

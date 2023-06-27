@@ -2,7 +2,7 @@
     android:width="16dp"
     android:height="16dp"
     android:autoMirrored="true"
-    android:tint="#5ABC84"
+    android:tint="@color/fontColor_accent"
     android:viewportWidth="24"
     android:viewportHeight="24">
     <path

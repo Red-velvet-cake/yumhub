@@ -165,5 +165,11 @@
         android:id="@+id/chatbotFragment"
         android:name="com.red_velvet.yumhub.ui.chatbot.ChatbotFragment"
         android:label="ChatBot" />
+    <fragment
+        android:id="@+id/ingredientsFragment"
+        android:name="com.red_velvet.yumhub.ui.ingredients.IngredientsFragment"
+        android:label="IngredientsFragment"
+        tools:layout="@layout/fragment_ingredients" />
+
 
 </navigation>

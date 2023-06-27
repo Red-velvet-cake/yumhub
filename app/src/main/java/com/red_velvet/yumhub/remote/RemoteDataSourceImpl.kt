@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.remote
 import android.util.Log
 import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
 import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
+import com.red_velvet.yumhub.remote.resources.ExtendedIngredientResource
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
@@ -130,7 +131,14 @@ class RemoteDataSourceImpl @Inject constructor(
         id: Int,
         stepBreakdown: Boolean?,
     ): List<AnalyzedInstructionResource> {
-        return tryToExecute {foodService.getAnalyzedInstructions(id,stepBreakdown)}
+        return tryToExecute { foodService.getAnalyzedInstructions(id, stepBreakdown) }
+    }
+
+    override suspend fun getExtendedIngredients(
+        id: Int,
+        includeNutrition: Boolean
+    ): List<ExtendedIngredientResource> {
+        return tryToExecute { foodService.getExtendedIngredients(id, includeNutrition) }
     }
 
     private suspend fun <T> tryToExecute(func: suspend () -> Response<T>): T {

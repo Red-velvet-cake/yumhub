@@ -7,39 +7,35 @@
 
         <variable
             name="item"
-            type="com.red_velvet.yumhub.ui.recipeDetails.IngredientsUIState" />
+            type="com.red_velvet.yumhub.ui.ingredients.ExtendedIngredientUIState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_space"
-        android:layout_marginEnd="@dimen/small_space"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/spacing_x_small">
 
         <ImageView
-            android:id="@+id/image_ingredients"
+            android:id="@+id/image_view_ingredient"
             android:layout_width="@dimen/item_ingredient_image_width"
             android:layout_height="@dimen/item_ingredient_image_height"
             android:scaleType="centerCrop"
-            app:imageUrl='@{"https://spoonacular.com/cdn/ingredients_100x100/"+item.image}'
+            app:imageUrl="@{item.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/slide_1" />
+            tools:src="@drawable/recipe" />
 
         <TextView
-            android:layout_width="@dimen/no_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4dp"
-            android:ellipsize="end"
+            android:layout_marginStart="@dimen/spacing_medium"
             android:fontFamily="@font/roboto_regular"
-            android:lines="1"
+            android:text="@{item.original}"
             android:textSize="@dimen/text_size_16"
-            android:text="@{item.name}"
-            app:layout_constraintEnd_toEndOf="@id/image_ingredients"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_ingredients"
-            tools:text=" Butter Butter Butter ButterButterButter" />
+            app:layout_constraintBottom_toBottomOf="@id/image_view_ingredient"
+            app:layout_constraintStart_toEndOf="@id/image_view_ingredient"
+            app:layout_constraintTop_toTopOf="@id/image_view_ingredient"
+            tools:text="1 Teaspoon Butter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

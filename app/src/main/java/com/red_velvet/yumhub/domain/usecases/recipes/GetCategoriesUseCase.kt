@@ -9,7 +9,7 @@ class GetCategoriesUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<CategoryEntity> {
-        return recipesRepository.getCategoriesFromRemote()
+        return recipesRepository.getCategoriesFromRemote().shuffled()
     }
 
 }

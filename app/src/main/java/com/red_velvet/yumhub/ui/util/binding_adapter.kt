@@ -17,7 +17,7 @@ import com.red_velvet.yumhub.ui.home.adapters.HomeSliderAdapter
 
 @BindingAdapter("android:hideWhenErr")
 fun hideWhenError(view: View, errorState: ErrorUIState?) {
-    view.isVisible = errorState != null
+    view.isVisible = errorState == null
 }
 
 @BindingAdapter("android:showNoInternet")
