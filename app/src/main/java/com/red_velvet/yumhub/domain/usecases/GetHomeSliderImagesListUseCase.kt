@@ -9,6 +9,6 @@ class GetHomeSliderImagesListUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<SliderItemEntity> {
-        return recipesRepository.getHomeSliderImagesList()
+        return recipesRepository.getHomeSliderImagesList().shuffled()
     }
 }
