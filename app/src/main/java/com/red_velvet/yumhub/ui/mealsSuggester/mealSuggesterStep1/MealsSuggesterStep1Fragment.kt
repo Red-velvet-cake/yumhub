@@ -1,6 +1,10 @@
 package com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1
 
+import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,9 +23,14 @@ class MealsSuggesterStep1Fragment :
     BaseFragment<FragmentFoodSuggesterStepOneBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1UiEffect, MealsSuggesterStep1ViewModel>() {
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_food_suggester_step_one
-    override val viewModel: MealsSuggesterStep1ViewModel by viewModels()
+    override val viewModel: MealsSuggesterStep1ViewModel by activityViewModels()
     override fun observeOnUIEffects() {
         lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.i("jalal","step1 created")
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun handleUIEffect(uiEffect: MealsSuggesterStep1UiEffect) {
@@ -31,21 +40,23 @@ class MealsSuggesterStep1Fragment :
                 uiEffect.activityLevel
             )
 
-            MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked()
             is MealsSuggesterStep1UiEffect.ClickOnGoalSelector -> {}
+            is MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked(uiEffect.type)
         }
     }
 
-    private fun onNextButtonClicked() {
-      val directions =
-          MealsSuggesterStep1FragmentDirections.actionMealsSuggesterStep1FragmentToMealsSuggesterStep2Fragment()
-      findNavController().navigate(directions)
+    private fun onNextButtonClicked(type:String ) {
+        if (type == "stepOne") {
+            val directions =
+                MealsSuggesterStep1FragmentDirections.actionMealsSuggesterStep1FragmentToMealsSuggesterStep2Fragment()
+            findNavController().navigate(directions)
+        }
     }
 
-    private fun activityLevelSelector(activityLevel: String) {
+    private fun activityLevelSelector(activityLevel: Int) {
         when(activityLevel)
         {
-            "Lazy"->{
+            1->{
                 binding.lazy.background = resources.getDrawable(R.color.primary)
                 binding.lazy.setTextColor(resources.getColor(R.color.white))
                 binding.lazy.compoundDrawableTintList=resources.getColorStateList(R.color.white)
@@ -56,7 +67,7 @@ class MealsSuggesterStep1Fragment :
                 binding.VeryActive.setTextColor(resources.getColor(R.color.black))
                 binding.VeryActive.compoundDrawableTintList=resources.getColorStateList(R.color.black)
             }
-            "Normal"->{
+            2->{
                 binding.Normal.background = resources.getDrawable(R.color.primary)
                 binding.Normal.setTextColor(resources.getColor(R.color.white))
                 binding.Normal.compoundDrawableTintList=resources.getColorStateList(R.color.white)
