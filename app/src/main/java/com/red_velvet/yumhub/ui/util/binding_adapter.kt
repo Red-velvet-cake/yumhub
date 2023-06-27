@@ -86,6 +86,7 @@ fun hideIfZero(view: View, value: Int) {
         view.isVisible = false
     }
 }
+
 @BindingAdapter("app:showIfDsc")
 fun showIfDsc(view: View, value: String) {
     if (value == "dsc") {
@@ -95,6 +96,7 @@ fun showIfDsc(view: View, value: String) {
     }
 
 }
+
 @BindingAdapter("app:hideIfListEmpty")
 fun hideIfListEmpty(view: View, value: Boolean) {
     view.isVisible = !value
@@ -115,6 +117,16 @@ fun <T> hideWhenSuccessSearch(view: View, text: String, loading: Boolean, isResu
         View.INVISIBLE
     }
 }
+
+@BindingAdapter(value = ["app:hideIfIsHistoryEmpty"])
+fun hideIfIsHistoryEmpty(view: View, isResultEmpty: Boolean) {
+    view.visibility = if (isResultEmpty) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
+}
+
 
 @BindingAdapter(value = ["app:searchInput", "app:isResultEmpty"])
 fun <T> showToClearIfNoResult(view: View, text: String, isResultEmpty: Boolean) {

@@ -6,6 +6,7 @@ import com.red_velvet.yumhub.local.daos.RecipeDao
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.FavoriteRecipeDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
+import com.red_velvet.yumhub.local.entities.HistoryItemLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
@@ -77,6 +78,17 @@ class LocalDataSourceImpl @Inject constructor(
         recipeDao.clearFavoriteRecipes()
     }
 
+    override fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>> {
+        return mealsDao.getHistoryMeals()
+    }
+
+    override suspend fun insertHistoryItem(historyItemLocalDto: List<HistoryItemLocalDto>) {
+        mealsDao.insertHistoryMeal(historyItemLocalDto)
+    }
+
+    override suspend fun deleteHistoryItem(mealId: Int) {
+        mealsDao.deleteHistoryMeal(mealId)
+    }
 
     private val mealTypes = listOf(
         "main course",

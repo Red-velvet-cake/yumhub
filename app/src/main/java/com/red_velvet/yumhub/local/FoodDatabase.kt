@@ -7,6 +7,7 @@ import com.red_velvet.yumhub.local.daos.RecipeDao
 import com.red_velvet.yumhub.local.entities.CategoryDatabaseDto
 import com.red_velvet.yumhub.local.entities.FavoriteRecipeDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
+import com.red_velvet.yumhub.local.entities.HistoryItemLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
@@ -16,6 +17,7 @@ import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
         MealPlanLocalDto::class,
         HealthyRecipeLocalDto::class,
         PopularRecipeLocalDto::class,
+        HistoryItemLocalDto::class,
         QuickRecipeLocalDto::class,
         CategoryDatabaseDto::class,
         FavoriteRecipeDto::class],
