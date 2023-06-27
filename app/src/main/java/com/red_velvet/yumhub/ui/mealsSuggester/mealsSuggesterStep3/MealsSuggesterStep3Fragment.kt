@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.red_velvet.yumhub.R
@@ -20,23 +21,25 @@ class MealsSuggesterStep3Fragment :
     BaseFragment<FragmentFoodSuggesterStepThreeBinding, MealsSuggesterStep1UiState, MealsSuggesterStep1UiEffect, MealsSuggesterStep1ViewModel>() {
     @LayoutRes
     override val layoutIdFragment: Int = R.layout.fragment_food_suggester_step_three
-    override val viewModel: MealsSuggesterStep1ViewModel by viewModels()
+    override val viewModel: MealsSuggesterStep1ViewModel by activityViewModels()
     override fun observeOnUIEffects() {
         lifecycleScope.launch { viewModel.effect.collect { handleUIEffect(it) } }
     }
 
     override fun handleUIEffect(uiEffect: MealsSuggesterStep1UiEffect) {
         when (uiEffect) {
-            is MealsSuggesterStep1UiEffect.ClickOnGoalSelector -> Log.i("jalal", "do what you want")
+            is MealsSuggesterStep1UiEffect.ClickOnGoalSelector -> {}
             is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> {}
             is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
-            MealsSuggesterStep1UiEffect.OnNextClicked -> {}
+            is MealsSuggesterStep1UiEffect.OnNextClicked -> {}
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.i("jalal","step3 created")
         val mealSuggesterAdapter = MealSuggesterAdapter(mutableListOf(), viewModel)
         binding.suggestedMealsRecyclerView.adapter = mealSuggesterAdapter
+
     }
 
 }
