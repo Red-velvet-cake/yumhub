@@ -12,29 +12,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ic_back_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
-            android:layout_marginStart="@dimen/radius_16dp"
-            android:layout_marginTop="@dimen/_12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-        <TextView
-            android:id="@+id/feature_name_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Food Suggester System"
-            android:layout_marginStart="@dimen/_8dp"
-            android:fontFamily="@font/roboto_medium"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/fontColor_primary"
-            app:layout_constraintStart_toEndOf="@id/ic_back_id"
-            app:layout_constraintTop_toTopOf="@id/ic_back_id"
-            app:layout_constraintBottom_toBottomOf="@id/ic_back_id"
-            />
         <com.google.android.material.chip.Chip
             android:id="@+id/step_one_progress_id"
             android:layout_width="65dp"
@@ -43,7 +20,7 @@
             android:backgroundTint="@color/green_green20"
             app:chipStrokeWidth="@dimen/_0dp"
             android:layout_marginEnd="@dimen/_4dp"
-            app:layout_constraintTop_toBottomOf="@id/feature_name_id"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/step_two_progress_id"
             app:chipEndPadding="65dp"
             />
@@ -55,7 +32,7 @@
             android:backgroundTint="@color/green_green20"
             app:chipStrokeWidth="@dimen/_0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/feature_name_id"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:chipEndPadding="65dp"
             />
@@ -68,7 +45,7 @@
             android:backgroundTint="@color/primary"
             app:chipStrokeWidth="@dimen/_0dp"
             app:layout_constraintStart_toEndOf="@id/step_two_progress_id"
-            app:layout_constraintTop_toBottomOf="@id/feature_name_id"
+            app:layout_constraintTop_toTopOf="parent"
             app:chipEndPadding="65dp"
             />
         <TextView
@@ -102,7 +79,7 @@
             android:id="@+id/suggestions_meals_suitable_you_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/suggestions_meals_suitable_you"
+            android:text="@{viewModel.state.error.toString()}"
             android:textSize="@dimen/text_size_16"
             android:layout_marginStart="@dimen/radius_16dp"
             android:layout_marginTop="@dimen/spacing_large_24"
