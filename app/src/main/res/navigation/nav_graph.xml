@@ -14,10 +14,11 @@
             android:id="@+id/action_searchFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/nutritionalValueFragment"
         android:name="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueFragment"
-        android:label="z"
+        android:label=""
         tools:layout="@layout/fragment_nutritional_value" />
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -147,7 +148,9 @@
         <action
             android:id="@+id/action_profileFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
-
+        <action
+            android:id="@+id/action_profileFragment_to_chatbotFragment"
+            app:destination="@id/chatbotFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -158,5 +161,9 @@
             android:id="@+id/action_favoritesFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.red_velvet.yumhub.ui.chatbot.ChatbotFragment"
+        android:label="ChatBot" />
 
 </navigation>

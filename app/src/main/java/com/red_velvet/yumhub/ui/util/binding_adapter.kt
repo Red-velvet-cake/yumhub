@@ -218,7 +218,7 @@ fun loadImage(view: ImageView, imageUrl: String) {
     Glide.with(view).load(imageUrl)
         .fitCenter()
         .centerCrop()
-        .placeholder(R.drawable.baseline_image_24)
+//        .placeholder(R.drawable.placeholder)
         .into(view)
 }
 
@@ -228,6 +228,24 @@ fun showHtml(view: TextView, html: String?) {
         view.text = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
+@BindingAdapter("app:hideIfMessageExist")
+fun<T> hideIfMessageExist(view: View, message: List<T>) {
+    if(message.isNotEmpty()){
+        view.visibility = View.GONE
+    }else{
+        view.visibility = View.VISIBLE
+    }
+}
+@BindingAdapter("app:hideIfMessageIsNullOrEmpty")
+fun hideIfMessageIsNullOrEmpty(view: View, message: String?) {
+    if(message.isNullOrEmpty()){
+        view.visibility = View.GONE
+    }else{
+        view.visibility = View.VISIBLE
+    }
+}
+
+
 
 @BindingAdapter("android:showWhenEmpty")
 fun showWhenEmpty(view: View, boolean: Boolean) {
