@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.ui.recipeDetails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
+import com.red_velvet.yumhub.domain.usecases.AddToHistoryMealsUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.GetRecipeInformationUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -35,6 +36,7 @@ class RecipeInformationViewModel @Inject constructor(
     private fun onSuccess(recipe: RecipeInformationEntity) {
         _state.update { recipe.toUIState().copy(isLoading = false, error = null) }
     }
+
 
     private fun onError(error: ErrorUIState) {
         _state.update { it.copy(isLoading = false, error = error) }

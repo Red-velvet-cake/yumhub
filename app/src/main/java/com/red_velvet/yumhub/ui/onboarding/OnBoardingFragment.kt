@@ -2,10 +2,14 @@ package com.red_velvet.yumhub.ui.onboarding
 
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentOnboardingBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class OnBoardingFragment :
@@ -14,10 +18,17 @@ class OnBoardingFragment :
     override val layoutIdFragment: Int = R.layout.fragment_onboarding
     override val viewModel: OnBoardingViewModel by viewModels()
     override fun observeOnUIEffects() {
-//        TODO("Not yet implemented")
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
     }
 
     override fun handleUIEffect(uiEffect: OnBoardingUIEffect) {
-//        TODO("Not yet implemented")
+        when (uiEffect) {
+            OnBoardingUIEffect.ClickOnGoToSignup -> onGoToSignup()
+        }
+    }
+
+    private fun onGoToSignup() {
+        val directions = OnBoardingFragmentDirections.actionOnBoardingFragmentToSignupFragment()
+        findNavController().navigate(directions)
     }
 }

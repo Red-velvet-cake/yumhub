@@ -3,7 +3,10 @@ package com.red_velvet.yumhub.repositories
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.red_velvet.yumhub.domain.mapper.toEntity
+import com.red_velvet.yumhub.domain.mapper.toHistoryItemLocalDto
+import com.red_velvet.yumhub.domain.models.HistoryMealEntity
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
+import com.red_velvet.yumhub.domain.models.toHistoryItemLocalEntity
 import com.red_velvet.yumhub.domain.models.toMealPlanResource
 import com.red_velvet.yumhub.domain.repositories.MealRepository
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
@@ -38,6 +41,22 @@ class MealRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun addToHistoryMeals(historyMealEntity: List<HistoryMealEntity>) {
+        localDataSource.insertHistoryItem(historyMealEntity.map(HistoryMealEntity::toHistoryItemLocalDto))
+    }
+
+    override suspend fun deleteFromHistoryMeals(mealId: Int) {
+        localDataSource.deleteHistoryItem(mealId)
+    }
+
+    override suspend fun getHistoryMeals(): Flow<List<HistoryMealEntity>> {
+        return localDataSource.getHistoryMeals().map {
+            it.map { historyItemLocalDto ->
+                historyItemLocalDto.toHistoryItemLocalEntity()
+            }
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun refreshWeekMealsPlan(
         date: String,
@@ -58,27 +77,7 @@ class MealRepositoryImpl @Inject constructor(
                 }
             }?.flatten()!!
         )
-
-//        val l = remoteDataSource.getWeekMealPlan(
-//            date,
-//            username,
-//            hash
-//        ).dayResources?.let {
-//            it.map {
-//                it.itemResources?.map {
-//                    it.toEntity(Instant.now().toEpochMilli())
-//                }
-//            }
-//        }
-
     }
-//            .map { day ->
-//            day.items?.map {
-//                it.toEntity(Instant.now().toEpochMilli())
-//            }?.let { localDataSource.insertWeekPlanMeal(it) }
-//        }
-
-
 }
 
 

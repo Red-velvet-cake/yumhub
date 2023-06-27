@@ -1,14 +1,12 @@
 package com.red_velvet.yumhub.ui.signUp
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.red_velvet.yumhub.domain.models.UserInformationEntity
 import com.red_velvet.yumhub.domain.usecases.SaveUserNameAndHashUseCase
-import com.red_velvet.yumhub.domain.usecases.SignUpValidation
-import com.red_velvet.yumhub.local.SharedPreferenceImpl
+import com.red_velvet.yumhub.domain.usecases.SignUpValidationUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,74 +14,57 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val saveUserInformation: SaveUserNameAndHashUseCase,
-    private val signUpValidation: SignUpValidation,
+    private val signUpValidation: SignUpValidationUseCase,
 ) : BaseViewModel<SignUpUIState, SignupUIEffect>(SignUpUIState()) {
 
-    fun onUsernameChange(username: String) {
-        _state.update { it.copy(username = username, usernameError = null) }
+    private var signupJob: Job? = null
+
+    fun onNameChange(name: String) {
+        _state.update {
+            it.copy(
+                name = name,
+                isValidName = signUpValidation.validateName(name)
+            )
+        }
     }
 
-    fun onFirstNameChange(firstName: String) {
-        _state.update { it.copy(firstName = firstName, firstNameError = null) }
-    }
-
-    fun onLastNameChange(lastName: String) {
-        _state.update { it.copy(lastName = lastName, lastNameError = null) }
-    }
-
-    fun onEmailChange(email: String) {
-        _state.update { it.copy(email = email, emailError = null) }
-    }
-
-    fun onPasswordChange(password: String) {
-        _state.update { it.copy(password = password, passwordError = null) }
+    fun onApiKeyChange(apiKey: String) {
+        _state.update {
+            it.copy(
+                apiKey = apiKey,
+                isValidApiKey = signUpValidation.validateApiKey(apiKey)
+            )
+        }
     }
 
     fun onSignUpButtonClicked() {
-        val currentState = _state.value
-        _state.update { it.copy(isLoading = true, isSignUpButtonClicked = true) }
-        if (signUpValidation.isFormValid(currentState.toUserInformation())) {
-            tryToExecute(
-                { saveUserInformation.invoke(currentState.toUserInformation()) },
-                onSuccess = ::onSignUpSuccess,
-                onError = ::onError
-            )
-        } else {
-            updateValidationErrors(currentState)
-            _state.update { it.copy(isLoading = false, isSignUpButtonClicked = false) }
+        if (signupJob == null || signupJob?.isCompleted == true) {
+            trySignUp()
         }
     }
 
-    private fun onSignUpSuccess(unit:Unit) {
-        viewModelScope.launch {
-            _effect.emit(SignupUIEffect.LoggedInSuccessfully)
+    private fun trySignUp() {
+        _state.update { it.copy(isLoading = true) }
+        val currentState = _state.value
+        if (signUpValidation.validateForm(currentState.name, currentState.apiKey)) {
+            signupJob = tryToExecute(
+                { saveUserInformation(currentState.name, currentState.apiKey) },
+                ::onSignUpSuccess,
+                ::onError
+            )
+        } else {
+            _state.update { it.copy(isLoading = false, isValidApiKey = false, isValidName = false) }
         }
+    }
+
+    private fun onSignUpSuccess(unit: Unit) {
+        viewModelScope.launch { _effect.emit(SignupUIEffect.LoggedInSuccessfully) }
         _state.update { it.copy(isLoading = false) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.d("alhams", "onError: $errorUiState")
+        viewModelScope.launch { _effect.emit(SignupUIEffect.ShowError(errorUiState)) }
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
-    private fun updateValidationErrors(state: SignUpUIState) {
-        _state.update {
-            it.copy(
-                usernameError = signUpValidation.validateUsername(state.username),
-                firstNameError = signUpValidation.validateFirstName(state.firstName),
-                lastNameError = signUpValidation.validateLastName(state.lastName),
-                emailError = signUpValidation.validateEmail(state.email),
-                passwordError = signUpValidation.validatePassword(state.password)
-            )
-        }
-    }
-
-    private fun SignUpUIState.toUserInformation(): UserInformationEntity {
-        return UserInformationEntity(
-            username = username,
-            firstName = firstName,
-            lastName = lastName,
-            email = email,
-        )
-    }
 }

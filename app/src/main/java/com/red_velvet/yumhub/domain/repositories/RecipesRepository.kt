@@ -58,7 +58,9 @@ interface RecipesRepository {
 
     suspend fun getQuickAnswer(
         question: String = ""
-    ): QuickAnswerEntity
+    )
+
+    suspend fun getAllChatBotMessages(): Flow<List<QuickAnswerEntity>>
 
     suspend fun refreshPopularRecipes(recipesList: List<PopularRecipeEntity>)
 

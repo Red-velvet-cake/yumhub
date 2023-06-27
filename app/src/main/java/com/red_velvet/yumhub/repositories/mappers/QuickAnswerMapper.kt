@@ -8,6 +8,6 @@ fun QuickAnswerResource.toEntity(): QuickAnswerEntity {
     return QuickAnswerEntity(
         answer = this.answer.orEmpty(),
         image = this.image.orEmpty(),
-        type = this.type.orEmpty()
+        qsn = ""
     )
 }
