@@ -32,7 +32,7 @@ fun List<QuickRecipeEntity>.toQuickRecipeUiState(): List<QuickRecipeUiState> {
             id = it.id,
             recipeImage = it.image,
             recipeTitle = it.title,
-            cookingTime = it.cookingMinutes
+            cookingTime = if (it.cookingMinutes < 1) 1 else it.cookingMinutes
         )
     }
 }
