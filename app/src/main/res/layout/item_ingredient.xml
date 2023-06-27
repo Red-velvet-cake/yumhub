@@ -10,7 +10,7 @@
             type="com.red_velvet.yumhub.ui.recipeDetails.IngredientsUIState" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_space"
@@ -21,17 +21,25 @@
             android:id="@+id/image_ingredients"
             android:layout_width="@dimen/item_ingredient_image_width"
             android:layout_height="@dimen/item_ingredient_image_height"
-            android:layout_gravity="center"
             android:scaleType="centerCrop"
             app:imageUrl='@{"https://spoonacular.com/cdn/ingredients_100x100/"+item.image}'
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/slide_1" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/no_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:lines="1"
+            android:textSize="@dimen/text_size_16"
             android:text="@{item.name}"
-            tools:text=" Butter" />
+            app:layout_constraintEnd_toEndOf="@id/image_ingredients"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_ingredients"
+            tools:text=" Butter Butter Butter ButterButterButter" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
