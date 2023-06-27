@@ -69,7 +69,7 @@
     <fragment
         android:id="@+id/categoryRecipesFragment"
         android:name="com.red_velvet.yumhub.ui.category.CategoryRecipesFragment"
-        android:label="RecipeCategoryFragment"
+        android:label="Recipes"
         tools:layout="@layout/fragment_category_recipes">
         <argument
             android:name="categoryTitle"
@@ -103,7 +103,7 @@
     <fragment
         android:id="@+id/recipeInformationFragment"
         android:name="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationFragment"
-        android:label="RecipeInformationFragment"
+        android:label="Recipe Details"
         tools:layout="@layout/fragment_recipe_information">
         <action
             android:id="@+id/action_recipeInformationFragment_to_instructionsFragment"
