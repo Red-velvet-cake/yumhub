@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.FoodSystemEntity
 import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.usecases.CalculateNeededCaloriesUseCase
+import com.red_velvet.yumhub.domain.usecases.CalculateRangeOfNeededCaloriesUseCase
 import com.red_velvet.yumhub.domain.utils.orEmpty
 import com.red_velvet.yumhub.domain.utils.orZero
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -20,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MealsSuggesterStep1ViewModel @Inject constructor(
     private val calculateNeededCaloriesUseCase: CalculateNeededCaloriesUseCase,
+    private val calculateRangeOfNeededCaloriesUseCase: CalculateRangeOfNeededCaloriesUseCase
 ) : BaseViewModel<MealsSuggesterStep1UiState, MealsSuggesterStep1UiEffect>(
     MealsSuggesterStep1UiState()
 ), SuggestedMealsInteractionListener {
@@ -87,6 +89,17 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
     }
      fun onNextButtonClicked(type: String) {
          if (type == "stepTwo") {
+            val neededCalories = calculateRangeOfNeededCaloriesUseCase.calculateNeededCalories (
+                 FoodSystemEntity(
+                     age = _state.value.age.orZero(),
+                     weight = _state.value.weight.orZero(),
+                     height = _state.value.tall.orZero(),
+                     activityLevel = _state.value.activityLevel.orZero(),
+                     gender = _state.value.gender.orEmpty(),
+                     goal = _state.value.goal.orEmpty()
+                 )
+             )
+             _state.update { it.copy(calories = neededCalories.maximumCalories.toInt()) }
              tryToExecute(
                  {
                      calculateNeededCaloriesUseCase.calculateNeededCalories(
