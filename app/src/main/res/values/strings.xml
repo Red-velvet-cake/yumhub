@@ -135,4 +135,6 @@
     <string name="loss_weight">Loss Weight</string>
     <string name="gain_weight">Gain Weight</string>
     <string name="suggestions_meals_suitable_you">Suggestions meals</string>
+    <string name="how_old_are_you">how old are you ?</string>
+    <string name="what_is_your_weight_and_height">what is your weight and height</string>
 </resources>
