@@ -6,11 +6,13 @@ import androidx.fragment.app.viewModels
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentIngredientsBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.base.BaseUIEffect
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class IngredientsFragment
-    : BaseFragment<FragmentIngredientsBinding, IngredientsUIState, IngredientsViewModel>() {
+    :
+    BaseFragment<FragmentIngredientsBinding, IngredientsUIState, BaseUIEffect, IngredientsViewModel>() {
     override val layoutIdFragment: Int = R.layout.fragment_ingredients
     override val viewModel: IngredientsViewModel by viewModels()
 
@@ -19,6 +21,14 @@ class IngredientsFragment
 
         val ingredientsAdapter = ExtendedIngredientsAdapter(emptyList(), viewModel)
         binding.recyclerViewExtendedIngredients.adapter = ingredientsAdapter
+    }
+
+    override fun observeOnUIEffects() {
+        TODO("Not yet implemented")
+    }
+
+    override fun handleUIEffect(uiEffect: BaseUIEffect) {
+        TODO("Not yet implemented")
     }
 
 }
