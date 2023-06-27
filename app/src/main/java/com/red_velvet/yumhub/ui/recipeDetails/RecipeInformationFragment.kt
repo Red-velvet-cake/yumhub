@@ -1,9 +1,6 @@
 package com.red_velvet.yumhub.ui.recipeDetails
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +21,8 @@ class RecipeInformationFragment : BaseFragment<
 
     override val layoutIdFragment: Int = R.layout.fragment_recipe_information
     override val viewModel: RecipeInformationViewModel by viewModels()
+    private var isFavorite: Boolean = false
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,6 +34,7 @@ class RecipeInformationFragment : BaseFragment<
         binding.recyclerViewIngredients.adapter = ingredientsAdapter
 
         setHasOptionsMenu(true)
+        activity?.title = "Details"
     }
 
     override fun observeOnUIEffects() {
@@ -72,14 +72,4 @@ class RecipeInformationFragment : BaseFragment<
 
         findNavController().navigate(directions)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_favorite, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return super.onContextItemSelected(item)
-    }
-
 }

@@ -123,6 +123,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/text_recipe_name" />
 
+                <ImageView
+                    android:id="@+id/image_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    android:onClick="@{() -> viewModel.onListener()}"
+                    android:src="@{viewModel.isFavorite ? @drawable/ic_favorite_full : @drawable/ic_favorite}"
+                    app:layout_constraintStart_toStartOf="@+id/button_add_to_meal_plan"
+                    app:layout_constraintTop_toBottomOf="@+id/button_add_to_meal_plan" />
+
                 <TextView
                     android:id="@+id/text_recipe_time"
                     android:layout_width="wrap_content"
