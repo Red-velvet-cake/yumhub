@@ -45,10 +45,12 @@ class MessageAdapter (item: List<ChatBotResultUIState>) :
             val currentItem = items[position]
             when (holder) {
                 is HumanMessageViewHolder -> {
-                    holder.binding.setVariable(BR.item, currentItem)
+                    holder.binding.run{
+                        setVariable(BR.item, currentItem)
+                    }
                 }
                 is ChatBotMessageViewHolder -> {
-                    holder.binding.setVariable(BR.item, currentItem)
+                    holder.binding.run { setVariable(BR.item, currentItem) }
                 }
             }
         }
@@ -67,6 +69,15 @@ class MessageAdapter (item: List<ChatBotResultUIState>) :
         }
         return super.getItemViewType(position)
     }
+    override fun setItems(newItems: List<ChatBotResultUIState>) {
+        items = newItems
+        super.setItems(items)
+    }
+
+    override fun areItemsTheSame(oldItem: ChatBotResultUIState, newItem: ChatBotResultUIState): Boolean {
+        return oldItem == newItem
+    }
+
     class HumanMessageViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)
     class ChatBotMessageViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)
 
