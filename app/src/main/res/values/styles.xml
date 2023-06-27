@@ -107,4 +107,16 @@
         <item name="chipBackgroundColor">@color/background_color_chip_state_list</item>
         <item name="android:textColor">@color/text_color_chip_state_list</item>
     </style>
+
+    <style name="MealTypeStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearance">@style/OppositeRoundCorner</item>
+    </style>
+
+    <style name="OppositeRoundCorner">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
 </resources>

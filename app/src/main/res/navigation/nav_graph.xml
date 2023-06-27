@@ -152,5 +152,17 @@
         tools:layout="@layout/fragment_meal_plan"
         android:name="com.red_velvet.yumhub.ui.mealPlan.MealPlanFragment"
         android:label="Meal Plan" />
+    <fragment
+        android:id="@+id/plannedMealsFragment"
+        android:name="com.red_velvet.yumhub.ui.breakfastMeals.BreakfastMealsFragment"
+        android:label="Planned Meals"
+        tools:layout="@layout/fragment_breakfast_meals">
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

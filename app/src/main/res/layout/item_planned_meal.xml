@@ -7,11 +7,11 @@
 
         <variable
             name="item"
-            type="com.red_velvet.yumhub.ui.favorites.FavoritesUiState.RecipeUiState" />
+            type="com.red_velvet.yumhub.ui.mealPlan.MealPlanUiState.MealUiState" />
 
         <variable
             name="listener"
-            type="com.red_velvet.yumhub.ui.favorites.FavoriteInteractionListener" />
+            type="com.red_velvet.yumhub.ui.mealPlan.MealPlanInteractionListener" />
 
     </data>
 
@@ -23,7 +23,6 @@
         android:clickable="true"
         android:elevation="0dp"
         android:focusable="true"
-        android:onClick="@{() -> listener.onFavoriteRecipeClicked(item.id)}"
         app:cardCornerRadius="@dimen/_16dp"
         app:contentPadding="@dimen/size_8dp"
         app:strokeWidth="0dp">
@@ -37,7 +36,7 @@
                 android:layout_width="@dimen/image_card_width_100dp"
                 android:layout_height="@dimen/image_card_width_80dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{item.image}"
+                app:imageUrl="@{item.imageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +51,7 @@
                 android:layout_marginHorizontal="@dimen/_12dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@{item.title}"
+                android:text="@{item.name}"
                 app:layout_constraintBottom_toTopOf="@id/text_view_meal_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image_view_meal"
@@ -68,7 +67,7 @@
                 android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                app:htmlText="@{item.overview}"
+                android:text="@{item.description}"
                 app:layout_constraintBottom_toBottomOf="@id/image_view_meal"
                 app:layout_constraintEnd_toEndOf="@id/text_view_meal_name"
                 app:layout_constraintStart_toStartOf="@id/text_view_meal_name"
