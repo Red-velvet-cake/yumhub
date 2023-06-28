@@ -119,7 +119,7 @@ interface FoodService {
         @Query("stepBreakdown") stepBreakdown: Boolean? = false,
     ): Response<List<AnalyzedInstructionResource>>
 
-    @GET("recipes/{id}/nutritionWidget")
+    @GET("recipes/{id}/nutritionWidget.json")
     suspend fun getNutritionWidget(@Path("id") id: Int): Response<NutritionWidgetResource>
 }
 
