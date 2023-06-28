@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+     <variable
+         name="viewModel"
+         type="com.red_velvet.yumhub.ui.nutrition_info.NutritionInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tab_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_48dp"
+            android:background="@color/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black_title_36"
+            app:cardCornerRadius="0dp"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/background"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_view_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16dp"
+                    android:layout_marginTop="@dimen/_12dp"
+                    android:layout_marginEnd="@dimen/space_32dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/title"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/text_view_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_72dp"
+                    android:layout_marginTop="@dimen/_12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="@string/amount"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/text_view_daily_need"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4dp"
+                    android:layout_marginTop="@dimen/_12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/daily_need"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_good_content_Result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:listitem="@layout/item_nutrition_info"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:items="@{viewModel.state.goodContent}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_head" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
