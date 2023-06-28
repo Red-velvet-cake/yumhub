@@ -260,3 +260,13 @@ fun setViewPagerItems(viewPager: ViewPager, items: List<HomeSliderItemUiState>?)
     val adapter = HomeSliderAdapter(items)
     viewPager.adapter = adapter
 }
+@BindingAdapter("app:hideIfLoadingNutrionValue")
+    fun hideIfLoadingNutrionValue(view: View, loading: Boolean) {
+        if(loading){
+            view.visibility = View.INVISIBLE
+        }else{
+            view.visibility = View.VISIBLE
+        }
+    }
+
+
