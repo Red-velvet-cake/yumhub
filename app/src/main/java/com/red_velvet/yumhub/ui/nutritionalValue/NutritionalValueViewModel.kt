@@ -1,6 +1,10 @@
 package com.red_velvet.yumhub.ui.nutritionalValue
 
+import android.content.Context
 import android.util.Log
+import android.view.View.OnFocusChangeListener
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.usecases.GuessNutritionUseCase
@@ -22,12 +26,14 @@ class NutritionalValueViewModel @Inject constructor(
         _state.update { it.copy(textInput = newSearchInput.toString()) }
     }
 
+
     private fun validateSearchInput(input: String) = input.isNotEmpty()
 
     private fun onSearch() {
+
         if (validateSearchInput(_state.value.textInput)) {
             onGetData()
-        } else {
+        }  else {
             onInvalidInputs()
         }
     }
@@ -44,19 +50,22 @@ class NutritionalValueViewModel @Inject constructor(
         )
     }
 
+
     private fun onSuccess(recipes: GuessNutritionEntity) {
+        Log.d("AYA", recipes.toString())
         val searchResult = recipes.toNutritionalValueResultUIState()
         Log.i("AYA", searchResult.toString())
         _state.update { it.copy(nutritionalValueResultUIState = searchResult, isLoading = false) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.i("AYA", errorUiState.toString())
+        Log.e("AYA", errorUiState.toString())
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
     override fun doOnApplyRecipe() {
         _state.update { it.copy(isLoading = true) }
+        viewModelScope.launch { _effect.emit(NutritionalValueUIEffect.HideKeyboard) }
         onSearch()
     }
 }
