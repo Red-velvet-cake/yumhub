@@ -203,7 +203,6 @@
             android:hint="your age"
             android:textAlignment="center"
             android:inputType="number"
-            android:text="@{String.valueOf(viewModel.state.age)}"
             android:onTextChanged="@{(text, _, ___, __)->viewModel.updateAge(text.toString())}"
             />
         </com.google.android.material.textfield.TextInputLayout>
