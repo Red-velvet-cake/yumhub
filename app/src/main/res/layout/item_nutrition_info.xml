@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.nutrition_info.NutritionInfoUiState.NutritionInfoResultUiState" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_48dp"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:background="@color/background">
+
+            <TextView
+                android:id="@+id/text_view_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16dp"
+                android:textColor="@color/primary"
+                android:layout_marginTop="@dimen/_12dp"
+                android:layout_marginEnd="@dimen/space_32dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/title"
+                android:textSize="@dimen/text_size_16"
+                app:text="@{item.name}" />
+
+            <TextView
+                android:id="@+id/text_view_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_16"
+                android:layout_marginHorizontal="@dimen/_72dp"
+                android:text="@string/amount"
+                app:text="@{item.amount}" />
+
+            <TextView
+                android:id="@+id/text_view_daily_need"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4dp"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/daily_need"
+                android:textSize="@dimen/text_size_16"
+                app:text='@{String.format("",item.dailyNeeds)}'/>
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
