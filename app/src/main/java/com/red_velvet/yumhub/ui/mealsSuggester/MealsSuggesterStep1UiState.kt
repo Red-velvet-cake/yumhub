@@ -7,11 +7,11 @@ import com.red_velvet.yumhub.ui.base.ErrorUIState
 data class MealsSuggesterStep1UiState(
     val isLoading: Boolean = true,
     val gender: String = "Male",
-    val activityLevel: Int? = 0,
-    val goal: String? = "",
-    val weight: Int? = 0,
-    val tall: Int? = 0,
-    val age: Int? = 0,
+    val activityLevel: Int? = 2,
+    val goal: String? = "Maintain Weight",
+    val weight: Int? = null,
+    val tall: Int? = null,
+    val age: Int? = null,
     val calories: Int? = 0,
     val meals: List<SuggestedMeals>? = emptyList(),
     val error:ErrorUIState? = null
