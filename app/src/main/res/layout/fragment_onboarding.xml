@@ -179,7 +179,7 @@
             android:fontFamily="@font/roboto_medium"
             android:onClick="@{() -> viewModel.onClickStart()}"
             android:text="@string/let_s_go"
-            android:textColor="@color/fontColor_secondary"
+            android:textColor="@color/fontColor_white"
             app:cornerRadius="@dimen/radius_16dp"
             app:showIfTrue="@{viewModel.state.lastTab}" />
     </LinearLayout>
