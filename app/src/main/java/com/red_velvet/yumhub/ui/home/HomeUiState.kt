@@ -11,5 +11,10 @@ data class HomeUiState(
     val categoryRecipesUiState: List<CategoryUiState> = emptyList(),
     val sliderImagesList: List<HomeSliderItemUiState> = emptyList(),
     val error: ErrorUIState? = null,
-    val isLoading: Boolean = false
+    val isCategoryLoading: Boolean = true,
+    val isQuickRecipesLoading: Boolean = true,
+    val isPopularRecipesLoading: Boolean = true,
+    val isHealthyRecipesLoading: Boolean = true,
+    val isSliderLoading: Boolean = true,
+    val isLoading: Boolean = true
 ) : BaseUiState

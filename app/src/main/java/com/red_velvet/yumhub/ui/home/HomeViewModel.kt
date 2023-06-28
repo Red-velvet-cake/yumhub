@@ -35,6 +35,7 @@ class HomeViewModel @Inject constructor(
     RecipeInteractionListener {
 
     init {
+        _state.update { it.copy(isLoading = true) }
         getCategories()
         getPopularRecipes()
         getHealthyRecipes()
@@ -58,7 +59,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getQuickRecipes() {
-        _state.update { it.copy(isLoading = true) }
+        _state.update { it.copy(isQuickRecipesLoading = true) }
         tryToExecute(
             getQuickRecipesUseCase::invoke,
             onSuccess = ::onGetQuickRecipesSuccess,
@@ -71,14 +72,14 @@ class HomeViewModel @Inject constructor(
             quickRecipes.collect { items ->
                 val quickRecipesState = items.toQuickRecipeUiState()
                 _state.update {
-                    it.copy(quickRecipesUiState = quickRecipesState, isLoading = false)
+                    it.copy(quickRecipesUiState = quickRecipesState, isQuickRecipesLoading = false)
                 }
             }
         }
     }
 
     private fun getPopularRecipes() {
-        _state.update { it.copy(isLoading = true) }
+        _state.update { it.copy(isPopularRecipesLoading = true) }
         tryToExecute(
             getPopularRecipesUseCase::invoke,
             onSuccess = ::onGetPopularRecipeSuccess,
@@ -93,7 +94,7 @@ class HomeViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         popularRecipesUiState = popularRecipesState,
-                        isLoading = false
+                        isPopularRecipesLoading = false
                     )
                 }
             }
@@ -101,7 +102,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getHealthyRecipes() {
-        _state.update { it.copy(isLoading = true) }
+        _state.update { it.copy(isHealthyRecipesLoading = true) }
         tryToExecute(
             getHealthyRecipesUseCase::invoke,
             onSuccess = ::onGetHealthyRecipeSuccess,
@@ -117,7 +118,7 @@ class HomeViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         healthyRecipesUiState = healthyRecipesState,
-                        isLoading = false
+                        isHealthyRecipesLoading = false
                     )
                 }
             }
@@ -125,7 +126,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getCategories() {
-        _state.update { it.copy(isLoading = true) }
+        _state.update { it.copy(isCategoryLoading = true) }
         tryToExecute(
             getCategoriesUseCase::invoke,
             onSuccess = ::onGetCategoriesSuccess,
@@ -135,11 +136,20 @@ class HomeViewModel @Inject constructor(
 
     private fun onGetCategoriesSuccess(recipesCategories: List<CategoryEntity>) {
         val response = recipesCategories.toCategoryUiState()
-        _state.update { it.copy(categoryRecipesUiState = response, isLoading = false) }
+        _state.update { it.copy(categoryRecipesUiState = response, isCategoryLoading = false) }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        _state.update { it.copy(error = errorUiState, isLoading = false) }
+        _state.update {
+            it.copy(
+                error = errorUiState,
+                isCategoryLoading = false,
+                isPopularRecipesLoading = false,
+                isHealthyRecipesLoading = false,
+                isQuickRecipesLoading = false,
+                isSliderLoading = false
+            )
+        }
     }
 
     override fun doOnCategoryClicked(categoryTitle: String) {
@@ -160,6 +170,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getHomeSliderImageList() {
+        _state.update { it.copy(isSliderLoading = true) }
         tryToExecute(
             getHomeSliderImagesListUseCase::invoke,
             onSuccess = ::onGetSliderImagesListSuccess,
@@ -170,7 +181,7 @@ class HomeViewModel @Inject constructor(
     private fun onGetSliderImagesListSuccess(sliderImageList: List<SliderItemEntity>) {
         val imageList = sliderImageList.toUiState()
         _state.update {
-            it.copy(sliderImagesList = imageList, isLoading = false)
+            it.copy(sliderImagesList = imageList, isSliderLoading = false)
         }
     }
 

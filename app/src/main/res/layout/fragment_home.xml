@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.home.HomeViewModel" />
@@ -46,13 +47,15 @@
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/slider_view_pager"
-                    android:layout_width="match_parent"
                     pagerItems="@{viewModel.state.sliderImagesList}"
+                    android:layout_width="match_parent"
                     android:layout_height="152dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:listResult="@{viewModel.state.sliderImagesList}"
+                    app:loading="@{viewModel.state.sliderLoading}" />
 
                 <TextView
                     android:id="@+id/category_title_text_view"
@@ -69,13 +72,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/spacing_normal"
-                    android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
                     android:onClick="@{() -> viewModel.doOnClickSeeAllCategoryRecipes()}"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
+                    app:drawableEndCompat="@drawable/arrowright"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/category_title_text_view" />
 
@@ -88,6 +91,8 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/category_title_text_view"
+                    app:listResult="@{viewModel.state.categoryRecipesUiState}"
+                    app:loading="@{viewModel.state.categoryLoading}"
                     tools:listitem="@layout/item_home_recipe_categories" />
 
                 <TextView
@@ -106,7 +111,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large_24"
                     android:layout_marginEnd="@dimen/spacing_normal"
-                    android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
                     android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(0)}"
@@ -114,6 +118,7 @@
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:drawableEndCompat="@drawable/arrowright"
                     app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -125,6 +130,8 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quick_recipe_title_text_view"
+                    app:listResult="@{viewModel.state.quickRecipesUiState}"
+                    app:loading="@{viewModel.state.quickRecipesLoading}"
                     tools:listitem="@layout/item_quick_recipe" />
 
                 <TextView
@@ -143,13 +150,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large_24"
                     android:layout_marginEnd="@dimen/spacing_normal"
-                    android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
                     android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(1)}"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
+                    app:drawableEndCompat="@drawable/arrowright"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quickRecyclerView" />
 
@@ -163,6 +170,8 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popular_recipe_title_text_view"
+                    app:listResult="@{viewModel.state.popularRecipesUiState}"
+                    app:loading="@{viewModel.state.popularRecipesLoading}"
                     tools:listitem="@layout/item_main_recipe" />
 
                 <TextView
@@ -179,13 +188,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/spacing_normal"
-                    android:drawableEnd="@drawable/arrowright"
                     android:drawablePadding="@dimen/small_space"
                     android:fontFamily="@font/roboto_regular"
                     android:onClick="@{() -> viewModel.doOnClickSeeAllRecipes(2)}"
                     android:text="@string/see_all"
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
+                    app:drawableEndCompat="@drawable/arrowright"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/healthy_recipe_title_text_view" />
 
@@ -193,13 +202,81 @@
                     android:id="@+id/healthyRecyclerView"
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
-                    android:paddingBottom="@dimen/spacing_large_24"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/spacing_large_24"
                     app:items="@{viewModel.state.healthyRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/healthy_recipe_title_text_view"
+                    app:listResult="@{viewModel.state.healthyRecipesUiState}"
+                    app:loading="@{viewModel.state.healthyRecipesLoading}"
                     tools:listitem="@layout/item_main_recipe" />
+
+                <ProgressBar
+                    android:id="@+id/category_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/primary"
+                    android:indeterminateTintMode="src_atop"
+                    app:layout_constraintBottom_toBottomOf="@id/categoryRecyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/categoryRecyclerView"
+                    app:showIfLoading="@{viewModel.state.categoryLoading}" />
+
+                <ProgressBar
+                    android:id="@+id/quick_recipes_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/primary"
+                    android:indeterminateTintMode="src_atop"
+                    app:layout_constraintBottom_toBottomOf="@id/quickRecyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/quickRecyclerView"
+                    app:showIfLoading="@{viewModel.state.quickRecipesLoading}" />
+
+                <ProgressBar
+                    android:id="@+id/popular_recipes_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/primary"
+                    android:indeterminateTintMode="src_atop"
+                    app:layout_constraintBottom_toBottomOf="@id/popularRecyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/popularRecyclerView"
+                    app:showIfLoading="@{viewModel.state.popularRecipesLoading}" />
+
+                <ProgressBar
+                    android:id="@+id/healthy_recipes_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/primary"
+                    android:indeterminateTintMode="src_atop"
+                    app:layout_constraintBottom_toBottomOf="@id/healthyRecyclerView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/healthyRecyclerView"
+                    app:showIfLoading="@{viewModel.state.healthyRecipesLoading}" />
+
+                <ProgressBar
+                    android:id="@+id/slider_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/primary"
+                    android:indeterminateTintMode="src_atop"
+                    app:layout_constraintBottom_toBottomOf="@id/slider_view_pager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/slider_view_pager"
+                    app:showIfLoading="@{viewModel.state.sliderLoading}" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
