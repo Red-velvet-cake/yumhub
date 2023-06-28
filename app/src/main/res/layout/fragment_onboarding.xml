@@ -1,173 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.red_velvet.yumhub.ui.onboarding.OnBoardingViewModel" />
     </data>
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/bg_white"
-      android:orientation="vertical">
-
-
-      <ImageView
-          android:layout_gravity="center"
-          android:layout_marginTop="@dimen/space_64dp"
-          app:showIfTrue="@{viewModel.state.isFirstTab}"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/onboarding1"/>
-      <TextView
-          android:layout_marginTop="@dimen/space_48dp"
-          style="@style/CustomTextViewStyle"
-          app:showIfTrue="@{viewModel.state.isFirstTab}"
-          android:text="@string/choose_your"/>
-        <TextView
-            style="@style/CustomTextViewStyle"
-            app:showIfTrue="@{viewModel.state.isFirstTab}"
-            android:text="@string/favorite_food"/>
-        <TextView
-            android:layout_marginTop="@dimen/fab_margin"
-            style="@style/CustomSubTitleTextViewStyle"
-            app:showIfTrue="@{viewModel.state.isFirstTab}"
-            android:text="@string/vegetarian_meat_dishes"/>
-        <TextView
-            style="@style/CustomSubTitleTextViewStyle"
-            app:showIfTrue="@{viewModel.state.isFirstTab}"
-            android:text="@string/pasta_dishes_salads"/>
-        <TextView
-            style="@style/CustomSubTitleTextViewStyle"
-            app:showIfTrue="@{viewModel.state.isFirstTab}"
-            android:text="@string/desserts_soups_seafood"/>
-      <ImageView
-          android:layout_gravity="center"
-          android:layout_marginTop="@dimen/space_64dp"
-          app:showIfTrue="@{viewModel.state.isSecondTab}"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/onboarding2"/>
-      <TextView
-          android:layout_marginTop="@dimen/space_48dp"
-          style="@style/CustomTextViewStyle"
-          app:showIfTrue="@{viewModel.state.isSecondTab}"
-          android:text="@string/delicious"/>
-      <TextView
-          style="@style/CustomTextViewStyle"
-          app:showIfTrue="@{viewModel.state.isSecondTab}"
-          android:text="@string/food_menu"/>
-      <TextView
-          android:layout_marginTop="@dimen/fab_margin"
-          style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{viewModel.state.isSecondTab}"
-          android:text="@string/vegetarian_meat_dishes"/>
-      <TextView
-          style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{viewModel.state.isSecondTab}"
-          android:text="@string/pasta_dishes_salads"/>
-      <TextView
-          style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{viewModel.state.isSecondTab}"
-          android:text="@string/desserts_soups_seafood"/>
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/space_64dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:showIfTrue="@{viewModel.state.isLastTab}"
-        android:src="@drawable/onboarding3" />
-
-    <TextView
-        android:layout_marginTop="@dimen/space_48dp"
-        style="@style/CustomTextViewStyle"
-        app:showIfTrue="@{viewModel.state.isLastTab}"
-        android:text="@string/there_are_many" />
-
-    <TextView
-        style="@style/CustomTextViewStyle"
-        app:showIfTrue="@{viewModel.state.isLastTab}"
-
-        android:text="@string/food_recipes" />
-
-    <TextView
-        style="@style/CustomTextViewStyle"
-        app:showIfTrue="@{viewModel.state.isLastTab}"
-
-        android:text="@string/in_the_app" />
-
-    <TextView
-        android:layout_marginTop="@dimen/fab_margin"
-        style="@style/CustomSubTitleTextViewStyle"
-        app:showIfTrue="@{viewModel.state.isLastTab}"
-
-        android:text="@string/we_have_1500_user_reviews" />
-
-    <TextView
-        style="@style/CustomSubTitleTextViewStyle"
-        app:showIfTrue="@{viewModel.state.isLastTab}"
-        android:text="@string/you_can_check_in_the_application_store" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/fab_margin"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/bg_white"
+        android:orientation="vertical">
 
-      <LinearLayout
-          android:layout_marginTop="@dimen/space_43dp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:orientation="horizontal">
 
-        <View
-            android:layout_width="@dimen/size_6dp"
-            android:layout_height="@dimen/size_6dp"
-            app:changeStyleIfTrue="@{viewModel.state.isFirstTab}"
-            android:layout_marginEnd="@dimen/tiny_space"
-            android:background="@drawable/rounded_border_indecator" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_64dp"
+            android:src="@drawable/onboarding1"
+            app:showIfTrue="@{viewModel.state.isFirstTab}" />
 
-        <View
+        <TextView
+            style="@style/CustomTextViewStyle"
+            android:layout_marginTop="@dimen/space_48dp"
+            android:text="@string/choose_your"
+            app:showIfTrue="@{viewModel.state.isFirstTab}" />
 
-            android:layout_width="@dimen/size_6dp"
-            android:layout_height="@dimen/size_6dp"
-            app:changeStyleIfTrue="@{viewModel.state.isSecondTab}"
-            android:layout_marginEnd="@dimen/tiny_space"
-            android:background="@drawable/rounded_border_indecator" />
+        <TextView
+            style="@style/CustomTextViewStyle"
+            android:text="@string/favorite_food"
+            app:showIfTrue="@{viewModel.state.isFirstTab}" />
 
-        <View
-            android:layout_width="@dimen/size_6dp"
-            android:layout_height="@dimen/size_6dp"
-            app:changeStyleIfTrue="@{viewModel.state.isLastTab}"
-            android:layout_marginEnd="@dimen/tiny_space"
-            android:background="@drawable/rounded_border_indecator" />
-      </LinearLayout>
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="@string/vegetarian_meat_dishes"
+            app:showIfTrue="@{viewModel.state.isFirstTab}" />
 
-      <TextView
-          android:layout_marginTop="@dimen/space_36dp"
-          style="@style/CustomSubTitleTextViewStyle"
-          app:showIfTrue="@{!viewModel.state.lastTab}"
-          android:onClick="@{() -> viewModel.onClickNext()}"
-          android:text="@string/next" />
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:text="@string/pasta_dishes_salads"
+            app:showIfTrue="@{viewModel.state.isFirstTab}" />
+
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:text="@string/desserts_soups_seafood"
+            app:showIfTrue="@{viewModel.state.isFirstTab}" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_64dp"
+            android:src="@drawable/onboarding2"
+            app:showIfTrue="@{viewModel.state.isSecondTab}" />
+
+        <TextView
+            style="@style/CustomTextViewStyle"
+            android:layout_marginTop="@dimen/space_48dp"
+            android:text="@string/delicious"
+            app:showIfTrue="@{viewModel.state.isSecondTab}" />
+
+        <TextView
+            style="@style/CustomTextViewStyle"
+            android:text="@string/food_menu"
+            app:showIfTrue="@{viewModel.state.isSecondTab}" />
+
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="@string/vegetarian_meat_dishes"
+            app:showIfTrue="@{viewModel.state.isSecondTab}" />
+
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:text="@string/pasta_dishes_salads"
+            app:showIfTrue="@{viewModel.state.isSecondTab}" />
+
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:text="@string/desserts_soups_seafood"
+            app:showIfTrue="@{viewModel.state.isSecondTab}" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_64dp"
+            android:src="@drawable/onboarding3"
+            app:showIfTrue="@{viewModel.state.isLastTab}" />
+
+        <TextView
+            style="@style/CustomTextViewStyle"
+            android:layout_marginTop="@dimen/space_48dp"
+            android:text="@string/there_are_many"
+            app:showIfTrue="@{viewModel.state.isLastTab}" />
+
+        <TextView
+            style="@style/CustomTextViewStyle"
+            android:text="@string/food_recipes"
+
+            app:showIfTrue="@{viewModel.state.isLastTab}" />
+
+        <TextView
+            style="@style/CustomTextViewStyle"
+            android:text="@string/in_the_app"
+
+            app:showIfTrue="@{viewModel.state.isLastTab}" />
+
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="@string/we_have_1500_user_reviews"
+
+            app:showIfTrue="@{viewModel.state.isLastTab}" />
+
+        <TextView
+            style="@style/CustomSubTitleTextViewStyle"
+            android:text="@string/you_can_check_in_the_application_store"
+            app:showIfTrue="@{viewModel.state.isLastTab}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/fab_margin"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_43dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/size_6dp"
+                    android:layout_height="@dimen/size_6dp"
+                    android:layout_marginEnd="@dimen/tiny_space"
+                    android:background="@drawable/rounded_border_indecator"
+                    app:changeStyleIfTrue="@{viewModel.state.isFirstTab}" />
+
+                <View
+
+                    android:layout_width="@dimen/size_6dp"
+                    android:layout_height="@dimen/size_6dp"
+                    android:layout_marginEnd="@dimen/tiny_space"
+                    android:background="@drawable/rounded_border_indecator"
+                    app:changeStyleIfTrue="@{viewModel.state.isSecondTab}" />
+
+                <View
+                    android:layout_width="@dimen/size_6dp"
+                    android:layout_height="@dimen/size_6dp"
+                    android:layout_marginEnd="@dimen/tiny_space"
+                    android:background="@drawable/rounded_border_indecator"
+                    app:changeStyleIfTrue="@{viewModel.state.isLastTab}" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/CustomSubTitleTextViewStyle"
+                android:layout_marginTop="@dimen/space_36dp"
+                android:onClick="@{() -> viewModel.onClickNext()}"
+                android:text="@string/next"
+                app:showIfTrue="@{!viewModel.state.lastTab}" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginHorizontal="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/space_32dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/roboto_medium"
+            android:onClick="@{() -> viewModel.onClickStart()}"
+            android:text="@string/let_s_go"
+            android:textColor="@color/fontColor_secondary"
+            app:cornerRadius="@dimen/radius_16dp"
+            app:showIfTrue="@{viewModel.state.lastTab}" />
     </LinearLayout>
-      <Button
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/button_height"
-          android:layout_marginTop="@dimen/space_32dp"
-          android:layout_marginHorizontal="@dimen/spacing_normal"
-          android:text="@string/let_s_go"
-          android:onClick="@{() -> viewModel.onClickStart()}"
-          app:showIfTrue="@{viewModel.state.lastTab}"
-          app:cornerRadius="@dimen/radius_16dp"
-          android:textColor="@color/fontColor_white"
-          android:fontFamily="@font/roboto_medium"
-          android:backgroundTint="@color/primary"
-          />
-  </LinearLayout>
 </layout>
