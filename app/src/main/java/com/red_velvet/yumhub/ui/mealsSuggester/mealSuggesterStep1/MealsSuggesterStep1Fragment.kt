@@ -42,6 +42,7 @@ class MealsSuggesterStep1Fragment :
 
             is MealsSuggesterStep1UiEffect.ClickOnGoalSelector -> {}
             is MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked(uiEffect.type)
+            MealsSuggesterStep1UiEffect.OnEmptyFields -> {}
         }
     }
 

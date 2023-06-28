@@ -32,6 +32,7 @@ class MealsSuggesterStep3Fragment :
             is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> {}
             is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
             is MealsSuggesterStep1UiEffect.OnNextClicked -> {}
+            MealsSuggesterStep1UiEffect.OnEmptyFields -> {}
         }
     }
 

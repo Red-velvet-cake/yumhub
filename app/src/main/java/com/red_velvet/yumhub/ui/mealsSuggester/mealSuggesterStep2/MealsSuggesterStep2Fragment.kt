@@ -4,6 +4,7 @@ package com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -40,7 +41,12 @@ class MealsSuggesterStep2Fragment :
             is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> {}
             is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
             is MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked(type = uiEffect.type)
+            MealsSuggesterStep1UiEffect.OnEmptyFields -> onEmptyFields()
         }
+    }
+
+    private fun onEmptyFields() {
+        Toast.makeText(this.context,"fill in all fields",Toast.LENGTH_LONG).show()
     }
 
     private fun goalSelector(goal: String) {
