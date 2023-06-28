@@ -138,7 +138,7 @@ class RemoteDataSourceImpl @Inject constructor(
         minCalories: Double,
         maxCalories: Double,
     ): List<RecipesByRangeOfCaloriesResource> {
-        return tryToExecute { foodService.getRecipesByRangeCalories(minCalories = minCalories , maxCalories = maxCalories) }
+        return tryToExecute { foodService.getRecipesByRangeCalories(minCalories = minCalories.toInt() , maxCalories = maxCalories.toInt()) }
     }
 
     private suspend fun <T> tryToExecute(func: suspend () -> Response<T>): T {
