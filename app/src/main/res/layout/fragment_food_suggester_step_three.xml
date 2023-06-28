@@ -79,7 +79,7 @@
             android:id="@+id/suggestions_meals_suitable_you_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.state.error.toString()}"
+            android:text="@string/suggestions_meals_suitable_you"
             android:textSize="@dimen/text_size_16"
             android:layout_marginStart="@dimen/radius_16dp"
             android:layout_marginTop="@dimen/spacing_large_24"
@@ -103,6 +103,70 @@
             tools:listitem="@layout/item_meal_suggested"
             app:layout_constraintTop_toBottomOf="@id/suggestions_meals_suitable_you_id"
             app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.state.loading}"
+            />
+        <ImageView
+            android:id="@+id/svgImageView_404"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/not_found_search"
+            app:showIfListEmpty="@{viewModel.state.meals.empty}"
+            app:loading="@{viewModel.state.loading}"
+            app:error="@{viewModel.state.error}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/textview_title_404"
+            style="@style/CustomSearchTextViewTitleStyle"
+            app:showIfListEmpty="@{viewModel.state.meals.empty}"
+            app:loading="@{viewModel.state.loading}"
+            app:error="@{viewModel.state.error}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_404"
+            android:text="@string/not_found"
+            />
+        <ImageView
+            android:id="@+id/svgImageView_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/search_no_internet"
+            android:showInternalServerError="@{viewModel.state.error}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/textview_title_no_internet"
+            style="@style/CustomSearchTextViewTitleStyle"
+            android:showInternalServerError="@{viewModel.state.error}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet"
+            android:text="@string/internet_is_not_available"
+            />
+        <TextView
+            style="@style/CustomTextViewSearchSubTitleStyle"
+            android:showInternalServerError="@{viewModel.state.error}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_title_no_internet"
+            android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

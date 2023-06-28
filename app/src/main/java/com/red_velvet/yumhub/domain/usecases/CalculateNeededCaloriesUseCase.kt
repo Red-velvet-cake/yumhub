@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 class CalculateNeededCaloriesUseCase @Inject constructor(
     private val recipesRepository: RecipesRepository,
-    private val calculateRangeOfNeededCaloriesUseCase: CalculateRangeOfNeededCaloriesUseCase
 ) {
     suspend fun calculateNeededCalories(rangeNeededCaloriesEntity: RangeNeededCaloriesEntity): List<RecipeEntity> {
         return recipesRepository.getMealByCalories(
