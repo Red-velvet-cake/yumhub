@@ -6,13 +6,11 @@ import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
-import com.red_velvet.yumhub.ui.search.SearchRecipeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
@@ -24,12 +22,14 @@ class FindYourMealViewModel @Inject constructor(
     private val searchRecipeUseCase: SearchRecipeUseCase
 ) : BaseViewModel<FindYourMealUiState, FindYourMaelUiEffect>(FindYourMealUiState()),
     FindYourMealInteractionListener {
-    override fun onRecipeFindYourMealResultClicked(recipeId: Int) {
-        TODO("Not yet implemented")
-    }
 
     private val _searchInputFlow = MutableStateFlow("")
     private var debounceJob: Job? = null
+    override fun onRecipeFindYourMealResultClicked(recipeId: Int) {
+        viewModelScope.launch { _effect.emit(FindYourMaelUiEffect.ClickOnResultItem(recipeId)) }
+    }
+
+
 
     @OptIn(FlowPreview::class)
     fun onSearchInputTextChanged(searchInput: CharSequence) {
