@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.ui.search
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
+import com.red_velvet.yumhub.domain.usecases.SearchInputUseCase
 import com.red_velvet.yumhub.domain.usecases.recipes.SearchRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -20,16 +21,17 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRecipeUseCase: SearchRecipeUseCase,
+    private val searchInputUseCase: SearchInputUseCase
 ) : BaseViewModel<SearchRecipeUIState, SearchUIEffect>(SearchRecipeUIState()),
     SearchInteractionListener {
 
-    private val _uiState = MutableStateFlow(SearchRecipeUIState())
-    val uiState: StateFlow<SearchRecipeUIState> = _uiState
+
     private var debounceJob: Job? = null
+    private var searchJob: Job? = null
     private val _searchInputFlow = MutableStateFlow("")
 
     fun onInputSearchChange(newSearchInput: CharSequence) {
-        _uiState.update { it.copy(searchInput = newSearchInput.toString()) }
+        _state.update { it.copy(searchInput = newSearchInput.toString(), searchResult = emptyList()) }
         _searchInputFlow.value = newSearchInput.toString()
         debounceJob?.cancel()
         debounceJob = viewModelScope.launch {
@@ -40,14 +42,9 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun onSearch() {
-        _uiState.update { it.copy(isLoading = true) }
-        onGetData()
-    }
-
     fun onSelectFilterType(type: String) {
         if (!ifSameFilterTypeSelected(type)) {
-            _uiState.update {
+            _state.update {
                 it.copy(
                     isLoading = true,
                     isResultIsEmpty = false,
@@ -60,8 +57,8 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun ifSameFilterTypeSelected(type: String): Boolean {
-        if (type == _uiState.value.sort) {
-            _uiState.update {
+        if (type == _state.value.sort) {
+            _state.update {
                 it.copy(
                     isLoading = false,
                     sort = "",
@@ -76,41 +73,47 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onSelectSortDirection(sortDirection: String) {
-        _uiState.update { it.copy(isLoading = true, sortDirection = sortDirection) }
+        _state.update { it.copy(isLoading = true, sortDirection = sortDirection) }
         onGetData()
     }
 
     private fun onGetData() {
-        tryToExecute(
-            callee = {
-                searchRecipeUseCase.invoke(
-                    query = _uiState.value.searchInput,
-                    sort = _uiState.value.sort,
-                    sortDirection = _uiState.value.sortDirection
-                )
-            },
-            onSuccess = ::onSuccess,
-            onError = ::onError
-        )
+        if(searchInputUseCase(state.value.searchInput)){
+            _state.update { it.copy(isLoading = true) }
+            searchJob = tryToExecute(
+                callee = {
+                    searchRecipeUseCase.invoke(
+                        query = _state.value.searchInput,
+                        sort = _state.value.sort,
+                        sortDirection = _state.value.sortDirection
+                    )
+                },
+                onSuccess = ::onSuccess,
+                onError = ::onError
+            )
+        }
     }
 
     fun onClear() {
         _searchInputFlow.value = ""
-        _uiState.update {
+        _state.update {
             it.copy(
+                searchResult = emptyList() ,
                 sort = "",
                 searchInput = "",
                 isLoading = false,
                 isResultIsEmpty = false
             )
         }
+        searchJob?.cancel()
+        Log.i("asdjhdsakdjsk",state.value.searchResult.toString())
     }
 
     private fun onSuccess(recipes: List<SearchRecipeEntity>) {
         val searchResult = recipes.map { it.toRecipeSearchResultMapper() }
         Log.i("AYA", searchResult.toString())
 
-        _uiState.update {
+        _state.update {
             it.copy(
                 searchResult = searchResult,
                 isLoading = false,
@@ -121,7 +124,7 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        _uiState.update {
+        _state.update {
             it.copy(
                 isLoading = false,
                 isResultIsEmpty = true,

@@ -33,15 +33,14 @@
                 <ImageView
                     android:layout_width="@dimen/size_20dp"
                     android:layout_height="@dimen/size_20dp"
-                    android:onClick="@{() -> viewModel.onSearch()}"
-                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_marginStart="@dimen/fab_margin"
                     android:layout_marginVertical="@dimen/spacing_small_12"
                     app:srcCompat="@drawable/searchfavorite1"
                     />
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/zero"
                     android:layout_weight="1"
-                    android:text="@{viewModel.uiState.searchInput}"
+                    android:text="@{viewModel.state.searchInput}"
                     android:textColor="@color/black_title_60"
                     android:paddingVertical="@dimen/spacing_small"
                     android:hint="@string/search_food_drink_etc"
@@ -58,8 +57,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
-                    app:searchInput="@{viewModel.uiState.searchInput}"
+                    android:visibility="@{viewModel.state.searchInput.isEmpty() ? View.GONE : View.VISIBLE}"
                     android:onClick="@{() -> viewModel.onClear()}"
                     android:layout_margin="@dimen/fab_margin"
                     android:layout_marginLeft="@dimen/spacing_small_12"
@@ -69,8 +67,8 @@
                 <androidx.cardview.widget.CardView
                     style="@style/CardSearchFilterStyle"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("dsc")}'
-                    app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
-                    app:showIfAsc="@{viewModel.uiState.sortDirection}"
+                    app:hideIfListEmpty="@{viewModel.state.resultIsEmpty}"
+                    app:showIfAsc="@{viewModel.state.sortDirection}"
                     app:cardElevation="@dimen/no_width"
                     app:cardCornerRadius="@dimen/_75dp"
                     >
@@ -83,9 +81,9 @@
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     style="@style/CardSearchFilterStyle"
-                    app:hideIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
+                    app:hideIfListEmpty="@{viewModel.state.resultIsEmpty}"
                     android:onClick='@{() -> viewModel.onSelectSortDirection("asc")}'
-                    app:showIfDsc="@{viewModel.uiState.sortDirection}"
+                    app:showIfDsc="@{viewModel.state.sortDirection}"
                     app:cardElevation="@dimen/no_width"
                     app:cardCornerRadius="@dimen/_75dp"
                     >
@@ -99,19 +97,7 @@
             </LinearLayout>
             />
         </com.google.android.material.textfield.TextInputLayout>
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/primary"
-            android:indeterminateTintMode="src_atop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:showIfLoading="@{viewModel.uiState.loading}"
 
-            />
         <HorizontalScrollView
             android:id="@+id/chip_group_filter"
             android:layout_width="match_parent"
@@ -186,32 +172,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chip_group_filter"
-            app:loadingSearch="@{viewModel.uiState.loading}"
-            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:searchInput="@{viewModel.uiState.searchInput}"
-            app:items="@{viewModel.uiState.searchResult}"
+            app:items="@{viewModel.state.searchResult}"
             tools:listitem="@layout/item_search_card" />
         <ImageView
             android:id="@+id/svgImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/search"
-            app:searchText="@{viewModel.uiState.searchInput}"
-            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:loading="@{viewModel.uiState.loading}"
-            app:resultList="@{viewModel.uiState.searchResult}"
+            android:visibility="@{viewModel.state.searchInput.isEmpty()  &amp;&amp; viewModel.state.error == null ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
         <TextView
             android:id="@+id/textview_title"
             style="@style/CustomSearchTextViewTitleStyle"
-            app:resultList="@{viewModel.uiState.searchResult}"
-            app:searchText="@{viewModel.uiState.searchInput}"
-            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:loading="@{viewModel.uiState.loading}"
+            android:visibility="@{viewModel.state.searchInput.isEmpty()  &amp;&amp; viewModel.state.error == null ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView"
@@ -219,13 +197,10 @@
             />
         <TextView
             style="@style/CustomTextViewSearchSubTitleStyle"
-            app:resultList="@{viewModel.uiState.searchResult}"
-            app:searchText="@{viewModel.uiState.searchInput}"
-            app:isResultEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:loading="@{viewModel.uiState.loading}"
-            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="@{viewModel.state.searchInput.isEmpty() &amp;&amp; viewModel.state.error == null ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title"
+            app:layout_constraintStart_toStartOf="parent"
             android:text="@string/enter_the_name_of_the_meal_or_the_type_of_food_you_wish_to_search_for"
             />
         <ImageView
@@ -233,21 +208,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/not_found_search"
-            app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:loading="@{viewModel.uiState.loading}"
-            app:error="@{viewModel.uiState.error}"
+            app:showIfListEmpty="@{viewModel.state.resultIsEmpty}"
+            app:loading="@{viewModel.state.loading}"
+            app:error="@{viewModel.state.error}"
+            app:searchInput="@{viewModel.state.searchInput}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
         <TextView
             android:id="@+id/textview_title_404"
             style="@style/CustomSearchTextViewTitleStyle"
-            app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:loading="@{viewModel.uiState.loading}"
-            app:error="@{viewModel.uiState.error}"
-
+            app:showIfListEmpty="@{viewModel.state.resultIsEmpty}"
+            app:loading="@{viewModel.state.loading}"
+            app:error="@{viewModel.state.error}"
+            app:searchInput="@{viewModel.state.searchInput}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView_404"
@@ -255,9 +232,10 @@
             />
         <TextView
             style="@style/CustomTextViewSearchSubTitleStyle"
-            app:showIfListEmpty="@{viewModel.uiState.resultIsEmpty}"
-            app:loading="@{viewModel.uiState.loading}"
-            app:error="@{viewModel.uiState.error}"
+            app:showIfListEmpty="@{viewModel.state.resultIsEmpty}"
+            app:loading="@{viewModel.state.loading}"
+            app:error="@{viewModel.state.error}"
+            app:searchInput="@{viewModel.state.searchInput}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title_404"
@@ -268,7 +246,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/search_no_internet"
-            android:showInternalServerError="@{viewModel.uiState.error}"
+            android:showNoInternet="@{viewModel.state.error}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -277,7 +255,7 @@
         <TextView
             android:id="@+id/textview_title_no_internet"
             style="@style/CustomSearchTextViewTitleStyle"
-            android:showInternalServerError="@{viewModel.uiState.error}"
+            android:showNoInternet="@{viewModel.state.error}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet"
@@ -285,11 +263,22 @@
             />
         <TextView
             style="@style/CustomTextViewSearchSubTitleStyle"
-            android:showInternalServerError="@{viewModel.uiState.error}"
+            android:showNoInternet="@{viewModel.state.error}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_title_no_internet"
             android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again"
             />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="@{viewModel.state.loading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
