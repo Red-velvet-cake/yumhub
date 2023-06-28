@@ -140,11 +140,23 @@
                         android:layout_height="wrap_content"
                         android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.calories)}'
                         android:layout_marginStart="@dimen/spacing_large_24"
+                        app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
                         app:layout_constraintTop_toBottomOf="@id/tv_calories"
                         app:layout_constraintStart_toEndOf="@id/progressBar_calories"
                         android:textColor="@color/black_title"
                         android:textSize="@dimen/text_size_24"
                         android:fontFamily="@font/roboto_medium" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="@dimen/spacing_large_24"
+                        android:layout_height="@dimen/spacing_large_24"
+                        android:visibility="visible"
+                        app:showIfTrue="@{viewModel.state.loading}"
+                        app:lottie_autoPlay="true"
+                        android:layout_marginStart="@dimen/spacing_large_24"
+                        app:lottie_loop="true"
+                        app:layout_constraintTop_toBottomOf="@id/tv_calories"
+                        app:layout_constraintStart_toEndOf="@id/progressBar_calories"
+                        app:lottie_rawRes="@raw/load_values" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -201,13 +213,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.fat)}'
-
                         android:layout_marginStart="@dimen/spacing_large_24"
+                        app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
                         app:layout_constraintTop_toBottomOf="@id/tv_fat"
                         app:layout_constraintStart_toEndOf="@id/progressBar_fat"
                         android:textColor="@color/black_title"
                         android:textSize="@dimen/text_size_24"
                         android:fontFamily="@font/roboto_medium" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="@dimen/spacing_large_24"
+                        android:layout_height="@dimen/spacing_large_24"
+                        android:visibility="visible"
+                        app:showIfTrue="@{viewModel.state.loading}"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        android:layout_marginStart="@dimen/spacing_large_24"
+                        app:layout_constraintTop_toBottomOf="@id/tv_fat"
+                        app:layout_constraintStart_toEndOf="@id/progressBar_fat"
+                        app:lottie_rawRes="@raw/load_values" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -241,6 +264,7 @@
                 android:backgroundTint="@color/white"
                 android:layout_marginEnd="@dimen/spacing_small"
                 >
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:paddingHorizontal="@dimen/fab_margin"
                     android:paddingVertical="@dimen/fab_margin"
@@ -271,7 +295,6 @@
                         android:layout_height="@dimen/size_68dp"
                         android:max="1000"
                         android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.carbs)}"
-
                         android:rotation="0"
                         android:progressDrawable="@drawable/custom_progress_carb"
                         />
@@ -280,13 +303,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.carbs)}'
-
                         android:layout_marginStart="@dimen/spacing_large_24"
+                        app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
                         app:layout_constraintTop_toBottomOf="@id/tv_carbs"
                         app:layout_constraintStart_toEndOf="@id/progressBar_carbs"
                         android:textColor="@color/black_title"
                         android:textSize="@dimen/text_size_24"
                         android:fontFamily="@font/roboto_medium" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="@dimen/spacing_large_24"
+                        android:layout_height="@dimen/spacing_large_24"
+                        android:visibility="visible"
+                        app:showIfTrue="@{viewModel.state.loading}"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        android:layout_marginStart="@dimen/spacing_large_24"
+
+                        app:layout_constraintTop_toBottomOf="@id/tv_carbs"
+                        app:layout_constraintStart_toEndOf="@id/progressBar_carbs"
+                        app:lottie_rawRes="@raw/load_values" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -343,13 +378,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.protein)}'
-
                         android:layout_marginStart="@dimen/spacing_large_24"
+                        app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
                         app:layout_constraintTop_toBottomOf="@id/tv_protein"
                         app:layout_constraintStart_toEndOf="@id/progressBar_protein"
                         android:textColor="@color/black_title"
                         android:textSize="@dimen/text_size_24"
                         android:fontFamily="@font/roboto_medium" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="@dimen/spacing_large_24"
+                        android:layout_height="@dimen/spacing_large_24"
+                        android:visibility="visible"
+                        android:layout_marginStart="@dimen/spacing_large_24"
+                        app:showIfTrue="@{viewModel.state.loading}"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:layout_constraintTop_toBottomOf="@id/tv_protein"
+                        app:layout_constraintStart_toEndOf="@id/progressBar_protein"
+                        app:lottie_rawRes="@raw/load_values" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
