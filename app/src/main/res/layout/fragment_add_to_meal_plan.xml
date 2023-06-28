@@ -72,27 +72,27 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/breakfast_chip"
-                    style="@style/CustomChipChoice"
+                    style="@style/Chip.Regular.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/breakfast"
-                    android:textColor="@color/fontColor_secondary" />
+                    app:checkedIconEnabled="false" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/lunch_chip"
-                    style="@style/CustomChipChoice"
+                    style="@style/Chip.Regular.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lunch"
-                    android:textColor="@color/fontColor_secondary" />
+                    app:checkedIconEnabled="false" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/dinner_chip"
-                    style="@style/CustomChipChoice"
+                    style="@style/Chip.Regular.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dinner"
-                    android:textColor="@color/fontColor_secondary" />
+                    app:checkedIconEnabled="false" />
 
             </com.google.android.material.chip.ChipGroup>
 
