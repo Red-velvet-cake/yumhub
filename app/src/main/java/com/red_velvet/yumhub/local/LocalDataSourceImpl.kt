@@ -68,9 +68,9 @@ override fun getChatBotMessages(): Flow<List<QuickAnswerLocalDto>> {
 
     override suspend fun getHomeSliderImagesList(): List<SliderItemLocalDto> {
         return listOf(
-            SliderItemLocalDto(R.drawable.slide_1),
-            SliderItemLocalDto(R.drawable.slide_2),
-            SliderItemLocalDto(R.drawable.slide_3)
+            SliderItemLocalDto(R.drawable.slider),
+            SliderItemLocalDto(R.drawable.slider),
+            SliderItemLocalDto(R.drawable.slider)
         )
     }
 
