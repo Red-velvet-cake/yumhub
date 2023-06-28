@@ -4,6 +4,7 @@ package com.red_velvet.yumhub.domain.repositories
 import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
+import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.NutritionWidgetEntity
@@ -16,7 +17,6 @@ import com.red_velvet.yumhub.domain.models.recipes.RecipeInformationEntity
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.SimilarRecipeEntity
 import kotlinx.coroutines.flow.Flow
-
 
 interface RecipesRepository {
 
@@ -60,7 +60,9 @@ interface RecipesRepository {
 
     suspend fun getQuickAnswer(
         question: String = ""
-    ): QuickAnswerEntity
+    )
+
+    suspend fun getAllChatBotMessages(): Flow<List<QuickAnswerEntity>>
 
     suspend fun refreshPopularRecipes(recipesList: List<PopularRecipeEntity>)
 
@@ -81,4 +83,7 @@ interface RecipesRepository {
     suspend fun getHomeSliderImagesList(): List<SliderItemEntity>
 
     suspend fun getNutritionWidget(id: Int): NutritionWidgetEntity
+
+    suspend fun getExtendedIngredients(id: Int, includeNutrition: Boolean)
+            : List<ExtendedIngredientEntity>
 }

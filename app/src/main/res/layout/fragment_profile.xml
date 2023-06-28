@@ -105,29 +105,6 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/favorites_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_1dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="@{() -> viewModel.doOnFavoritesClicked()}"
-                    app:cardBackgroundColor="@color/bg_white"
-                    app:cardCornerRadius="0dp"
-                    app:contentPadding="@dimen/_16dp"
-                    app:layout_constraintTop_toBottomOf="@id/chat_bot_card"
-                    app:strokeWidth="0dp">
-
-                    <TextView
-                        style="@style/TextStyle.Medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/favorite"
-                        app:drawableEndCompat="@drawable/arrowright" />
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/history_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -138,7 +115,7 @@
                     app:cardBackgroundColor="@color/bg_white"
                     app:cardCornerRadius="0dp"
                     app:contentPadding="@dimen/_16dp"
-                    app:layout_constraintTop_toBottomOf="@id/favorites_card"
+                    app:layout_constraintTop_toBottomOf="@id/chat_bot_card"
                     app:strokeWidth="0dp">
 
                     <TextView

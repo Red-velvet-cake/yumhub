@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.remote
 
 import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
+import com.red_velvet.yumhub.remote.resources.ExtendedIngredientResource
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
@@ -118,6 +119,12 @@ interface FoodService {
         @Path("id") id: Int,
         @Query("stepBreakdown") stepBreakdown: Boolean? = false,
     ): Response<List<AnalyzedInstructionResource>>
+
+    @GET("recipes/{id}/information")
+    suspend fun getExtendedIngredients(
+        @Path("id") id: Int,
+        @Query("includeNutrition") includeNutrition: Boolean? = false
+    ): Response<List<ExtendedIngredientResource>>
 
     @GET("recipes/{id}/nutritionWidget.json")
     suspend fun getNutritionWidget(@Path("id") id: Int): Response<NutritionWidgetResource>

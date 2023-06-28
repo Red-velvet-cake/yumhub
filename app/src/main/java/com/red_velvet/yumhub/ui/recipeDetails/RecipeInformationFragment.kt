@@ -21,6 +21,8 @@ class RecipeInformationFragment : BaseFragment<
 
     override val layoutIdFragment: Int = R.layout.fragment_recipe_information
     override val viewModel: RecipeInformationViewModel by viewModels()
+    private var isFavorite: Boolean = false
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +32,9 @@ class RecipeInformationFragment : BaseFragment<
 
         val ingredientsAdapter = IngredientsAdapter(emptyList(), viewModel)
         binding.recyclerViewIngredients.adapter = ingredientsAdapter
+
+        setHasOptionsMenu(true)
+        activity?.title = "Details"
     }
 
     override fun observeOnUIEffects() {
@@ -67,5 +72,4 @@ class RecipeInformationFragment : BaseFragment<
 
         findNavController().navigate(directions)
     }
-
 }

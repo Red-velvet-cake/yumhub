@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.exceptions.NetworkException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -25,8 +26,8 @@ abstract class BaseViewModel<T : BaseUiState, EFFECT : BaseUIEffect>(state: T) :
         onSuccess: (V) -> Unit,
         onError: (ErrorUIState) -> Unit,
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
-    ) {
-        viewModelScope.launch(dispatcher) {
+    ): Job {
+        return viewModelScope.launch(dispatcher) {
             try {
                 val result = callee()
                 onSuccess(result)

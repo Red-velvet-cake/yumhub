@@ -16,9 +16,7 @@ import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
 import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
+
 
 interface RemoteDataSource {
 
@@ -88,5 +86,10 @@ interface RemoteDataSource {
     ): List<AnalyzedInstructionResource>
 
     suspend fun getNutritionWidget( id: Int): NutritionWidgetResource
+
+    suspend fun getExtendedIngredients(
+        id: Int,
+        includeNutrition: Boolean,
+    ): List<ExtendedIngredientResource>
 
 }

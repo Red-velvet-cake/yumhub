@@ -12,12 +12,11 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layoutDescription="@xml/fragment_recipe_information_xml_constraintlayout2_scene">
+        android:orientation="vertical">
 
         <ProgressBar
             android:id="@+id/progress_details"
@@ -79,184 +78,210 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.35" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/sheet_bottom"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="@dimen/no_height"
             android:background="@drawable/card_scroll"
-            android:hideWhenErr="@{viewModel.state.error}"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_2">
 
-            <TextView
-                android:id="@+id/text_recipe_name"
-                android:layout_width="@dimen/no_width"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:layout_marginEnd="@dimen/_55dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@{viewModel.state.title}"
-                android:textColor="@color/fontColor_primary"
-                android:textSize="@dimen/font_size_title_medium"
-                app:layout_constraintBottom_toBottomOf="@id/button_add_to_meal_plan"
-                app:layout_constraintEnd_toStartOf="@id/button_add_to_meal_plan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/button_add_to_meal_plan"
-                tools:text="Pasta with Garlic , Scallions , Cauliflower Breadcrumbs" />
-
-            <ImageView
-                android:id="@+id/button_add_to_meal_plan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_38dp"
-                android:layout_marginEnd="@dimen/fab_margin"
-                android:onClick="@{() -> viewModel.onAddToMealPlan(viewModel.state.id)}"
-                android:src="@drawable/ic_save"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_recipe_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:drawableStart="@drawable/ic_time"
-                android:drawablePadding="@dimen/_4dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@{String.valueOf(viewModel.state.readyInMinutes)}"
-                android:textColor="@color/fontColor_accent"
-                android:textSize="@dimen/font_size_label"
-                app:layout_constraintStart_toStartOf="@id/text_recipe_name"
-                app:layout_constraintTop_toBottomOf="@id/text_recipe_name"
-                tools:text="45" />
-
-            <TextView
-                android:id="@+id/text_min"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/min"
-                android:textColor="@color/fontColor_accent"
-                android:textSize="@dimen/font_size_label"
-                app:layout_constraintStart_toEndOf="@id/text_recipe_time"
-                app:layout_constraintTop_toTopOf="@id/text_recipe_time" />
-
-            <TextView
-                android:id="@+id/text_recipe_servings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/small_space"
-                android:layout_marginTop="12dp"
-                android:drawableStart="@drawable/ic_servings"
-                android:drawablePadding="@dimen/_4dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@{String.valueOf(viewModel.state.servings)}"
-                android:textColor="@color/fontColor_accent"
-                android:textSize="@dimen/font_size_label"
-                app:layout_constraintStart_toEndOf="@id/text_min"
-                app:layout_constraintTop_toBottomOf="@id/text_recipe_name"
-                tools:text="2" />
-
-            <TextView
-                android:id="@+id/text_servings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="@string/servings"
-                android:textColor="@color/fontColor_accent"
-                android:textSize="@dimen/font_size_label"
-                app:layout_constraintStart_toEndOf="@id/text_recipe_servings"
-                app:layout_constraintTop_toTopOf="@id/text_recipe_servings" />
-
-            <TextView
-                android:id="@+id/text_recipe_descripation"
-                android:layout_width="@dimen/no_width"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_25dp"
-                android:layout_marginEnd="@dimen/spacing_normal"
-                android:ellipsize="end"
-                android:fontFamily="@font/roboto_regular"
-                android:lines="5"
-                android:textColor="@color/fontColor_accent"
-                android:textSize="@dimen/font_size_title"
-                app:htmlText="@{viewModel.state.description}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/text_recipe_time"
-                app:layout_constraintTop_toBottomOf="@id/text_recipe_time" />
-
-
-            <TextView
-                android:id="@+id/text_dish_type_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xlarge"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/dish_types"
-                android:textColor="@color/fontColor_primary"
-                android:textSize="@dimen/font_size_title_medium"
-                app:layout_constraintStart_toStartOf="@id/text_recipe_time"
-                app:layout_constraintTop_toBottomOf="@id/text_recipe_descripation" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_dish_type"
-                android:layout_width="@dimen/no_width"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_space"
-                app:items="@{viewModel.state.dishTypeUIState}"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/text_recipe_time"
-                app:layout_constraintTop_toBottomOf="@id/text_dish_type_title"
-                app:spanCount="3"
-                tools:listitem="@layout/item_dish_type" />
-
-            <TextView
-                android:id="@+id/text_ingredients_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xlarge"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/ingredients"
-                android:textColor="@color/fontColor_primary"
-                android:textSize="@dimen/font_size_title_medium"
-                app:layout_constraintStart_toStartOf="@id/text_recipe_time"
-                app:layout_constraintTop_toBottomOf="@id/recycler_view_dish_type" />
-
-            <TextView
-                android:id="@+id/text_go_to_cooking_steps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_normal"
-                android:drawableEnd="@drawable/ic_go_to_screen"
-                android:drawablePadding="@dimen/_4dp"
-                android:fontFamily="@font/roboto_medium"
-                android:onClick="@{() -> viewModel.onShowRecipeCookingStepsClicked(viewModel.args.id)}"
-                android:text="@string/go_to_cooking_steps"
-                android:textColor="@color/primary"
-                android:textSize="@dimen/font_size_title"
-                app:layout_constraintBottom_toBottomOf="@id/text_ingredients_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/text_ingredients_title" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_ingredients"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sheet_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/spacing_normal"
-                android:paddingTop="@dimen/small_space"
-                android:paddingBottom="@dimen/_20dp"
-                app:items="@{viewModel.state.ingredientsUIState}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_height="@dimen/no_height"
+                android:hideWhenErr="@{viewModel.state.error}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_ingredients_title"
-                tools:listitem="@layout/item_ingredient" />
+                app:layout_constraintTop_toBottomOf="@id/guideline_2">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/text_recipe_name"
+                    android:layout_width="@dimen/no_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:layout_marginEnd="@dimen/_55dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@{viewModel.state.title}"
+                    android:textColor="@color/fontColor_primary"
+                    android:textSize="@dimen/font_size_title_medium"
+                    app:layout_constraintEnd_toStartOf="@id/button_add_to_meal_plan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Pasta with Garlic , Scallions , Cauliflower Breadcrumbs" />
+
+                <ImageView
+                    android:id="@+id/button_add_to_meal_plan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/fab_margin"
+                    android:onClick="@{() -> viewModel.onAddToMealPlan(viewModel.state.id)}"
+                    android:src="@drawable/ic_save"
+                    app:layout_constraintBottom_toBottomOf="@id/text_recipe_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_recipe_name" />
+
+                <TextView
+                    android:id="@+id/text_recipe_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:drawableStart="@drawable/ic_time"
+                    android:drawablePadding="@dimen/_4dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@{String.valueOf(viewModel.state.readyInMinutes)}"
+                    android:textColor="@color/fontColor_secondary"
+                    android:textSize="@dimen/font_size_label"
+                    app:layout_constraintStart_toStartOf="@id/text_recipe_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_recipe_name"
+                    tools:text="45" />
+
+                <TextView
+                    android:id="@+id/text_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/min"
+                    android:textColor="@color/fontColor_secondary"
+                    android:textSize="@dimen/font_size_label"
+                    app:layout_constraintStart_toEndOf="@id/text_recipe_time"
+                    app:layout_constraintTop_toTopOf="@id/text_recipe_time" />
+
+                <TextView
+                    android:id="@+id/text_recipe_servings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginTop="12dp"
+                    android:drawableStart="@drawable/ic_servings"
+                    android:drawablePadding="@dimen/_4dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@{String.valueOf(viewModel.state.servings)}"
+                    android:textColor="@color/fontColor_secondary"
+                    android:textSize="@dimen/font_size_label"
+                    app:layout_constraintStart_toEndOf="@id/text_min"
+                    app:layout_constraintTop_toBottomOf="@id/text_recipe_name"
+                    tools:text="2" />
+
+                <TextView
+                    android:id="@+id/text_servings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/servings"
+                    android:textColor="@color/fontColor_secondary"
+                    android:textSize="@dimen/font_size_label"
+                    app:layout_constraintStart_toEndOf="@id/text_recipe_servings"
+                    app:layout_constraintTop_toTopOf="@id/text_recipe_servings" />
+
+                <TextView
+                    android:id="@+id/text_recipe_descripation"
+                    android:layout_width="@dimen/no_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/fontColor_accent"
+                    android:textSize="@dimen/font_size_title"
+                    app:htmlText="@{viewModel.state.description}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/text_recipe_time"
+                    app:layout_constraintTop_toBottomOf="@id/text_recipe_time" />
+
+
+                <TextView
+                    android:id="@+id/text_dish_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/dish_types"
+                    android:textColor="@color/fontColor_primary"
+                    android:textSize="@dimen/font_size_title_medium"
+                    app:layout_constraintStart_toStartOf="@id/text_recipe_time"
+                    app:layout_constraintTop_toBottomOf="@id/text_recipe_descripation" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_dish_type"
+                    android:layout_width="@dimen/no_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_space"
+                    app:items="@{viewModel.state.dishTypeUIState}"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/text_recipe_time"
+                    app:layout_constraintTop_toBottomOf="@id/text_dish_type_title"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_dish_type" />
+
+                <TextView
+                    android:id="@+id/text_ingredients_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/ingredients"
+                    android:textColor="@color/fontColor_primary"
+                    android:textSize="@dimen/font_size_title_medium"
+                    app:layout_constraintStart_toStartOf="@id/text_recipe_time"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_dish_type" />
+
+                <TextView
+                    android:id="@+id/text_go_to_cooking_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawableEnd="@drawable/ic_go_to_screen"
+                    android:drawablePadding="@dimen/_4dp"
+                    android:fontFamily="@font/roboto_regular"
+
+                    android:text="@string/see_all"
+                    android:textColor="@color/fontColor_accent"
+                    android:textSize="@dimen/font_size_title"
+                    app:layout_constraintBottom_toBottomOf="@id/text_ingredients_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_ingredients_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/spacing_normal"
+                    android:paddingEnd="@dimen/spacing_medium"
+                    app:items="@{viewModel.state.ingredientsUIState}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_ingredients_title"
+                    tools:listitem="@layout/item_ingredient" />
+
+                <Button
+                    android:id="@+id/button_step"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:layout_marginBottom="@dimen/space_32dp"
+                    android:backgroundTint="@color/primary"
+                    android:fontFamily="@font/roboto_medium"
+                    android:onClick="@{() -> viewModel.onShowRecipeCookingStepsClicked(viewModel.args.id)}"
+                    android:paddingHorizontal="28dp"
+                    android:paddingVertical="14dp"
+                    android:text="@string/go_to_cooking_steps"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_ingredients" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_2"
@@ -266,6 +291,6 @@
             app:layout_constraintGuide_percent="0.30" />
 
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

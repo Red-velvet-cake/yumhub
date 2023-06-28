@@ -6,6 +6,8 @@ import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentProfileBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.chatbot.ChatbotFragment
+import com.red_velvet.yumhub.ui.search.SearchFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -34,7 +36,11 @@ class ProfileFragment :
 
     private fun navigateToPersonalInfoScreen() {}
 
-    private fun navigateToChatBotScreen() {}
+    private fun navigateToChatBotScreen() {
+        val directions =
+            ProfileFragmentDirections.actionProfileFragmentToChatbotFragment()
+        findNavController().navigate(directions)
+    }
 
     private fun navigateToFavoritesScreen() {
         val action = ProfileFragmentDirections.actionProfileFragmentToFavoritesFragment()
@@ -42,7 +48,8 @@ class ProfileFragment :
     }
 
     private fun navigateToHistoryScreen() {
-
+        val directions = ProfileFragmentDirections.actionProfileFragmentToHistoryFragment()
+        findNavController().navigate(directions)
     }
 
     private fun navigateToNutritionalScreen() {}

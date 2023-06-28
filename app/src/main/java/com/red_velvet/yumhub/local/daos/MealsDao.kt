@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.red_velvet.yumhub.local.entities.HistoryItemLocalDto
 import com.red_velvet.yumhub.local.entities.MealPlanLocalDto
+import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import kotlinx.coroutines.flow.Flow
 
 
@@ -22,4 +24,12 @@ interface MealsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWeekPlanMeal(mealPlanLocalDto: List<MealPlanLocalDto>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertHistoryMeal(historyItemLocalDto: List<HistoryItemLocalDto>)
+
+    @Query("SELECT * FROM HISTORY_ITEM ORDER BY viewedAt DESC")
+    fun getHistoryMeals(): Flow<List<HistoryItemLocalDto>>
+
+    @Query("DELETE FROM HISTORY_ITEM WHERE id = :mealId")
+    suspend fun deleteHistoryMeal(mealId: Int)
 }
