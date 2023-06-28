@@ -133,6 +133,9 @@
         <action
             android:id="@+id/action_profileFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_findYourMealFragment"
+            app:destination="@id/findYourMealFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -146,7 +149,21 @@
     <fragment
         android:id="@+id/findYourMealFragment"
         android:name="com.red_velvet.yumhub.ui.fnd_meal.FindYourMealFragment"
-        android:label="FindYourMealFragment"
-        tools:layout="@layout/fragment_find_your_meal"/>
+        android:label="Test Your Meal"
+        tools:layout="@layout/fragment_find_your_meal">
+        <action
+            android:id="@+id/action_findYourMealFragment_to_nutritionInfoContainerFragment"
+            app:destination="@id/nutritionInfoContainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nutritionInfoContainerFragment"
+        android:name="com.red_velvet.yumhub.ui.nutrition_info.NutritionInfoContainerFragment"
+        android:label="NutritionInfoContainerFragment"
+        tools:layout="@layout/fragment_test_your_meal">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="658855" />
+    </fragment>
 
 </navigation>
