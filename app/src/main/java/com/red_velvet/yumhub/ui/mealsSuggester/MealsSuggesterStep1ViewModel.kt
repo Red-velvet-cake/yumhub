@@ -23,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MealsSuggesterStep1ViewModel @Inject constructor(
     private val calculateNeededCaloriesUseCase: CalculateNeededCaloriesUseCase,
-    private val calculateRangeOfNeededCaloriesUseCase: CalculateRangeOfNeededCaloriesUseCase
+    private val calculateRangeOfNeededCaloriesUseCase: CalculateRangeOfNeededCaloriesUseCase,
 ) : BaseViewModel<MealsSuggesterStep1UiState, MealsSuggesterStep1UiEffect>(
     MealsSuggesterStep1UiState()
 ), SuggestedMealsInteractionListener {
@@ -33,8 +33,8 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
             _effect.emit(MealsSuggesterStep1UiEffect.ClickOnGenderSelector(gender))
         }
     }
-     fun updateActivityLevel(activityLevel: Int)
-    {
+
+    fun updateActivityLevel(activityLevel: Int) {
         _state.update { it.copy(activityLevel = activityLevel) }
         viewModelScope.launch {
             _effect.emit(MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector(activityLevel))
@@ -47,64 +47,69 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
     }
 
     fun updateTall(tall: String) {
-        if (tall!="")
+        if (tall != "")
             _state.update { it.copy(tall = tall.toInt()) }
         else
             _state.update { it.copy(tall = null) }
     }
 
     fun updateAge(age: String) {
-        if (age!="")
+        if (age != "")
             _state.update { it.copy(age = age.toInt()) }
         else
             _state.update { it.copy(age = null) }
     }
 
     fun updateWeight(weight: String) {
-        if (weight!="")
+        if (weight != "")
             _state.update { it.copy(weight = weight.toInt()) }
         else
             _state.update { it.copy(weight = null) }
     }
+
     override fun onMealClick(id: Int) {
 
     }
-    private fun onSuccessFetchData(meals: List<RecipeEntity>)
-    { _state.update { it.copy( meals = meals.toSuggestedMeals(), isLoading = false, error = null) } }
 
-    fun onError(throwable: ErrorUIState)
-    { _state.update { it.copy(error = throwable) } }
+    private fun onSuccessFetchData(meals: List<RecipeEntity>) {
+        _state.update { it.copy(meals = meals.toSuggestedMeals(), isLoading = false, error = null) }
+    }
 
-     fun onNextButtonClicked(type: String) {
-         if (type == "stepTwo") {
-             if (state.value.age != null || state.value.tall != null || state.value.weight != null) {
-                 val neededCalories = getNeededCalories()
-                 _state.update { it.copy(calories = neededCalories.maximumCalories.toInt()) }
-                 tryToExecute(
-                     { calculateNeededCaloriesUseCase.calculateNeededCalories(neededCalories) },
-                     onSuccess = ::onSuccessFetchData,
-                     onError = ::onError
-                 )
-                 viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnNextClicked(type)) }
-             }
-             else
-                 viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnEmptyFields) }
-         }
-         else
-         viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnNextClicked(type)) }
-     }
+    fun onError(throwable: ErrorUIState) {
+        _state.update { it.copy(error = throwable) }
+    }
 
-    private fun getNeededCalories():RangeNeededCaloriesEntity {
-       return calculateRangeOfNeededCaloriesUseCase.calculateNeededCalories (
-           FoodSystemEntity(
-               age = _state.value.age.orZero(),
-               weight = _state.value.weight.orZero(),
-               height = _state.value.tall.orZero(),
-               activityLevel = _state.value.activityLevel.orZero(),
-               gender = _state.value.gender.orEmpty(),
-               goal = _state.value.goal.orEmpty()
-           )
-       )
+    fun onNextButtonClicked(type: String) {
+        if (type == "stepTwo") {
+            if (state.value.age != null || state.value.tall != null || state.value.weight != null) {
+                val neededCalories = getNeededCalories()
+                _state.update { it.copy(calories = neededCalories.maximumCalories.toInt()) }
+                tryToExecute(
+                    { calculateNeededCaloriesUseCase.calculateNeededCalories(neededCalories) },
+                    onSuccess = ::onSuccessFetchData,
+                    onError = ::onError
+                )
+                viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnNextClicked(type)) }
+            }
+            else {
+                viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnEmptyFields) }
+            }
+        }
+        else
+            viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnNextClicked(type)) }
+    }
+
+    private fun getNeededCalories(): RangeNeededCaloriesEntity {
+        return calculateRangeOfNeededCaloriesUseCase.calculateNeededCalories(
+            FoodSystemEntity(
+                age = _state.value.age.orZero(),
+                weight = _state.value.weight.orZero(),
+                height = _state.value.tall.orZero(),
+                activityLevel = _state.value.activityLevel.orZero(),
+                gender = _state.value.gender.orEmpty(),
+                goal = _state.value.goal.orEmpty()
+            )
+        )
     }
 
 }
