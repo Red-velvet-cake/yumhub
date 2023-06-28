@@ -43,7 +43,7 @@ class CalculateRangeOfNeededCaloriesUseCase @Inject constructor () {
 
             else -> {
                 RecipeCalories(
-                    minCalories = calculateActivityLevel,
+                    minCalories = 0.0,
                     maxCalories = calculateActivityLevel
                 )
             }
