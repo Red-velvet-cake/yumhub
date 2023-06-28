@@ -1,27 +1,34 @@
-package com.red_velvet.yumhub.ui.test_your_meal
+package com.red_velvet.yumhub.ui.nutrition_info
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentTestYourMealBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.nutrition_info_type_bad.BadNutritionInfoFragment
+import com.red_velvet.yumhub.ui.nutritionl_info_type_good.GoodNutritionInfoFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-
-class TestYourMealFragment :
+@AndroidEntryPoint
+class NutritionInfoContainerFragment :
     BaseFragment<FragmentTestYourMealBinding,
-            TestYourMealUiState,
-            TestYourMealUiEffect,
-            TestYourMealViewModel>() {
+            NutritionInfoUiState,
+            NutritionInfoUiEffect,
+            NutritionInfoViewModel>() {
 
-    private val fragmentsList = listOf(BadContentFragment(), GoodContentFragment())
+   private val fragmentsList = listOf(BadNutritionInfoFragment(), GoodNutritionInfoFragment())
    private val tabTitles = listOf("good", "bad")
 
 
     override val layoutIdFragment = R.layout.fragment_test_your_meal
 
-    override val viewModel: TestYourMealViewModel by viewModels()
+    override val viewModel: NutritionInfoViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,11 +44,11 @@ class TestYourMealFragment :
     }
 
     override fun observeOnUIEffects() {
-        TODO("Not yet implemented")
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
     }
 
-    override fun handleUIEffect(uiEffect: TestYourMealUiEffect) {
-        TODO("Not yet implemented")
+    override fun handleUIEffect(uiEffect: NutritionInfoUiEffect) {
+//        to do
     }
 
     private fun initViewPager() {
