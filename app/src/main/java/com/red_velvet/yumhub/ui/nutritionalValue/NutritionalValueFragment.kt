@@ -1,5 +1,7 @@
 package com.red_velvet.yumhub.ui.nutritionalValue
 
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -26,12 +28,18 @@ class NutritionalValueFragment : BaseFragment<FragmentNutritionalValueBinding,
     override fun handleUIEffect(uiEffect: NutritionalValueUIEffect) {
         when (uiEffect) {
             NutritionalValueUIEffect.InvalidSearchInput -> onInvalidInputs()
+            NutritionalValueUIEffect.HideKeyboard -> hideKeyBoard()
         }
     }
 
     private fun onInvalidInputs() {
         Snackbar.make(binding.imageViewCarbs, "Enter correct recipe name", Snackbar.LENGTH_SHORT)
             .show()
+    }
+
+     fun hideKeyBoard() {
+        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
 }
