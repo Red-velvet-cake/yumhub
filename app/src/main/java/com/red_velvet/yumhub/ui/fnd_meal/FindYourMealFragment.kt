@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.ui.fnd_meal
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
@@ -9,8 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentFindYourMealBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
-import com.red_velvet.yumhub.ui.search.SearchFragmentDirections
-import com.red_velvet.yumhub.ui.search.SearchUIEffect
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -38,14 +37,13 @@ class FindYourMealFragment
     }
 
     override fun handleUIEffect(uiEffect: FindYourMaelUiEffect) {
-//        when (uiEffect) {
-//            is FindYourMaelUiEffect.ClickOnResultItem -> onItemResultClicked(uiEffect.recipeId)
-//        }
+    when (uiEffect) {
+            is FindYourMaelUiEffect.ClickOnResultItem -> onItemResultClicked(uiEffect.recipeId)
+       }
     }
-//    private fun onItemResultClicked(recipeId: Int) {
-//        val directions =
-//            SearchFragmentDirections.actionSearchFragmentToRecipeInformationFragment(recipeId)
-//
-//        findNavController().navigate(directions)
-//    }
+    private fun onItemResultClicked(recipeId: Int) {
+        val directions = FindYourMealFragmentDirections.actionFindYourMealFragmentToNutritionInfoContainerFragment()
+        findNavController().navigate(directions)
+
+    }
 }
