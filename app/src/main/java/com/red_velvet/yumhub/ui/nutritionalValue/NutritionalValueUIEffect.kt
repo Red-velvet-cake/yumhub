@@ -8,5 +8,6 @@ sealed interface NutritionalValueUIEffect : BaseUIEffect {
 
     object  HideKeyboard : NutritionalValueUIEffect
 
+    object NoResultMessage : NutritionalValueUIEffect
 
 }
