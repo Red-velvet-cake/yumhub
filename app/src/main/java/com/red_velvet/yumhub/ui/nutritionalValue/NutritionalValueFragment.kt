@@ -29,6 +29,7 @@ class NutritionalValueFragment : BaseFragment<FragmentNutritionalValueBinding,
         when (uiEffect) {
             NutritionalValueUIEffect.InvalidSearchInput -> onInvalidInputs()
             NutritionalValueUIEffect.HideKeyboard -> hideKeyBoard()
+            NutritionalValueUIEffect.NoResultMessage->noResultMessage()
         }
     }
 
@@ -36,7 +37,10 @@ class NutritionalValueFragment : BaseFragment<FragmentNutritionalValueBinding,
         Snackbar.make(binding.imageViewCarbs, "Enter correct recipe name", Snackbar.LENGTH_SHORT)
             .show()
     }
-
+    fun noResultMessage(){
+        Snackbar.make(binding.imageViewCarbs, "don't have nutrition values for this recipe", Snackbar.LENGTH_SHORT)
+            .show()
+    }
      fun hideKeyBoard() {
         val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
