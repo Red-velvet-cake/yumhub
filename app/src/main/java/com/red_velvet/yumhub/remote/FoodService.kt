@@ -120,7 +120,7 @@ interface FoodService {
         ): Response<List<AnalyzedInstructionResource>>
     @GET ("recipes/findByNutrients")
     suspend fun getRecipesByRangeCalories(
-    @Query("minCalories") minCalories: Double = 50.0,
-    @Query("maxCalories") maxCalories: Double = 5000.0
+    @Query("minCalories") minCalories: Int,
+    @Query("maxCalories") maxCalories: Int
     ): Response<List<RecipesByRangeOfCaloriesResource>>
 }
