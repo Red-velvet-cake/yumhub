@@ -11,7 +11,7 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.see_all.SeeAllRecipesFragment">
@@ -25,9 +25,27 @@
             android:paddingStart="@dimen/spacing_normal"
             android:paddingTop="@dimen/spacing_large_24"
             android:paddingEnd="@dimen/spacing_x_small"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:items="@{viewModel.state.recipesList}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
             tools:listitem="@layout/item_category_recipes" />
-    </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/category_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.state.loading}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
