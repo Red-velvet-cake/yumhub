@@ -69,7 +69,7 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
 
     }
     private fun onSuccessFetchData(meals: List<RecipeEntity>)
-    { _state.update { it.copy( meals = meals.toSuggestedMeals(), isLoading = false) } }
+    { _state.update { it.copy( meals = meals.toSuggestedMeals(), isLoading = false, error = null) } }
 
     fun onError(throwable: ErrorUIState)
     { _state.update { it.copy(error = throwable) } }
