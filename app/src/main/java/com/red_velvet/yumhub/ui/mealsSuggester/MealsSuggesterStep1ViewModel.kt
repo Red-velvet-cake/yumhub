@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.ui.mealsSuggester
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.FoodSystemEntity
 import com.red_velvet.yumhub.domain.models.recipes.RangeNeededCaloriesEntity
@@ -49,21 +50,21 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
         if (tall!="")
             _state.update { it.copy(tall = tall.toInt()) }
         else
-            _state.update { it.copy(tall = -1) }
+            _state.update { it.copy(tall = null) }
     }
 
     fun updateAge(age: String) {
         if (age!="")
             _state.update { it.copy(age = age.toInt()) }
         else
-            _state.update { it.copy(age = -1) }
+            _state.update { it.copy(age = null) }
     }
 
     fun updateWeight(weight: String) {
         if (weight!="")
             _state.update { it.copy(weight = weight.toInt()) }
         else
-            _state.update { it.copy(weight = -1) }
+            _state.update { it.copy(weight = null) }
     }
     override fun onMealClick(id: Int) {
 
@@ -76,14 +77,20 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
 
      fun onNextButtonClicked(type: String) {
          if (type == "stepTwo") {
-             val neededCalories =  getNeededCalories()
-             _state.update { it.copy(calories = neededCalories.maximumCalories.toInt()) }
-             tryToExecute(
-                 { calculateNeededCaloriesUseCase.calculateNeededCalories(neededCalories) },
-                 onSuccess = ::onSuccessFetchData,
-                 onError = ::onError
-             )
+             if (state.value.age != null || state.value.tall != null || state.value.weight != null) {
+                 val neededCalories = getNeededCalories()
+                 _state.update { it.copy(calories = neededCalories.maximumCalories.toInt()) }
+                 tryToExecute(
+                     { calculateNeededCaloriesUseCase.calculateNeededCalories(neededCalories) },
+                     onSuccess = ::onSuccessFetchData,
+                     onError = ::onError
+                 )
+                 viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnNextClicked(type)) }
+             }
+             else
+                 viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnEmptyFields) }
          }
+         else
          viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnNextClicked(type)) }
      }
 
