@@ -9,7 +9,7 @@
     type="com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiState.SuggestedMeals" />
         <variable
             name="listener"
-            type="com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiEffect" />
+            type="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.SuggestedMealsInteractionListener" />
     </data>
 
     <LinearLayout
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:orientation="vertical"
-        android:onClick="@{()->listener.ClickOnMealItem(item.id)}"
+        android:onClick="@{()->listener.onMealClick(item.id)}"
         >
 
         <com.google.android.material.imageview.ShapeableImageView
