@@ -46,14 +46,14 @@ class SearchViewModel @Inject constructor(
         if (!ifSameFilterTypeSelected(type)) {
             _state.update {
                 it.copy(
-                    isLoading = true,
                     isResultIsEmpty = false,
                     sort = type,
-                    sortDirection = "asc"
-                )
+                    sortDirection = "asc",
+
+                    )
             }
-            onGetData()
         }
+        onGetData()
     }
 
     private fun ifSameFilterTypeSelected(type: String): Boolean {
