@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentMealPlanBinding
@@ -16,6 +18,8 @@ import com.red_velvet.yumhub.ui.lunchMeals.LunchMealsFragment
 import com.red_velvet.yumhub.ui.mealPlan.adapter.CalendarDaysAdapter
 import com.red_velvet.yumhub.ui.mealPlan.adapter.MealPlanPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MealPlanFragment :
@@ -45,12 +49,24 @@ class MealPlanFragment :
         }
     }
 
-    override fun observeOnUIEffects() {}
+    override fun observeOnUIEffects() {
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
+    }
 
-    override fun handleUIEffect(uiEffect: MealPlanUiEffect) {}
+    override fun handleUIEffect(uiEffect: MealPlanUiEffect) {
+        when (uiEffect) {
+            is MealPlanUiEffect.ShowMealDetails -> navigateToMealDetails(uiEffect.mealId)
+        }
+    }
+
+    private fun navigateToMealDetails(mealId: Int) {
+        val action =
+            MealPlanFragmentDirections.actionMealPlanFragmentToRecipeInformationFragment(mealId)
+        findNavController().navigate(action)
+    }
 
     private fun initMealsPager(fragments: List<Fragment>) {
-        val pagerAdapter = MealPlanPagerAdapter(this, fragments)
+        val pagerAdapter = MealPlanPagerAdapter(this, fragments, viewModel)
         binding.viewPagerMeals.adapter = pagerAdapter
     }
 
