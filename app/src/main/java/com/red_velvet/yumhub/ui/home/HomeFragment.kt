@@ -15,7 +15,6 @@ import com.red_velvet.yumhub.ui.home.adapters.PopularRecipeAdapter
 import com.red_velvet.yumhub.ui.home.adapters.QuickRecipeAdapter
 import com.red_velvet.yumhub.ui.home.adapters.RecipesCategoriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -44,12 +43,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeUiState, HomeUIEffect
     }
 
     override fun observeOnUIEffects() {
-        lifecycleScope.launch(Dispatchers.Default) {
-            viewModel.effect.collectLatest {
-                handleUIEffect(
-                    it
-                )
-            }
+        lifecycleScope.launch {
+            viewModel.effect.collectLatest { handleUIEffect(it) }
         }
     }
 
