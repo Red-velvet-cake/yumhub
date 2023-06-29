@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/nutritionalValueFragment"
         android:name="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueFragment"
-        android:label=""
+        android:label="Nutritional Value"
         tools:layout="@layout/fragment_nutritional_value" />
     <fragment
         android:id="@+id/onBoardingFragment"

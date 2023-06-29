@@ -46,14 +46,21 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
         if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter(value = ["app:showIfListEmpty", "loading", "app:error"])
-fun showIfNotFound(view: View, value: Boolean, loading: Boolean, errorState: ErrorUIState?) {
+@BindingAdapter(value = ["app:showIfListEmpty", "loading", "app:error", "searchInput"])
+fun showIfNotFound(
+    view: View,
+    showIfListEmpty: Boolean,
+    loading: Boolean,
+    errorState: ErrorUIState?,
+    searchInput: String
+) {
     if (errorState != null) {
-        view.isVisible = false
+        view.visibility = View.GONE
     } else if (loading) {
-        view.isVisible = false;
+        view.visibility = View.GONE
     } else {
-        view.isVisible = value
+        val isVisible = showIfListEmpty && searchInput.isNotEmpty()
+        view.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 }
 
@@ -233,7 +240,7 @@ fun loadImage(view: ImageView, imageUrl: String) {
     Glide.with(view).load(imageUrl)
         .fitCenter()
         .centerCrop()
-        .placeholder(R.drawable.placeholder)
+//        .placeholder(R.drawable.placeholder)
         .into(view)
 }
 
@@ -292,3 +299,14 @@ fun setViewPagerItems(viewPager: ViewPager, items: List<HomeSliderItemUiState>?)
 fun hideIfLoading(view: View, value: Boolean) {
     view.isInvisible = value
 }
+
+@BindingAdapter("app:hideIfLoadingNutrionValue")
+fun hideIfLoadingNutrionValue(view: View, loading: Boolean) {
+    if (loading) {
+        view.visibility = View.INVISIBLE
+    } else {
+        view.visibility = View.VISIBLE
+    }
+}
+
+
