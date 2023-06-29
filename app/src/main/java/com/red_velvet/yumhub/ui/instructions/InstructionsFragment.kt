@@ -2,6 +2,7 @@ package com.red_velvet.yumhub.ui.instructions
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentInstructionsBinding
@@ -26,5 +27,7 @@ class InstructionsFragment :
         super.onViewCreated(view, savedInstanceState)
         val instructionsAdapter = InstructionsAdapter(emptyList(), viewModel)
         binding.instructionsRecyclerView.adapter = instructionsAdapter
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Instructions"
     }
 }
