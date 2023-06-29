@@ -73,7 +73,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onSelectSortDirection(sortDirection: String) {
-        _state.update { it.copy(isLoading = true, sortDirection = sortDirection) }
+        _state.update { it.copy(sortDirection = sortDirection) }
         onGetData()
     }
 
