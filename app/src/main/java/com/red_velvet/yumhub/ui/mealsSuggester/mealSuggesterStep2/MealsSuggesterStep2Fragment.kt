@@ -42,6 +42,7 @@ class MealsSuggesterStep2Fragment :
             is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
             is MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked(type = uiEffect.type)
             MealsSuggesterStep1UiEffect.OnEmptyFields -> onEmptyFields()
+            is MealsSuggesterStep1UiEffect.OnSelectItemRecipe -> {}
         }
     }
 

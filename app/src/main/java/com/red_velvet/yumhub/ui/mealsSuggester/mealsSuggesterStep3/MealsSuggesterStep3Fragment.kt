@@ -33,7 +33,13 @@ class MealsSuggesterStep3Fragment :
             is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
             is MealsSuggesterStep1UiEffect.OnNextClicked -> {}
             MealsSuggesterStep1UiEffect.OnEmptyFields -> {}
+            is MealsSuggesterStep1UiEffect.OnSelectItemRecipe -> updateItemUi(uiEffect.itemRecipe)
         }
+    }
+
+    private fun updateItemUi(itemRecipe: MealsSuggesterStep1UiState.SuggestedMeals) {
+        itemRecipe.isSelectedRecipe = !(itemRecipe.isSelectedRecipe)
+        Log.i("jalalIntFragment" , "is selected : ${itemRecipe.isSelectedRecipe}")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
