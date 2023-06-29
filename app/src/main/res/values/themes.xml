@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.YumHub" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.YumHub" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
         <item name="android:navigationBarColor">@color/primary</item>
         <item name="android:navigationIcon">@color/primary</item>
