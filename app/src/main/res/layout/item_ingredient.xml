@@ -13,7 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_space"
         android:layout_marginEnd="@dimen/small_space"
         android:orientation="vertical">
 
@@ -32,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4dp"
             android:ellipsize="end"
+            android:textAlignment="center"
             android:fontFamily="@font/roboto_regular"
             android:lines="1"
             android:textSize="@dimen/text_size_16"
