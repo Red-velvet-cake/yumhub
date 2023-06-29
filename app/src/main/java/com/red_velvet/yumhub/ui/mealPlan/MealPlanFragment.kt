@@ -1,5 +1,6 @@
 package com.red_velvet.yumhub.ui.mealPlan
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.red_velvet.yumhub.ui.mealPlan.adapter.MealPlanPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 @AndroidEntryPoint
 class MealPlanFragment :
@@ -40,6 +42,7 @@ class MealPlanFragment :
             initTabLayout(tabsTitles)
             initCalendarDaysAdapter()
             listenToTabSelection()
+            listenToDatePickerClicks()
         }
     }
 
@@ -50,9 +53,9 @@ class MealPlanFragment :
     override fun handleUIEffect(uiEffect: MealPlanUiEffect) {
         when (uiEffect) {
             is MealPlanUiEffect.ShowMealDetails -> navigateToMealDetails(uiEffect.mealId)
+            is MealPlanUiEffect.ShowDatePicker -> showDatePickerDialog()
         }
     }
-
 
     private fun navigateToMealDetails(mealId: Int) {
         val action =
@@ -88,5 +91,31 @@ class MealPlanFragment :
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+    }
+
+    private fun listenToDatePickerClicks() {
+        binding.myToolbar.setOnClickListener {
+            viewModel.onDatePickerClicked()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                viewModel.onDateSelected("${year}-${month + 1}-${dayOfMonth}-12-00-00")
+            },
+            Calendar.getInstance().get(Calendar.YEAR),
+            Calendar.getInstance().get(Calendar.MONTH),
+            Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.show()
+    }
+
+    private fun getTimestamp(year: Int, month: Int, dayOfMonth: Int): Int {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, dayOfMonth)
+        return calendar.timeInMillis.toInt()
     }
 }

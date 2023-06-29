@@ -17,6 +17,25 @@
         android:background="@color/bg_white"
         tools:context=".ui.mealPlan.MealPlanFragment">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/meal_plan_action"
+                app:title="Meal Plan"
+                app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
+        </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_calendar_days"
             android:layout_width="match_parent"
@@ -24,9 +43,10 @@
             android:clipToPadding="false"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_16dp"
+            app:hideIfListEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             app:items="@{viewModel.state.daysPlannedMeals}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
             tools:listitem="@layout/item_calendar_day" />
 
         <com.google.android.material.tabs.TabLayout
@@ -36,6 +56,7 @@
             android:layout_marginTop="@dimen/spacing_large_24"
             android:backgroundTint="@color/bg_white"
             android:clipToPadding="false"
+            app:hideIfListEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             app:layout_constraintTop_toBottomOf="@id/recycler_view_calendar_days"
             app:tabGravity="fill"
             app:tabMode="fixed" />
@@ -44,8 +65,54 @@
             android:id="@+id/view_pager_meals"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:hideIfListEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_layout_meal_type" />
+
+        <ImageView
+            android:id="@+id/empty_meals_vector"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:showWhenEmpty="@{viewModel.state.daysPlannedMeals.empty}"
+            android:src="@drawable/not_found_search"
+            app:layout_constraintBottom_toTopOf="@id/empty_meals_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/empty_meals_title"
+            style="@style/TextStyle.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:showWhenEmpty="@{viewModel.state.daysPlannedMeals.empty}"
+            android:text="@string/not_found"
+            android:textColor="@color/fontColor_secondary"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintBottom_toTopOf="@id/empty_meals_description"
+            app:layout_constraintEnd_toEndOf="@id/empty_meals_vector"
+            app:layout_constraintStart_toStartOf="@id/empty_meals_vector"
+            app:layout_constraintTop_toBottomOf="@id/empty_meals_vector" />
+
+        <TextView
+            android:id="@+id/empty_meals_description"
+            style="@style/TextStyle.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4dp"
+            android:layout_marginBottom="?android:attr/actionBarSize"
+            android:gravity="center"
+            android:showWhenEmpty="@{viewModel.state.daysPlannedMeals.empty}"
+            android:text="@string/no_meal_has_been_entered_on_this_day"
+            android:textColor="@color/fontColor_accent"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/empty_meals_vector"
+            app:layout_constraintStart_toStartOf="@id/empty_meals_vector"
+            app:layout_constraintTop_toBottomOf="@id/empty_meals_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

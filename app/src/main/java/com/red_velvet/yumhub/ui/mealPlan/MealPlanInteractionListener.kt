@@ -7,4 +7,6 @@ interface MealPlanInteractionListener : BaseInteractionListener {
     fun onDaySelected(timestamp: Int)
 
     fun onPageChanged(position: Int)
+
+    fun onDatePickerClicked()
 }

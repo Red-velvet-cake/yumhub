@@ -135,4 +135,6 @@
     <string name="how_much_vitamin_c_in_two_dolma">How much vitamin c in two dolma</string>
     <string name="please_make_sure_you_are_connected_to">Please make sure you are connected to</string>
     <string name="title_ingredients">Ingredients</string>
+    <string name="chosee_date">Chosee Date</string>
+    <string name="no_meal_has_been_entered_on_this_day">No meal has been entered on this day</string>
 </resources>
