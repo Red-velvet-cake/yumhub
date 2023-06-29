@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
@@ -46,14 +45,14 @@ class SearchViewModel @Inject constructor(
         if (!ifSameFilterTypeSelected(type)) {
             _state.update {
                 it.copy(
-                    isLoading = true,
                     isResultIsEmpty = false,
                     sort = type,
-                    sortDirection = "asc"
-                )
+                    sortDirection = "asc",
+
+                    )
             }
-            onGetData()
         }
+        onGetData()
     }
 
     private fun ifSameFilterTypeSelected(type: String): Boolean {
