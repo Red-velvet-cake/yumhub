@@ -6,4 +6,8 @@ sealed interface NutritionalValueUIEffect : BaseUIEffect {
 
     object InvalidSearchInput : NutritionalValueUIEffect
 
+    object  HideKeyboard : NutritionalValueUIEffect
+
+    object NoResultMessage : NutritionalValueUIEffect
+
 }
