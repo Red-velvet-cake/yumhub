@@ -20,7 +20,7 @@
             android:id="@+id/image_ingredients"
             android:layout_width="@dimen/item_ingredient_image_width"
             android:layout_height="@dimen/item_ingredient_image_height"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:imageUrl='@{"https://spoonacular.com/cdn/ingredients_100x100/"+item.image}'
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4dp"
             android:ellipsize="end"
+            android:textAlignment="center"
             android:fontFamily="@font/roboto_regular"
             android:lines="1"
             android:textSize="@dimen/text_size_16"

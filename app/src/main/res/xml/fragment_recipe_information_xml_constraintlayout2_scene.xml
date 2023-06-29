@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:alpha="0"
-            motion:layout_constraintBottom_toTopOf="@+id/guideline"
+            motion:layout_constraintBottom_toTopOf="@+id/guideImage"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
