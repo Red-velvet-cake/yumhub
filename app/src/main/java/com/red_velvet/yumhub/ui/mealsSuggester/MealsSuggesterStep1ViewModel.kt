@@ -67,8 +67,13 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
             _state.update { it.copy(weight = null) }
     }
 
-    override fun onMealClick(id: Int) {
-
+    override fun onMealClick(item: MealsSuggesterStep1UiState.SuggestedMeals) {
+        if (item.isSelectedRecipe)
+            _state.update { it.copy(recipeCalories = _state.value.recipeCalories - item.calories.toInt()) }
+        else
+            _state.update { it.copy(recipeCalories = item.calories.toInt()+_state.value.recipeCalories) }
+        viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnSelectItemRecipe(item)) }
+        Log.i("jalalCal",_state.value.toString())
     }
 
     private fun onSuccessFetchData(meals: List<RecipeEntity>) {
@@ -81,7 +86,7 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
 
     fun onNextButtonClicked(type: String) {
         if (type == "stepTwo") {
-            if (state.value.age != null || state.value.tall != null || state.value.weight != null) {
+            if (state.value.age != null && state.value.tall != null && state.value.weight != null) {
                 val neededCalories = getNeededCalories()
                 _state.update { it.copy(calories = neededCalories.maximumCalories.toInt()) }
                 tryToExecute(
