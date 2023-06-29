@@ -18,6 +18,7 @@ fun RecipesByRangeOfCaloriesResource.toEntity(): RecipeEntity{
     return RecipeEntity(
         id = id.orZero(),
         title = title.orEmpty(),
-        imageUrl = image.orEmpty()
+        imageUrl = image.orEmpty(),
+        calories = calories.orZero()
     )
 }
