@@ -6,8 +6,8 @@ import com.red_velvet.yumhub.ui.mealPlan.MealPlanInteractionListener
 import com.red_velvet.yumhub.ui.mealPlan.MealPlanUiState
 
 class CalendarDaysAdapter(
-    items: List<MealPlanUiState.DayUiState>,
+    items: List<MealPlanUiState.DayPlannedMealsUiState>,
     listener: MealPlanInteractionListener
-) : BaseAdapter<MealPlanUiState.DayUiState>(items, listener) {
+) : BaseAdapter<MealPlanUiState.DayPlannedMealsUiState>(items, listener) {
     override val layoutId: Int = R.layout.item_calendar_day
 }

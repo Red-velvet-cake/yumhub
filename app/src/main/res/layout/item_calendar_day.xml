@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.red_velvet.yumhub.ui.mealPlan.MealPlanUiState.DayUiState" />
+            type="com.red_velvet.yumhub.ui.mealPlan.MealPlanUiState.DayPlannedMealsUiState" />
 
         <variable
             name="listener"
@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:elevation="0dp"
-        app:cardBackgroundColor="@{item.selected ? @color/primary : @color/on_secondary}"
         app:cardCornerRadius="@dimen/raduis_16dp"
         app:contentPadding="@dimen/size_8dp"
         app:strokeWidth="0dp">
@@ -35,8 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@{item.weekDay}"
-                android:textColor="@{item.selected ? @color/fontColor_white : @color/fontColor_secondary}"
+                android:text="@{item.dayOfWeek}"
                 android:textSize="@dimen/text_size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_4dp"
-                android:text="@{item.monthDay}"
-                android:textColor="@{item.selected ? @color/fontColor_white : @color/fontColor_primary}"
+                android:text="@{item.datOfMonth}"
                 android:textSize="@dimen/text_size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,125 +1,66 @@
 package com.red_velvet.yumhub.ui.mealPlan
 
+import androidx.lifecycle.viewModelScope
+import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
+import com.red_velvet.yumhub.domain.usecases.GetWeekMealsPlanUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
+import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MealPlanViewModel @Inject constructor() :
+class MealPlanViewModel @Inject constructor(
+    private val getWeeklyPlannedMeals: GetWeekMealsPlanUseCase
+) :
     BaseViewModel<MealPlanUiState, MealPlanUiEffect>(MealPlanUiState()),
     MealPlanInteractionListener {
 
 
 
     init {
-        initCalendarDays()
-        initBreakfastMeals()
-        initLunchMeals()
-        initDinnerMeals()
+        getWeekMealsPlan()
+        initSelectedDay()
     }
 
-    private fun initCalendarDays() {
-        val fakeCalendarDays = listOf(
-            MealPlanUiState.DayUiState("Mon", "12"),
-            MealPlanUiState.DayUiState("Tue", "13", isSelected = true),
-            MealPlanUiState.DayUiState("Wed", "14"),
-            MealPlanUiState.DayUiState("Thu", "15"),
-            MealPlanUiState.DayUiState("Fri", "16"),
-            MealPlanUiState.DayUiState("Sat", "17"),
-            MealPlanUiState.DayUiState("Sun", "18"),
-        )
-        _state.update { it.copy(calendarDays = fakeCalendarDays) }
+    private fun initSelectedDay() {
+        _state.update { it.copy(selectedDay = it.daysPlannedMeals.first().date) }
     }
 
-    private fun initBreakfastMeals() {
-        val fakeBreakfastMeals = listOf(
-            MealPlanUiState.MealUiState(
-                1,
-                "Breakfast 1",
-                "Description 1",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                2,
-                "Breakfast 2",
-                "Description 2",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                3,
-                "Breakfast 3",
-                "Description 3",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                4,
-                "Breakfast 4",
-                "Description 4",
-                "https://picsum.photos/200/300"
-            ),
+
+    private fun getWeekMealsPlan() {
+        tryToExecute(
+            { getWeeklyPlannedMeals("2023-6-28") },
+            ::onGetWeekMealsPlanSuccess,
+            ::onError
         )
-        _state.update { it.copy(breakfastMeals = fakeBreakfastMeals) }
     }
 
-    private fun initLunchMeals() {
-        val fakeLunchMeals = listOf(
-            MealPlanUiState.MealUiState(
-                1,
-                "Lunch 1",
-                "Description 1",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                2,
-                "Lunch 2",
-                "Description 2",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                3,
-                "Lunch 3",
-                "Description 3",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                4,
-                "Lunch 4",
-                "Description 4",
-                "https://picsum.photos/200/300"
-            ),
-        )
-        _state.update { it.copy(lunchMeals = fakeLunchMeals) }
+    private fun onGetWeekMealsPlanSuccess(days: List<DayPlannedMealsEntity>) {
+        _state.update {
+            it.copy(
+                daysPlannedMeals = days.toDayPlannedMealsUiState(),
+                breakfastMeals = days.filter { it.timestamp == state.value.selectedDay }
+                    .flatMap { it.meals }.filter { it.slot == 1 }.toMealUiState(),
+                lunchMeals = days.filter { it.timestamp == state.value.selectedDay }
+                    .flatMap { it.meals }.filter { it.slot == 2 }.toMealUiState(),
+                dinnerMeals = days.filter { it.timestamp == state.value.selectedDay }
+                    .flatMap { it.meals }.filter { it.slot == 3 }.toMealUiState(),
+            )
+        }
     }
 
-    private fun initDinnerMeals() {
-        val fakeDinnerMeals = listOf(
-            MealPlanUiState.MealUiState(
-                1,
-                "Dinner 1",
-                "Description 1",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                2,
-                "Dinner 2",
-                "Description 2",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                3,
-                "Dinner 3",
-                "Description 3",
-                "https://picsum.photos/200/300"
-            ),
-            MealPlanUiState.MealUiState(
-                4,
-                "Dinner 4",
-                "Description 4",
-                "https://picsum.photos/200/300"
-            ),
-        )
-        _state.update { it.copy(dinnerMeals = fakeDinnerMeals) }
+    private fun onError(error: ErrorUIState) {
+        _state.update { it.copy(error = error) }
+    }
+
+    override fun onCalendarDaySelected(timestamp: Int) {
+        _state.update { it.copy(selectedDay = timestamp) }
+    }
+
+    override fun onMealClicked(meal: MealPlanUiState.MealUiState) {
+        viewModelScope.launch { _effect.emit(MealPlanUiEffect.ShowMealDetails(meal.id)) }
     }
 
 }

@@ -24,7 +24,7 @@
             android:clipToPadding="false"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_16dp"
-            app:items="@{viewModel.state.calendarDays}"
+            app:items="@{viewModel.state.daysPlannedMeals}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_calendar_day" />

@@ -66,7 +66,7 @@ class MealPlanFragment :
     }
 
     private fun initMealsPager(fragments: List<Fragment>) {
-        val pagerAdapter = MealPlanPagerAdapter(this, fragments, viewModel)
+        val pagerAdapter = MealPlanPagerAdapter(this, fragments)
         binding.viewPagerMeals.adapter = pagerAdapter
     }
 
