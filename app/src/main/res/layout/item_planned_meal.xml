@@ -7,11 +7,11 @@
 
         <variable
             name="item"
-            type="com.red_velvet.yumhub.ui.mealPlan.MealPlanUiState.MealUiState" />
+            type="com.red_velvet.yumhub.ui.plannedMeals.PlannedMealsUiState.MealUiState" />
 
         <variable
             name="listener"
-            type="com.red_velvet.yumhub.ui.mealPlan.MealPlanInteractionListener" />
+            type="com.red_velvet.yumhub.ui.plannedMeals.PlannedMealsInteractionListener" />
 
     </data>
 

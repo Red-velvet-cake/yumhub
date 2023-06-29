@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.plannedMeals.PlannedMealsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/_16dp"
+        tools:context=".ui.plannedMeals.PlannedMealsFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_meals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:items="@{viewModel.state.meals}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_planned_meal" />
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/recycler_lunch_meals"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:clipToPadding="false"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:items="@{viewModel.state.lunchMeals}"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--            app:showIfTrue="@{viewModel.state.slot == 2}"-->
+        <!--            tools:listitem="@layout/item_planned_meal" />-->
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/recycler_dinner_meals"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:clipToPadding="false"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:items="@{viewModel.state.dinnerMeals}"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--            app:showIfTrue="@{viewModel.state.slot == 3}"-->
+        <!--            tools:listitem="@layout/item_planned_meal" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

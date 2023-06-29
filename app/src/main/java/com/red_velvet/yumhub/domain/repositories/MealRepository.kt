@@ -3,6 +3,7 @@ package com.red_velvet.yumhub.domain.repositories
 import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
 import com.red_velvet.yumhub.domain.models.HistoryMealEntity
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
+import kotlinx.coroutines.flow.Flow
 
 
 interface MealRepository {

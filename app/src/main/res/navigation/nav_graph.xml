@@ -175,9 +175,9 @@
     </fragment>
     <fragment
         android:id="@+id/plannedMealsFragment"
-        android:name="com.red_velvet.yumhub.ui.breakfastMeals.BreakfastMealsFragment"
+        android:name="com.red_velvet.yumhub.ui.plannedMeals.PlannedMealsFragment"
         android:label="Planned Meals"
-        tools:layout="@layout/fragment_breakfast_meals">
+        tools:layout="@layout/fragment_planned_meals">
         <argument
             android:name="position"
             app:argType="integer" />

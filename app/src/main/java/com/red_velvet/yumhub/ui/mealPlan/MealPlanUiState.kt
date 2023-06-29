@@ -11,9 +11,10 @@ data class MealPlanUiState(
     val lunchMeals: List<MealUiState> = emptyList(),
     val dinnerMeals: List<MealUiState> = emptyList(),
     val selectedDay: Int? = null,
-    val selectedMealType: MealType = MealType.BREAKFAST,
+    val pagePosition: Int = 1,
     val isLoading: Boolean = false,
     val error: ErrorUIState? = null,
+    val slot: Int = 1
 ) : BaseUiState {
 
 
@@ -21,6 +22,7 @@ data class MealPlanUiState(
         val id: Int,
         val name: String,
         val description: String,
+        val slot: Int,
         val imageUrl: String,
     )
 
@@ -30,12 +32,6 @@ data class MealPlanUiState(
         val datOfMonth: String,
         val meals: List<MealUiState>
     )
-
-    enum class MealType {
-        BREAKFAST,
-        LUNCH,
-        DINNER
-    }
 }
 
 fun PlannedMealEntity.toMealUiState(): MealPlanUiState.MealUiState {
@@ -43,6 +39,7 @@ fun PlannedMealEntity.toMealUiState(): MealPlanUiState.MealUiState {
         id = id,
         name = title,
         description = description,
+        slot = slot,
         imageUrl = imageUrl
     )
 }

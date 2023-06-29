@@ -1,10 +1,7 @@
 package com.red_velvet.yumhub.repositories
 
-import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
-import android.os.Build
-import androidx.annotation.RequiresApi
-import com.red_velvet.yumhub.domain.mapper.toEntity
 import com.red_velvet.yumhub.domain.mapper.toHistoryItemLocalDto
+import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
 import com.red_velvet.yumhub.domain.models.HistoryMealEntity
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
 import com.red_velvet.yumhub.domain.models.toHistoryItemLocalEntity
@@ -13,6 +10,8 @@ import com.red_velvet.yumhub.domain.repositories.MealRepository
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
 import com.red_velvet.yumhub.repositories.datasources.RemoteDataSource
 import com.red_velvet.yumhub.repositories.mappers.toDayPlannedMealEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MealRepositoryImpl @Inject constructor(
