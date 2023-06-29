@@ -55,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             >
             <EditText
-                android:layout_width="@dimen/_248dp"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/space_48dp"
                 android:background="@drawable/text_input_rounded"
@@ -66,7 +66,9 @@
                 android:paddingHorizontal="@dimen/_12dp"
                 android:fontFamily="@font/roboto_regular"
                 android:textSize="@dimen/text_size_16"
+                android:inputType="text"
                 android:maxLines="1"
+                android:lines="1"
                 android:textColorHint="@color/black_title_36"
                 android:layout_marginEnd="@dimen/small_space"
                 android:onTextChanged="@{(text,_, ___, __) -> viewModel.onInputSearchChange(text)}"
@@ -74,15 +76,14 @@
                 />
             <Button
                 android:layout_width="@dimen/_72dp"
-                android:layout_height="@dimen/button_height"
+                android:layout_height="@dimen/size_48dp"
                 android:text="@string/apply"
                 android:textSize="@dimen/textsize_14sp"
                 android:paddingHorizontal="@dimen/fab_margin"
-                android:paddingVertical="@dimen/space_15dp"
                 app:cornerRadius="@dimen/radius_16dp"
                 android:onClick="@{() -> viewModel.doOnApplyRecipe()}"
                 android:textColor="@color/fontColor_white"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/roboto_regular"
                 android:backgroundTint="@color/primary"
                 />
         </LinearLayout>
