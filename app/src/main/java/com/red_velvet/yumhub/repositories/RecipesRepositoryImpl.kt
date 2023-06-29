@@ -1,11 +1,14 @@
 package com.red_velvet.yumhub.repositories
 
 
+import android.util.Log
 import com.red_velvet.yumhub.domain.mapper.toEntity
+import com.red_velvet.yumhub.domain.mapper.toModel
 import com.red_velvet.yumhub.domain.mapper.toRecipeSearchEntity
 import com.red_velvet.yumhub.domain.models.SliderItemEntity
 import com.red_velvet.yumhub.domain.models.recipes.AnalyzedInstructionsEntity
 import com.red_velvet.yumhub.domain.models.recipes.CategoryEntity
+import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.models.recipes.HealthyRecipeEntity
 import com.red_velvet.yumhub.domain.models.recipes.PopularRecipeEntity
@@ -20,6 +23,7 @@ import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import com.red_velvet.yumhub.local.entities.CategoryLocalDto
 import com.red_velvet.yumhub.local.entities.HealthyRecipeLocalDto
 import com.red_velvet.yumhub.local.entities.PopularRecipeLocalDto
+import com.red_velvet.yumhub.local.entities.QuickAnswerLocalDto
 import com.red_velvet.yumhub.local.entities.QuickRecipeLocalDto
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
@@ -40,12 +44,12 @@ class RecipesRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : RecipesRepository {
+
     override suspend fun getDietRecipe(type: String): List<SearchRecipeEntity> {
         return remoteDataSource.searchRecipe(diet = type)
             .results?.map(RecipeInformationResource::toRecipeSearchEntity)
             ?: emptyList()
     }
-
 
     override suspend fun getPopularRecipes(sort: String): List<PopularRecipeEntity> {
         return remoteDataSource.searchRecipe(sort = sort).results?.map(RecipeInformationResource::toPopularEntity)
@@ -110,9 +114,21 @@ class RecipesRepositoryImpl @Inject constructor(
         return remoteDataSource.guessNutrition(title).toEntity()
     }
 
-    override suspend fun getQuickAnswer(question: String): QuickAnswerEntity {
-        return remoteDataSource.getQuickAnswer(question).toEntity()
+    override suspend fun getQuickAnswer(question: String) {
+        val noReplay="I'm sorry, but I don't have an answer to that question at the moment."
+        val result = remoteDataSource.getQuickAnswer(question)
+       return localDataSource.insertChatBotMessage(
+            QuickAnswerLocalDto(
+                qsn=question,
+                answer = result.answer ?: noReplay,
+                image = result.image))
     }
+
+    override suspend fun getAllChatBotMessages(): Flow<List<QuickAnswerEntity>> {
+        return localDataSource.getChatBotMessages().map(List<QuickAnswerLocalDto>::toEntity)
+    }
+
+
 
     override suspend fun refreshPopularRecipes(recipesList: List<PopularRecipeEntity>) {
         localDataSource.insertPopularRecipes(recipesList.map(PopularRecipeEntity::toLocalDto))
@@ -153,6 +169,14 @@ class RecipesRepositoryImpl @Inject constructor(
 
     override suspend fun getHomeSliderImagesList(): List<SliderItemEntity> {
         return localDataSource.getHomeSliderImagesList().toEntity()
+    }
+
+    override suspend fun getExtendedIngredients(
+        id: Int,
+        includeNutrition: Boolean
+    ): List<ExtendedIngredientEntity> {
+        return remoteDataSource.getRecipeInformation(id, includeNutrition)
+            .extendedIngredients.map { it.toModel() }
     }
 
 }

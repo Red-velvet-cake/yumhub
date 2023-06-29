@@ -11,9 +11,6 @@ fun ItemResource.toEntity(timesStamp: Long): MealPlanLocalDto {
         position = this.position.orZero(),
         slot = this.slot.orZero(),
         type = this.type.orEmpty(),
-//        imageType = this.valueResource?.imageType.orEmpty(),
-//        servings = this.valueResource?.servings.orZero(),
-//        title = this.valueResource?.title.orEmpty(),
         timestamp = timesStamp.orZero()
     )
 }

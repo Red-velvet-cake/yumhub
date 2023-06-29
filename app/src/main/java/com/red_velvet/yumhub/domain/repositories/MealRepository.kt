@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.domain.repositories
 
 import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
+import com.red_velvet.yumhub.domain.models.HistoryMealEntity
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
 
 
@@ -17,5 +18,11 @@ interface MealRepository {
         hash: String,
         date: String
     ): List<DayPlannedMealsEntity>
+
+    suspend fun addToHistoryMeals(historyMealEntity: List<HistoryMealEntity>)
+
+    suspend fun deleteFromHistoryMeals(mealId: Int)
+
+    suspend fun getHistoryMeals(): Flow<List<HistoryMealEntity>>
 
 }

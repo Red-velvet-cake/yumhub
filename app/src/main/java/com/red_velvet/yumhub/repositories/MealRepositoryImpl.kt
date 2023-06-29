@@ -1,7 +1,13 @@
 package com.red_velvet.yumhub.repositories
 
 import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.red_velvet.yumhub.domain.mapper.toEntity
+import com.red_velvet.yumhub.domain.mapper.toHistoryItemLocalDto
+import com.red_velvet.yumhub.domain.models.HistoryMealEntity
 import com.red_velvet.yumhub.domain.models.MealPlanEntity
+import com.red_velvet.yumhub.domain.models.toHistoryItemLocalEntity
 import com.red_velvet.yumhub.domain.models.toMealPlanResource
 import com.red_velvet.yumhub.domain.repositories.MealRepository
 import com.red_velvet.yumhub.repositories.datasources.LocalDataSource
@@ -29,6 +35,22 @@ class MealRepositoryImpl @Inject constructor(
         date: String
     ): List<DayPlannedMealsEntity> {
         return remoteDataSource.getWeekMealPlan(date, username, hash).toDayPlannedMealEntity()
+    }
+
+    override suspend fun addToHistoryMeals(historyMealEntity: List<HistoryMealEntity>) {
+        localDataSource.insertHistoryItem(historyMealEntity.map(HistoryMealEntity::toHistoryItemLocalDto))
+    }
+
+    override suspend fun deleteFromHistoryMeals(mealId: Int) {
+        localDataSource.deleteHistoryItem(mealId)
+    }
+
+    override suspend fun getHistoryMeals(): Flow<List<HistoryMealEntity>> {
+        return localDataSource.getHistoryMeals().map {
+            it.map { historyItemLocalDto ->
+                historyItemLocalDto.toHistoryItemLocalEntity()
+            }
+        }
     }
 
 }

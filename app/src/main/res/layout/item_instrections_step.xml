@@ -21,7 +21,7 @@
             android:id="@+id/step_name_card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_x_x_small"
+            android:layout_marginHorizontal="@dimen/spacing_x_small"
             android:layout_marginTop="@dimen/spacing_x_small"
             android:visibility="@{item.name != null &amp;&amp; item.name.length() > 0 &amp;&amp; item.stepNumber == 1 ? View.VISIBLE : View.GONE}"
             app:cardCornerRadius="@dimen/zero"
@@ -32,13 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/custom_drawable_instruction_view"
-                    android:layout_width="@dimen/spacing_x_x_small"
-                    android:layout_height="@dimen/zero"
-                    android:background="@drawable/custom_instruction_drawable"
-                    app:layout_constraintEnd_toStartOf="@id/step_name"
-                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <TextView
                     android:id="@+id/step_name"
@@ -51,7 +45,7 @@
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/custom_drawable_instruction_view"
+                    app:layout_constraintStart_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Cook pasta as directed on package" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -63,13 +57,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_x_small"
+            android:drawablePadding="@dimen/_4dp"
             android:fontFamily="@font/roboto_bold"
-            android:text='@{ "Step" + item.stepNumber + ":-"}'
+            android:text='@{ "Step " + item.stepNumber }'
             android:textColor="@color/primary"
             android:textSize="@dimen/text_size_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/step_name_card_view"
-            tools:text="1" />
+            tools:text="1"
+            app:drawableStartCompat="@drawable/point" />
 
         <TextView
             android:id="@+id/step_details_text_view"
