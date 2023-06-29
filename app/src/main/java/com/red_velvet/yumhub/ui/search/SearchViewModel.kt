@@ -78,7 +78,7 @@ class SearchViewModel @Inject constructor(
 
     private fun onGetData() {
         if(searchInputUseCase(state.value.searchInput)){
-            _state.update { it.copy(isLoading = true) }
+            _state.update { it.copy(isLoading = true, searchResult = emptyList()) }
             searchJob = tryToExecute(
                 callee = {
                     searchRecipeUseCase.invoke(
