@@ -2,7 +2,9 @@ package com.red_velvet.yumhub.ui.history
 
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.HistoryMealEntity
+import com.red_velvet.yumhub.domain.models.recipes.RecipeEntity
 import com.red_velvet.yumhub.domain.usecases.GetHistoryMealsUseCase
+import com.red_velvet.yumhub.domain.usecases.RemoveHistoryRecipeUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val getHistoryMeals: GetHistoryMealsUseCase,
+    private val removeHistoryRecipeUseCase: RemoveHistoryRecipeUseCase,
 ) : BaseViewModel<HistoryUIState, HistoryUIEffect>(HistoryUIState()), HistoryInteractionListener {
 
     private val _uiState = MutableStateFlow(HistoryUIState())
@@ -50,6 +53,13 @@ class HistoryViewModel @Inject constructor(
 
     override fun onHistoryItemClicked(itemId: Int) {
         viewModelScope.launch { _effect.emit(HistoryUIEffect.ClickOnItem(itemId)) }
+    }
+
+    override fun onHistoryRecipeRemoved(recipe: RecipeEntity) {
+        viewModelScope.launch {
+            removeHistoryRecipeUseCase(recipe)
+            getHistoryItems()
+        }
     }
 
 }

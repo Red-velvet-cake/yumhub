@@ -14,66 +14,67 @@
             type="com.red_velvet.yumhub.ui.history.HistoryInteractionListener" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/fab_margin"
         android:layout_marginTop="@dimen/small_space"
-        android:background="@color/white"
+        android:backgroundTint="@color/background"
+        android:clickable="true"
+        android:elevation="0dp"
+        android:focusable="true"
         android:onClick="@{() -> listener.onHistoryItemClicked(item.id)}"
-        app:cardCornerRadius="@dimen/raduis_16dp"
-        app:cardElevation="@dimen/no_width">
+        app:cardCornerRadius="@dimen/_16dp"
+        app:contentPadding="@dimen/size_8dp"
+        app:strokeWidth="0dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/small_space">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.imageview.ShapeableImageView
-                style="@style/CardImageStyle"
-                android:layout_width="@dimen/image_card_width_80dp"
-                android:layout_height="@dimen/image_card_height_64dp"
-                android:layout_marginEnd="@dimen/_12dp"
+                android:id="@+id/img_favorite"
+                android:layout_width="@dimen/image_card_width_100dp"
+                android:layout_height="@dimen/image_card_width_80dp"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{item.image}"
-                app:layout_constraintDimensionRatio="16:9"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingVertical="@dimen/small_space">
+            <TextView
+                android:id="@+id/title"
+                style="@style/TextStyle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{item.title}"
+                app:layout_constraintBottom_toTopOf="@id/overview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_favorite"
+                app:layout_constraintTop_toTopOf="@id/img_favorite"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Dolma" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/roboto_medium"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="@color/black_title"
-                    android:textSize="@dimen/text_size_12sp"
-                    app:text="@{item.title}"
-                    tools:text="@string/salad" />
+            <TextView
+                android:id="@+id/overview"
+                style="@style/TextStyle.Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                app:htmlText="@{item.description}"
+                app:layout_constraintBottom_toBottomOf="@id/img_favorite"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="I was stuck at home all day yesterday while we were having some  ..." />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/small_space"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/roboto_medium"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="@color/black_title_36"
-                    android:textSize="@dimen/text_size_12sp"
-                    app:text='@{item.description}'
-                    tools:text="@string/_7_ingrerdients" />
-
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
