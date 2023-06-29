@@ -25,6 +25,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
+                android:hideWhenErr="@{viewModel.state.error}"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -52,7 +53,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/card_scroll"
-                    android:hideWhenErr="@{viewModel.state.error}"
                     android:visibility="@{viewModel.state.loading ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
