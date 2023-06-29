@@ -24,8 +24,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/category_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
             app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
             tools:src="@drawable/appteizer"
             app:setDrawableResource="@{item.categoryImage}" />
