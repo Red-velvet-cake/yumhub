@@ -5,10 +5,11 @@
     <ImageView
         android:id="@+id/featured_home_image_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:src="@drawable/slide_1"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:src="@drawable/slider1111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </layout>

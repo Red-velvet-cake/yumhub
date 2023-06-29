@@ -68,9 +68,9 @@ override fun getChatBotMessages(): Flow<List<QuickAnswerLocalDto>> {
 
     override suspend fun getHomeSliderImagesList(): List<SliderItemLocalDto> {
         return listOf(
-            SliderItemLocalDto(R.drawable.slide_1),
-            SliderItemLocalDto(R.drawable.slide_2),
-            SliderItemLocalDto(R.drawable.slide_3)
+            SliderItemLocalDto(R.drawable.slider3333),
+            SliderItemLocalDto(R.drawable.slider2222),
+            SliderItemLocalDto(R.drawable.slider1111)
         )
     }
 
@@ -103,20 +103,20 @@ override fun getChatBotMessages(): Flow<List<QuickAnswerLocalDto>> {
     }
 
     private val mealTypes = listOf(
-        "main course",
-        "side dish",
-        "dessert",
-        "appetizer",
-        "salad",
-        "bread",
-        "breakfast",
-        "soup",
-        "beverage",
-        "sauce",
-        "marinade",
-        "fingerfood",
-        "snack",
-        "drink"
+        "Main course",
+        "Side dish",
+        "Dessert",
+        "Appetizer",
+        "Salad",
+        "Bread",
+        "Breakfast",
+        "Soup",
+        "Beverage",
+        "Sauce",
+        "Marinade",
+        "Fingerfood",
+        "Snack",
+        "Drink"
     )
 
     private val mealImages = listOf(
