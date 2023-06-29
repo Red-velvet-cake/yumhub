@@ -40,16 +40,18 @@ fun showInternalServerError(view: View, errorState: ErrorUIState?) {
     view.visibility =
         if (errorState is ErrorUIState.InternalServerError) View.VISIBLE else View.GONE
 }
-@BindingAdapter(value=["app:showIfListEmpty","loading","app:error"])
-fun showIfNotFound(view: View, value: Boolean,loading:Boolean,errorState: ErrorUIState?) {
-    if(errorState != null){
-        view.isVisible = false
-    }else if (loading) {
-        view.isVisible = false;
-    }else{
-        view.isVisible = value
+@BindingAdapter(value = ["app:showIfListEmpty", "loading", "app:error", "searchInput"])
+fun showIfNotFound(view: View, showIfListEmpty: Boolean, loading: Boolean, errorState: ErrorUIState?, searchInput: String) {
+    if (errorState != null) {
+        view.visibility = View.GONE
+    } else if (loading) {
+        view.visibility = View.GONE
+    } else {
+        val isVisible = showIfListEmpty && searchInput.isNotEmpty()
+        view.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 }
+
 @BindingAdapter("app:showIfTrue")
 fun showIfTrue(view: View, value: Boolean) {
     if (value) {
@@ -218,7 +220,7 @@ fun loadImage(view: ImageView, imageUrl: String) {
     Glide.with(view).load(imageUrl)
         .fitCenter()
         .centerCrop()
-//        .placeholder(R.drawable.placeholder)
+        .placeholder(R.drawable.placeholder)
         .into(view)
 }
 
