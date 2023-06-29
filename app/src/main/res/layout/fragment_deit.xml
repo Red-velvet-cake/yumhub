@@ -14,6 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_diet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_toolbar_diet"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_48dp"
+                app:title="@string/nutritional_guide"
+                app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
@@ -35,7 +50,7 @@
             android:textSize="@dimen/text_size_16"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/black_title"
-            android:layout_marginTop="@dimen/space_32dp"
+            android:layout_marginTop="@dimen/spacing_large_24"
             android:layout_marginHorizontal="@dimen/fab_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
