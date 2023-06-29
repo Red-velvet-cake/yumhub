@@ -42,18 +42,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/spacing_large_24"
                 tools:context=".ui.home.HomeFragment">
 
-                <androidx.viewpager.widget.ViewPager
+                <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/slider_view_pager"
-                    pagerItems="@{viewModel.state.sliderImagesList}"
                     android:layout_width="match_parent"
-                    android:layout_height="152dp"
-                    android:orientation="horizontal"
+                    sliderItems="@{viewModel.state.sliderImagesList}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="@dimen/_200dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:clipToPadding="true"
+                    android:paddingHorizontal="@dimen/_16dp"
+                    app:iss_auto_cycle="true"
+                    app:iss_corner_radius="24"
+                    app:iss_delay="300"
+                    app:iss_period="2000"
+                    app:iss_placeholder="@drawable/bottom_nav_bg"
                     app:listResult="@{viewModel.state.sliderImagesList}"
                     app:loading="@{viewModel.state.sliderLoading}" />
 

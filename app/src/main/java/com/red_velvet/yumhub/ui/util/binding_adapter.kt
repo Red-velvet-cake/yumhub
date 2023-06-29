@@ -10,6 +10,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.AnimationTypes
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.ui.base.BaseAdapter
 import com.red_velvet.yumhub.ui.base.ErrorUIState
@@ -229,7 +233,7 @@ fun loadImage(view: ImageView, imageUrl: String) {
     Glide.with(view).load(imageUrl)
         .fitCenter()
         .centerCrop()
-//        .placeholder(R.drawable.placeholder)
+        .placeholder(R.drawable.placeholder)
         .into(view)
 }
 
@@ -262,6 +266,17 @@ fun hideIfMessageIsNullOrEmpty(view: View, message: String?) {
 @BindingAdapter("android:showWhenEmpty")
 fun showWhenEmpty(view: View, boolean: Boolean) {
     view.isVisible = boolean
+}
+
+@BindingAdapter("sliderItems")
+fun setSliderItems(slider: ImageSlider, items: List<HomeSliderItemUiState>?) {
+    slider.setSlideAnimation(AnimationTypes.ZOOM_OUT)
+    items?.let {
+        val images = items.map {
+            SlideModel(it.imageResource, ScaleTypes.FIT)
+        }
+        slider.setImageList(images)
+    }
 }
 
 @BindingAdapter("pagerItems")
