@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mealsSuggesterStep1Fragment">
 
 
     <fragment
@@ -133,6 +134,9 @@
         <action
             android:id="@+id/action_profileFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_mealsSuggesterStep1Fragment"
+            app:destination="@id/mealsSuggesterStep1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -143,5 +147,25 @@
             android:id="@+id/action_favoritesFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mealsSuggesterStep1Fragment"
+        android:name="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1.MealsSuggesterStep1Fragment"
+        android:label="MealsSuggesterStep1Fragment">
+        <action
+            android:id="@+id/action_mealsSuggesterStep1Fragment_to_mealsSuggesterStep2Fragment"
+            app:destination="@id/mealsSuggesterStep2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealsSuggesterStep2Fragment"
+        android:name="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2.MealsSuggesterStep2Fragment"
+        android:label="MealsSuggesterStep2Fragment">
+        <action
+            android:id="@+id/action_mealsSuggesterStep2Fragment_to_mealsSuggesterStep3Fragment"
+            app:destination="@id/mealsSuggesterStep3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealsSuggesterStep3Fragment"
+        android:name="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.MealsSuggesterStep3Fragment"
+        android:label="MealsSuggesterStep3Fragment" />
 
 </navigation>
