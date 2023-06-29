@@ -10,16 +10,16 @@
         <variable
             name="listener"
             type="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.SuggestedMealsInteractionListener" />
+  <import type="android.view.View"/>
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:orientation="vertical"
-        android:onClick="@{()->listener.onMealClick(item.id)}"
+        android:onClick="@{()->listener.onMealClick(item)}"
         >
-
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/suggested_meals_image"
             android:layout_width="match_parent"
@@ -27,7 +27,11 @@
             android:scaleType="fitXY"
             app:imageUrl="@{item.imageUrl}"
             app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
-            tools:src="@drawable/appteizer" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/suggested_meals_text"
+            tools:src="@drawable/appteizer"
+            />
 
         <TextView
             android:id="@+id/suggested_meals_text"
@@ -36,10 +40,46 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_x_small"
             android:text="@{item.title}"
+            android:layout_marginHorizontal="@dimen/_4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:fontFamily="@font/roboto_regular"
             android:textColor="@color/fontColor_primary"
             android:textSize="@dimen/font_size_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="pizza"
             />
-    </LinearLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{item.selectedRecipe?View.GONE:View.VISIBLE}"
+            app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_8dp"
+            tools:text="2555"
+            android:maxEms="5"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{String.valueOf(item.calories)}"
+            android:padding="@dimen/_4dp"
+            android:drawablePadding="@dimen/_4dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12sp"
+            android:drawableStart="@drawable/fire_svgrepo_com_small"
+            android:drawableTint="@color/white"
+            android:background="@drawable/suggested_meal_selector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
