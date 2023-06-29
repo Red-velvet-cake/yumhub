@@ -9,89 +9,50 @@
             name="viewModel"
             type="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationViewModel" />
 
+        <variable
+            name="error"
+            type="com.red_velvet.yumhub.ui.base.ErrorUIState.NoInternet" />
+
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:scrollbars="none">
 
-        <ProgressBar
-            android:id="@+id/progress_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/primary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:showIfLoading="@{viewModel.state.loading}" />
-
-        <LinearLayout
-            android:id="@+id/layout_no_internet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:showNoInternet="@{viewModel.state.error}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="@dimen/_137dp"
-                android:layout_height="@dimen/_135dp"
-                android:layout_gravity="center"
-                android:src="@drawable/search_no_internet" />
+                android:id="@+id/image_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/no_height"
+                android:scaleType="centerCrop"
+                android:visibility="@{viewModel.state.image == null ? View.GONE : View.VISIBLE}"
+                app:imageUrl="@{viewModel.state.image}"
+                app:layout_constraintBottom_toBottomOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/slide_1" />
 
-            <TextView
-                style="@style/CustomSearchTextViewTitleStyle"
-                android:showNoInternet="@{viewModel.state.error}"
-                android:text="@string/internet_is_not_available"
-                app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
 
-            <TextView
-                style="@style/CustomTextViewSearchSubTitleStyle"
-                android:showNoInternet="@{viewModel.state.error}"
-                android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/image_recipe"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/no_height"
-            android:scaleType="centerCrop"
-            android:visibility="@{viewModel.state.image == null ? View.GONE : View.VISIBLE}"
-            app:imageUrl="@{viewModel.state.image}"
-            app:layout_constraintBottom_toBottomOf="@id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/slide_1" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.35" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/no_height"
-            android:background="@drawable/card_scroll"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/sheet_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/no_height"
+                android:layout_height="match_parent"
                 android:hideWhenErr="@{viewModel.state.error}"
+                android:background="@drawable/card_scroll"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline_2">
@@ -131,24 +92,12 @@
                     android:drawableStart="@drawable/ic_time"
                     android:drawablePadding="@dimen/_4dp"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="@{String.valueOf(viewModel.state.readyInMinutes)}"
+                    android:text='@{String.valueOf(viewModel.state.readyInMinutes)+" Min"}'
                     android:textColor="@color/fontColor_secondary"
                     android:textSize="@dimen/font_size_label"
                     app:layout_constraintStart_toStartOf="@id/text_recipe_name"
                     app:layout_constraintTop_toBottomOf="@id/text_recipe_name"
-                    tools:text="45" />
-
-                <TextView
-                    android:id="@+id/text_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_4dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/min"
-                    android:textColor="@color/fontColor_secondary"
-                    android:textSize="@dimen/font_size_label"
-                    app:layout_constraintStart_toEndOf="@id/text_recipe_time"
-                    app:layout_constraintTop_toTopOf="@id/text_recipe_time" />
+                    tools:text="45 Min" />
 
                 <TextView
                     android:id="@+id/text_recipe_servings"
@@ -159,24 +108,12 @@
                     android:drawableStart="@drawable/ic_servings"
                     android:drawablePadding="@dimen/_4dp"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="@{String.valueOf(viewModel.state.servings)}"
+                    android:text='@{String.valueOf(viewModel.state.servings)+" Serving"}'
                     android:textColor="@color/fontColor_secondary"
                     android:textSize="@dimen/font_size_label"
-                    app:layout_constraintStart_toEndOf="@id/text_min"
+                    app:layout_constraintStart_toEndOf="@id/text_recipe_time"
                     app:layout_constraintTop_toBottomOf="@id/text_recipe_name"
-                    tools:text="2" />
-
-                <TextView
-                    android:id="@+id/text_servings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_4dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/servings"
-                    android:textColor="@color/fontColor_secondary"
-                    android:textSize="@dimen/font_size_label"
-                    app:layout_constraintStart_toEndOf="@id/text_recipe_servings"
-                    app:layout_constraintTop_toTopOf="@id/text_recipe_servings" />
+                    tools:text="2 Serving" />
 
                 <TextView
                     android:id="@+id/text_recipe_descripation"
@@ -274,6 +211,7 @@
                     android:paddingVertical="14dp"
                     android:text="@string/go_to_cooking_steps"
                     android:textSize="@dimen/text_size_16"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -281,16 +219,57 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </ScrollView>
+            <LinearLayout
+                android:id="@+id/layout_no_internet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:showNoInternet="@{viewModel.state.error}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.30" />
+                <ImageView
+                    android:layout_width="@dimen/_137dp"
+                    android:layout_height="@dimen/_135dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/search_no_internet" />
+
+                <TextView
+                    style="@style/CustomSearchTextViewTitleStyle"
+                    android:showNoInternet="@{viewModel.state.error}"
+                    android:text="@string/internet_is_not_available"
+                    app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet" />
+
+                <TextView
+                    style="@style/CustomTextViewSearchSubTitleStyle"
+                    android:showNoInternet="@{viewModel.state.error}"
+                    android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:showIfLoading="@{viewModel.state.loading}" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.20" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>

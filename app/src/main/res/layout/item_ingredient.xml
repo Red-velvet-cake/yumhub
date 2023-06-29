@@ -13,7 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_space"
         android:layout_marginEnd="@dimen/small_space"
         android:orientation="vertical">
 
@@ -21,7 +20,7 @@
             android:id="@+id/image_ingredients"
             android:layout_width="@dimen/item_ingredient_image_width"
             android:layout_height="@dimen/item_ingredient_image_height"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             app:imageUrl='@{"https://spoonacular.com/cdn/ingredients_100x100/"+item.image}'
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

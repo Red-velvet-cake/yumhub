@@ -33,8 +33,6 @@ class RecipeInformationFragment : BaseFragment<
         val ingredientsAdapter = IngredientsAdapter(emptyList(), viewModel)
         binding.recyclerViewIngredients.adapter = ingredientsAdapter
 
-        setHasOptionsMenu(true)
-        activity?.title = "Details"
     }
 
     override fun observeOnUIEffects() {
