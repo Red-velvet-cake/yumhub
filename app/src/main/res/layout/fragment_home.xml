@@ -63,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/categories"
+                    app:hideIfLoading="@{viewModel.state.categoryLoading}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/slider_view_pager" />
 
@@ -79,6 +80,7 @@
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:drawableEndCompat="@drawable/arrowright"
+                    app:hideIfLoading="@{viewModel.state.categoryLoading}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/category_title_text_view" />
 
@@ -86,7 +88,7 @@
                     android:id="@+id/categoryRecyclerView"
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     app:items="@{viewModel.State.categoryRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/quick_recipes"
+                    app:hideIfLoading="@{viewModel.state.quickRecipesLoading}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
 
@@ -118,6 +121,7 @@
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:drawableEndCompat="@drawable/arrowright"
+                    app:hideIfLoading="@{viewModel.state.quickRecipesLoading}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
 
@@ -125,7 +129,7 @@
                     android:id="@+id/quickRecyclerView"
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
-                    android:layout_height="151dp"
+                    android:layout_height="wrap_content"
                     app:items="@{viewModel.state.quickRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/popular_recipes"
+                    app:hideIfLoading="@{viewModel.state.popularRecipesLoading}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quickRecyclerView" />
 
@@ -157,6 +162,7 @@
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:drawableEndCompat="@drawable/arrowright"
+                    app:hideIfLoading="@{viewModel.state.popularRecipesLoading}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quickRecyclerView" />
 
@@ -164,7 +170,7 @@
                     android:id="@+id/popularRecyclerView"
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
-                    android:layout_height="151dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/small_space"
                     app:items="@{viewModel.state.popularRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -180,6 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/healthy_recipes"
+                    app:hideIfLoading="@{viewModel.state.healthyRecipesLoading}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popularRecyclerView" />
 
@@ -195,6 +202,7 @@
                     android:textColor="#5C000000"
                     android:textSize="@dimen/text_size_16"
                     app:drawableEndCompat="@drawable/arrowright"
+                    app:hideIfLoading="@{viewModel.state.healthyRecipesLoading}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/healthy_recipe_title_text_view" />
 
@@ -202,7 +210,8 @@
                     android:id="@+id/healthyRecyclerView"
                     style="@style/Style_Home_Recycler_View"
                     android:layout_width="match_parent"
-                    android:layout_height="175dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/spacing_large_24"
                     app:items="@{viewModel.state.healthyRecipesUiState}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
