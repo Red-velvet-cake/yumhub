@@ -26,15 +26,18 @@
             tools:src="@drawable/recipe" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/no_width"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
             android:fontFamily="@font/roboto_regular"
             android:text="@{item.original}"
             android:textSize="@dimen/text_size_16"
+            android:ellipsize="end"
+            android:lines="2"
             app:layout_constraintBottom_toBottomOf="@id/image_view_ingredient"
             app:layout_constraintStart_toEndOf="@id/image_view_ingredient"
             app:layout_constraintTop_toTopOf="@id/image_view_ingredient"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="1 Teaspoon Butter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
