@@ -22,32 +22,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
+            app:showIfLoading="@{!viewModel.state.isLoading}"
             android:orientation="vertical"
             app:items="@{viewModel.state.meals}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_planned_meal" />
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/recycler_lunch_meals"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:clipToPadding="false"-->
-        <!--            android:orientation="vertical"-->
-        <!--            app:items="@{viewModel.state.lunchMeals}"-->
-        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-        <!--            app:showIfTrue="@{viewModel.state.slot == 2}"-->
-        <!--            tools:listitem="@layout/item_planned_meal" />-->
-
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/recycler_dinner_meals"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:clipToPadding="false"-->
-        <!--            android:orientation="vertical"-->
-        <!--            app:items="@{viewModel.state.dinnerMeals}"-->
-        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-        <!--            app:showIfTrue="@{viewModel.state.slot == 3}"-->
-        <!--            tools:listitem="@layout/item_planned_meal" />-->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.state.isLoading}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

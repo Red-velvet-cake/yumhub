@@ -38,8 +38,8 @@ class PlannedMealsFragment :
         lifecycleScope.launch {
             sharedViewModel.state.collect { state ->
                 when (state.pagePosition) {
-                    1 -> viewModel.getPlannedMeals(state.lunchMeals.toPlannedMealUiState())
-                    2 -> viewModel.getPlannedMeals(state.dinnerMeals.toPlannedMealUiState())
+                    2 -> viewModel.getPlannedMeals(state.lunchMeals.toPlannedMealUiState())
+                    3 -> viewModel.getPlannedMeals(state.dinnerMeals.toPlannedMealUiState())
                     else -> viewModel.getPlannedMeals(state.breakfastMeals.toPlannedMealUiState())
                 }
             }

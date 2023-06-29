@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentMealPlanBinding
@@ -23,12 +24,6 @@ class MealPlanFragment :
     override val layoutIdFragment: Int = R.layout.fragment_meal_plan
     override val viewModel: MealPlanViewModel by viewModels()
     private lateinit var pagerAdapter: MealPlanPagerAdapter
-
-    //    private val mealsFragmentList = listOf(
-//        BreakfastMealsFragment(),
-//        LunchMealsFragment(),
-//        DinnerMealsFragment(),
-//    )
     private val tabsTitles = listOf(
         R.string.breakfast,
         R.string.lunch,
@@ -44,6 +39,7 @@ class MealPlanFragment :
             initMealsPager()
             initTabLayout(tabsTitles)
             initCalendarDaysAdapter()
+            listenToTabSelection()
         }
     }
 
@@ -65,7 +61,7 @@ class MealPlanFragment :
     }
 
     private fun initMealsPager() {
-        pagerAdapter = MealPlanPagerAdapter(this, viewModel)
+        pagerAdapter = MealPlanPagerAdapter(this)
         binding.viewPagerMeals.adapter = pagerAdapter
     }
 
@@ -78,5 +74,19 @@ class MealPlanFragment :
     private fun initCalendarDaysAdapter() {
         val calendarDaysAdapter = CalendarDaysAdapter(emptyList(), viewModel)
         binding.recyclerViewCalendarDays.adapter = calendarDaysAdapter
+    }
+
+    private fun listenToTabSelection() {
+        binding.tabLayoutMealType.addOnTabSelectedListener(object :
+            TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    viewModel.onPageChanged(it.position + 1)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
     }
 }

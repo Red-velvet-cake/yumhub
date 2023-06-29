@@ -11,7 +11,9 @@ class PlannedMealsViewModel @Inject constructor() :
     PlannedMealsInteractionListener {
 
     fun getPlannedMeals(meals: List<PlannedMealsUiState.MealUiState>) {
+        _state.update { it.copy(isLoading = true) }
         _state.update { it.copy(meals = meals) }
+        _state.update { it.copy(isLoading = false) }
     }
 
     override fun onMealClicked(meal: PlannedMealsUiState.MealUiState) {}

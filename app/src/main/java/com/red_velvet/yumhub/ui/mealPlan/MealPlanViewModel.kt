@@ -1,6 +1,5 @@
 package com.red_velvet.yumhub.ui.mealPlan
 
-import android.util.Log
 import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
 import com.red_velvet.yumhub.domain.usecases.GetWeekMealsPlanUseCase
 import com.red_velvet.yumhub.ui.base.BaseViewModel
@@ -24,7 +23,6 @@ class MealPlanViewModel @Inject constructor(
 
     private fun updateSelectedDay(timestamp: Int) {
         _state.update { it.copy(selectedDay = timestamp) }
-        Log.d("SADEQMHANA", "updateSelectedDay: ${state.value.selectedDay}")
     }
 
 
@@ -49,11 +47,6 @@ class MealPlanViewModel @Inject constructor(
                     .flatMap { it.meals }.filter { it.slot == 3 }.toMealUiState(),
             )
         }
-
-        Log.d("SADEQMHANA", "Old days: ${state.value.daysPlannedMeals}")
-        Log.d("SADEQMHANA", "Old breakfast: ${state.value.breakfastMeals}")
-        Log.d("SADEQMHANA", "Old lunch: ${state.value.lunchMeals}")
-        Log.d("SADEQMHANA", "Old dinner: ${state.value.dinnerMeals}")
     }
 
     private fun onError(error: ErrorUIState) {
@@ -61,47 +54,25 @@ class MealPlanViewModel @Inject constructor(
     }
 
     private fun showSelectedDayMeals(timestamp: Int) {
-//        state.value.daysPlannedMeals.filter { it.date == timestamp }.apply {
-//            Log.d("SADEQMHANA", "Updated Meals: $this")
-//            _state.update {
-//                it.copy(
-//                    breakfastMeals = this.flatMap { it.meals }.filter { it.slot == 1 },
-//                    lunchMeals = this.flatMap { it.meals }.filter { it.slot == 2 },
-//                    dinnerMeals = this.flatMap { it.meals }.filter { it.slot == 3 },
-//                )
-//            }
-
-        _state.update {
-            it.copy(
-                breakfastMeals = state.value.daysPlannedMeals.filter { it.date == timestamp }
-                    .flatMap { it.meals }.filter { it.slot == 1 },
-
-                lunchMeals = state.value.daysPlannedMeals.filter { it.date == timestamp }
-                    .flatMap { it.meals }.filter { it.slot == 2 },
-
-                dinnerMeals = state.value.daysPlannedMeals.filter { it.date == timestamp }
-                    .flatMap { it.meals }.filter { it.slot == 3 },
-            )
+        state.value.daysPlannedMeals.filter { it.date == timestamp }.apply {
+            _state.update {
+                it.copy(
+                    breakfastMeals = this.flatMap { it.meals }.filter { it.slot == 1 },
+                    lunchMeals = this.flatMap { it.meals }.filter { it.slot == 2 },
+                    dinnerMeals = this.flatMap { it.meals }.filter { it.slot == 3 },
+                )
+            }
         }
-        Log.d("SADEQMHANA", "new breakfast meals: ${state.value.breakfastMeals}")
-        Log.d("SADEQMHANA", "new lunch meals: ${state.value.lunchMeals}")
-        Log.d("SADEQMHANA", "new dinner meals: ${state.value.dinnerMeals}")
     }
 
 
     override fun onDaySelected(timestamp: Int) {
-        Log.d("SADEQMHANA", "onDaySelected: $timestamp")
         updateSelectedDay(timestamp)
         showSelectedDayMeals(timestamp)
     }
 
     override fun onPageChanged(position: Int) {
-        Log.d("SADEQMHANA", "onPageChanged: $position")
         _state.update { it.copy(pagePosition = position) }
     }
-
-//    override fun onMealClicked(meal: MealPlanUiState.MealUiState) {
-//        viewModelScope.launch { _effect.emit(MealPlanUiEffect.ShowMealDetails(meal.id)) }
-//    }
 
 }
