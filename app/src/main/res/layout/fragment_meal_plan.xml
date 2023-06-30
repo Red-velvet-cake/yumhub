@@ -53,13 +53,17 @@
             android:id="@+id/tab_layout_meal_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16dp"
             android:layout_marginTop="@dimen/spacing_large_24"
-            android:backgroundTint="@color/bg_white"
-            android:clipToPadding="false"
+            android:elevation="0dp"
+            app:tabBackground="@drawable/selector_tab"
             app:hideIfListEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             app:layout_constraintTop_toBottomOf="@id/recycler_view_calendar_days"
+            app:tabIndicator="@null"
+            app:tabIndicatorColor="@android:color/transparent"
             app:tabGravity="fill"
-            app:tabMode="fixed" />
+            app:tabSelectedTextColor="@color/fontColor_white"
+            app:tabTextColor="@color/primary" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_meals"

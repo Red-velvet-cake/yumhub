@@ -13,8 +13,8 @@ class CalendarDaysAdapter(
 ) : BaseAdapter<MealPlanUiState.DayPlannedMealsUiState>(items, listener) {
     override val layoutId: Int = R.layout.item_calendar_day
 
-    private var selectedPosition = 1
-    private var lastSelectedPosition = 1
+    private var selectedPosition = 0
+    private var lastSelectedPosition = 0
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val currentItem = getItems()[position]
@@ -23,16 +23,16 @@ class CalendarDaysAdapter(
                 holder.binding.setVariable(BR.item, currentItem)
                 holder.binding.setVariable(BR.listener, listener)
                 if (position == selectedPosition) {
-                    setSelectedBackground(holder)
+                    setSelectedColors(holder)
                 } else {
-                    setUnselectedBackground(holder)
+                    setUnselectedColors(holder)
                 }
                 setOnClickListener(holder, currentItem)
             }
         }
     }
 
-    private fun setSelectedBackground(holder: ItemViewHolder) {
+    private fun setSelectedColors(holder: ItemViewHolder) {
         val binding = holder.binding as ItemCalendarDayBinding
         binding.apply {
             root.setBackgroundResource(R.drawable.bg_selected_day)
@@ -41,11 +41,11 @@ class CalendarDaysAdapter(
         }
     }
 
-    private fun setUnselectedBackground(holder: ItemViewHolder) {
+    private fun setUnselectedColors(holder: ItemViewHolder) {
         val binding = holder.binding as ItemCalendarDayBinding
         binding.apply {
             root.setBackgroundResource(R.drawable.bg_unselected_day)
-            textDayOfWeek.setTextColor(root.context.getColor(R.color.fontColor_primary))
+            textDayOfWeek.setTextColor(root.context.getColor(R.color.fontColor_secondary))
             textDayOfMonth.setTextColor(root.context.getColor(R.color.fontColor_primary))
         }
     }
