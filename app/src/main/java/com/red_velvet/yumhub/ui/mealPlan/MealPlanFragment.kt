@@ -95,6 +95,7 @@ class MealPlanFragment :
     private fun showDatePickerDialog() {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
+            R.style.datePicker,
             ::onDateSelected,
             Calendar.getInstance().get(Calendar.YEAR),
             Calendar.getInstance().get(Calendar.MONTH),
