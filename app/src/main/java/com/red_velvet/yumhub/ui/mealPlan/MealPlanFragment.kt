@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayout
@@ -94,14 +95,17 @@ class MealPlanFragment :
     private fun showDatePickerDialog() {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
-            { _, year, month, dayOfMonth ->
-                viewModel.onDateSelected("${year}-${month + 1}-${dayOfMonth}-12-00-00")
-            },
+            ::onDateSelected,
             Calendar.getInstance().get(Calendar.YEAR),
             Calendar.getInstance().get(Calendar.MONTH),
             Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         )
 
         datePickerDialog.show()
+    }
+
+    private fun onDateSelected(picker: DatePicker, year: Int, month: Int, day: Int) {
+        val selectedDate = "${year}-${month + 1}-${day}-12-00-00"
+        viewModel.onDateSelected(selectedDate)
     }
 }
