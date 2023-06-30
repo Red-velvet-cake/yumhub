@@ -107,4 +107,16 @@
         <item name="chipBackgroundColor">@color/background_color_chip_state_list</item>
         <item name="android:textColor">@color/text_color_chip_state_list</item>
     </style>
+    <style name="WishIconStyle">
+        <item name="android:layout_height">@dimen/_16dp</item>
+        <item name="android:layout_width">@dimen/_16dp</item>
+        <item name="android:elevation">@dimen/_4dp</item>
+        <item name="android:button">@drawable/custom_checked</item>
+        <item name="buttonTint">@color/white</item>
+    </style>
+    <style name="WishButtonStyle">
+        <item name="android:layout_height">@dimen/space_32dp</item>
+        <item name="android:layout_width">65dp</item>
+        <item name="android:background">@drawable/calories_container_shape</item>
+    </style>
 </resources>
