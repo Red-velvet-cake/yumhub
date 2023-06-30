@@ -4,6 +4,6 @@ import com.red_velvet.yumhub.ui.base.BaseInteractionListener
 
 interface PlannedMealsInteractionListener : BaseInteractionListener {
 
-    fun onMealClicked(meal: PlannedMealsUiState.MealUiState)
+    fun onMealClicked(id: Int)
 
 }

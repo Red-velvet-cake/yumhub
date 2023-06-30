@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.red_velvet.yumhub.R
@@ -52,15 +51,8 @@ class MealPlanFragment :
 
     override fun handleUIEffect(uiEffect: MealPlanUiEffect) {
         when (uiEffect) {
-            is MealPlanUiEffect.ShowMealDetails -> navigateToMealDetails(uiEffect.mealId)
             is MealPlanUiEffect.ShowDatePicker -> showDatePickerDialog()
         }
-    }
-
-    private fun navigateToMealDetails(mealId: Int) {
-        val action =
-            MealPlanFragmentDirections.actionMealPlanFragmentToRecipeInformationFragment(mealId)
-        findNavController().navigate(action)
     }
 
     private fun initMealsPager() {
@@ -111,11 +103,5 @@ class MealPlanFragment :
         )
 
         datePickerDialog.show()
-    }
-
-    private fun getTimestamp(year: Int, month: Int, dayOfMonth: Int): Int {
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month, dayOfMonth)
-        return calendar.timeInMillis.toInt()
     }
 }

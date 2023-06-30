@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentPlannedMealsBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
+import com.red_velvet.yumhub.ui.mealPlan.MealPlanFragmentDirections
 import com.red_velvet.yumhub.ui.mealPlan.MealPlanViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -21,17 +24,29 @@ class PlannedMealsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initPlannedMealsAdapter()
-
-        observeOnSelectedTab()
     }
 
-    override fun observeOnUIEffects() {}
+    override fun observeOnUIEffects() {
 
-    override fun handleUIEffect(uiEffect: PlannedMealsUiEffect) {}
+        observeOnSelectedTab()
+        lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
+    }
+
+    override fun handleUIEffect(uiEffect: PlannedMealsUiEffect) {
+        when (uiEffect) {
+            is PlannedMealsUiEffect.ShowMealDetails -> navigateToMealDetails(uiEffect.id)
+        }
+    }
 
     private fun initPlannedMealsAdapter() {
         val adapter = PlannedMealsAdapter(emptyList(), viewModel)
         binding.recyclerMeals.adapter = adapter
+    }
+
+    private fun navigateToMealDetails(mealId: Int) {
+        val action =
+            MealPlanFragmentDirections.actionMealPlanFragmentToRecipeInformationFragment(mealId)
+        findNavController().navigate(action)
     }
 
     private fun observeOnSelectedTab() {
