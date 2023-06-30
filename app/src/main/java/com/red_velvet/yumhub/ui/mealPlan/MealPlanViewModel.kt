@@ -25,6 +25,7 @@ class MealPlanViewModel @Inject constructor(
     }
 
     private fun getWeekMealsPlan(date: String) {
+        _state.update { it.copy(isLoading = true) }
         tryToExecute(
             { getWeeklyPlannedMeals(date) },
             ::onGetWeekMealsPlanSuccess,
@@ -33,12 +34,13 @@ class MealPlanViewModel @Inject constructor(
     }
 
     private fun onGetWeekMealsPlanSuccess(days: List<DayPlannedMealsEntity>) {
+        _state.update { it.copy(isLoading = false) }
         updateSelectedTimestamp(days.first().timestamp)
         updatePlannedMeals(days)
     }
 
     private fun onError(error: ErrorUIState) {
-        _state.update { it.copy(error = error) }
+        _state.update { it.copy(error = error, isLoading = false) }
     }
 
     private fun updateSelectedTimestamp(timestamp: Int) {

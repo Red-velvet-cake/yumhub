@@ -43,10 +43,11 @@
             android:clipToPadding="false"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_16dp"
-            app:hideIfListEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             app:items="@{viewModel.state.daysPlannedMeals}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/app_bar"
+            app:listResult="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}"
             tools:listitem="@layout/item_calendar_day" />
 
         <com.google.android.material.tabs.TabLayout
@@ -56,12 +57,13 @@
             android:layout_marginHorizontal="@dimen/_16dp"
             android:layout_marginTop="@dimen/spacing_large_24"
             android:elevation="0dp"
-            app:tabBackground="@drawable/selector_tab"
-            app:hideIfListEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             app:layout_constraintTop_toBottomOf="@id/recycler_view_calendar_days"
+            app:listResult="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}"
+            app:tabBackground="@drawable/selector_tab"
+            app:tabGravity="fill"
             app:tabIndicator="@null"
             app:tabIndicatorColor="@android:color/transparent"
-            app:tabGravity="fill"
             app:tabSelectedTextColor="@color/fontColor_white"
             app:tabTextColor="@color/primary" />
 
@@ -69,22 +71,26 @@
             android:id="@+id/view_pager_meals"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:hideIfListEmpty="@{viewModel.state.daysPlannedMeals.empty}"
+            android:layout_marginTop="@dimen/_16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout_meal_type" />
+            app:layout_constraintTop_toBottomOf="@id/tab_layout_meal_type"
+            app:listResult="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
 
         <ImageView
             android:id="@+id/empty_meals_vector"
             android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:importantForAccessibility="no"
-            android:showWhenEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             android:src="@drawable/not_found_search"
+            app:error="@{viewModel.state.error}"
             app:layout_constraintBottom_toTopOf="@id/empty_meals_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:list="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
 
         <TextView
             android:id="@+id/empty_meals_title"
@@ -92,14 +98,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large_24"
-            android:showWhenEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             android:text="@string/not_found"
             android:textColor="@color/fontColor_secondary"
             android:textSize="@dimen/text_size_20"
+            app:error="@{viewModel.state.error}"
             app:layout_constraintBottom_toTopOf="@id/empty_meals_description"
             app:layout_constraintEnd_toEndOf="@id/empty_meals_vector"
             app:layout_constraintStart_toStartOf="@id/empty_meals_vector"
-            app:layout_constraintTop_toBottomOf="@id/empty_meals_vector" />
+            app:layout_constraintTop_toBottomOf="@id/empty_meals_vector"
+            app:list="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
 
         <TextView
             android:id="@+id/empty_meals_description"
@@ -109,14 +117,29 @@
             android:layout_marginTop="@dimen/_4dp"
             android:layout_marginBottom="?android:attr/actionBarSize"
             android:gravity="center"
-            android:showWhenEmpty="@{viewModel.state.daysPlannedMeals.empty}"
             android:text="@string/no_meal_has_been_entered_on_this_day"
             android:textColor="@color/fontColor_accent"
             android:textSize="@dimen/text_size_12sp"
+            app:error="@{viewModel.state.error}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/empty_meals_vector"
             app:layout_constraintStart_toStartOf="@id/empty_meals_vector"
-            app:layout_constraintTop_toBottomOf="@id/empty_meals_title" />
+            app:layout_constraintTop_toBottomOf="@id/empty_meals_title"
+            app:list="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.state.isLoading}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
