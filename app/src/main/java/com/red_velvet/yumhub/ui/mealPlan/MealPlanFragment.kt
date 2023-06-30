@@ -26,6 +26,7 @@ class MealPlanFragment :
     override val layoutIdFragment: Int = R.layout.fragment_meal_plan
     override val viewModel: MealPlanViewModel by viewModels()
     private lateinit var pagerAdapter: MealPlanPagerAdapter
+    private lateinit var calendarDaysAdapter: CalendarDaysAdapter
     private val tabsTitles = listOf(
         R.string.breakfast,
         R.string.lunch,
@@ -53,6 +54,7 @@ class MealPlanFragment :
     override fun handleUIEffect(uiEffect: MealPlanUiEffect) {
         when (uiEffect) {
             is MealPlanUiEffect.ShowDatePicker -> showDatePickerDialog()
+            is MealPlanUiEffect.ResetSelectedDay -> restSelectedDay()
         }
     }
 
@@ -68,7 +70,7 @@ class MealPlanFragment :
     }
 
     private fun initCalendarDaysAdapter() {
-        val calendarDaysAdapter = CalendarDaysAdapter(emptyList(), viewModel)
+        calendarDaysAdapter = CalendarDaysAdapter(emptyList(), viewModel)
         binding.recyclerViewCalendarDays.adapter = calendarDaysAdapter
     }
 
@@ -108,5 +110,9 @@ class MealPlanFragment :
     private fun onDateSelected(picker: DatePicker, year: Int, month: Int, day: Int) {
         val selectedDate = "${year}-${month + 1}-${day}-12-00-00"
         viewModel.onDateSelected(selectedDate)
+    }
+
+    private fun restSelectedDay() {
+        calendarDaysAdapter.setSelectedPosition(0)
     }
 }
