@@ -89,8 +89,15 @@ class MealPlanFragment :
     }
 
     private fun listenToDatePickerClicks() {
-        binding.myToolbar.setOnClickListener {
-            viewModel.onDatePickerClicked()
+        binding.myToolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_calendar -> {
+                    viewModel.onDatePickerClicked()
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 
