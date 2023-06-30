@@ -59,24 +59,20 @@ fun DayPlannedMealsEntity.toDayPlannedMealsUiState(): MealPlanUiState.DayPlanned
 }
 
 fun List<DayPlannedMealsEntity>.toDayPlannedMealsUiState(): List<MealPlanUiState.DayPlannedMealsUiState> {
-    if (this.isEmpty()) return emptyList()
     return map { it.toDayPlannedMealsUiState() }
 }
 
 fun List<DayPlannedMealsEntity>.toBreakfastMealsUiState(timestamp: Int?): List<MealPlanUiState.MealUiState> {
-    if (this.isEmpty()) return emptyList()
     return filter { it.timestamp == timestamp }.flatMap { it.meals }
         .filter { it.slot == 1 }.toMealUiState()
 }
 
 fun List<DayPlannedMealsEntity>.toLunchMealsUiState(timestamp: Int?): List<MealPlanUiState.MealUiState> {
-    if (this.isEmpty()) return emptyList()
     return filter { it.timestamp == timestamp }.flatMap { it.meals }
         .filter { it.slot == 2 }.toMealUiState()
 }
 
 fun List<DayPlannedMealsEntity>.toDinnerMealsUiState(timestamp: Int?): List<MealPlanUiState.MealUiState> {
-    if (this.isEmpty()) return emptyList()
     return filter { it.timestamp == timestamp }.flatMap { it.meals }
         .filter { it.slot == 3 }.toMealUiState()
 }

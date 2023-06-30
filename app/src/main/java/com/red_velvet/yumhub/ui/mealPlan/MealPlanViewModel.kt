@@ -35,7 +35,7 @@ class MealPlanViewModel @Inject constructor(
 
     private fun onGetWeekMealsPlanSuccess(days: List<DayPlannedMealsEntity>) {
         _state.update { it.copy(isLoading = false) }
-        updateSelectedTimestamp(days.first().timestamp)
+        if (days.isNotEmpty()) updateSelectedTimestamp(days.first().timestamp)
         updatePlannedMeals(days)
     }
 
