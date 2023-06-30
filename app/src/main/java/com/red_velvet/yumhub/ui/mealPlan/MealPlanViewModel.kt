@@ -37,6 +37,7 @@ class MealPlanViewModel @Inject constructor(
         _state.update { it.copy(isLoading = false) }
         if (days.isNotEmpty()) updateSelectedTimestamp(days.first().timestamp)
         updatePlannedMeals(days)
+        restSelectedDay()
     }
 
     private fun onError(error: ErrorUIState) {
@@ -99,6 +100,10 @@ class MealPlanViewModel @Inject constructor(
         val sdf = SimpleDateFormat("yyyy-M-d-H-m-s")
         val netDate = sdf.parse(date)
         return (netDate.time / 1000).toInt()
+    }
+
+    private fun restSelectedDay() {
+        viewModelScope.launch { _effect.emit(MealPlanUiEffect.ResetSelectedDay) }
     }
 
 }
