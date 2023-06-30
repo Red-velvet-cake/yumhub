@@ -22,8 +22,6 @@
         android:clickable="true"
         android:elevation="0dp"
         android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:onClick="@{() -> listener.onDaySelected(item.date)}"
         app:cardCornerRadius="@dimen/raduis_16dp"
         app:contentPadding="@dimen/size_8dp"
         app:strokeWidth="0dp">
@@ -33,7 +31,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/text_view_week_day"
+                android:id="@+id/text_day_of_week"
                 style="@style/TextStyle.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,7 +44,7 @@
                 tools:text="Mon" />
 
             <TextView
-                android:id="@+id/text_view_week_month"
+                android:id="@+id/text_day_of_month"
                 style="@style/TextStyle.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +54,7 @@
                 android:textSize="@dimen/text_size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_view_week_day"
+                app:layout_constraintTop_toBottomOf="@id/text_day_of_week"
                 tools:text="12" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
