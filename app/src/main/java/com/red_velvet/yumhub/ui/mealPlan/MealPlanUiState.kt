@@ -4,13 +4,14 @@ import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
 import com.red_velvet.yumhub.domain.models.PlannedMealEntity
 import com.red_velvet.yumhub.ui.base.BaseUiState
 import com.red_velvet.yumhub.ui.base.ErrorUIState
+import java.util.Calendar
 
 data class MealPlanUiState(
     val daysPlannedMeals: List<DayPlannedMealsUiState> = emptyList(),
     val breakfastMeals: List<MealUiState> = emptyList(),
     val lunchMeals: List<MealUiState> = emptyList(),
     val dinnerMeals: List<MealUiState> = emptyList(),
-    val selectedDay: Int? = null,
+    val selectedTimestamp: Int = getCurrentTimestamp(),
     val pagePosition: Int = 1,
     val isLoading: Boolean = false,
     val error: ErrorUIState? = null,
@@ -78,4 +79,13 @@ fun List<DayPlannedMealsEntity>.toDinnerMealsUiState(timestamp: Int?): List<Meal
     if (this.isEmpty()) return emptyList()
     return filter { it.timestamp == timestamp }.flatMap { it.meals }
         .filter { it.slot == 3 }.toMealUiState()
+}
+
+private fun getCurrentTimestamp(): Int {
+    val calendar = Calendar.getInstance()
+    calendar.set(Calendar.HOUR_OF_DAY, 12)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
+    return (calendar.timeInMillis / 1000).toInt()
 }
