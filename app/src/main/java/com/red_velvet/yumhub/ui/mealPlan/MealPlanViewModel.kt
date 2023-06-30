@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -78,28 +79,30 @@ class MealPlanViewModel @Inject constructor(
     }
 
     private fun showSelectedDayMeals(timestamp: Int) {
+        val selectedDayMeals = state.value.daysPlannedMeals
+            .filter { it.date == timestamp }
+            .flatMap { it.meals }
+
         _state.update {
             it.copy(
-                breakfastMeals = state.value.daysPlannedMeals.filter { it.date == timestamp }
-                    .flatMap { it.meals }.filter { it.slot == 1 },
-                lunchMeals = state.value.daysPlannedMeals.filter { it.date == timestamp }
-                    .flatMap { it.meals }.filter { it.slot == 2 },
-                dinnerMeals = state.value.daysPlannedMeals.filter { it.date == timestamp }
-                    .flatMap { it.meals }.filter { it.slot == 3 },
+                breakfastMeals = selectedDayMeals.filter { meal -> meal.slot == 1 },
+                lunchMeals = selectedDayMeals.filter { meal -> meal.slot == 2 },
+                dinnerMeals = selectedDayMeals.filter { meal -> meal.slot == 3 },
             )
         }
     }
 
     private fun getFormattedDate(timestamp: Int): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val netDate = Date(timestamp.toLong() * 1000)
-        return sdf.format(netDate)
+        return formatter.format(netDate)
     }
 
-    private fun getTimestamp(date: String): Int {
-        val sdf = SimpleDateFormat("yyyy-M-d-H-m-s")
-        val netDate = sdf.parse(date)
-        return (netDate.time / 1000).toInt()
+    private fun getTimestamp(givenDate: String): Int {
+        val formatter = SimpleDateFormat("yyyy-M-d-H-m-s", Locale.getDefault())
+        val date = formatter.parse(givenDate)
+        if (date != null) return (date.time / 1000).toInt()
+        return 0
     }
 
     private fun restSelectedDay() {
