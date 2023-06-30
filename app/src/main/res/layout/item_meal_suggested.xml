@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:orientation="vertical"
-        android:onClick="@{()->listener.onMealClick(item)}"
         >
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/suggested_meals_image"
@@ -61,25 +60,36 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
+        <CheckBox
+            android:id="@+id/heart_checkbox"
+            style="@style/WishIconStyle"
+            android:checked="true"
+            android:onClick="@{()->listener.onMealClick(item)}"
+            app:layout_constraintBottom_toBottomOf="@+id/wish_background_button"
+            app:layout_constraintStart_toStartOf="@+id/wish_background_button"
+            app:layout_constraintTop_toTopOf="@+id/wish_background_button"
+            app:layout_constraintEnd_toStartOf="@id/calories_recipe"
+            />
+        <View
+            android:id="@+id/wish_background_button"
+            style="@style/WishButtonStyle"
+            app:layout_constraintStart_toStartOf="@id/suggested_meals_image"
+            app:layout_constraintBottom_toBottomOf="@id/suggested_meals_image" />
         <TextView
+            android:id="@+id/calories_recipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8dp"
-            android:layout_marginEnd="@dimen/_8dp"
             tools:text="2555"
             android:maxEms="5"
             android:maxLines="1"
             android:ellipsize="end"
             android:text="@{String.valueOf(item.calories)}"
-            android:padding="@dimen/_4dp"
-            android:drawablePadding="@dimen/_4dp"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_12sp"
-            android:drawableStart="@drawable/fire_svgrepo_com_small"
-            android:drawableTint="@color/white"
-            android:background="@drawable/suggested_meal_selector"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/heart_checkbox"
+            app:layout_constraintTop_toTopOf="@id/heart_checkbox"
+            app:layout_constraintBottom_toBottomOf="@id/heart_checkbox"
+            app:layout_constraintEnd_toEndOf="@id/wish_background_button"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
