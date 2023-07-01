@@ -108,8 +108,8 @@
         <item name="android:textColor">@color/text_color_chip_state_list</item>
     </style>
     <style name="WishIconStyle">
-        <item name="android:layout_height">@dimen/_16dp</item>
-        <item name="android:layout_width">@dimen/_16dp</item>
+        <item name="android:layout_height">@dimen/_0dp</item>
+        <item name="android:layout_width">@dimen/_0dp</item>
         <item name="android:elevation">@dimen/_4dp</item>
         <item name="android:button">@drawable/custom_checked</item>
         <item name="buttonTint">@color/white</item>
