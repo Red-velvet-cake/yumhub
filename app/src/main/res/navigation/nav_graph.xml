@@ -150,7 +150,7 @@
     <fragment
         android:id="@+id/mealsSuggesterStep1Fragment"
         android:name="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1.MealsSuggesterStep1Fragment"
-        android:label="MealsSuggesterStep1Fragment">
+        android:label="MealsSuggesterStep1Fragment" >
         <action
             android:id="@+id/action_mealsSuggesterStep1Fragment_to_mealsSuggesterStep2Fragment"
             app:destination="@id/mealsSuggesterStep2Fragment" />
@@ -158,7 +158,7 @@
     <fragment
         android:id="@+id/mealsSuggesterStep2Fragment"
         android:name="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep2.MealsSuggesterStep2Fragment"
-        android:label="MealsSuggesterStep2Fragment">
+        android:label="MealsSuggesterStep2Fragment" >
         <action
             android:id="@+id/action_mealsSuggesterStep2Fragment_to_mealsSuggesterStep3Fragment"
             app:destination="@id/mealsSuggesterStep3Fragment" />
