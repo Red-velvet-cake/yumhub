@@ -50,25 +50,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="pizza"
             />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="@{item.selectedRecipe?View.GONE:View.VISIBLE}"
-            app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/heart_checkbox"
             style="@style/WishIconStyle"
             android:checked="true"
             android:onClick="@{()->listener.onMealClick(item)}"
+            android:layout_marginStart="@dimen/_8dp"
             app:layout_constraintBottom_toBottomOf="@+id/wish_background_button"
             app:layout_constraintStart_toStartOf="@+id/wish_background_button"
             app:layout_constraintTop_toTopOf="@+id/wish_background_button"
-            app:layout_constraintEnd_toStartOf="@id/calories_recipe"
+            app:layout_constraintEnd_toEndOf="@id/wish_background_button"
             />
         <View
             android:id="@+id/wish_background_button"
@@ -83,10 +74,10 @@
             android:maxEms="5"
             android:maxLines="1"
             android:ellipsize="end"
+            android:layout_marginEnd="@dimen/_8dp"
             android:text="@{String.valueOf(item.calories)}"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_12sp"
-            app:layout_constraintStart_toEndOf="@id/heart_checkbox"
             app:layout_constraintTop_toTopOf="@id/heart_checkbox"
             app:layout_constraintBottom_toBottomOf="@id/heart_checkbox"
             app:layout_constraintEnd_toEndOf="@id/wish_background_button"

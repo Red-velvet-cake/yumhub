@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -26,11 +27,6 @@ class MealsSuggesterStep1Fragment :
     override val viewModel: MealsSuggesterStep1ViewModel by activityViewModels()
     override fun observeOnUIEffects() {
         lifecycleScope.launch { viewModel.effect.collectLatest { handleUIEffect(it) } }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.i("jalal","step1 created")
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun handleUIEffect(uiEffect: MealsSuggesterStep1UiEffect) {
@@ -59,38 +55,57 @@ class MealsSuggesterStep1Fragment :
         when(activityLevel)
         {
             1->{
-                binding.lazy.background = resources.getDrawable(R.color.primary)
-                binding.lazy.setTextColor(resources.getColor(R.color.white))
-                binding.lazy.compoundDrawableTintList=resources.getColorStateList(R.color.white)
-                binding.Normal.background = resources.getDrawable(R.color.white)
-                binding.Normal.setTextColor(resources.getColor(R.color.black))
-                binding.Normal.compoundDrawableTintList=resources.getColorStateList(R.color.black)
-                binding.VeryActive.background = resources.getDrawable(R.color.white)
-                binding.VeryActive.setTextColor(resources.getColor(R.color.black))
-                binding.VeryActive.compoundDrawableTintList=resources.getColorStateList(R.color.black)
+                binding.lazy.apply {
+                    background = ContextCompat.getDrawable(context,R.color.primary)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.white)
+                }
+                binding.Normal.apply {
+                    background = ContextCompat.getDrawable(context,R.color.white)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
+                }
+                binding.VeryActive.apply {
+                    background = ContextCompat.getDrawable(context,R.color.white)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
+                }
             }
-            2->{
-                binding.Normal.background = resources.getDrawable(R.color.primary)
-                binding.Normal.setTextColor(resources.getColor(R.color.white))
-                binding.Normal.compoundDrawableTintList=resources.getColorStateList(R.color.white)
-                binding.lazy.background = resources.getDrawable(R.color.white)
-                binding.lazy.setTextColor(resources.getColor(R.color.black))
-                binding.lazy.compoundDrawableTintList=resources.getColorStateList(R.color.black)
-                binding.VeryActive.background = resources.getDrawable(R.color.white)
-                binding.VeryActive.setTextColor(resources.getColor(R.color.black))
-                binding.VeryActive.compoundDrawableTintList=resources.getColorStateList(R.color.black)
-            }
-            else->{
-                binding.VeryActive.background = resources.getDrawable(R.color.primary)
-                binding.VeryActive.setTextColor(resources.getColor(R.color.white))
-                binding.VeryActive.compoundDrawableTintList=resources.getColorStateList(R.color.white)
-                binding.Normal.background = resources.getDrawable(R.color.white)
-                binding.Normal.setTextColor(resources.getColor(R.color.black))
-                binding.Normal.compoundDrawableTintList=resources.getColorStateList(R.color.black)
-                binding.lazy.background = resources.getDrawable(R.color.white)
-                binding.lazy.setTextColor(resources.getColor(R.color.black))
-                binding.lazy.compoundDrawableTintList=resources.getColorStateList(R.color.black)
 
+            2->{
+                binding.Normal.apply {
+                    background = ContextCompat.getDrawable(context,R.color.primary)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.white)
+                }
+                binding.lazy.apply {
+                    background = ContextCompat.getDrawable(context,R.color.white)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
+                }
+                binding.VeryActive.apply {
+                    background = ContextCompat.getDrawable(context,R.color.white)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
+                }
+            }
+
+            else->{
+                binding.VeryActive.apply {
+                     background = ContextCompat.getDrawable(context,R.color.primary)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.white)
+                }
+                binding.Normal.apply {
+                     background = ContextCompat.getDrawable(context,R.color.white)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
+                }
+                binding.lazy.apply {
+                     background = ContextCompat.getDrawable(context,R.color.white)
+                    setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                    compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
+                }
             }
         }
     }
@@ -98,21 +113,25 @@ class MealsSuggesterStep1Fragment :
     private fun genderSelector(gender: String) {
         if (gender == "Male")
         {
-            binding.maleContainerId.background = resources.getDrawable(R.color.primary)
-            binding.femaleContainerId.background = resources.getDrawable(R.color.white)
-            binding.maleTextId.setTextColor(resources.getColor(R.color.white))
-            binding.femaleTextId.setTextColor(resources.getColor(R.color.black))
-            binding.femaleTextId.compoundDrawableTintList=resources.getColorStateList(R.color.primary)
-            binding.maleTextId.compoundDrawableTintList=resources.getColorStateList(R.color.white)
+            binding.apply {
+                maleContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.primary)
+                femaleContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                maleTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                femaleTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                femaleTextId.compoundDrawableTintList= ContextCompat.getColorStateList(requireContext(),R.color.primary)
+                maleTextId.compoundDrawableTintList= ContextCompat.getColorStateList(requireContext(),R.color.white)
+            }
         }
         else
         {
-            binding.femaleContainerId.background = resources.getDrawable(R.color.primary)
-            binding.maleContainerId.background = resources.getDrawable(R.color.white)
-            binding.femaleTextId.setTextColor(resources.getColor(R.color.white))
-            binding.maleTextId.setTextColor(resources.getColor(R.color.black))
-            binding.maleTextId.compoundDrawableTintList=resources.getColorStateList(R.color.primary)
-            binding.femaleTextId.compoundDrawableTintList=resources.getColorStateList(R.color.white)
+            binding.apply {
+                femaleContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.primary)
+                maleContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                femaleTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                maleTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                maleTextId.compoundDrawableTintList= ContextCompat.getColorStateList(requireContext(),R.color.primary)
+                femaleTextId.compoundDrawableTintList= ContextCompat.getColorStateList(requireContext(),R.color.white)
+            }
         }
 
     }

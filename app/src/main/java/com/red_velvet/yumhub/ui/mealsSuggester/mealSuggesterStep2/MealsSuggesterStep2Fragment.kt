@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -30,17 +31,12 @@ class MealsSuggesterStep2Fragment :
         lifecycleScope.launch { viewModel.effect.collect { handleUIEffect(it) } }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.i("jalal","step2 created")
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun handleUIEffect(uiEffect: MealsSuggesterStep1UiEffect) {
         when (uiEffect) {
             is MealsSuggesterStep1UiEffect.ClickOnGoalSelector -> goalSelector(uiEffect.goal)
             is MealsSuggesterStep1UiEffect.ClickOnActivityLevelSelector -> {}
             is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
-            is MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked(type = uiEffect.type)
+            is MealsSuggesterStep1UiEffect.OnNextClicked -> onNextButtonClicked(uiEffect.type)
             MealsSuggesterStep1UiEffect.OnEmptyFields -> onEmptyFields()
             is MealsSuggesterStep1UiEffect.OnSelectItemRecipe -> {}
         }
@@ -52,30 +48,29 @@ class MealsSuggesterStep2Fragment :
 
     private fun goalSelector(goal: String) {
         when (goal) {
-            "Maintain Weight" -> {
-                binding.maintainWeightContainerId.background =
-                    resources.getDrawable(R.color.primary)
-                binding.maintainWeightTextId.setTextColor(resources.getColor(R.color.white))
-                binding.lossWeightContainerId.background = resources.getDrawable(R.color.white)
-                binding.lossWeightTextId.setTextColor(resources.getColor(R.color.black))
-                binding.gainWeightContainerId.background = resources.getDrawable(R.color.white)
-                binding.gainWeightTextId.setTextColor(resources.getColor(R.color.black))
+            MAINTAIN_WEIGHT -> {
+                binding.maintainWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.primary)
+                binding.maintainWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                binding.lossWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                binding.lossWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                binding.gainWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                binding.gainWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
             }
-            "Loss Weight"->{
-                binding.lossWeightContainerId.background = resources.getDrawable(R.color.primary)
-                binding.lossWeightTextId.setTextColor(resources.getColor(R.color.white))
-                binding.maintainWeightContainerId.background = resources.getDrawable(R.color.white)
-                binding.maintainWeightTextId.setTextColor(resources.getColor(R.color.black))
-                binding.gainWeightContainerId.background = resources.getDrawable(R.color.white)
-                binding.gainWeightTextId.setTextColor(resources.getColor(R.color.black))
+            LOSS_WEIGHT->{
+                binding.lossWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.primary)
+                binding.lossWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                binding.maintainWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                binding.maintainWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                binding.gainWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                binding.gainWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
             }
             else->{
-                binding.gainWeightContainerId.background = resources.getDrawable(R.color.primary)
-                binding.gainWeightTextId.setTextColor(resources.getColor(R.color.white))
-                binding.lossWeightContainerId.background = resources.getDrawable(R.color.white)
-                binding.lossWeightTextId.setTextColor(resources.getColor(R.color.black))
-                binding.maintainWeightContainerId.background = resources.getDrawable(R.color.white)
-                binding.maintainWeightTextId.setTextColor(resources.getColor(R.color.black))
+                binding.gainWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.primary)
+                binding.gainWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                binding.lossWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                binding.lossWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                binding.maintainWeightContainerId.background = ContextCompat.getDrawable(requireContext(),R.color.white)
+                binding.maintainWeightTextId.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
             }
         }
     }
@@ -85,5 +80,9 @@ class MealsSuggesterStep2Fragment :
                 MealsSuggesterStep2FragmentDirections.actionMealsSuggesterStep2FragmentToMealsSuggesterStep3Fragment()
             findNavController().navigate(directions)
         }
+    }
+    companion object{
+        const val LOSS_WEIGHT = "Loss Weight"
+        const val MAINTAIN_WEIGHT= "Maintain Weight"
     }
 }

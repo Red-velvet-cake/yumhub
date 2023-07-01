@@ -73,7 +73,6 @@ class MealsSuggesterStep1ViewModel @Inject constructor(
         else
             _state.update { it.copy(recipeCalories = item.calories.toInt()+_state.value.recipeCalories) }
         viewModelScope.launch { _effect.emit(MealsSuggesterStep1UiEffect.OnSelectItemRecipe(item,_state.value.recipeCalories)) }
-        Log.i("jalalCal",_state.value.toString())
     }
 
     private fun onSuccessFetchData(meals: List<RecipeEntity>) {
