@@ -8,6 +8,6 @@ sealed interface MealsSuggesterStep1UiEffect : BaseUIEffect {
     data class ClickOnActivityLevelSelector(val activityLevel: Int) : MealsSuggesterStep1UiEffect
     data class OnNextClicked(val type: String) : MealsSuggesterStep1UiEffect
     data class ClickOnGoalSelector(val goal: String) : MealsSuggesterStep1UiEffect
-    data class OnSelectItemRecipe(val itemRecipe: MealsSuggesterStep1UiState.SuggestedMeals): MealsSuggesterStep1UiEffect
+    data class OnSelectItemRecipe(val itemRecipe: MealsSuggesterStep1UiState.SuggestedMeals,val calories: Int?): MealsSuggesterStep1UiEffect
     object OnEmptyFields : MealsSuggesterStep1UiEffect
 }
