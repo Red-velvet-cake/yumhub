@@ -55,54 +55,73 @@ class MealsSuggesterStep1Fragment :
         when(activityLevel)
         {
             1->{
-                binding.lazy.apply {
+                binding.lazyContainerId.apply {
                     background = ContextCompat.getDrawable(context,R.color.primary)
+                }
+                binding.lazyTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.white)
                 }
-                binding.Normal.apply {
+                binding.normalContainerId.apply {
                     background = ContextCompat.getDrawable(context,R.color.white)
+                }
+                binding.normalTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
                 }
-                binding.VeryActive.apply {
+                binding.veryActiveContainerId.apply {
                     background = ContextCompat.getDrawable(context,R.color.white)
+                }
+                binding.veryActiveTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
                 }
             }
 
             2->{
-                binding.Normal.apply {
+                binding.normalContainerId.apply {
                     background = ContextCompat.getDrawable(context,R.color.primary)
+                }
+                binding.normalTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.white)
+
                 }
-                binding.lazy.apply {
+                binding.lazyContainerId.apply {
                     background = ContextCompat.getDrawable(context,R.color.white)
+                }
+                binding.lazyTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
                 }
-                binding.VeryActive.apply {
+                binding.veryActiveContainerId.apply {
                     background = ContextCompat.getDrawable(context,R.color.white)
+                }
+                binding.veryActiveTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
                 }
             }
 
             else->{
-                binding.VeryActive.apply {
+                binding.veryActiveContainerId.apply {
                      background = ContextCompat.getDrawable(context,R.color.primary)
+                }
+                binding.veryActiveTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.white)
                 }
-                binding.Normal.apply {
+                binding.normalContainerId.apply {
                      background = ContextCompat.getDrawable(context,R.color.white)
+                }
+                binding.normalTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
                 }
-                binding.lazy.apply {
+                binding.lazyContainerId.apply {
                      background = ContextCompat.getDrawable(context,R.color.white)
+                }
+                binding.lazyTextId.apply {
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
                     compoundDrawableTintList= ContextCompat.getColorStateList(context,R.color.black)
                 }
