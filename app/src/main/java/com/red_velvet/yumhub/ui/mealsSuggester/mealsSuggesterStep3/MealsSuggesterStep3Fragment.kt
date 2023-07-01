@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -33,17 +35,28 @@ class MealsSuggesterStep3Fragment :
             is MealsSuggesterStep1UiEffect.ClickOnGenderSelector -> {}
             is MealsSuggesterStep1UiEffect.OnNextClicked -> {}
             MealsSuggesterStep1UiEffect.OnEmptyFields -> {}
-            is MealsSuggesterStep1UiEffect.OnSelectItemRecipe -> updateItemUi(uiEffect.itemRecipe)
+            is MealsSuggesterStep1UiEffect.OnSelectItemRecipe -> updateItemUi(uiEffect.itemRecipe,uiEffect.calories)
         }
     }
 
-    private fun updateItemUi(itemRecipe: MealsSuggesterStep1UiState.SuggestedMeals) {
+    private fun updateItemUi(itemRecipe: MealsSuggesterStep1UiState.SuggestedMeals,calories:Int?) {
         itemRecipe.isSelectedRecipe = !(itemRecipe.isSelectedRecipe)
-        Log.i("jalalIntFragment" , "is selected : ${itemRecipe.isSelectedRecipe}")
+        if (calories!! > binding.amountOfCalories.text.toString().toInt())
+        {
+            binding.totalRecipeCalories.apply {
+                setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                compoundDrawableTintList = ContextCompat.getColorStateList(context,R.color.red)
+            }
+        }
+        else {
+            binding.totalRecipeCalories.apply {
+                setTextColor(ContextCompat.getColor(requireContext(), R.color.green_green100))
+                compoundDrawableTintList = ContextCompat.getColorStateList(context,R.color.green_green100)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.i("jalal","step3 created")
         val mealSuggesterAdapter = MealSuggesterAdapter(mutableListOf(), viewModel)
         binding.suggestedMealsRecyclerView.adapter = mealSuggesterAdapter
 
