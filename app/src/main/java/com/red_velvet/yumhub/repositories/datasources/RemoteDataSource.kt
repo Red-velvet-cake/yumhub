@@ -1,6 +1,7 @@
 package com.red_velvet.yumhub.repositories.datasources
 
 import com.red_velvet.yumhub.remote.resources.AnalyzedInstructionResource
+import com.red_velvet.yumhub.remote.resources.ExtendedIngredientResource
 import com.red_velvet.yumhub.remote.resources.auth.ConnectUserResource
 import com.red_velvet.yumhub.remote.resources.auth.UserInformationResource
 import com.red_velvet.yumhub.remote.resources.ingredient.IngredientInformationResource
@@ -83,6 +84,11 @@ interface RemoteDataSource {
         id: Int,
         stepBreakdown: Boolean?,
     ): List<AnalyzedInstructionResource>
+
+    suspend fun getExtendedIngredients(
+        id: Int,
+        includeNutrition: Boolean,
+    ): List<ExtendedIngredientResource>
 
     suspend fun getRecipesByCalories(
         minCalories : Double,

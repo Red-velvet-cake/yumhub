@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.history.HistoryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_white"
+        tools:context=".ui.search.SearchFragment">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_history_list"
+            android:layout_width="@dimen/no_width"
+            android:layout_height="@dimen/no_width"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:hideIfIsHistoryEmpty="@{!viewModel.uiState.resultIsEmpty}"
+            app:items="@{viewModel.uiState.historyItems}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_history_card" />
+
+        <ImageView
+            android:id="@+id/svgImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:hideIfIsHistoryEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/not_found_search" />
+
+        <TextView
+            android:id="@+id/textview_title"
+            style="@style/CustomSearchTextViewTitleStyle"
+            android:text="No History Found"
+            app:hideIfIsHistoryEmpty="@{viewModel.uiState.resultIsEmpty}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svgImageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

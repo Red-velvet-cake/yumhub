@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.chatbot.ChatBotViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_white">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_chatbot"
+            android:layout_width="@dimen/no_width"
+            android:layout_height="@dimen/no_width"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/space_56dp"
+            app:items="@{viewModel.uiState.quickAnswerResult}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:stackFromEnd="true"
+            tools:listitem="@layout/item_human_message" />
+
+        <ImageView
+            android:id="@+id/imageView_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chatbotwelcome"
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
+            app:layout_constraintBottom_toTopOf="@id/text_view_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_welcome"
+            style="@style/CustomTextViewSearchSubTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:text="@string/hello_welcome_to_our_chatbot"
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView_welcome" />
+
+        <TextView
+            android:id="@+id/textView_welcome_2"
+            style="@style/CustomTextViewSearchSubTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/no_width"
+            android:text="@string/i_m_here_to_assist_you_with_any_questions"
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_welcome" />
+
+        <TextView
+            style="@style/CustomTextViewSearchSubTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/no_width"
+            android:text="@string/related_to_recipes_and_cooking"
+            app:hideIfMessageExist="@{viewModel.uiState.quickAnswerResult}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_welcome_2" />
+
+        <LinearLayout
+            android:id="@+id/text_view_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xxxlarge"
+            android:layout_marginBottom="@dimen/spacing_large_24"
+            android:background="@color/bg_white"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/fab_margin"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_background"
+                android:orientation="horizontal"
+                app:shapeAppearanceOverlay="@style/RoundedCorner">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_corner_background"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center_vertical"
+                        android:hint="@string/send_a_message"
+                        android:minHeight="@dimen/spacing_xxxxlarge"
+                        android:onTextChanged="@{(text,_, ___, __) -> viewModel.onInputSearchChange(text)}"
+                        android:paddingVertical="@dimen/spacing_small"
+                        android:radius="@dimen/spacing_xlarge"
+                        android:text="@{viewModel.uiState.quickAnswer}"
+                        android:textColor="@color/black_title_60"
+                        android:textColorHint="@color/black_title_36"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <androidx.cardview.widget.CardView
+                        style="@style/CardSearchFilterStyle"
+                        android:onClick="@{() -> viewModel.onSend()}"
+                        app:cardCornerRadius="@dimen/_75dp"
+                        app:cardElevation="@dimen/no_width">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/fab_margin"
+                            android:src="@drawable/send" />
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+                />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -33,12 +33,13 @@
             android:id="@+id/recipe_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_x_small"
+            android:layout_marginTop="4dp"
             android:ellipsize="end"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_medium"
             android:maxLines="1"
             android:text="@{item.recipeTitle}"
-            android:textSize="@dimen/font_size_label" />
+            android:textColor="@color/fontColor_primary"
+            android:textSize="@dimen/text_size_16" />
 
     </LinearLayout>
 </layout>

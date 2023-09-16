@@ -15,10 +15,11 @@
             android:id="@+id/action_searchFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/nutritionalValueFragment"
         android:name="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueFragment"
-        android:label="z"
+        android:label="Nutritional Value"
         tools:layout="@layout/fragment_nutritional_value" />
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -29,6 +30,17 @@
             android:id="@+id/action_onBoardingFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.red_velvet.yumhub.ui.history.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_historyFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.red_velvet.yumhub.ui.home.HomeFragment"
@@ -58,7 +70,7 @@
     <fragment
         android:id="@+id/categoryRecipesFragment"
         android:name="com.red_velvet.yumhub.ui.category.CategoryRecipesFragment"
-        android:label="RecipeCategoryFragment"
+        android:label="Recipes"
         tools:layout="@layout/fragment_category_recipes">
         <argument
             android:name="categoryTitle"
@@ -92,7 +104,7 @@
     <fragment
         android:id="@+id/recipeInformationFragment"
         android:name="com.red_velvet.yumhub.ui.recipeDetails.RecipeInformationFragment"
-        android:label="RecipeInformationFragment"
+        android:label="Recipe Details"
         tools:layout="@layout/fragment_recipe_information">
         <action
             android:id="@+id/action_recipeInformationFragment_to_instructionsFragment"
@@ -106,6 +118,9 @@
         <action
             android:id="@+id/action_recipeInformationFragment_to_addToMealPlanFragment"
             app:destination="@id/addToMealPlanFragment" />
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
     </fragment>
 
     <fragment
@@ -135,6 +150,15 @@
             android:id="@+id/action_profileFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
         <action
+            android:id="@+id/action_profileFragment_to_nutritionalValueFragment"
+            app:destination="@id/nutritionalValueFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_chatbotFragment"
+            app:destination="@id/chatbotFragment" />
+        <action
             android:id="@+id/action_profileFragment_to_mealsSuggesterStep1Fragment"
             app:destination="@id/mealsSuggesterStep1Fragment" />
     </fragment>
@@ -147,6 +171,41 @@
             android:id="@+id/action_favoritesFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mealPlanFragment"
+        android:name="com.red_velvet.yumhub.ui.mealPlan.MealPlanFragment"
+        android:label="Meal Plan"
+        tools:layout="@layout/fragment_meal_plan">
+        <action
+            android:id="@+id/action_mealPlanFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plannedMealsFragment"
+        android:name="com.red_velvet.yumhub.ui.plannedMeals.PlannedMealsFragment"
+        android:label="Planned Meals"
+        tools:layout="@layout/fragment_planned_meals">
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.red_velvet.yumhub.ui.chatbot.ChatbotFragment"
+        android:label="ChatBot" />
+    <fragment
+        android:id="@+id/ingredientsFragment"
+        android:name="com.red_velvet.yumhub.ui.ingredients.IngredientsFragment"
+        android:label="IngredientsFragment"
+        tools:layout="@layout/fragment_ingredients">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+
     <fragment
         android:id="@+id/mealsSuggesterStep1Fragment"
         android:name="com.red_velvet.yumhub.ui.mealsSuggester.mealSuggesterStep1.MealsSuggesterStep1Fragment"
@@ -167,5 +226,6 @@
         android:id="@+id/mealsSuggesterStep3Fragment"
         android:name="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.MealsSuggesterStep3Fragment"
         android:label="Step three" />
+
 
 </navigation>

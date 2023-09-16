@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 
 
 abstract class BaseViewModel<T : BaseUiState, EFFECT : BaseUIEffect>(state: T) : ViewModel() {
@@ -34,6 +35,8 @@ abstract class BaseViewModel<T : BaseUiState, EFFECT : BaseUIEffect>(state: T) :
             } catch (e: NetworkException.UnAuthorizedException) {
                 onError(ErrorUIState.UnAuthorized)
             } catch (e: NetworkException.NoInternetException) {
+                onError(ErrorUIState.NoInternet)
+            } catch (e: UnknownHostException) {
                 onError(ErrorUIState.NoInternet)
             } catch (e: NetworkException.TimeoutException) {
                 onError(ErrorUIState.ConnectionTimeout)

@@ -1,10 +1,10 @@
 package com.red_velvet.yumhub.domain.usecases.recipes
 import com.red_velvet.yumhub.domain.models.recipes.SearchRecipeEntity
-import com.red_velvet.yumhub.repositories.RecipesRepositoryImpl
+import com.red_velvet.yumhub.domain.repositories.RecipesRepository
 import javax.inject.Inject
 
 class SearchRecipeUseCase  @Inject constructor(
-   private  val recipesRepositoryImpl : RecipesRepositoryImpl,
+   private  val recipesRepositoryImpl : RecipesRepository,
    private  val getMinutAsHourAndMinuts:GetMinutAsHourAndMinuts,
    private val getIngredientCountUseCase:GetIngredientCountUseCase
         ) {

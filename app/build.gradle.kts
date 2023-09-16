@@ -104,4 +104,9 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     //coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
+    // lottie
+    implementation("com.airbnb.android:lottie:4.2.0")
 }
