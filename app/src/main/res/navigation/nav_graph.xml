@@ -149,6 +149,9 @@
             android:id="@+id/action_profileFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
         <action
+            android:id="@+id/action_profileFragment_to_nutritionalValueFragment"
+            app:destination="@id/nutritionalValueFragment" />
+        <action
             android:id="@+id/action_profileFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
         <action
@@ -163,6 +166,27 @@
         <action
             android:id="@+id/action_favoritesFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealPlanFragment"
+        tools:layout="@layout/fragment_meal_plan"
+        android:name="com.red_velvet.yumhub.ui.mealPlan.MealPlanFragment"
+        android:label="Meal Plan">
+        <action
+            android:id="@+id/action_mealPlanFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plannedMealsFragment"
+        android:name="com.red_velvet.yumhub.ui.plannedMeals.PlannedMealsFragment"
+        android:label="Planned Meals"
+        tools:layout="@layout/fragment_planned_meals">
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="date"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/chatbotFragment"

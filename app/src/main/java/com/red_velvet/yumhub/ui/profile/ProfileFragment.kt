@@ -52,7 +52,10 @@ class ProfileFragment :
         findNavController().navigate(directions)
     }
 
-    private fun navigateToNutritionalScreen() {}
+    private fun navigateToNutritionalScreen() {
+        val action = ProfileFragmentDirections.actionProfileFragmentToNutritionalValueFragment()
+        findNavController().navigate(action)
+    }
 
     private fun navigateToFoodSuggesterScreen() {}
 

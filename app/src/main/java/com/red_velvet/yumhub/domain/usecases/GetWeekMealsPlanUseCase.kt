@@ -1,18 +1,19 @@
 package com.red_velvet.yumhub.domain.usecases
 
-import com.red_velvet.yumhub.domain.models.MealPlanEntity
+import com.red_velvet.yumhub.domain.models.DayPlannedMealsEntity
 import com.red_velvet.yumhub.domain.repositories.MealRepository
-import kotlinx.coroutines.flow.Flow
+import com.red_velvet.yumhub.repositories.datasources.SharedPreferenceService
 import javax.inject.Inject
 
 class GetWeekMealsPlanUseCase @Inject constructor(
     private val mealRepository: MealRepository,
+    private val sharedPreferenceService: SharedPreferenceService
 ) {
-    operator fun invoke(
-        fromTimestamp: Long,
-        toTimesTamp: Long
-    ): Flow<List<MealPlanEntity>> {
-        return mealRepository
-            .getWeekMealsPlan(fromTimestamp, toTimesTamp)
+    suspend operator fun invoke(date: String): List<DayPlannedMealsEntity> {
+        return mealRepository.getWeeklyPlannedMeals(
+            username = sharedPreferenceService.getUserName() ?: "",
+            hash = sharedPreferenceService.getHash() ?: "",
+            date = date
+        )
     }
 }
