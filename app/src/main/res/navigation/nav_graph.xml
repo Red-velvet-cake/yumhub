@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/nutritionalValueFragment"
         android:name="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueFragment"
-        android:label=""
+        android:label="Nutritional Value"
         tools:layout="@layout/fragment_nutritional_value" />
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -117,6 +117,9 @@
         <action
             android:id="@+id/action_recipeInformationFragment_to_addToMealPlanFragment"
             app:destination="@id/addToMealPlanFragment" />
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
     </fragment>
 
     <fragment
@@ -146,6 +149,9 @@
             android:id="@+id/action_profileFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
         <action
+            android:id="@+id/action_profileFragment_to_nutritionalValueFragment"
+            app:destination="@id/nutritionalValueFragment" />
+        <action
             android:id="@+id/action_profileFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
         <action
@@ -162,6 +168,27 @@
             app:destination="@id/recipeInformationFragment" />
     </fragment>
     <fragment
+        android:id="@+id/mealPlanFragment"
+        tools:layout="@layout/fragment_meal_plan"
+        android:name="com.red_velvet.yumhub.ui.mealPlan.MealPlanFragment"
+        android:label="Meal Plan">
+        <action
+            android:id="@+id/action_mealPlanFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plannedMealsFragment"
+        android:name="com.red_velvet.yumhub.ui.plannedMeals.PlannedMealsFragment"
+        android:label="Planned Meals"
+        tools:layout="@layout/fragment_planned_meals">
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
+    <fragment
         android:id="@+id/chatbotFragment"
         android:name="com.red_velvet.yumhub.ui.chatbot.ChatbotFragment"
         android:label="ChatBot" />
@@ -169,7 +196,11 @@
         android:id="@+id/ingredientsFragment"
         android:name="com.red_velvet.yumhub.ui.ingredients.IngredientsFragment"
         android:label="IngredientsFragment"
-        tools:layout="@layout/fragment_ingredients" />
+        tools:layout="@layout/fragment_ingredients">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
 
 </navigation>

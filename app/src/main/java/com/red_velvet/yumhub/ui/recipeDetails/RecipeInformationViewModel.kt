@@ -51,7 +51,7 @@ class RecipeInformationViewModel @Inject constructor(
     }
 
     override fun onIngredientClicked(id: Int) {
-        viewModelScope.launch { _effect.emit(RecipeDetailsUIEffect.ClickOnGoToCookingSteps(id)) }
+        viewModelScope.launch { _effect.emit(RecipeDetailsUIEffect.ClickOnGoToIngredients(id)) }
     }
 
     override fun onShowRecipeCookingStepsClicked(recipeId: Int) {

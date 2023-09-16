@@ -2,7 +2,6 @@ package com.red_velvet.yumhub.ui.ingredients
 
 import com.red_velvet.yumhub.domain.models.recipes.ExtendedIngredientEntity
 import com.red_velvet.yumhub.domain.usecases.GetIngredientsUseCase
-import com.red_velvet.yumhub.ui.base.BaseUIEffect
 import com.red_velvet.yumhub.ui.base.BaseViewModel
 import com.red_velvet.yumhub.ui.base.ErrorUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class IngredientsViewModel @Inject constructor(
     private val getIngredientsUseCase: GetIngredientsUseCase
-) : BaseViewModel<IngredientsUIState, BaseUIEffect>(IngredientsUIState()),
+) : BaseViewModel<IngredientsUIState, IngredientsUIEffect>(IngredientsUIState()),
     ExtendedIngredientsListener {
 
     init {
@@ -29,7 +28,7 @@ class IngredientsViewModel @Inject constructor(
 
     private fun onSuccess(ingredients: List<ExtendedIngredientEntity>) {
         _state.update {
-            it.copy(resultIngredient = ingredients.map { extendedIngredient ->
+            it.copy(isLoading = false, resultIngredient = ingredients.map { extendedIngredient ->
                 extendedIngredient.toExtendedIngredientsUIState()
             })
         }

@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.red_velvet.yumhub.R
 import com.red_velvet.yumhub.databinding.FragmentHistoryBinding
 import com.red_velvet.yumhub.ui.base.BaseFragment
@@ -39,6 +40,10 @@ class HistoryFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val historyAdapter = HistoryAdapter(mutableListOf(), viewModel)
+
+        val itemTouchHelper = ItemTouchHelper(HistoryItemTouchCallback(historyAdapter))
+        itemTouchHelper.attachToRecyclerView(binding.recyclerHistoryList)
+
         binding.recyclerHistoryList.adapter = historyAdapter
         super.onViewCreated(view, savedInstanceState)
     }

@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.YumHub" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.YumHub" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
         <item name="android:navigationBarColor">@color/primary</item>
         <item name="android:navigationIcon">@color/primary</item>
@@ -43,7 +43,7 @@
     </style>
 
     <style name="CustomTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black_title</item>
+        <item name="android:textColor">@color/fontColor_primary</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/text_size_24</item>
         <item name="android:layout_marginStart">@dimen/fab_margin</item>
@@ -54,7 +54,7 @@
     </style>
 
     <style name="CustomSubTitleTextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/black_title_60</item>
+        <item name="android:textColor">@color/fontColor_secondary</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:layout_marginStart">@dimen/fab_margin</item>

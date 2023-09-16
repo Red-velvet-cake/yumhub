@@ -1,6 +1,4 @@
 package com.red_velvet.yumhub.ui.nutritionalValue
-
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.red_velvet.yumhub.domain.models.recipes.GuessNutritionEntity
 import com.red_velvet.yumhub.domain.usecases.GuessNutritionUseCase
@@ -22,12 +20,14 @@ class NutritionalValueViewModel @Inject constructor(
         _state.update { it.copy(textInput = newSearchInput.toString()) }
     }
 
+
     private fun validateSearchInput(input: String) = input.isNotEmpty()
 
     private fun onSearch() {
+        viewModelScope.launch { _effect.emit(NutritionalValueUIEffect.HideKeyboard) }
         if (validateSearchInput(_state.value.textInput)) {
             onGetData()
-        } else {
+        }  else {
             onInvalidInputs()
         }
     }
@@ -43,20 +43,29 @@ class NutritionalValueViewModel @Inject constructor(
             onError = ::onError
         )
     }
+    private fun checkIfEmpty():Boolean{
+        return _state.value.nutritionalValueResultUIState?.let { (calories, carbs, fat, protein) ->
+            listOf(calories, carbs, fat, protein).all { it == 0.0 }
+        } ?: false
+    }
 
     private fun onSuccess(recipes: GuessNutritionEntity) {
         val searchResult = recipes.toNutritionalValueResultUIState()
-        Log.i("AYA", searchResult.toString())
-        _state.update { it.copy(nutritionalValueResultUIState = searchResult, isLoading = false) }
+        _state.update { it.copy(
+            nutritionalValueResultUIState =
+            searchResult, isLoading = false,
+            textInput = "") }
+        if(checkIfEmpty()){
+            viewModelScope.launch { _effect.emit(NutritionalValueUIEffect.NoResultMessage) }
+        }
     }
 
     private fun onError(errorUiState: ErrorUIState) {
-        Log.i("AYA", errorUiState.toString())
         _state.update { it.copy(error = errorUiState, isLoading = false) }
     }
 
     override fun doOnApplyRecipe() {
-        _state.update { it.copy(isLoading = true) }
+        _state.update { it.copy(isLoading = true,) }
         onSearch()
     }
 }

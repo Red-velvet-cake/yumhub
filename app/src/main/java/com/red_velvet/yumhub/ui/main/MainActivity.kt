@@ -58,8 +58,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.searchFragment,
-                R.id.nutritionalValueFragment,
                 R.id.profileFragment,
+                R.id.mealPlanFragment,
                 R.id.dietFragment -> {
                     supportActionBar?.hide()
                     binding.bottomNav.isVisible = true

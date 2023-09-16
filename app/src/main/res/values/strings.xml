@@ -48,7 +48,7 @@
     <string name="ingredients">Ingredients</string>
     <string name="go_to_cooking_steps">Go To Cooking Steps</string>
     <string name="min">Min</string>
-    <string name="servings">Servings</string>
+    <string name="servings">Serving</string>
     <string name="yumhub">YumHub</string>
     <string name="home">home</string>
     <string name="search">search</string>
@@ -127,6 +127,7 @@
     <string name="unauthorized">Unauthorized</string>
     <string name="connection_timeout">Connection timeout</string>
     <string name="internal_server_error">Internal server error</string>
+    <string name="meal_plan">Meal plan</string>
     <string name="hello_welcome_to_our_chatbot">Hello! Welcome to our chatbot.</string>
     <string name="i_m_here_to_assist_you_with_any_questions">I\'m here to assist you with any questions</string>
     <string name="related_to_recipes_and_cooking">related to recipes and cooking.</string>
@@ -134,4 +135,6 @@
     <string name="how_much_vitamin_c_in_two_dolma">How much vitamin c in two dolma</string>
     <string name="please_make_sure_you_are_connected_to">Please make sure you are connected to</string>
     <string name="title_ingredients">Ingredients</string>
+    <string name="chosee_date">Chosee Date</string>
+    <string name="no_meal_has_been_entered_on_this_day">No meal has been entered on this day</string>
 </resources>

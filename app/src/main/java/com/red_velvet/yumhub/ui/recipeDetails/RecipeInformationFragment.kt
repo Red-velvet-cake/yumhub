@@ -33,8 +33,6 @@ class RecipeInformationFragment : BaseFragment<
         val ingredientsAdapter = IngredientsAdapter(emptyList(), viewModel)
         binding.recyclerViewIngredients.adapter = ingredientsAdapter
 
-        setHasOptionsMenu(true)
-        activity?.title = "Details"
     }
 
     override fun observeOnUIEffects() {
@@ -49,7 +47,16 @@ class RecipeInformationFragment : BaseFragment<
             )
 
             is RecipeDetailsUIEffect.ClickAddToMealPlan -> onClickAddToMealPlan(uiEffect.recipeId)
+            is RecipeDetailsUIEffect.ClickOnGoToIngredients -> onClickToToIngredints(uiEffect.recipeId)
         }
+    }
+
+    private fun onClickToToIngredints(recipeId: Int) {
+        val directions = RecipeInformationFragmentDirections
+            .actionRecipeInformationFragmentToIngredientsFragment(recipeId)
+
+        findNavController().navigate(directions)
+
     }
 
     private fun onClickAddToMealPlan(recipeId: Int) {

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/homeFragment"
@@ -24,9 +20,9 @@
         android:title="@string/diet" />
 
     <item
-        android:id="@+id/nutritionalValueFragment"
+        android:id="@+id/mealPlanFragment"
         android:icon="@drawable/meal_bottom_select"
-        android:title="@string/nutrition_tracker" />
+        android:title="@string/meal_plan" />
 
     <item
         android:id="@+id/profileFragment"
