@@ -10,4 +10,7 @@ sealed interface RecipeDetailsUIEffect : BaseUIEffect {
 
     data class ClickAddToMealPlan(val recipeId: Int) : RecipeDetailsUIEffect
 
+    data class ClickOnGoToIngredients(val recipeId: Int) : RecipeDetailsUIEffect
+
+
 }

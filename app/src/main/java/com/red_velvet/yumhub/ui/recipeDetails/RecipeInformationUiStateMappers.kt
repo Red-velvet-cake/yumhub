@@ -29,7 +29,7 @@ fun RecipeInformationEntity.toIngredientsUIState(): List<IngredientsUIState> {
     return extendedIngredientEntities.map { extendedIngredient ->
         IngredientsUIState(
             image = extendedIngredient.image,
-            name = extendedIngredient.original
+            name = extendedIngredient.name
         )
     }
 }

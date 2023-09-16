@@ -117,6 +117,9 @@
         <action
             android:id="@+id/action_recipeInformationFragment_to_addToMealPlanFragment"
             app:destination="@id/addToMealPlanFragment" />
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
     </fragment>
 
     <fragment
@@ -193,7 +196,11 @@
         android:id="@+id/ingredientsFragment"
         android:name="com.red_velvet.yumhub.ui.ingredients.IngredientsFragment"
         android:label="IngredientsFragment"
-        tools:layout="@layout/fragment_ingredients" />
+        tools:layout="@layout/fragment_ingredients">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
 
 </navigation>

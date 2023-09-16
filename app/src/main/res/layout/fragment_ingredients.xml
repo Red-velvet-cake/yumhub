@@ -15,20 +15,11 @@
         android:layout_height="match_parent"
         tools:context=".ui.ingredients.IngredientsFragment">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_ingredients"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="@string/title_ingredients" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_extended_ingredients"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/no_height"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginStart="16dp"
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingTop="@dimen/_18dp"
@@ -37,9 +28,49 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_ingredients"
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_extended_ingredients" />
+
+        <LinearLayout
+            android:id="@+id/layout_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:showNoInternet="@{viewModel.state.error}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_137dp"
+                android:layout_height="@dimen/_135dp"
+                android:layout_gravity="center"
+                android:src="@drawable/search_no_internet" />
+
+            <TextView
+                style="@style/CustomSearchTextViewTitleStyle"
+                android:showNoInternet="@{viewModel.state.error}"
+                android:text="@string/internet_is_not_available"
+                app:layout_constraintTop_toBottomOf="@id/svgImageView_no_internet" />
+
+            <TextView
+                style="@style/CustomTextViewSearchSubTitleStyle"
+                android:showNoInternet="@{viewModel.state.error}"
+                android:text="@string/please_make_sure_you_are_connected_to_the_internet_and_try_again" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.state.loading}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

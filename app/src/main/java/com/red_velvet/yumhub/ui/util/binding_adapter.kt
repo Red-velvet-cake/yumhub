@@ -240,7 +240,7 @@ fun loadImage(view: ImageView, imageUrl: String) {
     Glide.with(view).load(imageUrl)
         .fitCenter()
         .centerCrop()
-//        .placeholder(R.drawable.placeholder)
+        .placeholder(R.drawable.placeholder)
         .into(view)
 }
 
