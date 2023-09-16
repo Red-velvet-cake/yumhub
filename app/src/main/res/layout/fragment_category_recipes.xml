@@ -23,19 +23,20 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingStart="@dimen/spacing_normal"
-            android:paddingTop="@dimen/spacing_large_24"
-            android:paddingEnd="@dimen/spacing_x_small"
-            app:items="@{viewModel.state.recipesList}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:paddingTop="@dimen/spacing_large_24"
+            android:paddingEnd="@dimen/spacing_x_small"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:items="@{viewModel.state.recipesList}"
             app:spanCount="2"
             tools:listitem="@layout/item_category_recipes" />
 
+
         <ProgressBar
-            android:id="@+id/category_progress_bar"
+            android:id="@+id/recipe_category_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="true"
@@ -46,6 +47,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:showIfLoading="@{viewModel.state.loading}" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
