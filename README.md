@@ -48,6 +48,9 @@ your cooking game and achieve your dietary goals with our user-friendly recipe a
 - [Image Slideshow](https://github.com/denzcoskun/ImageSlideshow): Displaying images in a slideshow.
 - [Lottie](https://github.com/airbnb/lottie-android): Displaying animations.
 
+## How to use:
+- For easy test and share experience with other developers, the first screen in the app requires an API key, you can generate one in this [API console website](https://spoonacular.com/food-api/console#Dashboard)
+
 ## Screenshots 📸
 ![photo_2023-09-16_19-20-46](https://github.com/Red-velvet-cake/yumhub/assets/92039633/c509b500-8e71-4d45-861f-d3dae2ad4ca4)
 ![photo_2023-09-16_19-20-48](https://github.com/Red-velvet-cake/yumhub/assets/92039633/f7f18dd8-c303-48b2-9aa2-4091c20960b4)
