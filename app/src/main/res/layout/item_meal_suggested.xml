@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+<variable
+    name="item"
+    type="com.red_velvet.yumhub.ui.mealsSuggester.MealsSuggesterStep1UiState.SuggestedMeals" />
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.mealsSuggester.mealsSuggesterStep3.SuggestedMealsInteractionListener" />
+  <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:orientation="vertical"
+        >
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/suggested_meals_image"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:scaleType="fitXY"
+            app:imageUrl="@{item.imageUrl}"
+            app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/suggested_meals_text"
+            tools:src="@drawable/appteizer"
+            />
+
+        <TextView
+            android:id="@+id/suggested_meals_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:text="@{item.title}"
+            android:layout_marginHorizontal="@dimen/_4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/fontColor_primary"
+            android:textSize="@dimen/font_size_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="pizza"
+            />
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/heart_checkbox"
+            style="@style/WishIconStyle"
+            android:checked="true"
+            android:onClick="@{()->listener.onMealClick(item)}"
+            android:layout_marginStart="@dimen/_8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/wish_background_button"
+            app:layout_constraintStart_toStartOf="@+id/wish_background_button"
+            app:layout_constraintTop_toTopOf="@+id/wish_background_button"
+            app:layout_constraintEnd_toEndOf="@id/wish_background_button"
+            />
+        <View
+            android:id="@+id/wish_background_button"
+            style="@style/WishButtonStyle"
+            app:layout_constraintStart_toStartOf="@id/suggested_meals_image"
+            app:layout_constraintBottom_toBottomOf="@id/suggested_meals_image" />
+        <TextView
+            android:id="@+id/calories_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2555"
+            android:maxEms="5"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginEnd="@dimen/_8dp"
+            android:text="@{String.valueOf(item.calories)}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintTop_toTopOf="@id/heart_checkbox"
+            app:layout_constraintBottom_toBottomOf="@id/heart_checkbox"
+            app:layout_constraintEnd_toEndOf="@id/wish_background_button"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

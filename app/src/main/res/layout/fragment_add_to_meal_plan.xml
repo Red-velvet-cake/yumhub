@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.add_to_meal_plan.AddToMealPlanViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.add_to_meal_plan.AddToMealPlanFragment">
+
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/choose_any_day_of_the_week"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/text_size_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:calendarViewShown="true"
+                android:datePickerMode="calendar"
+                android:onDateChanged="@{(context,year,month,dayOfMonth)->viewModel.onUpdateSelectedDate(year,month,dayOfMonth)}"
+                android:spinnersShown="false"
+                android:theme="@style/Style_Custom_Date_Picker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
+
+            <TextView
+                android:id="@+id/radio_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/choose_a_meal_time"
+                android:textColor="@color/fontColor_primary"
+                android:textSize="@dimen/text_size_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_picker" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/meal_plan_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_16dp"
+                app:checkedChip="@id/breakfast_chip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radio_title_text_view"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/breakfast_chip"
+                    style="@style/Chip.Regular.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/breakfast"
+                    app:checkedIconEnabled="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/lunch_chip"
+                    style="@style/Chip.Regular.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lunch"
+                    app:checkedIconEnabled="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/dinner_chip"
+                    style="@style/Chip.Regular.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dinner"
+                    app:checkedIconEnabled="false" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_48dp"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/_4dp"
+                android:onClick="@{() -> viewModel.onCancelAddToMealPlan()}"
+                android:text="@string/cancel"
+                android:textColor="@color/green_green60"
+                app:backgroundTint="@color/white"
+                app:cornerRadius="@dimen/spacing_normal"
+                app:layout_constraintEnd_toStartOf="@+id/add_meal_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/meal_plan_chip_group"
+                app:strokeColor="@color/primary"
+                app:strokeWidth="@dimen/_1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_meal_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_48dp"
+                android:layout_marginStart="@dimen/_4dp"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:onClick="@{() -> viewModel.onAddRecipeToMealPlan()}"
+                android:text="@string/add_meal"
+                android:textColor="@color/white"
+                app:cornerRadius="@dimen/spacing_normal"
+                app:backgroundTint="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cancel_button"
+                app:layout_constraintTop_toTopOf="@+id/cancel_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

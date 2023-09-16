@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.search.SearchResultUIState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.search.SearchInteractionListener" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/no_width"
+        android:onClick="@{() -> listener.onRecipeSearchResultClicked(item.id)}"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/small_space"
+        android:layout_marginHorizontal="@dimen/fab_margin"
+        app:cardCornerRadius="@dimen/raduis_16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:padding="@dimen/small_space">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/image_card_width_80dp"
+                android:layout_height="@dimen/image_card_height_64dp"
+                style="@style/CardImageStyle"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{item.image}"
+                android:layout_marginRight="@dimen/_12dp"
+                app:layout_constraintDimensionRatio="16:9"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            <LinearLayout
+                android:paddingVertical="@dimen/small_space"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="@{item.title}"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="@dimen/text_size_12sp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/black_title"
+                    android:text="@string/salad" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_12dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hideIfZero="@{item.ingredientNumber}"
+                           app:text='@{String.format("%d ingredient",item.ingredientNumber)}'
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:layout_marginEnd="@dimen/small_space"
+                            android:drawableStart="@drawable/ingredient"
+                            android:drawablePadding="@dimen/tiny_space"
+                            android:textColor="@color/black_title_60"
+                            android:text="@string/_7_ingrerdients" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:text='@{item.readyInMinutes}'
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:drawablePadding="@dimen/tiny_space"
+                            android:drawableStart="@drawable/timer1"
+                            android:textColor="@color/black_title_60"
+                            android:text="@string/_18_min" />
+                    </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

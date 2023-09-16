@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.favorites.FavoritesUiState.RecipeUiState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.favorites.FavoriteInteractionListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_4dp"
+        android:backgroundTint="@color/background"
+        android:clickable="true"
+        android:elevation="0dp"
+        android:focusable="true"
+        android:onClick="@{() -> listener.onFavoriteRecipeClicked(item.id)}"
+        app:cardCornerRadius="@dimen/_16dp"
+        app:contentPadding="@dimen/size_8dp"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_view_meal"
+                android:layout_width="@dimen/image_card_width_100dp"
+                android:layout_height="@dimen/image_card_width_80dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{item.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/text_view_meal_name"
+                style="@style/TextStyle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{item.title}"
+                app:layout_constraintBottom_toTopOf="@id/text_view_meal_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_view_meal"
+                app:layout_constraintTop_toTopOf="@id/image_view_meal"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Dolma" />
+
+            <TextView
+                android:id="@+id/text_view_meal_description"
+                style="@style/TextStyle.Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                app:htmlText="@{item.overview}"
+                app:layout_constraintBottom_toBottomOf="@id/image_view_meal"
+                app:layout_constraintEnd_toEndOf="@id/text_view_meal_name"
+                app:layout_constraintStart_toStartOf="@id/text_view_meal_name"
+                app:layout_constraintTop_toBottomOf="@id/text_view_meal_name"
+                tools:text="I was stuck at home all day yesterday while we were having some  ..." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

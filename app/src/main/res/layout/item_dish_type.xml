@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.recipeDetails.DishTypeUIState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.recipeDetails.DishTypeListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/small_space">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/text_dish_type_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingRight="@dimen/spacing_small"
+            android:paddingVertical="@dimen/small_space"
+            android:text="@{item.dishType}"
+            android:onClick="@{() -> listener.onDishTypeClicked(item.dishType)}"
+            android:textAlignment="center"
+            android:textColor="@color/fontColor_secondary"
+            android:textSize="@dimen/text_size_16"
+            app:chipCornerRadius="@dimen/_16dp"
+            app:chipStrokeColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="mahmoud" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

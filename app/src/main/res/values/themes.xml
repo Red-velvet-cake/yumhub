@@ -1,9 +1,156 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.YumHub" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.YumHub" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:navigationIcon">@color/primary</item>
+        <item name="colorControlNormal">@color/primary</item>
+
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorError">@color/red</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSurfaceVariant">@color/green_green80</item>
+        <item name="colorOnPrimary">@color/fontColor_primary</item>
+
     </style>
 
     <style name="Theme.YumHub" parent="Base.Theme.YumHub" />
+
+    <style name="RoundedCorner">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <style name="CardImageStyle" parent="">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
+    </style>
+
+    <style name="Chip.Regular.Small" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipStrokeColor">@color/primary</item>
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipCornerRadius">@dimen/fab_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">@dimen/_12dp</item>
+        <item name="android:paddingTop">@dimen/_6dp</item>
+        <item name="android:paddingLeft">@dimen/_12dp</item>
+        <item name="android:paddingBottom">@dimen/_6dp</item>
+    </style>
+
+    <style name="CustomTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/fontColor_primary</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:layout_marginStart">@dimen/fab_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+
+    </style>
+
+    <style name="CustomSubTitleTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/fontColor_secondary</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:layout_marginStart">@dimen/fab_margin</item>
+        <item name="android:layout_marginEnd">@dimen/fab_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="BottomNavigationViewStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/bg_white</item>
+        <item name="itemTextAppearanceActive">?attr/textAppearanceCaption</item>
+        <item name="itemTextColor">@color/primary</item>
+        <item name="itemRippleColor">@color/primary</item>
+        <item name="itemActiveIndicatorStyle">@style/BottomNavBarIndicator</item>
+        <item name="android:padding">@dimen/spacing_small</item>
+    </style>
+
+    <style name="BottomNavBarIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary</item>
+    </style>
+
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
+        <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal
+        </item>
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
+        </item>
+    </style>
+
+    <style name="CardSearchFilterStyle">
+        <item name="android:background">@color/green_green100</item>
+        <item name="android:backgroundTint">@color/green_green100</item>
+        <item name="android:elevation">@dimen/no_width</item>
+        <item name="android:layout_width">@dimen/spacing_xxxxlarge</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="CustomSearchTextViewTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_large_24</item>
+        <item name="android:layout_marginBottom">@dimen/fab_margin</item>
+        <item name="android:textColor">@color/black_title_60</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="CustomTextViewSearchSubTitleStyle">
+        <item name="android:layout_width">@dimen/_200dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/black_title_36</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+    <style name="CustomGenderSelector">
+        <item name="cornerSize">@dimen/radius_16dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+    <style name="CustomActivityLevelSelector">
+        <item name="cornerSize">@dimen/radius_16dp</item>
+        <item name="android:background">@drawable/activity_selector_shape</item>
+    </style>
+
+    <style name="CustomNutrisionCardViewStyle" parent="">
+        <item name="background">@color/bg_white</item>
+        <item name="android:layout_height">@dimen/size_136dp</item>
+        <item name="android:layout_width">@dimen/size_160dp</item>
+        <item name="cardElevation">@dimen/no_width</item>
+        <item name="android:background">@color/white</item>
+        <item name="cardCornerRadius">@dimen/radius_16dp</item>
+    </style>
+
+    <style name="CustomNutrisonTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black_title</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="CustomNutrisonImageViewStyle" parent="">
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="CustomNutrisonTitleStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black_title</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
 </resources>

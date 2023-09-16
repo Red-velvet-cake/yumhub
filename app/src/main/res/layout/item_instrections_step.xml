@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.instructions.StepsUiState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/step_name_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_x_small"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:visibility="@{item.name != null &amp;&amp; item.name.length() > 0 &amp;&amp; item.stepNumber == 1 ? View.VISIBLE : View.GONE}"
+            app:cardCornerRadius="@dimen/zero"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:id="@+id/step_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_x_small"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@{item.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Cook pasta as directed on package" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/step_number_text_view"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:drawablePadding="@dimen/_4dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text='@{ "Step " + item.stepNumber }'
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step_name_card_view"
+            tools:text="1"
+            app:drawableStartCompat="@drawable/point" />
+
+        <TextView
+            android:id="@+id/step_details_text_view"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_x_x_small"
+            android:layout_marginTop="@dimen/spacing_x_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:text="@{item.stepDetails}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/step_number_text_view"
+            app:layout_constraintTop_toBottomOf="@id/step_name_card_view"
+            tools:text="Meanwhile, heat a tablespoon of olive oil over low heat in a large skillet, sautéing garlic until fragrant." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

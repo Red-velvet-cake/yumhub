@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.red_velvet.yumhub.ui.home.RecipeUiState" />
+
+        <variable
+            name="listener"
+            type="com.red_velvet.yumhub.ui.home.listeners.RecipeInteractionListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_x_small"
+        android:onClick="@{() -> listener.doOnRecipeClicked(item.id)}"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recipe_image_view"
+            android:layout_width="160dp"
+            android:layout_height="125dp"
+            app:imageUrl="@{item.recipeImage}"
+            app:shapeAppearanceOverlay="@style/ShapeableImageViewStyle"
+            tools:src="@drawable/recipe" />
+
+        <TextView
+            android:id="@+id/recipe_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="1"
+            android:text="@{item.recipeTitle}"
+            android:textColor="@color/fontColor_primary"
+            android:textSize="@dimen/text_size_16" />
+
+    </LinearLayout>
+</layout>

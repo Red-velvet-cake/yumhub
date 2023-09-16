@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.mealPlan.MealPlanViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_white"
+        tools:context=".ui.mealPlan.MealPlanFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_white"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/meal_plan_action"
+                app:title="Meal Plan"
+                app:titleTextAppearance="@style/DietToolbarTitleTextAppearance" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_calendar_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_16dp"
+            app:items="@{viewModel.state.daysPlannedMeals}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            app:listResult="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}"
+            tools:listitem="@layout/item_calendar_day" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_meal_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:elevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_calendar_days"
+            app:listResult="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}"
+            app:tabBackground="@drawable/selector_tab"
+            app:tabGravity="fill"
+            app:tabIndicator="@null"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/fontColor_white"
+            app:tabTextColor="@color/primary" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_meals"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout_meal_type"
+            app:listResult="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
+
+        <ImageView
+            android:id="@+id/empty_meals_vector"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/not_found_search"
+            app:error="@{viewModel.state.error}"
+            app:layout_constraintBottom_toTopOf="@id/empty_meals_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:list="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
+
+        <TextView
+            android:id="@+id/empty_meals_title"
+            style="@style/TextStyle.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large_24"
+            android:text="@string/not_found"
+            android:textColor="@color/fontColor_secondary"
+            android:textSize="@dimen/text_size_20"
+            app:error="@{viewModel.state.error}"
+            app:layout_constraintBottom_toTopOf="@id/empty_meals_description"
+            app:layout_constraintEnd_toEndOf="@id/empty_meals_vector"
+            app:layout_constraintStart_toStartOf="@id/empty_meals_vector"
+            app:layout_constraintTop_toBottomOf="@id/empty_meals_vector"
+            app:list="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
+
+        <TextView
+            android:id="@+id/empty_meals_description"
+            style="@style/TextStyle.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4dp"
+            android:layout_marginBottom="?android:attr/actionBarSize"
+            android:gravity="center"
+            android:text="@string/no_meal_has_been_entered_on_this_day"
+            android:textColor="@color/fontColor_accent"
+            android:textSize="@dimen/text_size_12sp"
+            app:error="@{viewModel.state.error}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/empty_meals_vector"
+            app:layout_constraintStart_toStartOf="@id/empty_meals_vector"
+            app:layout_constraintTop_toBottomOf="@id/empty_meals_title"
+            app:list="@{viewModel.state.daysPlannedMeals}"
+            app:loading="@{viewModel.state.isLoading}" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:indeterminateTintMode="src_atop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showIfLoading="@{viewModel.state.isLoading}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

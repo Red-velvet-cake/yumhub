@@ -1,7 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.YumHub" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.YumHub" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:navigationIcon">@color/primary</item>
+        <item name="colorControlNormal">@color/primary</item>
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorError">@color/red</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSurfaceVariant">@color/green_green80</item>
+        <item name="colorOnPrimary">@color/fontColor_primary</item>
+
     </style>
 </resources>

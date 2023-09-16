@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.red_velvet.yumhub.ui.nutritionalValue.NutritionalValueViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_white">
+
+            <TextView
+                android:id="@+id/tv_nutritional_value"
+                style="@style/CustomNutrisonTitleStyle"
+                android:layout_marginTop="@dimen/spacing_xxxxlarge"
+                android:text="@string/stay_on_top_of_your_food_intake_with_our"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_nutrition_tracker"
+                style="@style/CustomNutrisonTitleStyle"
+                android:text="@string/nutrition_tracker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nutritional_value" />
+
+            <ImageView
+                android:id="@+id/iv_nutritional_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_32dp"
+                android:src="@drawable/nutritional_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nutrition_tracker" />
+
+            <LinearLayout
+                android:id="@+id/ll_nutritional_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/spacing_large_24"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_nutritional_value">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/fontColor_accent"
+                    app:hintTextColor="@color/green_green80">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space_48dp"
+                        android:layout_marginEnd="@dimen/small_space"
+                        android:background="@drawable/text_input_rounded"
+                        android:fontFamily="@font/roboto_regular"
+                        android:hint="@string/enter_a_recipe_name"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:onTextChanged="@{(text,_, ___, __) -> viewModel.onInputSearchChange(text)}"
+                        android:paddingHorizontal="@dimen/_12dp"
+                        android:paddingVertical="@dimen/space_15dp"
+                        android:text="@{viewModel.state.textInput}"
+                        android:textSize="@dimen/text_size_16" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Button
+                    android:layout_width="@dimen/_72dp"
+                    android:layout_height="@dimen/size_48dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/primary"
+                    android:fontFamily="@font/roboto_regular"
+                    android:onClick="@{() -> viewModel.doOnApplyRecipe()}"
+                    android:paddingHorizontal="@dimen/fab_margin"
+                    android:text="@string/apply"
+                    android:textColor="@color/fontColor_white"
+                    android:textSize="@dimen/textsize_14sp"
+                    app:cornerRadius="@dimen/radius_16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_nutritional_value_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_nutritional_value">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/CustomNutrisionCardViewStyle"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/fab_margin"
+                        android:paddingVertical="@dimen/fab_margin">
+
+                        <TextView
+                            android:id="@+id/tv_calories"
+                            style="@style/CustomNutrisonTextViewStyle"
+                            android:text="@string/calories"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            style="@style/CustomNutrisonImageViewStyle"
+                            android:src="@drawable/calarious"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_calories"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="@dimen/size_8dp"
+                            android:layout_height="@dimen/size_68dp"
+                            android:layout_marginTop="@dimen/_4dp"
+                            android:max="2000"
+                            android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.calories)}"
+                            android:progressDrawable="@drawable/custom_progress_calories"
+                            android:rotation="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_calories" />
+
+                        <TextView
+                            android:id="@+id/tv_calories_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.calories)}'
+                            android:textColor="@color/black_title"
+                            android:textSize="@dimen/text_size_24"
+                            app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_calories"
+                            app:layout_constraintTop_toBottomOf="@id/tv_calories" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="@dimen/spacing_large_24"
+                            android:layout_height="@dimen/spacing_large_24"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:visibility="visible"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_calories"
+                            app:layout_constraintTop_toBottomOf="@id/tv_calories"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/load_values"
+                            app:showIfTrue="@{viewModel.state.loading}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:layout_marginTop="@dimen/small_space"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/kcal"
+                            android:textColor="@color/black_title_60"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_calories"
+                            app:layout_constraintTop_toBottomOf="@id/tv_calories_value" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    style="@style/CustomNutrisionCardViewStyle"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/fab_margin"
+                        android:paddingVertical="@dimen/fab_margin">
+
+                        <TextView
+                            android:id="@+id/tv_fat"
+                            style="@style/CustomNutrisonTextViewStyle"
+                            android:text="@string/fat"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            style="@style/CustomNutrisonImageViewStyle"
+                            android:src="@drawable/fat"
+                            app:layout_constraintEnd_toEndOf="parent"
+
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_fat"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="@dimen/size_8dp"
+                            android:layout_height="@dimen/size_68dp"
+                            android:layout_marginTop="@dimen/_4dp"
+                            android:max="500"
+                            android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.fat)}"
+                            android:progressDrawable="@drawable/custom_progress_fat"
+                            android:rotation="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_fat" />
+
+                        <TextView
+                            android:id="@+id/tv_calories_fat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.fat)}'
+                            android:textColor="@color/black_title"
+                            android:textSize="@dimen/text_size_24"
+                            app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_fat"
+                            app:layout_constraintTop_toBottomOf="@id/tv_fat" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="@dimen/spacing_large_24"
+                            android:layout_height="@dimen/spacing_large_24"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:visibility="visible"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_fat"
+                            app:layout_constraintTop_toBottomOf="@id/tv_fat"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/load_values"
+                            app:showIfTrue="@{viewModel.state.loading}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:layout_marginTop="@dimen/small_space"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/grams"
+                            android:textColor="@color/black_title_60"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_fat"
+                            app:layout_constraintTop_toBottomOf="@id/tv_calories_fat" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_nutritional_value_1">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/CustomNutrisionCardViewStyle"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/fab_margin"
+                        android:paddingVertical="@dimen/fab_margin">
+
+                        <TextView
+                            android:id="@+id/tv_carbs"
+                            style="@style/CustomNutrisonTextViewStyle"
+                            android:text="@string/carbs"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView_carbs"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView_carbs"
+                            style="@style/CustomNutrisonImageViewStyle"
+                            android:src="@drawable/carbs"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_carbs"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="@dimen/size_8dp"
+                            android:layout_height="@dimen/size_68dp"
+                            android:layout_marginTop="@dimen/_4dp"
+                            android:max="1000"
+                            android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.carbs)}"
+                            android:progressDrawable="@drawable/custom_progress_carb"
+                            android:rotation="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_carbs" />
+
+                        <TextView
+                            android:id="@+id/tv_carbs_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.carbs)}'
+                            android:textColor="@color/black_title"
+                            android:textSize="@dimen/text_size_24"
+                            app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_carbs"
+                            app:layout_constraintTop_toBottomOf="@id/tv_carbs" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="@dimen/spacing_large_24"
+                            android:layout_height="@dimen/spacing_large_24"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:visibility="visible"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_carbs"
+                            app:layout_constraintTop_toBottomOf="@id/tv_carbs"
+                            app:lottie_autoPlay="true"
+
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/load_values"
+                            app:showIfTrue="@{viewModel.state.loading}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:layout_marginTop="@dimen/small_space"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/grams"
+                            android:textColor="@color/black_title_60"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_carbs"
+                            app:layout_constraintTop_toBottomOf="@id/tv_carbs_value" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    style="@style/CustomNutrisionCardViewStyle"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/fab_margin"
+                        android:paddingVertical="@dimen/fab_margin">
+
+                        <TextView
+                            android:id="@+id/tv_protein"
+                            style="@style/CustomNutrisonTextViewStyle"
+                            android:layout_marginEnd="@dimen/spacing_large_24"
+                            android:text="@string/protein"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            style="@style/CustomNutrisonImageViewStyle"
+                            android:src="@drawable/proten"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_protein"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="@dimen/size_8dp"
+                            android:layout_height="@dimen/size_68dp"
+                            android:layout_marginTop="@dimen/_4dp"
+                            android:max="500"
+                            android:progress="@{(int)Math.round(viewModel.state.nutritionalValueResultUIState.protein)}"
+                            android:progressDrawable="@drawable/custom_progress_proten"
+                            android:rotation="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_protein" />
+
+                        <TextView
+                            android:id="@+id/tv_protein_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text='@{String.format("%.2f",viewModel.state.nutritionalValueResultUIState.protein)}'
+                            android:textColor="@color/black_title"
+                            android:textSize="@dimen/text_size_24"
+                            app:hideIfLoadingNutrionValue="@{viewModel.state.loading}"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_protein"
+                            app:layout_constraintTop_toBottomOf="@id/tv_protein" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="@dimen/spacing_large_24"
+                            android:layout_height="@dimen/spacing_large_24"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:visibility="visible"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_protein"
+                            app:layout_constraintTop_toBottomOf="@id/tv_protein"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/load_values"
+                            app:showIfTrue="@{viewModel.state.loading}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large_24"
+                            android:layout_marginTop="@dimen/small_space"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/grams"
+                            android:textColor="@color/black_title_60"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toEndOf="@id/progressBar_protein"
+                            app:layout_constraintTop_toBottomOf="@id/tv_protein_value" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
