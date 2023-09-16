@@ -106,4 +106,10 @@
     <dimen name="space_56dp">56dp</dimen>
     <dimen name="_182dp">182dp</dimen>
     <dimen name="_272dp">272dp</dimen>
+    <dimen name="_8dp">8dp</dimen>
+    <dimen name="_0dp">0dp</dimen>
+    <dimen name="_160dp">160dp</dimen>
+    <dimen name="_74dp">74dp</dimen>
+    <dimen name="_88dp">88dp</dimen>
+    <dimen name="_104dp">104dp</dimen>
 </resources>

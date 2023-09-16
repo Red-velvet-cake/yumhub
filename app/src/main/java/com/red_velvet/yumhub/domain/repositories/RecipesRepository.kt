@@ -82,4 +82,10 @@ interface RecipesRepository {
 
     suspend fun getExtendedIngredients(id: Int, includeNutrition: Boolean)
             : List<ExtendedIngredientEntity>
+
+    suspend fun getMealByCalories(
+        minCalories: Double,
+        maxCalories: Double
+    ): List<RecipeEntity>
+
 }

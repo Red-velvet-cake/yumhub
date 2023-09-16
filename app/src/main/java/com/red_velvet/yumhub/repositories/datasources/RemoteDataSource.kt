@@ -15,6 +15,7 @@ import com.red_velvet.yumhub.remote.resources.recipe.QuickAnswerResource
 import com.red_velvet.yumhub.remote.resources.recipe.RandomRecipesResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeInformationResource
 import com.red_velvet.yumhub.remote.resources.recipe.RecipeSearchPaginationResource
+import com.red_velvet.yumhub.remote.resources.recipe.RecipesByRangeOfCaloriesResource
 import com.red_velvet.yumhub.remote.resources.recipe.SimilarRecipesResource
 
 interface RemoteDataSource {
@@ -88,5 +89,10 @@ interface RemoteDataSource {
         id: Int,
         includeNutrition: Boolean,
     ): List<ExtendedIngredientResource>
+
+    suspend fun getRecipesByCalories(
+        minCalories : Double,
+        maxCalories : Double,
+    ): List<RecipesByRangeOfCaloriesResource>
 
 }
