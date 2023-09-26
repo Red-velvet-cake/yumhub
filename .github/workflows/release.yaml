@@ -1,0 +1,34 @@
+  on:
+    push:
+      branches: ["master", "develop"]
+    pull_request:
+      branches: ["master", "develop"]
+  jobs:
+    release:
+      name: Release App Bundle
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download AAB from build
+          uses: actions/download-artifact@v1
+          with:
+            name: aab
+        - name: Create Release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: Tag Name
+            release_name: Release Name
+        - name: Upload Release AAB
+          id: upload_release_asset
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: aab/app-release.aab
+            asset_name: ${{ github.event.repository.name }}.aab
+            asset_content_type: application/zip
+        - run: echo "Upload returned with status=${{ job.status }}."
