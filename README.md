@@ -58,11 +58,9 @@ your cooking game and achieve your dietary goals with our user-friendly recipe a
 ![photo_2023-09-16_19-20-51](https://github.com/Red-velvet-cake/yumhub/assets/92039633/ef7c2940-68cb-4713-9688-bebfd5ad68fb)
 ![photo_2023-09-16_19-20-55](https://github.com/Red-velvet-cake/yumhub/assets/92039633/948ea64c-465c-432c-b309-2b2cdf34f373)
 
-
 ## Team 👨‍💻
 
 Thanks goes to these wonderful people:
-
 <a href="https://github.com/Red-velvet-cake/yumhub/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Red-velvet-cake/yumhub" />
+<img src="https://contrib.rocks/image?repo=Red-velvet-cake/yumhub" />
 </a>
