@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - main
+      
+  pull_request:
+    branches:
+      - main
 
 # Where it will run
 jobs:
